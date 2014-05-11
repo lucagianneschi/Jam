@@ -1,0 +1,136 @@
+2014/05/08 17:54:57 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii
+---
+2014/05/08 17:55:12 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii
+---
+2014/05/08 17:55:14 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii
+---
+2014/05/08 17:56:46 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii
+---
+2014/05/09 09:57:44 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii
+---
+2014/05/09 09:58:28 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii
+---
+2014/05/09 11:04:12 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii
+---
+2014/05/09 11:04:37 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii
+---
+2014/05/09 11:04:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii
+---
+2014/05/09 11:04:44 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('index')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii/default/ind...')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii/default/index
+HTTP_REFERER=http://localhost/jamyourself/index.php?r=gii/default/login
+---
+2014/05/09 11:04:46 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('index')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii/default/ind...')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii/default/index
+HTTP_REFERER=http://localhost/jamyourself/index.php?r=gii/default/login
+---
+2014/05/09 11:05:34 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in C:\inetpub\wwwroot\framework\gii\GiiModule.php:170
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): CController->run('index')
+#2 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController('gii/default/ind...')
+#3 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\inetpub\wwwroot\jamyourself\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jamyourself/index.php?r=gii/default/index
+HTTP_REFERER=http://jam-vm-dev-1.cloudapp.net/jamyourself/index.php?r=gii/default/login
+---
+2014/05/10 15:42:43 [error] [php] Undefined variable:  (C:\inetpub\wwwroot\jamyourself\protected\views\layouts\column1.php:4)
+Stack trace:
+#0 C:\inetpub\wwwroot\framework\web\CController.php(784): SiteController->renderFile()
+#1 C:\inetpub\wwwroot\jamyourself\protected\controllers\SiteController.php(32): SiteController->render()
+#2 C:\inetpub\wwwroot\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#3 C:\inetpub\wwwroot\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 C:\inetpub\wwwroot\framework\web\CController.php(286): SiteController->runAction()
+#5 C:\inetpub\wwwroot\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#6 C:\inetpub\wwwroot\framework\web\CWebApplication.php(282): SiteController->run()
+#7 C:\inetpub\wwwroot\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 C:\inetpub\wwwroot\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 C:\inetpub\wwwroot\jamyourself\index.php(13): CWebApplication->run()
+REQUEST_URI=/
