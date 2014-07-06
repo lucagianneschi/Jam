@@ -55,11 +55,13 @@ class Comment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fromuser, text, touser, updatedat', 'required'),
-			array('active, commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true),
+			array('fromuser, text, touser, updatedat', 'required','message'=>'{attribute} field is missing'),
+			array('active, commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
 			array('latitude, longitude', 'numerical'),
 			array('album, comment, event, fromuser, image, record, song, touser, video', 'length', 'max'=>11),
 			array('createdat', 'safe'),
+		        array('text', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
+		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, album, comment, commentcounter, event, fromuser, image, latitude, longitude, lovecounter, record, sharecounter, song, text, touser, video, createdat, updatedat', 'safe', 'on'=>'search'),
