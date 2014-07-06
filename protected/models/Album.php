@@ -49,7 +49,7 @@ class Album extends CActiveRecord
 			array('active, commentcounter, imagecounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
 			array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
 			array('cover, thumbnail', 'length', 'max'=>100,'tooLong'=>'{attribute} must be at most 100 characters'),
-			array('fromuser', 'length', 'max'=>11),
+			array('fromuser', 'length', 'max'=>11,'message'=>'Invalid {attribute} format'),
 			array('title', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
 		        array('title', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 		    	array('description', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
