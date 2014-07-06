@@ -36,10 +36,11 @@ class Playlist extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fromuser, updatedat', 'required'),
-			array('active, songcounter, unlimited', 'numerical', 'integerOnly'=>true),
-			array('fromuser', 'length', 'max'=>11),
-			array('name', 'length', 'max'=>100),
+			array('id, active, fromuser, updatedat', 'required','message'=>'{attribute} field is missing'),
+			array('active, songcounter, unlimited', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
+			array('fromuser', 'length', 'max'=>11, 'message'=>'Invalid {attribute} format'),
+		    	array('name', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
+		        array('name', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			array('createdat', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

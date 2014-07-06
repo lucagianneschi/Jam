@@ -38,9 +38,11 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fromuser, lovecounter, text, touser, updatedat', 'required'),
-			array('active, commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true),
-			array('fromuser, touser', 'length', 'max'=>11),
+			array('fromuser, lovecounter, text, touser, updatedat', 'required', 'message'=>'{attribute} field is missing'),
+			array('active, commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
+			array('fromuser, touser', 'length', 'max'=>11,'message'=>'Invalid {attribute} format'),
+		        array('text', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
+		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			array('createdat', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

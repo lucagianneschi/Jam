@@ -49,6 +49,8 @@ class Image extends CActiveRecord
 			array('latitude, longitude', 'numerical'),
 			array('album, fromuser', 'length', 'max'=>11),
 			array('path, thumbnail', 'length', 'max'=>100),
+		    	array('description', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
+		        array('description', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			array('description, createdat, updatedat', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

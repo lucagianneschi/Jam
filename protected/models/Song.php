@@ -39,13 +39,16 @@ class Song extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('active, commentcounter, counter, duration, fromuser, lovecounter, position, record, sharecounter', 'numerical', 'integerOnly'=>true),
-			array('latitude, longitude', 'numerical'),
-			array('path, title', 'length', 'max'=>100),
+		    	array('id, active, fromuser, path, record, title, updatedat', 'required','message'=>'{attribute} field is missing'),
+			array('id, active, commentcounter, counter, duration, fromuser, lovecounter, position, record, sharecounter', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
+			array('latitude, longitude', 'numerical', 'message'=>'Invalid {attribute} format'),
+			array('path, title', 'length', 'max'=>100, 'message'=>'Invalid {attribute} format'),
 			array('createdat, updatedat', 'safe'),
+		    	array('title', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
+		        array('title', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, active, commentcounter, counter, duration, fromuser, latitude, longitude, lovecounter, path, position, record, sharecounter, title, createdat, updatedat', 'safe', 'on'=>'search'),
+			array('id, active, commentcounter, duration, fromuser, latitude, longitude, lovecounter, path, position, record, sharecounter, title, createdat, updatedat', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,7 +72,6 @@ class Song extends CActiveRecord
 			'id' => 'ID',
 			'active' => 'Active',
 			'commentcounter' => 'Commentcounter',
-			'counter' => 'Counter',
 			'duration' => 'Duration',
 			'fromuser' => 'Fromuser',
 			'latitude' => 'Latitude',
@@ -106,7 +108,6 @@ class Song extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('commentcounter',$this->commentcounter);
-		$criteria->compare('counter',$this->counter);
 		$criteria->compare('duration',$this->duration);
 		$criteria->compare('fromuser',$this->fromuser);
 		$criteria->compare('latitude',$this->latitude);

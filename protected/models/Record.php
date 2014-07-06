@@ -53,12 +53,16 @@ class Record extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fromuser, title, updatedat', 'required'),
-			array('active, commentcounter, duration, lovecounter, reviewcounter, sharecounter, songcounter, year', 'numerical', 'integerOnly'=>true),
-			array('latitude, longitude', 'numerical'),
-			array('buylink, city, cover, label, thumbnail', 'length', 'max'=>100),
-			array('fromuser', 'length', 'max'=>10),
-			array('title', 'length', 'max'=>80),
+			array('id, active, fromuser, title, updatedat', 'required','message'=>'{attribute} field is missing'),
+			array('active, commentcounter, duration, lovecounter, reviewcounter, sharecounter, songcounter, year', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
+			array('latitude, longitude', 'numerical', 'message'=>'Invalid {attribute} format'),
+		        array('buylink', 'url', 'message'=>'Invalid URL for {attribute}'),
+			array('buylink, city, cover, label, thumbnail', 'length', 'max'=>100, 'message'=>'Invalid {attribute} format'),
+			array('fromuser', 'length', 'max'=>11,'message'=>'Invalid {attribute} format'),
+		        array('description', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
+		        array('description', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
+		    	array('title', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
+		        array('title', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			array('description, createdat', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

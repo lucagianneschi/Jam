@@ -34,10 +34,12 @@ class Message extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fromuser, text, touser, updatedat', 'required'),
-			array('active', 'numerical', 'integerOnly'=>true),
-			array('fromuser, touser', 'length', 'max'=>11),
+			array('id, active, fromuser, text, touser, updatedat', 'required','message'=>'{attribute} field is missing'),
+			array('active', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
+			array('fromuser, touser', 'length', 'max'=>11, 'message'=>'Invalid {attribute} format'),
 			array('createdat', 'safe'),
+		    	array('text', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
+		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, fromuser, text, touser, createdat, updatedat', 'safe', 'on'=>'search'),

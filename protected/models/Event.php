@@ -58,9 +58,14 @@ class Event extends CActiveRecord
 			array('address, city, description, fromuser, locationname, title, updatedat', 'required'),
 			array('active, attendeecounter, cancelledcounter, commentcounter, invitedcounter, lovecounter, refusedcounter, reviewcounter, sharecounter', 'numerical', 'integerOnly'=>true),
 			array('latitude, longitude', 'numerical'),
-			array('address, city, cover, thumbnail, title', 'length', 'max'=>100),
+			array('address, city, cover, thumbnail', 'length', 'max'=>100),
+		        array('title, address, city', 'length', 'max'=>100,'tooLong'=>'{attribute} must be at most 100 characters'),
+		        array('title, address, city', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			array('fromuser', 'length', 'max'=>11),
-			array('locationname', 'length', 'max'=>80),
+		    	array('description', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
+		        array('description', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
+		    	array('locationname', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
+		        array('locationname', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			array('eventdate, createdat', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
