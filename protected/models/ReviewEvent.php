@@ -37,10 +37,14 @@ class ReviewEvent extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('event, fromuser, text, touser, updatedat', 'required'),
-			array('active, vote', 'numerical', 'integerOnly'=>true),
+			array('id, active, event, fromuser, text, touser, createdat, updatedat, vote', 'required'),
+			array('active, vote', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
 			array('event, fromuser, touser', 'length', 'max'=>11),
 			array('createdat', 'safe'),
+		        array('text', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
+		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
+		        array('vote', 'max'=>5,'tooBig'=>'{attribute} can be at most 5'),
+		        array('vote', 'min'=>1,'tooSmall'=>'{attribute} can be at least 1'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, event, fromuser, text, touser, vote, createdat, updatedat', 'safe', 'on'=>'search'),
