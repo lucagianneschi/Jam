@@ -7,6 +7,8 @@
  * @property string $id
  * @property integer $active
  * @property string $fromuser
+ * @property double $latitude
+ * @property double $longitude
  * @property string $record
  * @property string $text
  * @property string $touser
@@ -40,6 +42,7 @@ class ReviewRecord extends CActiveRecord
 		    	array('id, active, fromuser, record, text, touser, createdat, updatedat, vote', 'required'),
 			array('active, vote', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
 			array('fromuser, record, touser', 'length', 'max'=>11,'message'=>'Invalid {attribute} format'),
+		        array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
 			array('createdat', 'safe'),
 		    	array('text', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
 		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
@@ -47,7 +50,7 @@ class ReviewRecord extends CActiveRecord
 		        array('vote', 'min'=>1,'tooSmall'=>'{attribute} can be at least 1'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, active, fromuser, record, text, touser, vote, createdat, updatedat', 'safe', 'on'=>'search'),
+			array('id, active, fromuser, latitude, longitude, record, text, touser, vote, createdat, updatedat', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +77,8 @@ class ReviewRecord extends CActiveRecord
 			'id' => 'ID',
 			'active' => 'Active',
 			'fromuser' => 'Fromuser',
+		        'latitude' => 'Latitude',
+			'longitude' => 'Longitude',
 			'record' => 'Record',
 			'text' => 'Text',
 			'touser' => 'Touser',
@@ -104,6 +109,8 @@ class ReviewRecord extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('fromuser',$this->fromuser,true);
+		$criteria->compare('latitude',$this->latitude);
+		$criteria->compare('longitude',$this->longitude);
 		$criteria->compare('record',$this->record,true);
 		$criteria->compare('text',$this->text,true);
 		$criteria->compare('touser',$this->touser,true);

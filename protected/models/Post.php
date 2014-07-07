@@ -10,6 +10,9 @@
  * @property string $fromuser
  * @property integer $lovecounter
  * @property integer $sharecounter
+ * @property integer $imagecounter
+ * @property double $latitude
+ * @property double $longitude
  * @property string $text
  * @property string $touser
  * @property string $createdat
@@ -41,12 +44,13 @@ class Post extends CActiveRecord
 			array('fromuser, lovecounter, text, touser, updatedat', 'required', 'message'=>'{attribute} field is missing'),
 			array('active, commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
 			array('fromuser, touser', 'length', 'max'=>11,'message'=>'Invalid {attribute} format'),
+		    	array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
 		        array('text', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
 		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			array('createdat', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, active, commentcounter, fromuser, lovecounter, sharecounter, text, touser, createdat, updatedat', 'safe', 'on'=>'search'),
+			array('id, active, commentcounter, fromuser,latitude, longitude, lovecounter, sharecounter, text, touser, createdat, updatedat', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +78,8 @@ class Post extends CActiveRecord
 			'active' => 'Active',
 			'commentcounter' => 'Commentcounter',
 			'fromuser' => 'Fromuser',
+		    	'latitude' => 'Latitude',
+			'longitude' => 'Longitude',
 			'lovecounter' => 'Lovecounter',
 			'sharecounter' => 'Sharecounter',
 			'text' => 'Text',
@@ -105,6 +111,8 @@ class Post extends CActiveRecord
 		$criteria->compare('active',$this->active);
 		$criteria->compare('commentcounter',$this->commentcounter);
 		$criteria->compare('fromuser',$this->fromuser,true);
+		$criteria->compare('latitude',$this->latitude);
+		$criteria->compare('longitude',$this->longitude);
 		$criteria->compare('lovecounter',$this->lovecounter);
 		$criteria->compare('sharecounter',$this->sharecounter);
 		$criteria->compare('text',$this->text,true);

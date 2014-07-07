@@ -8,6 +8,8 @@
  * @property integer $active
  * @property string $event
  * @property string $fromuser
+ * @property double $latitude
+ * @property double $longitude
  * @property string $text
  * @property string $touser
  * @property integer $vote
@@ -39,7 +41,8 @@ class ReviewEvent extends CActiveRecord
 		return array(
 			array('id, active, event, fromuser, text, touser, createdat, updatedat, vote', 'required'),
 			array('active, vote', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
-			array('event, fromuser, touser', 'length', 'max'=>11),
+			array('event, fromuser, touser', 'length', 'max'=>11, 'message'=>'Invalid {attribute} format'),
+		    	array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
 			array('createdat', 'safe'),
 		        array('text', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
 		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
@@ -47,7 +50,7 @@ class ReviewEvent extends CActiveRecord
 		        array('vote', 'min'=>1,'tooSmall'=>'{attribute} can be at least 1'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, active, event, fromuser, text, touser, vote, createdat, updatedat', 'safe', 'on'=>'search'),
+			array('id, active, event, fromuser,latitude, longitude, text, touser, vote, createdat, updatedat', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,6 +78,8 @@ class ReviewEvent extends CActiveRecord
 			'active' => 'Active',
 			'event' => 'Event',
 			'fromuser' => 'Fromuser',
+		    	'latitude' => 'Latitude',
+			'longitude' => 'Longitude',
 			'text' => 'Text',
 			'touser' => 'Touser',
 			'vote' => 'Vote',
@@ -105,6 +110,8 @@ class ReviewEvent extends CActiveRecord
 		$criteria->compare('active',$this->active);
 		$criteria->compare('event',$this->event,true);
 		$criteria->compare('fromuser',$this->fromuser,true);
+		$criteria->compare('latitude',$this->latitude);
+		$criteria->compare('longitude',$this->longitude);
 		$criteria->compare('text',$this->text,true);
 		$criteria->compare('touser',$this->touser,true);
 		$criteria->compare('vote',$this->vote);
