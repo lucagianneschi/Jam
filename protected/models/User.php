@@ -62,11 +62,28 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('active, collaborationcounter, followerscounter, followingcounter, friendshipcounter, jammercounter, level, levelvalue, premium, venuecounter', 'numerical', 'integerOnly'=>true),
-			array('latitude, longitude', 'numerical'),
-			array('username, password, address, avatar, background, city, country, email, facebookid, facebookpage, firstname, googlepluspage, jammertype, lastname, sex, thumbnail, twitterpage, type, website, youtubechannel', 'length', 'max'=>100),
-			array('lang', 'length', 'max'=>2),
-			array('birthday, description, premiumexpirationdate, createdat, updatedat', 'safe'),
+		        array('id, username, password, active, collaborationcounter, email, followerscounter, followingcounter, friendshipcounter, jammercounter, jammertype, lang, level, levelvalue, premium, premiumexpirationdate, sex, type, venuecounter, createdat, updatedat', 'required','message'=>'{attribute} field is missing'),
+			array('collaborationcounter, followerscounter, followingcounter, friendshipcounter, jammercounter, level, levelvalue, premium, venuecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
+		        array('active, premium', 'boolean', 'message'=>'Invalid {attribute} format'),
+			array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
+		        array('username, email', 'unique','message'=>'{attribute} is already in use. Pick another {attribute}'),
+			array('username, password, address, avatar, background, city, country, email, facebookid, facebookpage, firstname, googlepluspage, jammertype, lastname, sex, thumbnail, twitterpage, type, website, youtubechannel', 'length', 'max'=>100, 'tooLong'=>'{attribute} must be at most 1000 characters'),
+		    	array('password', 'length', 'min'=>8, 'tooShort'=>'{attribute} must be at least 8 characters'),
+			array('lang', 'length', 'max'=>2, 'tooLong'=>'{attribute} must be at most 2 characters'),
+			array('updatedat', 'safe'),
+		        array('type','in','range'=>array('SPOTTER','JAMMER','VENUE'),'allowEmpty'=>false,'message'=>'Invalid {attribute} value'),
+		        array('sex','in','range'=>array('M','F','ND'),'allowEmpty'=>false,'message'=>'Invalid {attribute} value'),
+		        array('email','email','message'=>'Invalid {attribute}'),
+		        array('premiumexpirationdate, birthday, createdat','date','message'=>'Invalid {attribute}'),
+		        array('facebookid, facebookpage, googlepluspage, twitterpage, website, youtubechannel','url','message'=>'{attribute} has to be a valid URL'),
+		        array('levelvalue', 'max'=>5,'tooBig'=>'{attribute} can be at most 5'),
+		        array('levelvalue', 'min'=>1,'tooSmall'=>'{attribute} can be at least 1'),
+		        array('description', 'length', 'min'=>3000, 'tooShort'=>'{attribute} must be at least 8 characters'),
+			array('description', 'length', 'max'=>2, 'tooLong'=>'{attribute} must be at most 2 characters'),
+		        array('followerscounter, followingcounter, friendshipcounter, premium, jammercounter, venuecounter', 'default', 'value'=>0),
+		        array('active, level, levelvalue', 'default', 'value'=>1),
+		        array('sex', 'default', 'value'=>'ND'),
+		        array('lang', 'default', 'value'=>'en'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, username, password, active, address, avatar, background, birthday, city, collaborationcounter, country, description, email, facebookid, facebookpage, firstname, followerscounter, followingcounter, friendshipcounter, googlepluspage, jammercounter, jammertype, lang, lastname, latitude, level, levelvalue, longitude, premium, premiumexpirationdate, sex, thumbnail, twitterpage, type, venuecounter, website, youtubechannel, createdat, updatedat', 'safe', 'on'=>'search'),
