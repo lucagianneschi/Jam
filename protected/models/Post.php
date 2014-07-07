@@ -50,6 +50,7 @@ class Post extends CActiveRecord
 		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			array('createdat', 'safe'),
 		    	array('commentcounter, lovecounter, sharecounter', 'default', 'value'=>0),
+		        array('active', 'default', 'value'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, commentcounter, fromuser,latitude, longitude, lovecounter, sharecounter, text, touser, createdat, updatedat', 'safe', 'on'=>'search'),

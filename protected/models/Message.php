@@ -40,6 +40,7 @@ class Message extends CActiveRecord
 			array('createdat', 'safe'),
 		    	array('text', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
 		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
+		        array('active', 'default', 'value'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, fromuser, text, touser, createdat, updatedat', 'safe', 'on'=>'search'),

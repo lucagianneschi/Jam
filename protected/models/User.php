@@ -84,6 +84,7 @@ class User extends CActiveRecord
 		        array('active, level, levelvalue', 'default', 'value'=>1),
 		        array('sex', 'default', 'value'=>'ND'),
 		        array('lang', 'default', 'value'=>'en'),
+		        array('active', 'default', 'value'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, username, password, active, address, avatar, background, birthday, city, collaborationcounter, country, description, email, facebookid, facebookpage, firstname, followerscounter, followingcounter, friendshipcounter, googlepluspage, jammercounter, jammertype, lang, lastname, latitude, level, levelvalue, longitude, premium, premiumexpirationdate, sex, thumbnail, twitterpage, type, venuecounter, website, youtubechannel, createdat, updatedat', 'safe', 'on'=>'search'),

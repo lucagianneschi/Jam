@@ -43,6 +43,7 @@ class Video extends CActiveRecord
 		        array('description', 'length', 'max'=>3000, 'tooLong'=>'{attribute} must be at most 3000 characters'),
 			array('createdat, updatedat', 'safe'),
 		    	array('commentcounter, lovecounter, sharecounter', 'default', 'value'=>0),
+		        array('active', 'default', 'value'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, author, description, duration, fromuser, lovecounter, thumbnail, title, url, createdat, updatedat, cover', 'safe', 'on'=>'search'),

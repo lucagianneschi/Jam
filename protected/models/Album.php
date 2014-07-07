@@ -45,7 +45,7 @@ class Album extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fromuser, title, updatedat', 'required','message'=>'{attribute} field is missing'),
+			array('id, active, fromuser, title, updatedat', 'required','message'=>'{attribute} field is missing'),
 		        array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
 			array('commentcounter, imagecounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
 			array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
@@ -55,8 +55,9 @@ class Album extends CActiveRecord
 		        array('title', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 		    	array('description', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
 		        array('description', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
-			array('description, createdat', 'safe'),
+			array('createdat', 'safe'),
 		        array('commentcounter, imagecounter, lovecounter, sharecounter', 'default', 'value'=>0),
+		        array('active', 'default', 'value'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, commentcounter, description, fromuser, imagecounter, latitude, longitude, lovecounter, sharecounter, title, createdat, updatedat', 'safe', 'on'=>'search'),

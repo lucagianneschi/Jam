@@ -49,6 +49,7 @@ class ReviewEvent extends CActiveRecord
 		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 		        array('vote', 'max'=>5,'tooBig'=>'{attribute} can be at most 5'),
 		        array('vote', 'min'=>1,'tooSmall'=>'{attribute} can be at least 1'),
+		        array('active', 'default', 'value'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, event, fromuser,latitude, longitude, text, touser, vote, createdat, updatedat', 'safe', 'on'=>'search'),

@@ -70,6 +70,7 @@ class Event extends CActiveRecord
 			array('eventdate, createdat', 'safe'),
 		    	array('commentcounter, lovecounter,reviewcounter, sharecounter', 'default', 'value'=>0),
 		    	array('attendeecounter, cancelledcounter,invitedcounter, refusedcounter', 'default', 'value'=>0),
+		        array('active', 'default', 'value'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, address, attendeecounter, cancelledcounter, city, commentcounter, cover, description, eventdate, fromuser, invitedcounter, latitude, locationname, longitude, lovecounter, refusedcounter, reviewcounter, sharecounter, thumbnail, title, createdat, updatedat', 'safe', 'on'=>'search'),
