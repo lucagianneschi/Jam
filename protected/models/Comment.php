@@ -64,6 +64,8 @@ class Comment extends CActiveRecord
 		        array('text', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
 		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 		        array('commentcounter, lovecounter, sharecounter', 'default', 'value'=>0),
+		        array('active', 'default', 'value'=>1),
+		        array('text', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, album, comment, commentcounter, event, fromuser, image, latitude, longitude, lovecounter, record, sharecounter, song, text, touser, video, createdat, updatedat', 'safe', 'on'=>'search'),

@@ -51,6 +51,7 @@ class Post extends CActiveRecord
 			array('createdat', 'safe'),
 		    	array('commentcounter, lovecounter, sharecounter', 'default', 'value'=>0),
 		        array('active', 'default', 'value'=>1),
+		    	array('text', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, commentcounter, fromuser,latitude, longitude, lovecounter, sharecounter, text, touser, createdat, updatedat', 'safe', 'on'=>'search'),

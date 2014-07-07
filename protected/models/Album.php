@@ -58,6 +58,7 @@ class Album extends CActiveRecord
 			array('createdat', 'safe'),
 		        array('commentcounter, imagecounter, lovecounter, sharecounter', 'default', 'value'=>0),
 		        array('active', 'default', 'value'=>1),
+		        array('title, description', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, commentcounter, description, fromuser, imagecounter, latitude, longitude, lovecounter, sharecounter, title, createdat, updatedat', 'safe', 'on'=>'search'),

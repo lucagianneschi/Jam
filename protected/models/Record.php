@@ -67,6 +67,7 @@ class Record extends CActiveRecord
 			array('description, createdat', 'safe'),
 		    	array('commentcounter, lovecounter, reviewcounter, sharecounter', 'default', 'value'=>0),
 		        array('active', 'default', 'value'=>1),
+		    	array('city, description, title', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, buylink, city, commentcounter, cover, description, duration, fromuser, label, latitude, longitude, lovecounter, reviewcounter, sharecounter, songcounter, thumbnail, title, year, createdat, updatedat', 'safe', 'on'=>'search'),

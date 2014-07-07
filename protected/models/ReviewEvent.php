@@ -50,6 +50,7 @@ class ReviewEvent extends CActiveRecord
 		        array('vote', 'max'=>5,'tooBig'=>'{attribute} can be at most 5'),
 		        array('vote', 'min'=>1,'tooSmall'=>'{attribute} can be at least 1'),
 		        array('active', 'default', 'value'=>1),
+		    	array('text', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, event, fromuser,latitude, longitude, text, touser, vote, createdat, updatedat', 'safe', 'on'=>'search'),

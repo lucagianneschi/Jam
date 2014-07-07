@@ -78,13 +78,15 @@ class User extends CActiveRecord
 		        array('facebookid, facebookpage, googlepluspage, twitterpage, website, youtubechannel','url','message'=>'{attribute} has to be a valid URL'),
 		        array('levelvalue', 'max'=>5,'tooBig'=>'{attribute} can be at most 5'),
 		        array('levelvalue', 'min'=>1,'tooSmall'=>'{attribute} can be at least 1'),
-		        array('description', 'length', 'min'=>3000, 'tooShort'=>'{attribute} must be at least 8 characters'),
-			array('description', 'length', 'max'=>2, 'tooLong'=>'{attribute} must be at most 2 characters'),
+		        array('description', 'length', 'min'=>2, 'tooShort'=>'{attribute} must be at least 2 characters'),
+			array('description', 'length', 'max'=>3000, 'tooLong'=>'{attribute} must be at most 3000 characters'),
 		        array('followerscounter, followingcounter, friendshipcounter, premium, jammercounter, venuecounter', 'default', 'value'=>0),
 		        array('active, level, levelvalue', 'default', 'value'=>1),
 		        array('sex', 'default', 'value'=>'ND'),
 		        array('lang', 'default', 'value'=>'en'),
 		        array('active', 'default', 'value'=>1),
+		        array('username, address, city, country, description, firstname, lastname', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
+		        array('password', 'match', 'pattern'=>'/^[a-zA-Z0-9\_\*\-\+\!\?\,\:\;\.\xE0\xE8\xE9\xF9\xF2\xEC\x27]{8,12}/', 'message' => 'Invalid {attribute}'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, username, password, active, address, avatar, background, birthday, city, collaborationcounter, country, description, email, facebookid, facebookpage, firstname, followerscounter, followingcounter, friendshipcounter, googlepluspage, jammercounter, jammertype, lang, lastname, latitude, level, levelvalue, longitude, premium, premiumexpirationdate, sex, thumbnail, twitterpage, type, venuecounter, website, youtubechannel, createdat, updatedat', 'safe', 'on'=>'search'),
