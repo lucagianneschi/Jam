@@ -7,7 +7,6 @@
  * @property string $id
  * @property integer $active
  * @property string $author
- * @property integer $counter
  * @property string $description
  * @property integer $duration
  * @property integer $fromuser
@@ -37,13 +36,14 @@ class Video extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('url, cover', 'required'),
-			array('active, counter, duration, fromuser, lovecounter', 'numerical', 'integerOnly'=>true),
-			array('author, thumbnail, title, url, cover', 'length', 'max'=>100),
-			array('description, createdat, updatedat', 'safe'),
+			array('id, active, author, fromuser, lovecounter, thumbnail, title, url, createdat, updatedat, cover', 'required', 'message'=>'{attribute} field is missing'),
+			array('active, duration, fromuser, lovecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
+			array('author, thumbnail, title, url, cover', 'length', 'max'=>100, 'tooLong'=>'{attribute} must be at most 100 characters'),
+		        array('description', 'length', 'max'=>3000, 'tooLong'=>'{attribute} must be at most 3000 characters'),
+			array('createdat, updatedat', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, active, author, counter, description, duration, fromuser, lovecounter, thumbnail, title, url, createdat, updatedat, cover', 'safe', 'on'=>'search'),
+			array('id, active, author, description, duration, fromuser, lovecounter, thumbnail, title, url, createdat, updatedat, cover', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,7 +67,6 @@ class Video extends CActiveRecord
 			'id' => 'ID',
 			'active' => 'Active',
 			'author' => 'Author',
-			'counter' => 'Counter',
 			'description' => 'Description',
 			'duration' => 'Duration',
 			'fromuser' => 'Fromuser',
@@ -102,7 +101,6 @@ class Video extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('author',$this->author,true);
-		$criteria->compare('counter',$this->counter);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('duration',$this->duration);
 		$criteria->compare('fromuser',$this->fromuser);
