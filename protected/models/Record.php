@@ -65,6 +65,7 @@ class Record extends CActiveRecord
 		    	array('title', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
 		        array('title', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			array('description, createdat', 'safe'),
+		    	array('commentcounter, lovecounter, reviewcounter, sharecounter', 'default', 'value'=>0),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, buylink, city, commentcounter, cover, description, duration, fromuser, label, latitude, longitude, lovecounter, reviewcounter, sharecounter, songcounter, thumbnail, title, year, createdat, updatedat', 'safe', 'on'=>'search'),

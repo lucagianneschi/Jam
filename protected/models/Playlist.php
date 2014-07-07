@@ -43,6 +43,7 @@ class Playlist extends CActiveRecord
 		    	array('name', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
 		        array('name', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 			array('createdat', 'safe'),
+		    	array('songcounter', 'default', 'value'=>0),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, fromuser, name, songcounter, unlimited, createdat, updatedat', 'safe', 'on'=>'search'),
