@@ -40,7 +40,8 @@ class ReviewRecord extends CActiveRecord
 		// will receive user inputs.
 		return array(
 		    	array('id, active, fromuser, record, text, touser, createdat, updatedat, vote', 'required'),
-			array('active, vote', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
+		    	array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
+			array('vote', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
 			array('fromuser, record, touser', 'length', 'max'=>11,'message'=>'Invalid {attribute} format'),
 		        array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
 			array('createdat', 'safe'),

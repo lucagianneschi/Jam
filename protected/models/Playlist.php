@@ -37,7 +37,8 @@ class Playlist extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id, active, fromuser, updatedat', 'required','message'=>'{attribute} field is missing'),
-			array('active, songcounter, unlimited', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
+		    	array('active, unlimited', 'boolean', 'message'=>'Invalid {attribute} format'),
+			array('songcounter', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
 			array('fromuser', 'length', 'max'=>11, 'message'=>'Invalid {attribute} format'),
 		    	array('name', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
 		        array('name', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),

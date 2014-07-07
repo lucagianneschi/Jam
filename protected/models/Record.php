@@ -54,7 +54,8 @@ class Record extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id, active, fromuser, title, updatedat', 'required','message'=>'{attribute} field is missing'),
-			array('active, commentcounter, duration, lovecounter, reviewcounter, sharecounter, songcounter, year', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
+		    	array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
+			array('commentcounter, duration, lovecounter, reviewcounter, sharecounter, songcounter, year', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
 			array('latitude, longitude', 'numerical', 'message'=>'Invalid {attribute} format'),
 		        array('buylink', 'url', 'message'=>'Invalid URL for {attribute}'),
 			array('buylink, city, cover, label, thumbnail', 'length', 'max'=>100, 'message'=>'Invalid {attribute} format'),

@@ -35,7 +35,7 @@ class Message extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id, active, fromuser, text, touser, updatedat', 'required','message'=>'{attribute} field is missing'),
-			array('active', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
+		        array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
 			array('fromuser, touser', 'length', 'max'=>11, 'message'=>'Invalid {attribute} format'),
 			array('createdat', 'safe'),
 		    	array('text', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),

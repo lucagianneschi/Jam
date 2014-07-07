@@ -45,7 +45,8 @@ class Image extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('album, fromuser, path', 'required'),
-			array('active, commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true),
+		    	array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
+			array('commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true),
 			array('latitude, longitude', 'numerical'),
 			array('album, fromuser', 'length', 'max'=>11),
 			array('path, thumbnail', 'length', 'max'=>100),

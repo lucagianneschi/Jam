@@ -56,7 +56,8 @@ class Event extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('address, city, description, fromuser, locationname, title, updatedat', 'required'),
-			array('active, attendeecounter, cancelledcounter, commentcounter, invitedcounter, lovecounter, refusedcounter, reviewcounter, sharecounter', 'numerical', 'integerOnly'=>true),
+		        array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
+			array('attendeecounter, cancelledcounter, commentcounter, invitedcounter, lovecounter, refusedcounter, reviewcounter, sharecounter', 'numerical', 'integerOnly'=>true),
 			array('latitude, longitude', 'numerical'),
 			array('address, city, cover, thumbnail', 'length', 'max'=>100),
 		        array('title, address, city', 'length', 'max'=>100,'tooLong'=>'{attribute} must be at most 100 characters'),

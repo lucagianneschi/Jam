@@ -56,7 +56,8 @@ class Comment extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id, active, fromuser, text, touser, updatedat', 'required','message'=>'{attribute} field is missing'),
-			array('active, commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
+		        array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
+			array('commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
 			array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
 			array('album, comment, event, fromuser, image, record, song, touser, video', 'length', 'max'=>11,'message'=>'Invalid {attribute} format'),
 			array('createdat', 'safe'),

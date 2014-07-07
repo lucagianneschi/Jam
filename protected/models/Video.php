@@ -37,7 +37,8 @@ class Video extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id, active, author, fromuser, lovecounter, thumbnail, title, url, createdat, updatedat, cover', 'required', 'message'=>'{attribute} field is missing'),
-			array('active, duration, fromuser, lovecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
+		    	array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
+			array('duration, fromuser, lovecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
 			array('author, thumbnail, title, url, cover', 'length', 'max'=>100, 'tooLong'=>'{attribute} must be at most 100 characters'),
 		        array('description', 'length', 'max'=>3000, 'tooLong'=>'{attribute} must be at most 3000 characters'),
 			array('createdat, updatedat', 'safe'),

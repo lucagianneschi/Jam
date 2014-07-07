@@ -46,7 +46,8 @@ class Album extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('fromuser, title, updatedat', 'required','message'=>'{attribute} field is missing'),
-			array('active, commentcounter, imagecounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
+		        array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
+			array('commentcounter, imagecounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
 			array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
 			array('cover, thumbnail', 'length', 'max'=>100,'tooLong'=>'{attribute} must be at most 100 characters'),
 			array('fromuser', 'length', 'max'=>11,'message'=>'Invalid {attribute} format'),
