@@ -57,7 +57,7 @@ class RecordGenre extends CActiveRecord
 	{
 		return array(
 			'id_record' => 'Id Record',
-			'id_genre' => 'Id Genre',
+			'id_genre'=>Yii::t('string','model.id_genre'),
 		);
 	}
 

@@ -67,13 +67,13 @@ class Message extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'active' => 'Active',
-			'fromuser' => 'Fromuser',
-			'text' => 'Text',
-			'touser' => 'Touser',
-			'createdat' => 'Createdat',
-			'updatedat' => 'Updatedat',
+		        'id'=>Yii::t('string','model.id'),
+		        'active'=>Yii::t('string','model.active'),
+			'fromuser'=>Yii::t('string','model.fromuser'),
+		    	'text'=>Yii::t('string','model.text'),
+			'touser'=>Yii::t('string','model.touser'),
+			'createdat'=>Yii::t('string','model.createdat'),
+		        'updatedat'=>Yii::t('string','model.updatedat'),
 		);
 	}
 

@@ -78,18 +78,18 @@ class Post extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'active' => 'Active',
-			'commentcounter' => 'Commentcounter',
-			'fromuser' => 'Fromuser',
-		    	'latitude' => 'Latitude',
-			'longitude' => 'Longitude',
-			'lovecounter' => 'Lovecounter',
-			'sharecounter' => 'Sharecounter',
-			'text' => 'Text',
-			'touser' => 'Touser',
-			'createdat' => 'Createdat',
-			'updatedat' => 'Updatedat',
+		        'id'=>Yii::t('string','model.id'),
+		        'active'=>Yii::t('string','model.active'),
+		        'commentcounter'=>Yii::t('string','model.commentcounter'),
+			'fromuser'=>Yii::t('string','model.fromuser'),
+			'latitude'=>Yii::t('string','model.latitude'),
+		        'longitude'=>Yii::t('string','model.longitude'),
+			'lovecounter'=>Yii::t('string','model.lovecounter'),
+			'sharecounter'=>Yii::t('string','model.sharecounter'),
+		    	'text'=>Yii::t('string','model.text'),
+			'touser'=>Yii::t('string','model.touser'),
+			'createdat'=>Yii::t('string','model.createdat'),
+		        'updatedat'=>Yii::t('string','model.updatedat'),
 		);
 	}
 

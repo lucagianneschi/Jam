@@ -61,10 +61,10 @@ class Member extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'id_user' => 'Id User',
-			'id_instrument' => 'Id Instrument',
-			'name' => 'Name',
+			'id'=>Yii::t('string','model.id'),
+			'id_user'=>Yii::t('string','model.id_user'),
+		        'id_instrument'=>Yii::t('string','model.member.id_instrument'),
+			'name'=>Yii::t('string','model.member.name'),
 		);
 	}
 

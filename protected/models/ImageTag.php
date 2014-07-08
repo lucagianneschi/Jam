@@ -56,8 +56,8 @@ class ImageTag extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_image' => 'Id Image',
-			'id_user' => 'Id User',
+		        'id_image'=>Yii::t('string','model.id_image'),
+		        'id_user'=>Yii::t('string','model.id_user'),
 		);
 	}
 

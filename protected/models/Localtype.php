@@ -53,8 +53,8 @@ class Localtype extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'localtype' => 'Localtype',
+		        'id'=>Yii::t('string','model.id'),
+			'localtype'=>Yii::t('string','model.id_type'),
 		);
 	}
 

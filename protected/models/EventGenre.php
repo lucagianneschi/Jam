@@ -56,8 +56,8 @@ class EventGenre extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_event' => 'Id Event',
-			'id_genre' => 'Id Genre',
+		        'id_event'=>Yii::t('string','model.id_event'),
+		        'id_genre'=>Yii::t('string','model.id_genre'),
 		);
 	}
 

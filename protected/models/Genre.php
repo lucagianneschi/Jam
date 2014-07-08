@@ -60,8 +60,8 @@ class Genre extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'genre' => 'Genre',
+			'id'=>Yii::t('string','model.id'),
+			'genre'=>Yii::t('string','model.genre'),
 		);
 	}
 

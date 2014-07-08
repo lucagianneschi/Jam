@@ -56,8 +56,8 @@ class PlaylistSong extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_playlist' => 'Id Playlist',
-			'id_song' => 'Id Song',
+			'id_playlist'=>Yii::t('string','model.id_playlist'),
+		        'id_song'=>Yii::t('string','model.id_song'),
 		);
 	}
 

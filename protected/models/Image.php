@@ -84,20 +84,20 @@ class Image extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'active' => 'Active',
-			'album' => 'Album',
-			'commentcounter' => 'Commentcounter',
-			'description' => 'Description',
-			'fromuser' => 'Fromuser',
-			'latitude' => 'Latitude',
-			'longitude' => 'Longitude',
-			'lovecounter' => 'Lovecounter',
-			'path' => 'Path',
-			'sharecounter' => 'Sharecounter',
-			'thumbnail' => 'Thumbnail',
-			'createdat' => 'Createdat',
-			'updatedat' => 'Updatedat',
+		        'id'=>Yii::t('string','model.id'),
+		        'active'=>Yii::t('string','model.active'),
+		        'album'=>Yii::t('string','model.album'),
+		        'commentcounter'=>Yii::t('string','model.commentcounter'),
+			'description'=>Yii::t('string','model.description'),
+			'fromuser'=>Yii::t('string','model.fromuser'),
+			'latitude'=>Yii::t('string','model.latitude'),
+		        'longitude'=>Yii::t('string','model.longitude'),
+			'lovecounter'=>Yii::t('string','model.lovecounter'),
+		    	'path'=>Yii::t('string','model.image.path'),
+		        'sharecounter'=>Yii::t('string','model.sharecounter'),
+			'thumbnail'=>Yii::t('string','model.thumbnail'),
+			'createdat'=>Yii::t('string','model.createdat'),
+		        'updatedat'=>Yii::t('string','model.updatedat'),
 		);
 	}
 

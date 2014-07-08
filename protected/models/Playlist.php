@@ -72,14 +72,14 @@ class Playlist extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'active' => 'Active',
-			'fromuser' => 'Fromuser',
-			'name' => 'Name',
-			'songcounter' => 'Songcounter',
-			'unlimited' => 'Unlimited',
-			'createdat' => 'Createdat',
-			'updatedat' => 'Updatedat',
+		        'id'=>Yii::t('string','model.id'),
+		        'active'=>Yii::t('string','model.active'),
+		        'fromuser'=>Yii::t('string','model.fromuser'),
+			'name'=>Yii::t('string','model.member.name'),
+		        'songcounter'=>Yii::t('string','model.playlist.songcounter'),
+		        'unlimited'=>Yii::t('string','model.playlist.unlimited'),
+			'createdat'=>Yii::t('string','model.createdat'),
+		        'updatedat'=>Yii::t('string','model.updatedat'),
 		);
 	}
 

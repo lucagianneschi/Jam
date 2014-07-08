@@ -56,8 +56,8 @@ class EventType extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_event' => 'Id Event',
-			'id_type' => 'Id Type',
+		        'id_event'=>Yii::t('string','model.id_event'),
+			'id_type'=>Yii::t('string','model.id_type'),
 		);
 	}
 
