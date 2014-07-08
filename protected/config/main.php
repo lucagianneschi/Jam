@@ -23,7 +23,7 @@ return array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'g11',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>false, //array('127.0.0.1','::1'),
+			'ipFilters'=> array('2.236.95.12','91.252.164.214'), //array('127.0.0.1','::1'),
 		),
 	),
 
@@ -34,16 +34,17 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		/*
+		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
+				'gii'=>'gii',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		*/
+		
 		// uncomment the following to use a SQLite database
 		/*
 		'db'=>array(
@@ -51,7 +52,7 @@ return array(
 		),
 		*/
 		'db'=>array(
-			'connectionString' => 'mysql:host=jam-vm-dev-1.cloudapp.net;dbname=jamdatabase',
+			'connectionString' => 'mysql:host=jam-vm-dev-1.cloudapp.net:3306;dbname=jamdb',
 			'emulatePrepare' => true,
 			'username' => 'jamyourself',
 			'password' => 'J4my0urs3lf',
