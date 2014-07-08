@@ -7,6 +7,7 @@
  * @property string $id
  * @property integer $active
  * @property string $author
+ * @property string $cover
  * @property string $description
  * @property integer $duration
  * @property integer $fromuser
@@ -16,7 +17,6 @@
  * @property string $url
  * @property string $createdat
  * @property string $updatedat
- * @property string $cover
  */
 class Video extends CActiveRecord
 {
@@ -68,19 +68,19 @@ class Video extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'active' => 'Active',
-			'author' => 'Author',
-			'description' => 'Description',
-			'duration' => 'Duration',
-			'fromuser' => 'Fromuser',
-			'lovecounter' => 'Lovecounter',
-			'thumbnail' => 'Thumbnail',
-			'title' => 'Title',
-			'url' => 'Url',
-			'createdat' => 'Createdat',
-			'updatedat' => 'Updatedat',
-			'cover' => 'Cover',
+		        'id'=>Yii::t('string','model.id'),
+		        'id'=>Yii::t('string','model.active'),
+		        'author'=>Yii::t('string','model.video.author'),
+		        'cover'=>Yii::t('string','model.video.cover'),
+		        'description'=>Yii::t('string','model.description'),
+                        'duration'=>Yii::t('string','model.video.duration'),
+		        'fromuser'=>Yii::t('string','model.fromuser'),
+		        'lovecounter'=>Yii::t('string','model.lovecounter'),
+			'thumbnail'=>Yii::t('string','model.thumbnail'),
+		        'title'=>Yii::t('string','model.title'),
+		        'url'=>Yii::t('string','model.video.url'),
+			'createdat'=>Yii::t('string','model.createdat'),
+		        'updatedat'=>Yii::t('string','model.updatedat'),
 		);
 	}
 
@@ -105,6 +105,7 @@ class Video extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('author',$this->author,true);
+		$criteria->compare('cover',$this->cover,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('duration',$this->duration);
 		$criteria->compare('fromuser',$this->fromuser);
@@ -114,7 +115,6 @@ class Video extends CActiveRecord
 		$criteria->compare('url',$this->url,true);
 		$criteria->compare('createdat',$this->createdat,true);
 		$criteria->compare('updatedat',$this->updatedat,true);
-		$criteria->compare('cover',$this->cover,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
