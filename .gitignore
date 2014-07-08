@@ -1,5 +1,8 @@
 /asset/
 /runtime/
 /nbproject/private/
+/.settings
 nbproject/project.properties
 nbproject/project.xml
+.project
+
