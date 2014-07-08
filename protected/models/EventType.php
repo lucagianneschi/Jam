@@ -29,8 +29,8 @@ class EventType extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_event, id_type', 'required'),
-			array('id_event, id_type', 'length', 'max'=>11),
+			array('id_event, id_type', 'required', 'message'=>'{attribute} field is missing'),
+			array('id_event, id_type', 'length', 'max'=>11, 'message'=>'Invalid {attribute} format'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_event, id_type', 'safe', 'on'=>'search'),

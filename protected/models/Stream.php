@@ -34,8 +34,8 @@ class Stream extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, fromuser, touser, type, updatedat', 'required'),
-			array('id, fromuser, touser, type', 'length', 'max'=>11),
+			array('id, fromuser, touser, type, updatedat', 'required', 'message'=>'{attribute} field is missing'),
+			array('id, fromuser, touser, type', 'length', 'max'=>11, 'message'=>'Invalid {attribute} format'),
 			array('createdat', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

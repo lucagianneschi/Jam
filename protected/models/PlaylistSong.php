@@ -29,8 +29,8 @@ class PlaylistSong extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_playlist, id_song', 'required'),
-			array('id_playlist, id_song', 'length', 'max'=>11),
+			array('id_playlist, id_song', 'required', 'message'=>'{attribute} field is missing'),
+			array('id_playlist, id_song', 'length', 'max'=>11, 'message'=>'Invalid {attribute} format'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_playlist, id_song', 'safe', 'on'=>'search'),
