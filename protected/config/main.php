@@ -23,10 +23,10 @@ return array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'g11',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=> array('2.236.95.12','91.252.164.214'), //array('127.0.0.1','::1'),
+			'ipFilters'=> array('2.236.95.12','91.252.164.214','127.0.0.1','::1'), //array('127.0.0.1','::1'),
 		),
 	),
-
+	
 	// application components
 	'components'=>array(
 		'user'=>array(
@@ -44,6 +44,19 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
+		
+		'clientScript'=>array(
+            'packages'=>array(
+                'jquery'=>array(
+                    'baseUrl'=>'js/jquery',
+                    'js'=>array('jquery-1.8.3.min.js'),
+                ),
+                'foundation'=>array(
+                	'baseUrl'=>'js/foundation',
+                    'js'=>array('foundation.js','foundation.section.js','foundation.clearing.js','foundation.reveal.js','foundation.abide.js','foundation.tooltips.js'),
+				)
+            ),
+        ),
 		
 		// uncomment the following to use a SQLite database
 		/*
