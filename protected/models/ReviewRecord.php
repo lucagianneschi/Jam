@@ -47,8 +47,8 @@ class ReviewRecord extends CActiveRecord
 			array('createdat', 'safe'),
 		    	array('text', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
 		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
-		        array('vote', 'max'=>5,'tooBig'=>'{attribute} can be at most 5'),
-		        array('vote', 'min'=>1,'tooSmall'=>'{attribute} can be at least 1'),
+		        array('vote', 'numerical' , 'max'=>5,'tooBig'=>'{attribute} can be at most 5'),
+		        array('vote', 'numerical' , 'min'=>1,'tooSmall'=>'{attribute} can be at least 1'),
 		        array('active', 'default', 'value'=>1),
 		    	array('text', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 			// The following rule is used by search().
