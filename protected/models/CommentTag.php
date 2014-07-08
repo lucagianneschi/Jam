@@ -56,8 +56,8 @@ class CommentTag extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_comment' => 'Id Comment',
-			'id_user' => 'Id User',
+		        'id_comment'=>Yii::t('string','model.commenttag.id_comment'),
+			'id_user'=>Yii::t('string','model.id_user'),
 		);
 	}
 

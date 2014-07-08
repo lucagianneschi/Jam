@@ -53,8 +53,8 @@ class Badge extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'badge' => 'Badge',
+			'id'=>Yii::t('string','model.id'),
+		        'id'=>Yii::t('string','model.badge.badge'),
 		);
 	}
 

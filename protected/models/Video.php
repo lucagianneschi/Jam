@@ -42,7 +42,7 @@ class Video extends CActiveRecord
 			array('author, thumbnail, title, url, cover', 'length', 'max'=>100, 'tooLong'=>'{attribute} must be at most 100 characters'),
 		        array('description', 'length', 'max'=>3000, 'tooLong'=>'{attribute} must be at most 3000 characters'),
 			array('createdat, updatedat', 'safe'),
-		    	array('commentcounter, lovecounter, sharecounter', 'default', 'value'=>0),
+		    	array('commentcounter, lovecounter', 'default', 'value'=>0),
 		        array('active', 'default', 'value'=>1),
 		    	array('author, description, title', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 			// The following rule is used by search().
@@ -69,9 +69,9 @@ class Video extends CActiveRecord
 	{
 		return array(
 		        'id'=>Yii::t('string','model.id'),
-		        'id'=>Yii::t('string','model.active'),
+		        'active'=>Yii::t('string','model.active'),
 		        'author'=>Yii::t('string','model.video.author'),
-		        'cover'=>Yii::t('string','model.video.cover'),
+		        'cover'=>Yii::t('string','model.cover'),
 		        'description'=>Yii::t('string','model.description'),
                         'duration'=>Yii::t('string','model.video.duration'),
 		        'fromuser'=>Yii::t('string','model.fromuser'),
