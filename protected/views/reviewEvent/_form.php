@@ -12,18 +12,13 @@
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
+	
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
-		<?php echo $form->error($model,'active'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'event'); ?>
@@ -53,18 +48,6 @@
 		<?php echo $form->labelEx($model,'vote'); ?>
 		<?php echo $form->textField($model,'vote'); ?>
 		<?php echo $form->error($model,'vote'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'createdat'); ?>
-		<?php echo $form->textField($model,'createdat'); ?>
-		<?php echo $form->error($model,'createdat'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'updatedat'); ?>
-		<?php echo $form->textField($model,'updatedat'); ?>
-		<?php echo $form->error($model,'updatedat'); ?>
 	</div>
 
 	<div class="row">
