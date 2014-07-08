@@ -1,0 +1,134 @@
+<?php
+
+/**
+ * This is the model class for table "video".
+ *
+ * The followings are the available columns in table 'video':
+ * @property string $id
+ * @property integer $active
+ * @property string $author
+ * @property string $description
+ * @property integer $duration
+ * @property integer $fromuser
+ * @property integer $lovecounter
+ * @property string $thumbnail
+ * @property string $title
+ * @property string $url
+ * @property string $createdat
+ * @property string $updatedat
+ * @property string $cover
+ */
+class Video extends CActiveRecord
+{
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return 'video';
+	}
+
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('id, active, author, fromuser, lovecounter, thumbnail, title, url, createdat, updatedat, cover', 'required', 'message'=>'{attribute} field is missing'),
+		    	array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
+			array('duration, fromuser, lovecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
+			array('author, thumbnail, title, url, cover', 'length', 'max'=>100, 'tooLong'=>'{attribute} must be at most 100 characters'),
+		        array('description', 'length', 'max'=>3000, 'tooLong'=>'{attribute} must be at most 3000 characters'),
+			array('createdat, updatedat', 'safe'),
+		    	array('commentcounter, lovecounter, sharecounter', 'default', 'value'=>0),
+		        array('active', 'default', 'value'=>1),
+		    	array('author, description, title', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
+			// The following rule is used by search().
+			// @todo Please remove those attributes that should not be searched.
+			array('id, active, author, description, duration, fromuser, lovecounter, thumbnail, title, url, createdat, updatedat, cover', 'safe', 'on'=>'search'),
+		);
+	}
+
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+		);
+	}
+
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'id' => 'ID',
+			'active' => 'Active',
+			'author' => 'Author',
+			'description' => 'Description',
+			'duration' => 'Duration',
+			'fromuser' => 'Fromuser',
+			'lovecounter' => 'Lovecounter',
+			'thumbnail' => 'Thumbnail',
+			'title' => 'Title',
+			'url' => 'Url',
+			'createdat' => 'Createdat',
+			'updatedat' => 'Updatedat',
+			'cover' => 'Cover',
+		);
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('active',$this->active);
+		$criteria->compare('author',$this->author,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('duration',$this->duration);
+		$criteria->compare('fromuser',$this->fromuser);
+		$criteria->compare('lovecounter',$this->lovecounter);
+		$criteria->compare('thumbnail',$this->thumbnail,true);
+		$criteria->compare('title',$this->title,true);
+		$criteria->compare('url',$this->url,true);
+		$criteria->compare('createdat',$this->createdat,true);
+		$criteria->compare('updatedat',$this->updatedat,true);
+		$criteria->compare('cover',$this->cover,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return Video the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+}
