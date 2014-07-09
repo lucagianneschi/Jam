@@ -6,10 +6,13 @@
  * The followings are the available columns in table 'review_record':
  * @property string $id
  * @property integer $active
+ * @property integer $commentcounter
  * @property string $fromuser
  * @property double $latitude
  * @property double $longitude
  * @property string $record
+ * @property integer $reviewcounter
+ * @property integer $sharecounter
  * @property string $text
  * @property string $touser
  * @property integer $vote
@@ -41,7 +44,7 @@ class ReviewRecord extends CActiveRecord
 		return array(
 		    	array('id, active, fromuser, record, text, touser, createdat, updatedat, vote', 'required', 'message'=>'{attribute} field is missing'),
 		    	array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
-			array('vote', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
+			array('vote, commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
 			array('fromuser, record, touser', 'length', 'max'=>11,'message'=>'Invalid {attribute} format'),
 		        array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
 			array('createdat', 'safe'),
@@ -50,6 +53,8 @@ class ReviewRecord extends CActiveRecord
 		        array('vote', 'numerical' , 'max'=>5,'tooBig'=>'{attribute} can be at most 5'),
 		        array('vote', 'numerical' , 'min'=>1,'tooSmall'=>'{attribute} can be at least 1'),
 		        array('active', 'default', 'value'=>1),
+		    	array('active', 'default', 'value' => 1),
+	                array('commentcounter, lovecounter, sharecounter', 'default', 'value'=>0),
 		    	array('text', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -79,10 +84,13 @@ class ReviewRecord extends CActiveRecord
 		return array(
 	                'id'=>Yii::t('string','model.id'),
 		        'active'=>Yii::t('string','model.active'),
+		        'commentcounter'=>Yii::t('string','model.commentcounter'),
 			'fromuser'=>Yii::t('string','model.fromuser'),
 		        'latitude'=>Yii::t('string','model.latitude'),
 			'longitude'=>Yii::t('string','model.longitude'),
+		    	'lovecounter'=>Yii::t('string','model.lovecounter'),
 		        'record'=>Yii::t('string','model.record'),
+		        'sharecounter'=>Yii::t('string','model.sharecounter'),
 		        'text'=>Yii::t('string','model.text'),
 		        'touser'=>Yii::t('string','model.touser'),
 		        'vote'=>Yii::t('string','model.vote'),
