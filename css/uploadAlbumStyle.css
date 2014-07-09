@@ -1,0 +1,185 @@
+/* line 5, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listAlbum .uploadAlbum-boxSingleAlbum {
+  width: 284px;
+  height: 134px;
+  background-color: #303030;
+  margin: 15px !important;
+  margin-right: 0px !important;
+  cursor: pointer !important;
+}
+/* line 12, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listAlbum .uploadAlbum-boxSingleAlbum:hover {
+  background-color: #ff7505;
+}
+
+/* line 17, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listAlbum .arrow-holder {
+  height: 134px !important;
+  margin: 15px !important;
+}
+
+/* line 22, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listAlbum .arrow-holder.right {
+  right: -35px;
+}
+
+/* line 26, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listAlbum .arrow-icon.left {
+  left: -15px;
+}
+
+/* line 30, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listAlbum .coverAlbum {
+  width: 134px;
+  height: 134px;
+  padding: 5px;
+}
+
+/* line 36, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listAlbum .title {
+  padding: 10px;
+}
+
+/* line 40, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto {
+  border: none !important;
+}
+/* line 43, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto td {
+  background-color: #303030;
+  height: 63px;
+  margin-left: 3px;
+  color: #f3f3f3 !important;
+  border-right: 3px #232323 solid;
+}
+/* line 50, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto tr {
+  border-bottom: 5px #232323 solid;
+  height: 220px !important;
+}
+/* line 54, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto .photo {
+  width: 385px !important;
+  text-align: center;
+}
+/* line 57, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto .photo .boxphoto {
+  max-width: 200px;
+  max-height: 240px;
+}
+/* line 62, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto .info {
+  width: 470px;
+  text-align: center;
+}
+/* line 67, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto .option {
+  padding: 0px !important;
+}
+/* line 71, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto .iscover {
+  height: 157px;
+  width: 63px;
+  padding-top: 20px;
+}
+/* line 75, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto .iscover label {
+  padding-top: 10px;
+  padding-left: 35%;
+}
+/* line 79, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto .iscover .buttonIsCover {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  border: 1px solid #d8d8d8;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+/* line 85, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto .iscover .buttonIsCover:hover {
+  background-color: #ff7505 !important;
+}
+/* line 91, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto .delete {
+  width: 63px;
+  height: 63px;
+  background-repeat: no-repeat;
+  background-position-y: 50%;
+  background-position-x: 50%;
+  border-top: 3px #232323 solid;
+}
+/* line 98, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto .delete:hover {
+  background-color: #ed1c24 !important;
+}
+/* line 102, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto input[type='text'], #uploadAlbum-listPhoto table.singlePhoto textarea, #uploadAlbum-listPhoto table.singlePhoto .error textarea, #uploadAlbum-listPhoto table.singlePhoto .select2-container-multi .select2-choices {
+  background-color: #303030 !important;
+  color: #f3f3f3;
+  border: 0px;
+  border-bottom: 1px solid #787878 !important;
+  margin-left: 0px;
+}
+/* line 109, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto input[type='text']:focus, #uploadAlbum-listPhoto table.singlePhoto textarea:focus, #uploadAlbum-listPhoto table.singlePhoto .error textarea:focus, #uploadAlbum-listPhoto table.singlePhoto .select2-container-multi .select2-choices:focus {
+  background-color: #232323;
+  border-bottom: 1px solid #787878;
+}
+/* line 115, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum-listPhoto table.singlePhoto input[type='radio']:checked + label .buttonIsCover {
+  background-color: #ff7505 !important;
+}
+
+/* line 122, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum .holder {
+  margin-bottom: 10px !important;
+  border: 1px #FFFFFF;
+  padding: 0px;
+}
+/* line 126, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum .holder .bit-box {
+  color: #fff;
+  border: 1px solid #ff7505;
+  background: #ff7505;
+  font-size: 14px;
+  padding: 7px;
+  padding-right: 15px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+/* line 136, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum .facebook-auto {
+  width: 50% !important;
+}
+/* line 138, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum .facebook-auto .default {
+  display: none !important;
+}
+/* line 142, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum .bit-input {
+  width: 100%;
+}
+/* line 144, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum .bit-input .maininput {
+  width: 100% !important;
+  border: none;
+  padding: 5px;
+  font: inherit;
+}
+/* line 155, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum #featuring_feed li {
+  background-color: #d8d8d8;
+  color: #303030;
+}
+/* line 158, ../sass/uploadAlbumStyle.scss */
+#uploadAlbum #featuring_feed li:hover {
+  background-color: #ff7505;
+  color: #fff;
+}

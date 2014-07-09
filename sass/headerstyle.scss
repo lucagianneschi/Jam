@@ -1,0 +1,258 @@
+@import "compass/css3";
+@import "settings";
+
+#header{ 
+  width:100%;
+  height:43px;
+  background:$black;
+  
+}
+
+#header-hide{ 
+  background:$grey-superdark;
+  padding: 25px 0;
+}
+
+.header{
+ margin-bottom:5px; 
+ margin-top:5px;
+ height: 33px;
+}
+
+#header-social .ico-label{
+	 width:15px !important;
+}
+
+.icon-header{
+ width: 33px;
+ height: 33px;
+ background:$grey-dark;
+ float:left;
+ margin-right:3px;
+ cursor:pointer; 
+ @include transition-property(background-color);
+ @include transition-duration($transition-duration);
+ &:hover {
+    background-color: $grey-superdark;
+ }   
+}
+
+#header-profile{
+//	background-color: $grey-dark !important;
+}
+
+#header-social{
+	//background-color: $white !important;
+}
+
+
+/*----- NOTIFICATION -----*/
+
+.notification-item {
+	padding: 8px 0 5px 0;
+	border-bottom: $grey-dark 1px solid;	
+	
+}
+
+.btn-confirm {
+		width:45%;
+		height:25px;
+		line-height: 25px;
+		display: block;
+		font-size: 14px;
+		text-align: center;
+		margin-top: 7px;
+		float: right;
+		color: #FFF;
+		@include transition-property(all);
+		@include transition-duration(300ms);
+}
+
+.accept {
+	background: $orange;
+	&:hover {
+		background: darken($orange, 5);
+		color: #FFF;
+	}
+}
+.decline {
+	background: $grey;
+	&:hover {
+		background: $grey-dark;
+		color: #FFF;
+	}
+}
+
+.notification-note {
+	margin-top: 4px;
+}
+
+
+/*----- PLAYER -----*/
+
+.title-player{
+  font-size:14px;
+  color: $white;
+  padding-bottom:8px;
+}
+
+
+.inline{
+  float:left;
+}
+#controls-player{ 
+  
+}
+
+#bar-player{
+  width:157px;
+  height:5px;   
+  background-color: $grey-dark;
+  margin-left:5px;
+  margin-right:5px; 
+  margin-top:3px;
+  z-index:1;
+}
+
+#playhead-player{ 
+  position:absolute;
+  height:10px;
+  width:5px;  
+  background-color: $orange !important;
+  left:115px;  
+  cursor:pointer;
+  z-index:3;  
+}
+
+#statusbar-player{
+  position:absolute;
+ // width:44px;
+  height:5px;   
+  background-color:  $grey !important;
+  margin-left:5px;
+  margin-right:5px; 
+  margin-top:3px; 
+  z-index:2;   
+}
+
+.icon-player{
+   width: 10px;
+   height: 10px;
+   float:left;
+   margin-right:3px;
+   cursor:pointer;
+   margin-left:5px; 
+   @include transition-property(background-position);
+   &:hover {    
+      background-position: bottom;
+   } 
+}
+/*----- END PLAYER -----*/
+
+
+// ------ LOGO ------------------
+#logo{ 
+
+  position:relative;
+  z-index:998;
+  margin-top:-45px;
+	
+ 
+}
+.logo{
+  height:5px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  top: -10px !important;
+}
+.columns{
+  //border:$grey 1px solid !important;
+}
+
+
+
+//------------  search  ------------------
+.search_form{
+  width:  235px !important;
+  margin: 0px !important;
+}
+
+.search {
+  color: $grey !important; 
+  font-size:14px !important;
+  width:235px;
+  padding:6px 15px 6px 30px !important;
+  border:$grey-superdark 1px solid !important;
+  @include border-radius(5px);   
+  background-color: $black !important;
+  background: url(../images/icon/search.png) no-repeat 8px 6px !important;  
+}
+
+.search-small {
+  color: $grey !important; 
+  font-size:14px !important;
+  width:150px !important;
+  padding:6px 15px 6px 30px !important;
+  border:$grey-superdark 1px solid !important;
+  @include border-radius(5px);   
+  background-color: $black !important;
+  background: url(../images/icon/search.png) no-repeat 8px 6px !important;  
+}
+
+
+._menu { background-image:url(../images/icon/menu.png); }
+
+
+#header-btn-notify{
+	padding: 0px;
+	float: right;
+}
+
+// ---- add ----
+
+#add {
+	position: absolute;
+	right: 11px; top:43px;
+	z-index: 3;
+	width: 240px;
+	@include box-shadow( 0px 12px 8px -8px $grey-dark);
+}
+.add-btn {
+	cursor: pointer;
+	background-color: $orange;
+	width: 100%;
+	padding: 15px 5px;
+	color: white;
+	text-align: center;
+	font-size: 16px;
+	border-bottom: 1px solid darken($orange, 5);
+	@include transition-property(background-color);
+	@include transition-duration(300ms);
+	&:hover {
+		background-color: darken($orange, 5);
+	}
+}
+
+//---------------- playlist -------------------------
+header .track{
+
+  	padding-top: 5px; 
+ 	padding-right: 15px; 
+   	border-top: 1px solid $grey-dark !important;
+   .album-single-propriety {
+	  	border-top: none !important;
+	  	padding-top: 0px !important;
+	  	padding-left: 15px;
+		padding-right: 15px;
+  }
+   ._play-large{
+   	margin-bottom: 5px !important;
+   } 
+    &:hover {
+    	.songTitle{
+    		color: $white !important;
+    	}   		
+   		border-top: 2px solid $orange !important; 
+   }
+     
+}

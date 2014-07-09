@@ -69,6 +69,10 @@ class ReviewEventController extends Controller
 		if($event===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		
+		$eventGenre = EventGenre::model()->findAll(array("condition"=>"id_event =  $event->id","order"=>"id_event"));
+		$eventType = EventType::model()->findAll(array("condition"=>"id_event =  $event->id","order"=>"id_event"));	
+		$eventTag = EventTag::model()->findAll(array("condition"=>"id_event =  $event->id","order"=>"id_event"));	
+		
 		$touser = User::model()->findByPk($event->fromuser);
 		
 		if($touser===null)
@@ -105,6 +109,9 @@ class ReviewEventController extends Controller
 			'event'=>$event,
 			'fromuser'=>$fromuser,
 			'touser'=>$touser,
+			'eventGenre' => $eventGenre,
+			'eventType'=>$eventType,
+			'eventTag'=>$eventTag,
 		));
 	}
 
@@ -124,7 +131,11 @@ class ReviewEventController extends Controller
 		if($event===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		
-		$touser = User::model()->findByPk($model->fromuser);
+		$eventGenre = EventGenre::model()->findAll(array("condition"=>"id_event =  $event->id","order"=>"id_event"));
+		$eventType = EventType::model()->findAll(array("condition"=>"id_event =  $event->id","order"=>"id_event"));	
+		$eventTag = EventTag::model()->findAll(array("condition"=>"id_event =  $event->id","order"=>"id_event"));	
+		
+		$touser = User::model()->findByPk($model->touser);
 		
 		if($touser===null)
 			throw new CHttpException(404,'The requested page does not exist.');	
@@ -158,6 +169,9 @@ class ReviewEventController extends Controller
 			'event'=>$event,
 			'fromuser'=>$fromuser,
 			'touser'=>$touser,
+			'eventGenre' => $eventGenre,
+			'eventType'=>$eventType,
+			'eventTag'=>$eventTag,
 		));
 	}
 
@@ -181,8 +195,8 @@ class ReviewEventController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('ReviewEvent');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+		$this->render('view',array(
+			'model'=>$this->loadModel(1),
 		));
 	}
 
@@ -227,5 +241,20 @@ class ReviewEventController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function beforeAction($action) {
+	    if( parent::beforeAction($action) ) {
+	        /* @var $cs CClientScript */
+	        $cs = Yii::app()->clientScript;
+	        
+	       	$baseUrl = Yii::app()->baseUrl; 
+	        	        
+	        $cs->registerCssFile($baseUrl.'/css/formWhiteStyle.css');
+	        
+			
+	        return true;
+	    }
+	    return false;
 	}
 }

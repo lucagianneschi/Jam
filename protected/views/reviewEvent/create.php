@@ -13,16 +13,5 @@ $this->menu=array(
 ); */
 ?>
 
-<h1>Create ReviewEvent</h1>
 
-<p><?php echo $event->title ?></p>
-
-<p><?php echo $fromuser->username ?></p>
-
-<p><?php echo $touser->username ?></p>
-
-<?php $this->renderPartial('_form', array('model'=>$model,'event'=>$event, 'fromuser'=>$fromuser, 'touser'=>$touser)); ?>
-
-
-
-<?php echo Yii::t('string','model.description')?>
+<?php $this->renderPartial('_form', array('model'=>$model,'event'=>$event, 'fromuser'=>$fromuser, 'touser'=>$touser, 'eventGenre'=>$eventGenre, 'eventType'=>$eventType, 'eventTag'=>$eventTag)); ?>

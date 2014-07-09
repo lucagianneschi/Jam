@@ -1,0 +1,380 @@
+@import "compass/css3";
+@import "settings";
+
+/* classi generiche */
+
+html {
+	-webkit-font-smoothing: antialiased;
+}
+
+.no-display { display:none}
+.inline-display { display:inline }
+
+
+// -------------------- TESTO -------------------------------
+body{
+  h2{ color: $white; margin-bottom: 0px;}
+  h3{ color: $grey; margin-bottom: 5px; }
+  overflow-y: scroll !important;
+}
+
+
+.sottotitle{
+  font-size: 17px !important;
+}
+
+.text{
+  font-size: 14px !important;
+}
+
+.breakOffTest{
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	white-space: nowrap;
+}
+
+label.text{ 
+  font-weight: normal  !important; 
+  margin-bottom: 5px !important; 
+}
+
+.line{
+ border-bottom: 1px solid $grey; 
+ margin-bottom: 5px !important;
+}
+
+.align-right{
+ text-align:right !important;
+}
+
+.note{
+  font-size:11px !important;
+}
+
+.white{
+  color:$white !important;
+}
+.orange{
+  color:$orange !important;
+}
+.grey{
+  color:$grey !important;
+}
+.grey-dark{
+  color:$grey-dark !important;
+}
+
+.grey-light{
+  color:$grey-light !important;
+}
+
+.red{
+  color:$red !important;
+}
+
+//---------------------------- COLORE FONDO --------------------------------
+
+.bg-double{
+ background-color: $white;
+ height:auto;
+ // @include filter-gradient($grey-dark, $white, horizontal); // IE6-8 
+ // IE9 SVG, needs conditional override of 'filter' to 'none' 
+ $experimental-support-for-svg: true;
+ @include background-image(linear-gradient(left,  $grey-dark 0%,$grey-dark 49.6%,$white 49.6%,$white 100%));
+
+ overflow:hidden;
+ 
+}
+
+.bg-black{ 
+  background:$black;
+  height:100%;
+}
+
+.bg-grey-dark{ 
+  background-color: $grey-dark !important;
+  height:100%;
+}
+
+.bg-white{
+  background-color: $white !important;
+  height:100%;
+}
+
+.profile-style{
+  background-color: $white;
+}
+
+
+.content p{
+  font-size: 14px;
+  line-height:120%;
+}
+.content{
+  border-bottom: 1px solid $grey-dark;
+}
+
+
+
+//---------------------- ICONE ------------------------
+
+a.ico-label {
+  word-wrap: break-word !important;
+  width:auto;
+  height:30px;
+  float:left;
+  font-size:13px;
+  color:$grey;
+  line-height:30px;
+  margin-right:1px;
+  padding:0 0px 0 30px;
+  cursor:pointer;   
+  background-repeat:no-repeat;
+  background-position:left bottom;
+  @include transition-property(background-position, color);
+  @include transition-duration($transition-duration);
+  &:hover {
+    background-position:left top;
+    color:$grey;
+  } 
+}
+a.ico-label-btn {
+  background-color:$grey;
+  padding:0 12px 0 30px;
+  @include transition-property(background-color);
+  @include transition-duration($transition-duration);
+  &:hover {
+    background-color:$grey;
+  }
+}
+
+a.icon-block{
+  word-wrap: break-word !important;
+  width:auto;
+  height:30px;
+  float:right;
+  font-size:13px;
+  color:$grey;
+  margin-top: 15px !important;
+  line-height:30px;
+  margin-right:1px;
+  padding:0 0px 0 30px;
+  cursor:pointer;   
+  background-repeat:no-repeat;
+  background-position:left top;
+  @include transition-property(background-position);
+  &:hover {
+    background-position:left bottom;
+  }
+ 
+}
+
+
+.add{
+  width:43px;
+  height:43px;
+  background-color:$orange;
+  float:left;
+  cursor:pointer;
+  &:hover{
+    background-color:$orange-dark;
+  }
+}
+
+.icon-small{
+  width:15px;
+  height:15px;
+  margin-right: 5px !important;
+}
+
+
+
+.iconNotification{
+	left: -15px;
+	top: -13px;
+	background-color: $orange !important;
+}
+
+
+//-------------------- royalSlide --------------------
+.royalSlider {
+width: auto !important;
+}
+.royalSlider.rsDefault{
+	background: none !important;
+}
+.rsDefault .rsOverflow{
+	background: none !important;
+}
+
+.rsDefault .rsSlide{
+	background: none !important;
+}
+
+.slide-button-next{
+	word-wrap: break-word !important;
+	width:auto;
+	height:30px;
+	float:right;
+	font-size:13px;
+	color:$grey;
+	line-height:30px;
+  	margin-right:1px;
+    cursor:pointer;   
+	top: 5px !important; 
+	margin-top: 15px !important; 
+	padding: 0px 30px 0px 0px !important;	
+  	background-repeat:no-repeat;
+	background-position: right top;
+	&:hover{
+		background-position: right bottom;
+		color: $orange;
+	}
+}
+
+.slide-button-next-disabled{
+	@include opacity(0.3); 
+	&:hover{
+		color:$grey;
+		@include opacity(0.3); 
+		cursor: default;
+		background-position: right top !important;
+	}
+}
+
+.slide-button-prev{
+	word-wrap: break-word !important;
+  width:auto;
+  height:30px;
+  float:right;
+  font-size:13px;
+  color:$grey;
+  margin-top: 15px !important;
+  line-height:30px;
+  margin-right:1px;
+  padding:0 0px 0 30px;
+  cursor:pointer;   
+  background-repeat:no-repeat;
+  background-position:left top;
+  @include transition-property(background-position);
+  &:hover {
+    background-position:left bottom;
+    color: $orange;
+  }
+}
+.slide-button-prev-disabled{	
+	@include opacity(0.3); 
+	&:hover{
+		color:$grey;
+		@include opacity(0.3); 
+		cursor: default;
+		background-position: left top !important;
+	}
+}
+
+//------------ rating -----------------------
+.br-widget {
+    height: 24px;
+}
+
+ .br-widget a {
+    background: url('../images/icon/double-icone/rating.png');
+    width: 24px;
+    height: 24px;
+    display: block;
+    float: left;
+}
+
+.br-widget a:hover,
+.br-widget a.br-active,
+.br-widget a.br-selected {
+    background-position: 0 24px;
+}
+
+
+//-------------------------- error -----------------------
+#error_page{
+	background-color: $grey-superdark !important;
+	height: 700px;
+	body{
+		background-color: $grey-superdark !important;
+	}
+}
+
+
+//---------------- ICON -----------------------------
+
+//------------------ double icon -------------------
+._back_page { background-image:url(../images/icon/double-icone/back_page.png); }
+._calendar { background-image:url(../images/icon/double-icone/calendar.png); }
+._check { background-image:url(../images/icon/double-icone/check.png); }
+._compass { background-image:url(../images/icon/double-icone/compass.png); }
+._facebook { background-image:url(../images/icon/double-icone/facebook.png); }
+._facebook-double { background-image:url(../images/icon/double-icone/facebook-double.png); }
+._flag { background-image:url(../images/icon/double-icone/flag.png); }
+._friend { background-image:url(../images/icon/double-icone/friend.png); }
+._google { background-image:url(../images/icon/double-icone/google.png); }
+._google-double { background-image:url(../images/icon/double-icone/google-double.png); }
+._message { background-image:url(../images/icon/double-icone/message.png); }
+._nextPage { background-image:url(../images/icon/double-icone/nextPage.png); }
+._note { background-image:url(../images/icon/double-icone/note.png); }
+._note-white { background-image:url(../images/icon/double-icone/note-white.png); }
+._notify { background-image:url(../images/icon/double-icone/notify.png); }
+._off { background-image:url(../images/icon/double-icone/off.png); }
+._pin { background-image:url(../images/icon/double-icone/pin.png); }
+._pin-white { background-image:url(../images/icon/double-icone/pin-white.png); }
+._play-large { background-image:url(../images/icon/double-icone/play.png); }
+._play_white { background-image:url(../images/icon/double-icone/play_white.png); }
+._prevPage { background-image:url(../images/icon/double-icone/prevPage.png); }
+._setting { background-image:url(../images/icon/double-icone/setting.png); }
+._stream { background-image:url(../images/icon/double-icone/stream.png); }
+._twitter { background-image:url(../images/icon/double-icone/twitter.png); }
+._twitter-double { background-image:url(../images/icon/double-icone/twitter-double.png); }
+._web { background-image:url(../images/icon/double-icone/web.png); }
+._web-double { background-image:url(../images/icon/double-icone/web-double.png); }
+._youtube { background-image:url(../images/icon/double-icone/youtube.png); }
+._youtube-double { background-image:url(../images/icon/double-icone/youtube-double.png); }
+._tag { background-image:url(../images/icon/double-icone/tag.png); }
+
+
+
+._add { background-image:url(../images/icon/add.png); }
+
+//--------------------------- button -----------------------------------------
+._check-button { background-image:url(../images/icon/button/check.png); }
+._note-button { background-image:url(../images/icon/button/note.png); }
+._delete-button { background-image:url(../images/icon/button/delete.png); }
+
+
+//--------------------------- icon music player ------------------------
+._back { background-image:url(../images/icon/musicplayer/back.png); }
+._pause { background-image:url(../images/icon/musicplayer/pause.png); }
+._next { background-image:url(../images/icon/musicplayer/next.png); }
+._play { background-image:url(../images/icon/musicplayer/play.png); }
+
+//----------------------- icon small --------------------------------------
+._message-small { background-image:url(../images/icon/small/message-small.png); }
+._calendar-small { background-image:url(../images/icon/small/calendar-small.png); }
+._compass-small { background-image:url(../images/icon/small/compass-small.png); }
+._love { background-image:url(../images/icon/small/love.png); }
+._unlove { background-image:url(../images/icon/small/unlove.png); }
+._comment { background-image:url(../images/icon/small/comment.png); }
+._share { background-image:url(../images/icon/small/share.png); }
+._review { background-image:url(../images/icon/small/review.png); }
+._menu-small { background-image:url(../images/icon/small/menu-small.png); }
+._remove-small { background-image:url(../images/icon/small/remove-small.png); }
+._star-orange { background-image:url(../images/icon/small/star-orange.png); }
+._star-grey { background-image:url(../images/icon/small/star-grey.png); }
+._star-orange-big { background-image:url(../images/icon/small/star-orange-big.png); width:20px !important; height:20px !important; display:block !important; float:left !important; }
+._star-grey-big { background-image:url(../images/icon/small/star-grey-big.png); width:20px !important; height:20px !important; display:block !important; float:left !important; }
+._user-small { background-image:url(../images/icon/small/user-small.png); }
+
+//---------------- icon achievement -----------------------------
+._target1 { background-image:url(../images/icon/achievement/target1.png); }
+._target2 { background-image:url(../images/icon/achievement/target2.png); }
+._target3 { background-image:url(../images/icon/achievement/target3.png); }
+
+//----------------- icon button status -------------------------------
+._message_status { background-image:url(../images/icon/status/message.png); }
+._follower_status { background-image:url(../images/icon/status/follower.png); }
+._friend_status { background-image:url(../images/icon/status/friend.png); } 
