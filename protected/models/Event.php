@@ -113,7 +113,7 @@ class Event extends CActiveRecord
 			'description'=>Yii::t('string','model.description'),
 		        'eventdate'=>Yii::t('string','model.event.eventdate'),
 			'fromuser'=>Yii::t('string','model.fromuser'),
-		        'invitedcounter'=>Yii::t('string','model.invitedcounter'),
+		        'invitedcounter'=>Yii::t('string','model.event.invitedcounter'),
 			'latitude'=>Yii::t('string','model.latitude'),
 		        'locationname'=>Yii::t('string','model.event.locationname'),
 		        'longitude'=>Yii::t('string','model.longitude'),

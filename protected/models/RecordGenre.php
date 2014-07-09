@@ -56,7 +56,7 @@ class RecordGenre extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_record' => 'Id Record',
+		        'id_record'=>Yii::t('string','model.id_record'),
 			'id_genre'=>Yii::t('string','model.id_genre'),
 		);
 	}

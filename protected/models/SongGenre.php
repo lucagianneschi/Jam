@@ -56,8 +56,8 @@ class SongGenre extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_song' => 'Id Song',
-			'id_genre' => 'Id Genre',
+		        'id_song'=>Yii::t('string','model.id_song'),
+			'id_genre'=>Yii::t('string','model.id_genre'),
 		);
 	}
 

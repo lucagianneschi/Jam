@@ -63,12 +63,12 @@ class Stream extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'fromuser' => 'Fromuser',
-			'touser' => 'Touser',
-			'type' => 'Type',
-			'createdat' => 'Createdat',
-			'updatedat' => 'Updatedat',
+			'id'=>Yii::t('string','model.id'),
+			'fromuser'=>Yii::t('string','model.fromuser'),
+		        'touser'=>Yii::t('string','model.touser'),
+		        'type'=>Yii::t('string','model.type'),
+			'createdat'=>Yii::t('string','model.createdat'),
+		        'updatedat'=>Yii::t('string','model.updatedat'),
 		);
 	}
 

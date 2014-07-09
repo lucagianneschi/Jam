@@ -93,7 +93,7 @@ class Image extends CActiveRecord
 			'latitude'=>Yii::t('string','model.latitude'),
 		        'longitude'=>Yii::t('string','model.longitude'),
 			'lovecounter'=>Yii::t('string','model.lovecounter'),
-		    	'path'=>Yii::t('string','model.image.path'),
+		    	'path'=>Yii::t('string','model.path'),
 		        'sharecounter'=>Yii::t('string','model.sharecounter'),
 			'thumbnail'=>Yii::t('string','model.thumbnail'),
 			'createdat'=>Yii::t('string','model.createdat'),

@@ -56,8 +56,8 @@ class PostTag extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_post' => 'Id Post',
-			'id_user' => 'Id User',
+		        'id_post'=>Yii::t('string','model.id_post'),
+			'id_user'=>Yii::t('string','model.id_user'),
 		);
 	}
 

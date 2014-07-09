@@ -73,21 +73,21 @@ class Song extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'active' => 'Active',
-			'commentcounter' => 'Commentcounter',
-			'duration' => 'Duration',
-			'fromuser' => 'Fromuser',
-			'latitude' => 'Latitude',
-			'longitude' => 'Longitude',
-			'lovecounter' => 'Lovecounter',
-			'path' => 'Path',
-			'position' => 'Position',
-			'record' => 'Record',
-			'sharecounter' => 'Sharecounter',
-			'title' => 'Title',
-			'createdat' => 'Createdat',
-			'updatedat' => 'Updatedat',
+	                'id'=>Yii::t('string','model.id'),
+		        'active'=>Yii::t('string','model.active'),
+		        'commentcounter'=>Yii::t('string','model.commentcounter'),
+		        'duration'=>Yii::t('string','model.duration'),
+			'fromuser'=>Yii::t('string','model.fromuser'),
+		        'latitude'=>Yii::t('string','model.latitude'),
+			'longitude'=>Yii::t('string','model.longitude'),
+			'lovecounter'=>Yii::t('string','model.lovecounter'),
+		        'path'=>Yii::t('string','model.path'),
+			'position'=>Yii::t('string','model.song.position'),
+		        'record'=>Yii::t('string','model.record'),
+			'sharecounter'=>Yii::t('string','model.sharecounter'),
+		        'title'=>Yii::t('string','model.title'),
+			'createdat'=>Yii::t('string','model.createdat'),
+		        'updatedat'=>Yii::t('string','model.updatedat'),
 		);
 	}
 
