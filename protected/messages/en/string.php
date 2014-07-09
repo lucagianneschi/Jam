@@ -1,7 +1,7 @@
 <?php
 
-return array (
-    //MODELS
+return array(
+    //----------------------MODELS----------------------//
     'model.active' => 'Active',
     'model.address' => 'Address',
     'model.album' => 'Album',
@@ -19,7 +19,7 @@ return array (
     'model.id_event' => 'ID Event',
     'model.id_genre' => 'ID Genre',
     'model.id_image' => 'ID Image',
-    'model.id_member'=> 'ID Member', 
+    'model.id_member' => 'ID Member',
     'model.id_playlist' => 'ID Playlist',
     'model.id_post' => 'ID Post',
     'model.id_record' => 'ID Record',
@@ -45,40 +45,40 @@ return array (
     'model.updatedat' => 'Update At',
     'model.video' => 'Video',
     'model.vote' => 'Vote',
-    //ALBUM
+    //----------------------MODEL:ALBUM----------------------//
     'model.album.imagecounter' => 'Imagecounter',
-    //ALBUMTAG
+    //----------------------MODEL:ALBUMTAG-------------------//
     'model.albumtag.id_album' => 'ID Album',
-    //BADGE
+    //----------------------MODEL:BADGE----------------------//
     'model.badge.badge' => 'Badge',
-    //COMMENTTAG
+    //----------------------MODEL:COMMENTTAG-----------------//
     'model.commenttag.id_comment' => 'ID Comment',
-    //EVENT
+    //----------------------MODEL:EVENT----------------------//
     'model.event.attendeecounter' => 'Attendeecounter',
-    'model.event.cancelledcounter'=> 'Cancelledcounter', 
+    'model.event.cancelledcounter' => 'Cancelledcounter',
     'model.event.eventdate' => 'Event Date',
     'model.event.invitedcounter' => 'Invitedcounter',
     'model.event.locationname' => 'Venue Name',
     'model.event.refusedcounter' => 'Refusedcounter',
-    //EVENTYPE
-    'model.eventtype.id_type' => 'Type of Event', 
-    //MEMBER
+    //----------------------MODEL:EVENTYPE-------------------//
+    'model.eventtype.id_type' => 'Type of Event',
+    //----------------------MODEL:MEMBER--------------------//
     'model.member.id_instrument' => 'ID Instrument',
-    //PLAYLIST
+    //----------------------MODEL:PLAYLIST------------------//
     'model.playlist.unlimited' => 'Unlimited',
-    //RECORD
+    //----------------------MODEL:RECORD-------------------//
     'model.record.buylink' => 'Buylink',
     'model.record.label' => 'Label',
     'model.record.year' => 'Year',
-    //SONG
+    //----------------------MODEL:SONG---------------------//
     'model.song.position' => 'Position',
-    //USER
+    //----------------------MODEL:USER---------------------//
     'model.user.username' => 'Username',
     'model.user.password' => 'Password',
     'model.user.avatar' => 'Avatar',
     'model.user.background' => 'Background',
-    'model.user.birthday' => 'Birthday', 
-    'model.user.country' => 'Country', 
+    'model.user.birthday' => 'Birthday',
+    'model.user.country' => 'Country',
     'model.user.email' => 'Email',
     'model.user.facebookid' => 'Facebook ID',
     'model.user.facebookpage' => 'Facebook Page',
@@ -100,10 +100,113 @@ return array (
     'model.user.venuecounter' => 'Venuecounter',
     'model.user.website' => 'Website',
     'model.user.youtubechannel' => 'Youtube Channel',
-    //VIDEO
+    //----------------------MODEL:VIDEO--------------------//
     'model.video.author' => 'Author',
     'model.video.cover' => 'Cover',
     'model.video.duration' => 'Duration',
     'model.video.url' => 'URL',
+    //------------------END--MODELS----------------------//
+    //----------------------VIEWS------------------------//
+    'view.backtolist' => 'Back to List',
+    'view.comment' => 'Comment',
+    'view.close' => 'Close',
+    'view.complete' => 'Complete',
+    'view.create' => 'Create',
+    'view.go_back' => 'Go Back',
+    'view.love' => 'Love',
+    'view.mandatory_fields' => 'Mandatory Fields',
+    'view.next' => 'Next',
+    'view.other_rew' => 'View other reviews',
+    'view.post_button' => 'Post',
+    'view.prev' => 'Previous',
+    'view.publish' => 'Publish',
+    'view.review' => 'Review',
+    'view.save' => 'Save',
+    'view.send' => 'Send',
+    'view.share' => 'Share',
+    'view.unlove' => 'Unlove',
+    'view.viewall' => 'View All',
+    //----------------------FOOTER------------------------//
+    'view.footer.api' => 'API',
+    'view.footer.aboutus' => 'About us',
+    'view.footer.aboutjam' => 'About Jamyoursef',
+    'view.footer.advres' => 'ADV Resources',
+    'view.footer.abuse' => 'Report abuse',
+    'view.footer.career' => 'Career',
+    'view.footer.contact' => 'Contact',
+    'view.footer.faq' => 'FAQ',
+    'view.footer.guide' => 'Guide',
+    'view.footer.licenses' => 'Licenses',
+    'view.footer.logos_badge' => 'Logos and Badge',
+    'view.footer.mobile' => 'Mobile',
+    'view.footer.newsletter' => 'Newsletter',
+    'view.footer.plugin' => 'Plugin',
+    'view.footer.pressres' => 'Pres Resources',
+    'view.footer.pricing' => 'Princing Policy',
+    'view.footer.refpolicy' => 'Refound Policy',
+    'view.footer.resources' => 'Resources',
+    'view.footer.staytunedon' => 'Stay tuned on',
+    'view.footer.support' => 'Support',
+    'view.footer.term_cond' => 'Terms & Condition',
+    'view.footer.virtualtour' => 'Virtual Tour',
+    'view.footer.writeus' => 'Write us',
+    
+    //----------------------HEADER------------------------//
+    'view.header.optadd1' => 'Upload your music',
+    'view.header.optadd2' => 'Create Event',
+    'view.header.optadd3' => 'Upload Photo',
+    'view.header.search' => 'Search people, music or events',
+    'view.header.song' => 'Start adding songs to your playlist',
+    'view.header.messageforlist' => 'sent you a message',
+    'view.header.eventforlist' => 'invited you to an event',
+    'view.header.friendshipforlist' => 'wants to be your friend',
+    'view.header.collaborationforlist' => 'wants to collaborate with you',
+    'view.header.followingforlist' => 'is now following you',
+    'view.header.objnotfound' => 'Object not found',
+    'view.header.accept' => 'Accept',
+    'view.header.decline' => 'Decline',
+    'view.header.radio.profile' => 'Profile',
+    'view.header.radio.social' => 'Social',
+    
+    
+    
+    
+    
+    //----------------------HOME------------------------//
+    'view.home.blog' => 'BLOG',
+    'view.home.subscribe' => 'SUBSCRIBE',
+    'view.home.login' => 'LOGIN',
+    'view.home.stand_out' => 'Stand out in the music scene!',
+    'view.home.be_the_first' => 'Be the first to spot the next stars, find the best new artists',
+    'view.home.and_take' => 'and take part in the top events around you.',
+    'view.home.top' => 'Reach the top!',
+    'view.home.points' => 'Get points from your actions, rise the charts',
+    'view.home.best' => 'and show you’re the best.',
+    'view.home.talents' => 'Show off your talents!',
+    'view.home.badge' => 'Collect badges and let the community',
+    'view.home.worth' => 'know what you are worth.',
+    'view.home.are_you' => 'Are you',
+    'view.home.music_lover' => 'a music lover?',
+    'view.home.emerging_artist' => 'an emerging artist?',
+    'view.home.own' => 'Do you own',
+    'view.home.venue' => 'a music venue?',
+    'view.home.cool' => 'How cool it would be',
+    'view.home.sing' => 'to sing on that stage.',
+    'view.home.star' => 'Are you the next star around?',
+    'view.home.start_sharing1' => 'Start sharing your music and receive feedbacks and reviews from music lovers and venues around you.',
+    'view.home.start_sharing2' => 'Let them know where you’re going to play, find new stages, rise in your local chart and be ready to succeed!',
+    'view.home.you_told' => 'You told it was cool.',
+    'view.home.before' => 'Before anyone else.',
+    'view.home.talent_scout' => 'Are you a real talent scout?',
+    'view.home.next_star' => 'The next stars are just few clicks away from you: be the first to support them! Start discovering new artists, collect badges and show the community you know how good music sounds like.',
+    'view.home.tomorrow' => 'Tomorrow they will',
+    'view.home.remember' => 'remember that showcase.',
+    'view.home.venue_start' => 'Is your venue going to be the place where everything started?',
+    'view.home.find_next' => 'Find the next star between thousands of artists, listen to their music and choose the best for your stage. Check out what your audience really likes, plan awesome gigs and become the must-go place around.',
+    'view.home.subscribe_lc' => 'Subscribe',
+    'view.home.private_beta1' => 'Jamyourself is now on private beta testing:',
+    'view.home.private_beta2' => 'subscribe to receive an account key as soon as possible.',
+    'view.home.key' => 'I received a Key'
+	//------------------END--VIEWS//----------------------//
 );
 ?>
