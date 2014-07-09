@@ -1,0 +1,279 @@
+/* line 4, ../sass/messageStyle.scss */
+body {
+  background-color: #F3F3F3;
+}
+
+/* line 8, ../sass/messageStyle.scss */
+p {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+/* line 16, ../sass/messageStyle.scss */
+.box-message .box-upload-title {
+  height: 45px;
+  display: block;
+}
+/* line 21, ../sass/messageStyle.scss */
+.box-message #chat {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+/* line 26, ../sass/messageStyle.scss */
+.box-message .unread {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  width: 10px;
+  height: 10px;
+  background: url(../images/icon/messages/unread.png) no-repeat center center;
+}
+/* line 34, ../sass/messageStyle.scss */
+.box-message .delete {
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  z-index: 4;
+  cursor: pointer;
+  background: url(../images/icon/messages/delete.png) no-repeat center center;
+  display: none;
+}
+/* line 44, ../sass/messageStyle.scss */
+.box-message .box-membre {
+  position: relative;
+  padding: 0 !important;
+  -webkit-transition-property: background;
+  -moz-transition-property: background;
+  -o-transition-property: background;
+  transition-property: background;
+  -webkit-transition-duration: 300ms;
+  -moz-transition-duration: 300ms;
+  -o-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+/* line 49, ../sass/messageStyle.scss */
+.box-message .box-membre:hover {
+  background-color: #ff7505 !important;
+}
+/* line 51, ../sass/messageStyle.scss */
+.box-message .box-membre:hover * {
+  color: white !important;
+}
+/* line 54, ../sass/messageStyle.scss */
+.box-message .box-membre:hover .delete {
+  display: block;
+}
+/* line 59, ../sass/messageStyle.scss */
+.box-message .box-membre .box-msg {
+  padding: 10px 8px;
+}
+/* line 64, ../sass/messageStyle.scss */
+.box-message .box-other {
+  cursor: pointer;
+  position: relative;
+  -webkit-transition-property: background;
+  -moz-transition-property: background;
+  -o-transition-property: background;
+  transition-property: background;
+  -webkit-transition-duration: 300ms;
+  -moz-transition-duration: 300ms;
+  -o-transition-duration: 300ms;
+  transition-duration: 300ms;
+  background-color: #f7f7f7;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+/* line 74, ../sass/messageStyle.scss */
+.box-message .box-other a {
+  color: #787878 !important;
+}
+/* line 77, ../sass/messageStyle.scss */
+.box-message .box-other:hover {
+  background-color: #ff7505 !important;
+}
+/* line 79, ../sass/messageStyle.scss */
+.box-message .box-other:hover * {
+  color: white !important;
+}
+/* line 87, ../sass/messageStyle.scss */
+.box-message .active {
+  background-color: #ff7505 !important;
+}
+/* line 89, ../sass/messageStyle.scss */
+.box-message .active * {
+  color: white !important;
+}
+/* line 94, ../sass/messageStyle.scss */
+.box-message small {
+  font-size: 11px;
+  color: #d8d8d8;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  display: block;
+}
+/* line 102, ../sass/messageStyle.scss */
+.box-message .date-mine {
+  text-align: right;
+  border-bottom: #ff7505 1px solid;
+}
+/* line 107, ../sass/messageStyle.scss */
+.box-message .date-yours {
+  border-bottom: #d8d8d8 1px solid;
+}
+/* line 111, ../sass/messageStyle.scss */
+.box-message .msg {
+  margin-bottom: 25px;
+  padding-top: 15px;
+}
+/* line 116, ../sass/messageStyle.scss */
+.box-message .msg-yours {
+  border: #d8d8d8 1px solid;
+  background-color: #f7f7f7;
+}
+/* line 121, ../sass/messageStyle.scss */
+.box-message .msg-mine {
+  border: #ff7505 1px solid;
+  background-color: #ff9138;
+  color: white;
+}
+/* line 127, ../sass/messageStyle.scss */
+.box-message .buttonNext {
+  background-image: url(../images/button/signup-next.png) !important;
+  background-color: white;
+  border: 0px;
+  color: #f3f3f3;
+  width: 135px;
+  height: 35px;
+  margin: 20px !important;
+  background-repeat: no-repeat;
+  float: right;
+}
+/* line 139, ../sass/messageStyle.scss */
+.box-message textarea, .box-message .error textarea, .box-message textarea:focus {
+  background-color: white;
+  color: #666;
+  border: 1px solid #d8d8d8;
+  min-height: 100px;
+}
+/* line 146, ../sass/messageStyle.scss */
+.box-message .line {
+  border-bottom: 1px solid #d8d8d8;
+  padding-bottom: 5px !important;
+}
+/* line 151, ../sass/messageStyle.scss */
+.box-message .line-date {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #d8d8d8;
+  padding-bottom: 0px !important;
+}
+/* line 159, ../sass/messageStyle.scss */
+.box-message h2 {
+  color: #787878;
+  font-weight: normal;
+  text-align: center;
+}
+/* line 166, ../sass/messageStyle.scss */
+.box-message h3 {
+  color: #ff7505;
+  font-weight: normal;
+}
+/* line 171, ../sass/messageStyle.scss */
+.box-message h5 {
+  color: #787878;
+  font-weight: normal;
+}
+/* line 178, ../sass/messageStyle.scss */
+.box-message .box {
+  background-color: white;
+  border-top: #ff7505 1px solid;
+}
+/* line 182, ../sass/messageStyle.scss */
+.box-message .box .sidebar {
+  padding-left: 25px;
+  padding-top: 9px;
+}
+/* line 185, ../sass/messageStyle.scss */
+.box-message .box .sidebar .box-membre {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: auto;
+  height: 55px;
+  background-color: #f3f3f3;
+  cursor: pointer;
+}
+/* line 194, ../sass/messageStyle.scss */
+.box-message .box .sidebar .note {
+  padding-top: 4px;
+}
+/* line 198, ../sass/messageStyle.scss */
+.box-message .box .sidebar .text {
+  margin-bottom: 10px;
+}
+/* line 202, ../sass/messageStyle.scss */
+.box-message .box .sidebar .oggetto-review {
+  margin-bottom: 80px;
+}
+/* line 207, ../sass/messageStyle.scss */
+.box-message .box .otherMessage {
+  cursor: pointer;
+}
+/* line 213, ../sass/messageStyle.scss */
+.box-message .holder {
+  margin-bottom: 10px !important;
+  border: 1px #FFFFFF;
+  padding: 0px;
+}
+/* line 217, ../sass/messageStyle.scss */
+.box-message .holder .bit-box {
+  border: 1px solid #f3f3f3;
+  background: #f3f3f3;
+  font-size: 14px;
+  padding: 10px;
+  padding-right: 15px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+/* line 226, ../sass/messageStyle.scss */
+.box-message .facebook-auto {
+  width: 50% !important;
+}
+/* line 228, ../sass/messageStyle.scss */
+.box-message .facebook-auto .default {
+  display: none !important;
+}
+/* line 232, ../sass/messageStyle.scss */
+.box-message .bit-input {
+  width: 100%;
+}
+/* line 234, ../sass/messageStyle.scss */
+.box-message .bit-input .maininput {
+  width: 100% !important;
+  border: 1px solid #d8d8d8;
+  padding: 5px;
+  font: inherit;
+}
+/* line 239, ../sass/messageStyle.scss */
+.box-message .bit-input .maininput:focus {
+  background: #FFFFFF;
+}
+/* line 245, ../sass/messageStyle.scss */
+.box-message #spinner.box {
+  border-top: 0px !important;
+}
+/* line 249, ../sass/messageStyle.scss */
+.box-message .newMsg {
+  opacity: 0.5 !important;
+}
+/* line 254, ../sass/messageStyle.scss */
+.box-message .newMsgError .msg-mine {
+  background-color: #ed1c24;
+}
