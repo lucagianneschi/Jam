@@ -18,4 +18,4 @@ $this->menu=array(
 
 <h1>Update ReviewEvent <?php echo $model->id; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model,'event'=>$event, 'fromuser'=>$fromuser, 'touser'=>$touser)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'event'=>$event, 'fromuser'=>$fromuser, 'touser'=>$touser, 'eventGenre'=>$eventGenre, 'eventType'=>$eventType, 'eventTag'=>$eventTag)); ?>
