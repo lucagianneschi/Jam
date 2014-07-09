@@ -56,8 +56,8 @@ class UserAlbum extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_user' => 'Id User',
-			'id_album' => 'Id Album',
+		        'id_user'=>Yii::t('string','model.id_user'),
+			'id_album'=>Yii::t('string','model.albumtag.id_album'),
 		);
 	}
 

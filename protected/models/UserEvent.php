@@ -56,8 +56,8 @@ class UserEvent extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_user' => 'Id User',
-			'id_event' => 'Id Event',
+			'id_user'=>Yii::t('string','model.id_user'),
+			'id_event'=>Yii::t('string','model.id_event'),
 		);
 	}
 

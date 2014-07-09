@@ -56,8 +56,8 @@ class UserGenre extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_user' => 'Id User',
-			'id_genre' => 'Id Genre',
+			'id_user'=>Yii::t('string','model.id_user'),
+			'id_genre'=>Yii::t('string','model.id_genre'),
 		);
 	}
 

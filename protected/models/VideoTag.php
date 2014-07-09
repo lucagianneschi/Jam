@@ -56,8 +56,8 @@ class VideoTag extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_video' => 'Id Video',
-			'id_user' => 'Id User',
+		        'id_video'=>Yii::t('string','model.id_video'),
+			'id_user'=>Yii::t('string','model.id_user'),
 		);
 	}
 

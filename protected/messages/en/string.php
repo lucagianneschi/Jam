@@ -19,11 +19,13 @@ return array (
     'model.id_event' => 'ID Event',
     'model.id_genre' => 'ID Genre',
     'model.id_image' => 'ID Image',
+    'model.id_member'=> 'ID Member', 
     'model.id_playlist' => 'ID Playlist',
     'model.id_post' => 'ID Post',
     'model.id_record' => 'ID Record',
     'model.id_song' => 'ID Song',
     'model.id_user' => 'ID User',
+    'model.id_video' => 'ID Video',
     'model.image' => 'Image',
     'model.latitude' => 'Latitude',
     'model.longitude' => 'Longitude',
@@ -56,7 +58,7 @@ return array (
     'model.event.cancelledcounter'=> 'Cancelledcounter', 
     'model.event.eventdate' => 'Event Date',
     'model.event.invitedcounter' => 'Invitedcounter',
-    'model.event.locationname' => 'Location Name',
+    'model.event.locationname' => 'Venue Name',
     'model.event.refusedcounter' => 'Refusedcounter',
     //EVENTYPE
     'model.eventtype.id_type' => 'Type of Event', 
@@ -98,15 +100,10 @@ return array (
     'model.user.venuecounter' => 'Venuecounter',
     'model.user.website' => 'Website',
     'model.user.youtubechannel' => 'Youtube Channel',
-    
-    
     //VIDEO
     'model.video.author' => 'Author',
     'model.video.cover' => 'Cover',
     'model.video.duration' => 'Duration',
     'model.video.url' => 'URL',
-    
-    
-
 );
 ?>

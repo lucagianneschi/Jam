@@ -56,8 +56,8 @@ class UserRecord extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_user' => 'Id User',
-			'id_record' => 'Id Record',
+			'id_user'=>Yii::t('string','model.id_user'),
+			'id_record'=>Yii::t('string','model.id_record'),
 		);
 	}
 
