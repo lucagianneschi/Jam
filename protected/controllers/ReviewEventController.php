@@ -131,6 +131,10 @@ class ReviewEventController extends Controller
 		if($event===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		
+		$eventGenre = EventGenre::model()->findAll(array("condition"=>"id_event =  $event->id","order"=>"id_event"));
+		$eventType = EventType::model()->findAll(array("condition"=>"id_event =  $event->id","order"=>"id_event"));	
+		$eventTag = EventTag::model()->findAll(array("condition"=>"id_event =  $event->id","order"=>"id_event"));	
+		
 		$touser = User::model()->findByPk($model->touser);
 		
 		if($touser===null)
@@ -165,6 +169,9 @@ class ReviewEventController extends Controller
 			'event'=>$event,
 			'fromuser'=>$fromuser,
 			'touser'=>$touser,
+			'eventGenre' => $eventGenre,
+			'eventType'=>$eventType,
+			'eventTag'=>$eventTag,
 		));
 	}
 
