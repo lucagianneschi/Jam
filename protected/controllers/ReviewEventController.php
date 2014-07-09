@@ -59,23 +59,52 @@ class ReviewEventController extends Controller
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $event the ID of the model event
 	 */
-	public function actionCreate()
+	public function actionCreate($event)
 	{
-		$model=new ReviewEvent;
-
+		
+		$event = Event::model()->findByPk($event);
+		
+		if($event===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		
+		$touser = User::model()->findByPk($event->fromuser);
+		
+		if($touser===null)
+			throw new CHttpException(404,'The requested page does not exist.');	
+			
+		$fromuser = User::model()->findByPk(Yii::app()->session['id']);
+		
+		if($fromuser===null)
+			throw new CHttpException(404,'The requested page does not exist.');	
+		
+		$reviewEvent =new ReviewEvent;
+		
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+		$this->performAjaxValidation($reviewEvent);
 
 		if(isset($_POST['ReviewEvent']))
 		{
-			$model->attributes=$_POST['ReviewEvent'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$_POST['ReviewEvent']['event'] =  $event->id;
+			$_POST['ReviewEvent']['fromuser'] = $fromuser->id;
+			$_POST['ReviewEvent']['touser'] = $touser->id;
+			$_POST['ReviewEvent']['latitude'] = null;
+			$_POST['ReviewEvent']['longitude'] = null;
+			$_POST['ReviewEvent']['createdat'] = date('Y-m-d H:i:s');
+			$_POST['ReviewEvent']['updatedat'] = date('Y-m-d H:i:s');
+			
+			$reviewEvent->attributes=$_POST['ReviewEvent'];			
+			
+			if($reviewEvent->save())
+				$this->redirect(array('view','id'=>$reviewEvent->id));
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$reviewEvent,
+			'event'=>$event,
+			'fromuser'=>$fromuser,
+			'touser'=>$touser,
 		));
 	}
 
@@ -83,16 +112,42 @@ class ReviewEventController extends Controller
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
+	 * @param integer $event the id of the model event
 	 */
 	public function actionUpdate($id)
 	{
+		
 		$model=$this->loadModel($id);
+		
+		$event = Event::model()->findByPk($model->event);
+		
+		if($event===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		
+		$touser = User::model()->findByPk($model->fromuser);
+		
+		if($touser===null)
+			throw new CHttpException(404,'The requested page does not exist.');	
+			
+		$fromuser = User::model()->findByPk(Yii::app()->session['id']);
+		
+		if($fromuser===null)
+			throw new CHttpException(404,'The requested page does not exist.');	
+		
+		
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['ReviewEvent']))
 		{
+			$_POST['ReviewEvent']['event'] =  $event->id;
+			$_POST['ReviewEvent']['fromuser'] = $fromuser->id;
+			$_POST['ReviewEvent']['touser'] = $touser->id;
+			$_POST['ReviewEvent']['latitude'] = null;
+			$_POST['ReviewEvent']['longitude'] = null;
+			$_POST['ReviewEvent']['updatedat'] = date('Y-m-d H:i:s');
+			
 			$model->attributes=$_POST['ReviewEvent'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -100,6 +155,9 @@ class ReviewEventController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+			'event'=>$event,
+			'fromuser'=>$fromuser,
+			'touser'=>$touser,
 		));
 	}
 

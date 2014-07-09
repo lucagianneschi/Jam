@@ -40,7 +40,7 @@ class ReviewEvent extends CActiveRecord
 		// will receive user inputs.
 		
 		return array(
-			array('id, active, event, fromuser, text, touser, createdat, updatedat, vote', 'required', 'message'=>'{attribute} field is missing'),
+			array('active, event, fromuser, text, touser, createdat, updatedat, vote', 'required', 'message'=>'{attribute} field is missing'),
 		    array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
 			array('vote', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
 			array('event, fromuser, touser', 'length', 'max'=>11, 'message'=>'Invalid {attribute} format'),

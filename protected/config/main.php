@@ -27,6 +27,9 @@ return array(
 		),
 	),
 	
+	'sourceLanguage'=>'en_us',
+	'language'=>'en',
+	
 	// application components
 	'components'=>array(
 		'user'=>array(
@@ -34,7 +37,7 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		
+		/*
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -44,7 +47,7 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		
+		*/
 		'clientScript'=>array(
             'packages'=>array(
                 'jquery'=>array(
