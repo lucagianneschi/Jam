@@ -7,3 +7,7 @@ nbproject/project.properties
 nbproject/project.xml
 .project
 config.rb
+/protected/messages/en/en.views.lang.php
+/protected/messages/en/en.controllers.lang.php
+/protected/messages/it/it.controllers.lang.php
+/protected/messages/it/it.views.lang.php
