@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * English Strings for views
+ * 
+ * @author Maria Laura Fresu
+ * @version		0.1
+ * @since		2014-07-08
+ * @copyright		Jamyourself.com 2014	
+ * @warning
+ * @bug
+ * @todo                
+ */
 return array(
 //----------------------MODELS----------------------//
     'model.active' => 'Active',
@@ -106,7 +117,7 @@ return array(
     'model.video.duration' => 'Duration',
     'model.video.url' => 'URL',
     //------------------END--MODELS----------------------//
-//----------------------VIEWS------------------------//
+    //----------------------VIEWS------------------------//
     'view.backtolist' => 'Back to List',
     'view.comment' => 'Comment',
     'view.close' => 'Close',
@@ -187,7 +198,7 @@ return array(
     'view.header.social.message_relation' => 'view all requests',
     'view.header.social.nodata' => 'There are no Notifications',
     'view.header.social.title' => 'Notifications',
-//----------------------HOME------------------------//
+    //----------------------HOME------------------------//
     'view.home.are_you' => 'Are you',
     'view.home.and_take' => 'and take part in the top events around you.',
     'view.home.badge' => 'Collect badges and let the community',
@@ -222,6 +233,90 @@ return array(
     'view.home.venue_start' => 'Is your venue going to be the place where everything started?',
     'view.home.worth' => 'know what you are worth.',
     'view.home.you_told' => 'You told it was cool.',
+    //----------------------SIGNUP--FORM-------------------//
+    'view.signup.address' => 'Address ',
+    'view.signup.add_components' => 'Add more components',
+    'view.signup.artist_group' => 'Artist / Group name',
+    'view.signup.band' => 'Band',
+    'view.signup.birth_date' => 'Birthday',
+    'view.signup.city' => 'City ',
+    'view.signup.components' => 'Components',
+    'view.signup.create_event' => 'Start to create an event',
+    'view.signup.day' => '- Day -',
+    'view.signup.describe' => 'Describe your music:',
+    'view.signup.description' => 'Description ',
+    'view.signup.enrollment' => 'Enrollment',
+    'view.signup.error_field1' => 'You did enter a space at end',
+    'view.signup.error_field2' => 'Contains illegal characters',
+    'view.signup.error_field3' => 'Please enter minimum 8 characters',
+    'view.signup.explore' => 'Explore functionality',
+    'view.signup.facebook' => 'Url of your Facebook profile',
+    'view.signup.faq' => 'Check out our FAQs',
+    'view.signup.fb_connect' => 'Connect with Facebook',
+    'view.signup.first_name' => 'First Name',
+    'view.signup.form' => '...or fill out this form!',
+    'view.signup.google_plus' => 'Url of your Google Plus profile',
+    'view.signup.instrument' => 'Instrument',
+    'view.signup.invalid_image_format' => 'Upload not supported.',
+    'view.signup.jammer' => 'Jammer',
+    'view.signup.jammer_slogan' => 'I’m an artist / I play in a band',
+    'view.signup.last_name' => 'Last Name',
+    'view.signup.links' => 'I’m also on ',
+    'view.signup.localization_question' => 'Why do you ask me?',
+    'view.signup.localization_answer' => 'testo per suggerimento quando chiedo la city', //da inserire
+    'view.signup.mail' => 'Mail ',
+    'view.signup.month' => '- Month -',
+    'view.signup.more_info' => 'Want to tell us more about you?',
+    'view.signup.music' => 'What kind of music do you like?',
+    'view.signup.musician' => 'Musician',
+    'view.signup.name' => 'Name',
+    'view.signup.nd_sex' => 'Don’t want to declare',
+    'view.signup.ok_message' => 'Ok, let’s play!',
+    'view.signup.password' => 'Password ',
+    'view.signup.select_file' => 'Select a file from your computer',
+    'view.signup.select_genre' => ' Please select a genre',
+    'view.signup.select_genre_venue' => 'Select at least one genre (max 5)',
+    'view.signup.select_music' => 'Select at least one genre (max 10)',
+    'view.signup.sex' => 'I’m ',
+    'view.signup.signing_as' => 'Signing up as',
+    'view.signup.signup_selector' => 'Sign up as...',
+    'view.signup.spotter' => 'Spotter',
+    'view.signup.spotter_slogan' => 'I’m a music lover',
+    'view.signup.step1' => 'STEP 1',
+    'view.signup.step2' => 'STEP 2',
+    'view.signup.step3' => 'STEP 3',
+    'view.signup.tell_us' => 'Tell us something about you:',
+    'view.signup.tell_something' => 'Something about you...',
+    'view.signup.tell_us_venue' => 'Tell us something about your Venue:',
+    'view.signup.twitter' => 'Url of your Twitter profile',
+    'view.signup.upload_image' => 'Upload Image',
+    'view.signup.username' => 'Username ',
+    'view.signup.user_type' => 'Please enter a type recording',
+    'view.signup.valid_address' => ' Please enter a valid Address',
+    'view.signup.valid_artist_group' => ' Please enter a valid name Artist / Group name',
+    'view.signup.valid_captcha' => 'Please enter a valid captcha',
+    'view.signup.valid_city' => 'Please enter a valid City',
+    'view.signup.valid_description' => 'Please enter a valid Description',
+    'view.signup.valid_first_name' => ' Please enter a valid First Name',
+    'view.signup.valid_instrument' => 'Please enter a valid Instrument',
+    'view.signup.valid_last_name' => 'Please enter a valid Last Name',
+    'view.signup.valid_mail' => 'Please enter a valid mail',
+    'view.signup.valid_name' => 'Please enter a valid Name',
+    'view.signup.valid_password' => 'Please enter a valid password',
+    'view.signup.valid_url' => ' Please enter a valid url',
+    'view.signup.valid_username' => ' Please enter a valid Username',
+    'view.signup.valid_venue_name' => ' Please enter a valid name Venue',
+    'view.signup.venue' => 'Venue',
+    'view.signup.venue_description' => 'Describe your Venue:',
+    'view.signup.venue_name' => 'Name of your venue ',
+    'view.signup.venue_slogan' => 'I own a music club / a place for gigs and events',
+    'view.signup.verification_message1' => 'We sent you a verification link to the email address you used to create the account. Click the link in that email to verify that you own this address.',
+    'view.signup.verification_message2' => 'Click the link in that email to verify that you own this address.',
+    'view.signup.verify_password' => 'Verify Password ',
+    'view.signup.year' => '- Year -',
+    'view.signup.youtube' => 'Url of your Youtube channel',
+    'view.signup.website' => 'Url of your Website',
+    //------------END----OF------SIGNUP--FORM-------------------//
     //----------------------UPLOAD-EVENT-FORM---------------------//
     'view.uploadevent.address' => 'Address ',
     'view.uploadevent.create' => 'Create a event',
@@ -259,7 +354,7 @@ return array(
     'view.message.valid_user' => 'Please enter a valid User',
     'view.message.view_other' => 'View Other',
     //----------------------PROFILE---------------------//
-    //----------------------ACTIVITY--------------------//
+//----------------------ACTIVITY--------------------//
     'view.profile.activity.attevent' => 'Attending the event',
     'view.profile.activity.lastalbum' => 'Last album updated',
     'view.profile.activity.lastevent' => 'Last Event',
@@ -279,7 +374,7 @@ return array(
     'view.profile.activity.recorded' => 'Recorded',
     'view.profile.activity.title' => 'Activities',
     'view.profile.activity.viewalbum' => 'View Album', //non richiamato
-    //----------------------ALBUM--------------------//	
+//----------------------ALBUM--------------------//	
     'view.profile.album.nodata' => 'There are no Photos',
     'view.profile.album.photos' => 'photos',
     'view.profile.album.title' => 'Photography',
@@ -293,6 +388,96 @@ return array(
     'view.profile.event.calendar' => 'Add to Calendar', //non richiamato
     'view.profile.event.nodata' => 'There are no Events', //non richiamato
     'view.profile.event.title' => 'Event',
+    //----------------------EVENT-REVIEW-------------//
+    'view.profile.eventreview.nodata' => 'There are no reviews',
+    'view.profile.eventreview.rating' => 'Rating',
+    'view.profile.eventreview.read' => 'Read',
+    'view.profile.eventreview.title' => 'Event Reviews',
+    //----------------------FOLLOWING-------------//
+    'view.profile.following.nodata' => 'You are not following anyone', //non richiamato
+    'view.profile.following.title' => 'Following', //non richiamato
+//----------------------FOLLOWERS-------------//
+    'view.profile.followers.nodata' => 'There are no Followers',
+    'view.profile.followers.title' => 'Followers',
+    //----------------------FRIENDS-------------//
+    'view.profile.friends.nodata' => 'There are no Friends',
+    'view.profile.friends.title' => 'Friends',
+    //----------------------INFO-----------------//
+    'view.profile.info.content1' => 'About',
+    'view.profile.info.content2' => 'Members',
+    'view.profile.info.content3' => 'Map',
+    'view.profile.info.content3_direction' => 'Get direction',
+    'view.profile.info.title' => 'Information',
+    //----------------------POST-----------------//
+    'view.profile.post.nodata' => 'There are no Posts',
+    'view.profile.post.title' => 'Post',
+    'view.profile.post.write' => 'Write a post',
+    //----------------------RECORD-----------------//
+    'view.profile.record.addplaylist' => 'add to playlist',
+    'view.profile.record.list' => 'Album List',
+    'view.profile.record.nodata' => 'No songs for this record',
+    'view.profile.record.play' => 'Play Now',
+    'view.profile.record.recorded' => 'Recorded',
+    'view.profile.record.removeplaylist' => 'remove',
+    'view.profile.record.title' => 'Music',
+    //----------------------RECORD-DETAIL-------------//
+    'view.profile.recorddetail.nodata' => 'There are no songs',
+    //----------------------RECORD-REVIEW-------------//
+    'view.profile.recordreview.title' => 'Album Reviews',
+    'view.profile.recordreview.rating' => 'Rating',
+    'view.profile.recordreview.read' => 'Read',
+    'view.profile.recordreview.nodata' => 'There are no reviews',
+    //----------------------STATUS-------------//
+    'view.profile.status.addfriend' => 'Add Friend',
+    'view.profile.status.badge1' => 'Old School',
+    'view.profile.status.badge2' => 'Welcome',
+    'view.profile.status.badge3' => 'Pub',
+    'view.profile.status.badge4' => 'Night Life',
+    'view.profile.status.badge5' => 'Live',
+    'view.profile.status.badge6' => 'Rock',
+    'view.profile.status.badge7' => 'Jam Session',
+    'view.profile.status.badge8' => 'Jammed In',
+    'view.profile.status.badge9' => 'Happy Hour',
+    'view.profile.status.badge10' => 'Producer',
+    'view.profile.status.badge11' => 'Dj',
+    'view.profile.status.badge12' => 'Dinner',
+    'view.profile.status.badge13' => 'Contest',
+    'view.profile.status.badge14' => 'Dance',
+    'view.profile.status.badge15' => 'Electro',
+    'view.profile.status.badge16' => 'Pop',
+    'view.profile.status.badge17' => 'Metal',
+    'view.profile.status.badge18' => 'Jazz',
+    'view.profile.status.badge19' => 'In Demand',
+    'view.profile.status.badge20' => 'Team Up',
+    'view.profile.status.badge21' => 'Photographer',
+    'view.profile.status.badge22' => 'Pr',
+    'view.profile.status.badge23' => 'Journalist',
+    'view.profile.status.coll' => 'Collaborate',
+    'view.profile.status.foll' => 'Follow',
+    'view.profile.status.sendmsg' => 'Send Message',
+    //----------------------END-OF-PROFILE-----------//
+//-------------MEDIA-RECORD-O----EVENT---------------//
+    'view.media.addreview' => 'Add a review',
+    'view.media.view' => 'View all',
+    //-------------------------COMMENT---------------------//
+    'view.media.comment.title' => 'Comment',
+    //-------------------------INFO---------------------//
+    'view.media.info.content1_event' => 'Hosted by',
+    'view.media.info.content1_record' => 'Performed by',
+    'view.media.info.content2' => 'Featuring',
+    'view.media.info.content3' => 'Map',
+    'view.media.info.content4' => 'Attending',
+    'view.media.info.content5' => 'Invited',
+    'view.media.info.title' => 'information',
+    //----------------------RECORD---------------------//
+    'view.media.record.buy' => 'Buy album at',
+    'view.media.record.comment' => ' Comment',
+    'view.media.record.other' => 'Other ',
+    'view.media.record.title' => 'Tracklist',
+    //---------------REVIEW----------------------------//
+    'view.media.review.title' => 'Reviews',
+    'view.media.review.review' => 'Review',
+    //----------------------END--OF--MEDIA-RECORD-O----EVENT-----------//
     //----------------------STREAM---------------------//
     'view.stream.add_img' => 'New Image Added to Album',
     'view.stream.comm_album' => 'Commented an Album',
@@ -331,7 +516,8 @@ return array(
     'view.stream.stream' => 'Stream',
     'view.stream.welcome' => 'Welcome',
     'view.stream.write_post' => 'Write a post',
-    //----------------------UPLOAD-REVIEW-FORM---------------------//
+    //----------------------END--OF--STREAM-------------------------//
+//----------------------UPLOAD-REVIEW-FORM---------------------//
     'view.uploadalbum.add' => 'Add images *',
     'view.uploadalbum.city' => 'City ',
     'view.uploadalbum.create' => 'Create a new one',
@@ -346,7 +532,8 @@ return array(
     'view.uploadalbum.uploaded' => 'Uploaded photos',
     'view.uploadalbum.valid_description' => 'Please enter a valid Description',
     'view.uploadalbum.valid_title' => ' Please enter a valid Title',
-    //----------------------UPLOAD-REVIEW-FORM---------------------//
+    //----------------------END-OF-UPLOAD-REVIEW-FORM------------------------//
+//----------------------UPLOAD-RECORD-FORM---------------------//
     'view.uploadrecord.add_song' => 'Add song',
     'view.uploadrecord.buy' => 'Buy album at',
     'view.uploadrecord.city' => 'City',
@@ -374,7 +561,8 @@ return array(
     'view.uploadrecord.valid_title' => ' Please enter a valid Title',
     'view.uploadrecord.valid_year' => 'Please enter a valid year',
     'view.uploadrecord.year' => 'Year',
-    //----------------------UPLOAD-REVIEW-FORM---------------------//
+    //----------------------END-OF-UPLOAD-RECORD-FORM-----------//
+//----------------------UPLOAD-REVIEW-FORM---------------------//
     'view.uploadreview.create' => 'Create a new review about...',
     'view.uploadreview.featuring' => 'Featuring',
     'view.uploadreview.notfeaturing' => 'There are not featuring',
@@ -383,8 +571,71 @@ return array(
     'view.uploadreview.review' => 'Review',
     'view.uploadreview.write' => 'Write here your review',
     'view.uploadreview.your_rating' => 'Your Rating',
-    //------------------END--VIEWS//----------------------//
-    //----------------------METATAG---------------------//
+    //----------------------END-OF-UPLOAD-REVIEW-FORM-----------//
+//----------------------TAGS-------------------------------//
+    'tag.acoustic' => 'Acoustic',
+    'tag.alternative' => 'Alternative',
+    'tag.ambient' => 'Ambient',
+    'tag.dance' => 'Dance',
+    'tag.dark' => 'Dark',
+    'tag.electronic' => 'Electronic',
+    'tag.experimental' => 'Experimental',
+    'tag.folk' => 'Folk',
+    'tag.funk' => 'Funk',
+    'tag.grunge' => 'Grunge',
+    'tag.hardcore' => 'Hardcore',
+    'tag.house' => 'House',
+    'tag.indie_rock' => 'Indie Rock',
+    'tag.instrumental' => 'Instrumental',
+    'tag.jazz_blues' => 'Jazz&Blues',
+    'tag.metal' => 'Metal',
+    'tag.other' => 'Other',
+    'tag.pop' => 'Pop',
+    'tag.progressive' => 'Progressive',
+    'tag.punk' => 'Punk',
+    'tag.rap_hip_hop' => 'Rap/Hip-Hop',
+    'tag.rock' => 'Rock',
+    'tag.ska' => 'Ska',
+    'tag.songwriter' => 'Songwriter',
+    'tag.techno' => 'Techno',
+    //-------------------END-OF--TAGS-----------------------//
+//-------------------LOCALTYPE-----------------------//
+    'localtype.contest_area' => 'Contest Area',
+    'localtype.dinner' => 'Diner',
+    'localtype.dj_set' => 'DJ Set',
+    'localtype.happy_hour_apperizer' => 'Happy Hour/Apperizer',
+    'localtype.jam_session_club' => 'Jam Session Club',
+    'localtype.live_music' => 'Live Music',
+    'localtype.night_life' => 'Night Life',
+    'localtype.other' => 'Other',
+    'localtype.pub' => 'Pub',
+    //--------------END--OF---LOCALTYPE-----------------------//
+//--------------INSTRUMENTS-----------------------//
+    'instruments.accordion' => 'Accordion',
+    'instruments.banjo' => 'Banjo',
+    'instruments.bass' => 'Bass',
+    'instruments.bongo_drum' => 'Bongo Drum',
+    'instruments.choir' => 'Choir',
+    'instruments.clarinet' => 'Clarinet',
+    'instruments.classic_guitar' => 'Classic Guitar',
+    'instruments.drum' => 'Drum',
+    'instruments.double_bass' => 'Double Bass',
+    'instruments.electric_guitar' => 'Electric Guitar',
+    'instruments.flute' => 'Flute',
+    'instruments.harp' => 'Harp',
+    'instruments.harpsichord' => 'Harpsichord',
+    'instruments.keyboard' => 'Keyboard',
+    'instruments.mouth_organ' => 'Mouth Organ',
+    'instruments.other' => 'Other',
+    'instruments.piano' => 'Piano',
+    'instruments.synthesizer' => 'Synthesizer',
+    'instruments.trumpet' => 'Trumpet',
+    'instruments.ukulele' => 'Ukulele',
+    'instruments.violin' => 'Violin',
+    'instruments.voice' => 'Voice',
+    'instruments.xylophone' => 'Xylophone',
+//------------------END--VIEWS------------------------------//
+//----------------------METATAG---------------------//
     'metatag.404.title' => '',
     'metatag.404.description' => '',
     'metatag.404.keywords' => '',
@@ -421,5 +672,6 @@ return array(
     'metatag.uploadReview.title' => '',
     'metatag.uploadReview.description' => '',
     'metatag.uploadReview.keywords' => '',
+//-----------------END-----METATAG---------------------//
 );
 ?>
