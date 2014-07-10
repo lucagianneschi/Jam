@@ -87,7 +87,7 @@ class ReviewEvent extends CActiveRecord {
 	    'longitude' => Yii::t('string', 'model.longitude'),
 	    'lovecounter'=>Yii::t('string','model.lovecounter'),
 	    'sharecounter'=>Yii::t('string','model.sharecounter'),
-	    'text' => Yii::t('string', 'view.uploadreview.write'),
+	    'text' => Yii::t('string', 'model.review.text'),
 	    'touser' => Yii::t('string', 'model.touser'),
 	    'vote' => Yii::t('string', 'model.vote'),
 	    'createdat' => Yii::t('string', 'model.createdat'),

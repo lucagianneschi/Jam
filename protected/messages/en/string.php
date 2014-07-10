@@ -81,6 +81,8 @@ return array(
     'model.record.buylink' => 'Buylink',
     'model.record.label' => 'Label',
     'model.record.year' => 'Year',
+    //----------------------MODEL:REVIEW---------------------//
+    'model.review.text' => 'Write here your review',
     //----------------------MODEL:SONG---------------------//
     'model.song.position' => 'Position',
     //----------------------MODEL:USER---------------------//
@@ -569,7 +571,6 @@ return array(
     'view.uploadreview.performed' => 'Performed by',
     'view.uploadreview.rating' => 'Rating',
     'view.uploadreview.review' => 'Review',
-    'view.uploadreview.write' => 'Write here your review',
     'view.uploadreview.your_rating' => 'Your Rating',
     //----------------------END-OF-UPLOAD-REVIEW-FORM-----------//
 //----------------------TAGS-------------------------------//

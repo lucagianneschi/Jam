@@ -91,7 +91,7 @@ class ReviewRecord extends CActiveRecord
 		    	'lovecounter'=>Yii::t('string','model.lovecounter'),
 		        'record'=>Yii::t('string','model.record'),
 		        'sharecounter'=>Yii::t('string','model.sharecounter'),
-		        'text'=>Yii::t('string','model.text'),
+		        'text'=>Yii::t('string','model.review.text'),
 		        'touser'=>Yii::t('string','model.touser'),
 		        'vote'=>Yii::t('string','model.vote'),
 			'createdat'=>Yii::t('string','model.createdat'),
