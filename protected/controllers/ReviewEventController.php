@@ -97,7 +97,7 @@ class ReviewEventController extends Controller
 			$_POST['ReviewEvent']['longitude'] = null;
 			$_POST['ReviewEvent']['createdat'] = date('Y-m-d H:i:s');
 			$_POST['ReviewEvent']['updatedat'] = date('Y-m-d H:i:s');
-			
+			$_POST['ReviewEvent']['vote'] = $_POST['vote'] ;
 			$reviewEvent->attributes=$_POST['ReviewEvent'];			
 			
 			if($reviewEvent->save())
@@ -158,7 +158,7 @@ class ReviewEventController extends Controller
 			$_POST['ReviewEvent']['latitude'] = null;
 			$_POST['ReviewEvent']['longitude'] = null;
 			$_POST['ReviewEvent']['updatedat'] = date('Y-m-d H:i:s');
-			
+			$_POST['ReviewEvent']['vote'] = $_POST['vote'] ;
 			$model->attributes=$_POST['ReviewEvent'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));

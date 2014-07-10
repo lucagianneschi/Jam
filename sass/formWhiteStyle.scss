@@ -96,6 +96,11 @@ body {
         }
         div.star-rating{
         	width: 22px !important;
+        }
+        .errorMessage{
+        	font-size: 14px !important;
+			color: $red !important;
+			text-align: right !important;
         } 
         
 }

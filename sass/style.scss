@@ -18,7 +18,9 @@ body{
   overflow-y: scroll !important;
 }
 
-
+span.required{
+	color: $orange;
+}
 .sottotitle{
   font-size: 17px !important;
 }

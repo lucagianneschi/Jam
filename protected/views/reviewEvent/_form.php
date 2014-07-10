@@ -17,14 +17,14 @@
 	    <div class="row">
 	        <div class="large-12 columns">
 	            <div class="box-upload-review-event">
-	                <h3>Review</h3>
+	                <h3><?php echo Yii::t('string','view.uploadreview.review') ?></h3>
 	                <div class="row">
 	                    <div class="large-12 columns">
 	                        <div class="box">
 	
 	                            <div class="row box-upload-title">
 	                                <div class="large-12 columns">
-	                                    <h2>Create a new review about...</h2>
+	                                    <h2><?php echo Yii::t('string','view.uploadreview.create') ?></h2>
 	                                </div>
 	                            </div>
 	                            <div class="row">
@@ -41,7 +41,7 @@
 												    <div class="small-9 columns ">
 														<div class="row ">							
 														    <div class="small-12 columns ">
-																<?php echo CHtml::link($event->title, array('event&id='.$event->id), array('class'=>'sottotitle grey-dark')); ?>
+																<?php echo CHtml::link($event->title, array('event/view', 'id'=>$event->id), array('class'=>'sottotitle grey-dark')); ?>
 																<div class="breakOffTest">
 																<a class="ico-label _tag inline grey">
 																	<?php foreach ($eventType as $key => $value) {
@@ -66,7 +66,7 @@
 											</div>
 											<div class="row ">
 											    <div class="large-12 columns ">
-													<div class="text orange">Performed by</div>
+													<div class="text orange"><?php echo Yii::t('string','view.uploadreview.performed') ?></div>
 													<div class="row">
 													    <div class="small-12 columns">												
 														    <div class="box-membre">
@@ -79,7 +79,8 @@
 																		</div>
 																    </div>
 																    <div class="small-10 columns ">
-																		<div class="text grey-dark breakOffTest"><?php echo $touser->username; ?></div>
+																    	<?php echo CHtml::link($touser->username, array('user/view', 'id'=>$touser->id), array('class'=>'text grey-dark breakOffTest')); ?>
+																    	<div class="note orange" style="margin-top: 3px"><?php echo  ucfirst(strtolower($touser->type)) ?></div>
 																    </div>		
 																</div>	
 														    </div>
@@ -90,7 +91,7 @@
 											<br> <br>
 											<div class="row ">
 											    <div class="large-12 columns ">
-													<div class="text orange">Featuring</div>
+													<div class="text orange"><?php echo Yii::t('string','view.uploadreview.featuring') ?></div>
 													<div class="row">
 													    <div class="small-12 columns">
 														<?php
@@ -108,6 +109,9 @@
 																    case 'VENUE':
 																	$userType = 'Venue';
 																	break;
+																	case 'SPOTTER':
+																	$userType = 'Spotter';
+																	break;
 																}
 															
 															?>
@@ -120,7 +124,8 @@
 																	</div>
 																    </div>
 																    <div class="small-10 columns">
-																	<div class="text grey-dark breakOffTest"><?php echo $user->username ?></div>
+																    	<?php echo CHtml::link($user->username, array('user/view', 'id'=>$user->id), array('class'=>'text grey-dark breakOffTest')); ?>
+																    	<div class="note orange" style="margin-top: 3px"><?php echo  ucfirst(strtolower($user->type)) ?></div>
 																    </div>		
 																</div>	
 															    </div>
@@ -131,7 +136,7 @@
 														    ?>
 							    							<div class="row">
 							    							    <div class="small-12 columns">
-							    								<div class="text gray"><?php echo ''?></div>
+							    								<div class="text gray"><?php echo Yii::t('string','view.uploadreview.notfeaturing') ?></div>
 							    							    </div>
 							    							</div>
 														<?php }  ?>
@@ -153,7 +158,7 @@
 									   <br>
 										<div class="row rating">
 											<div class="large-3 columns ">
-											    <h5>Your rating</h5>
+											    <h5><?php echo Yii::t('string','view.uploadreview.your_rating') ?></h5>
 											</div>
 											<div class="large-9 columns big-star" style="top: 8px">
 												<?php $this->widget('CStarRating',array('name'=>'vote','minRating'=>1, 'maxRating'=>5, 'allowEmpty'=>false, 'value'=>1)); ?>											   
@@ -161,11 +166,14 @@
 									    </div>				
 									</div>
 				    			</div>
-							    <br><br>
+							    <br><br>							  
 							    <div class="row">
-									<div class="large-12">
+							    	<div  class="small-6 columns">
+								        <div class="note grey sidebar" style="padding-top: 50px;"><span class="orange">* </span><?php echo Yii::t('string','view.mandatory_fields') ?></div>
+								    </div>								    	
+									<div class="small-6 columns">
 									    <div class="row buttons">
-											<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'buttonNext','id'=>'button_publish')); ?>
+											<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('string','view.create') : Yii::t('string','view.save'),array('class'=>'buttonNext','id'=>'button_publish')); ?>
 										</div>
 									</div>
 						   		</div>
