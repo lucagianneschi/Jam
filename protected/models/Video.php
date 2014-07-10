@@ -41,7 +41,7 @@ class Video extends CActiveRecord
 			array('duration, fromuser, lovecounter', 'numerical', 'integerOnly'=>true,'message'=>'Invalid {attribute} format'),
 			array('author, thumbnail, title, url, cover', 'length', 'max'=>100, 'tooLong'=>'{attribute} must be at most 100 characters'),
 		        array('description', 'length', 'max'=>3000, 'tooLong'=>'{attribute} must be at most 3000 characters'),
-			array('createdat, updatedat', 'safe'),
+		        array('createdat, updatedat', 'date', 'format' =>  'Y-m-d H:m:s'),
 		    	array('commentcounter, lovecounter', 'default', 'value'=>0),
 		        array('active', 'default', 'value'=>1),
 		    	array('author, description, title', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),

@@ -44,7 +44,7 @@ class Song extends CActiveRecord
 			array('id, commentcounter, counter, duration, fromuser, lovecounter, position, record, sharecounter', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
 			array('latitude, longitude', 'numerical', 'message'=>'Invalid {attribute} format'),
 			array('path, title', 'length', 'max'=>100, 'message'=>'Invalid {attribute} format'),
-			array('createdat, updatedat', 'safe'),
+		        array('createdat, updatedat', 'date', 'format' =>  'Y-m-d H:m:s'),
 		    	array('title', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
 		        array('title', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 		    	array('commentcounter, lovecounter', 'default', 'value'=>0),

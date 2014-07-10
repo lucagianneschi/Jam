@@ -60,7 +60,7 @@ class Comment extends CActiveRecord
 			array('commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly'=>true, 'message'=>'Invalid {attribute} format'),
 			array('latitude, longitude', 'numerical','message'=>'Invalid {attribute} format'),
 			array('album, comment, event, fromuser, image, record, song, touser, video', 'length', 'max'=>11,'message'=>'Invalid {attribute} format'),
-			array('createdat', 'safe'),
+			array('createdat, updatedat', 'date', 'format' =>  'Y-m-d H:m:s'),
 		        array('text', 'length', 'max'=>3000,'tooLong'=>'{attribute} must be at most 3000 characters'),
 		        array('text', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
 		        array('commentcounter, lovecounter, sharecounter', 'default', 'value'=>0),

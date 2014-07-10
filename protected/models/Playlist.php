@@ -42,7 +42,7 @@ class Playlist extends CActiveRecord
 			array('fromuser', 'length', 'max'=>11, 'message'=>'Invalid {attribute} format'),
 		    	array('name', 'length', 'max'=>80,'tooLong'=>'{attribute} must be at most 80 characters'),
 		        array('name', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
-			array('createdat', 'safe'),
+			array('createdat, updatedat', 'date', 'format' =>  'Y-m-d H:m:s'),
 		    	array('songcounter', 'default', 'value'=>0),
 		        array('active', 'default', 'value'=>1),
 		    	array('name', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),

@@ -70,7 +70,7 @@ class User extends CActiveRecord
 			array('username, password, address, avatar, background, city, country, email, facebookid, facebookpage, firstname, googlepluspage, jammertype, lastname, sex, thumbnail, twitterpage, type, website, youtubechannel', 'length', 'max'=>100, 'tooLong'=>'{attribute} must be at most 1000 characters'),
 		    	array('password', 'length', 'min'=>8, 'tooShort'=>'{attribute} must be at least 8 characters'),
 			array('lang', 'length', 'max'=>2, 'tooLong'=>'{attribute} must be at most 2 characters'),
-			array('updatedat', 'safe'),
+			array('createdat, updatedat', 'date', 'format' =>  'Y-m-d H:m:s'),
 		        array('type','in','range'=>array('SPOTTER','JAMMER','VENUE'),'allowEmpty'=>false,'message'=>'Invalid {attribute} value'),
 		        array('sex','in','range'=>array('M','F','ND'),'allowEmpty'=>false,'message'=>'Invalid {attribute} value'),
 		        array('email','email','message'=>'Invalid {attribute}'),
