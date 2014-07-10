@@ -36,7 +36,7 @@
 						    <div class="small-3 columns ">							    						
 							<div class="coverThumb" style="cursor: pointer">
 							    <!--img src="<?php echo $elReviewedThumb; ?>" onerror="this.src='<?php echo $defThumb ?>'" alt-->
-							    <?php echo CHtml::image(Yii::app()->request->baseUrl . '/' . $record->thumbnail, $record->title, array('onerror' => 'this.src="' . Yii::app()->request->baseUrl . '/images/default/defaultEventThumb.jpg"')); ?>
+							    <?php echo CHtml::image(Yii::app()->request->baseUrl . '/' . $record->thumbnail, $record->title, array('onerror' => 'this.src="' . Yii::app()->request->baseUrl . '/images/default/defaultRecordThumb.jpg"')); ?>
 							</div>
 						    </div>						
 						    <div class="small-9 columns ">

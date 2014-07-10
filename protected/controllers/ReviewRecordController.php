@@ -64,13 +64,13 @@ class ReviewRecordController extends Controller
 	public function actionCreate($record)
 	{
 		
-		$record = Event::model()->findByPk($record);
+		$record = Record::model()->findByPk($record);
 		
 		if($record===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		
-		$recordGenre = EventGenre::model()->findAll(array("condition"=>"id_record =  $record->id","order"=>"id_record"));
-		$recordTag = EventTag::model()->findAll(array("condition"=>"id_record =  $record->id","order"=>"id_record"));	
+		$recordGenre = RecordGenre::model()->findAll(array("condition"=>"id_record =  $record->id","order"=>"id_record"));
+		$recordTag = RecordTag::model()->findAll(array("condition"=>"id_record =  $record->id","order"=>"id_record"));	
 		
 		$touser = User::model()->findByPk($record->fromuser);
 		
@@ -94,8 +94,8 @@ class ReviewRecordController extends Controller
 			$_POST['ReviewRecord']['touser'] = $touser->id;
 			$_POST['ReviewRecord']['latitude'] = null;
 			$_POST['ReviewRecord']['longitude'] = null;
-			$_POST['ReviewRecord']['createdat'] = date('Y-m-d H:i:s');
-			$_POST['ReviewRecord']['updatedat'] = date('Y-m-d H:i:s');
+			$_POST['ReviewRecord']['createdat'] = date('Y-m-d H:m:s');
+			$_POST['ReviewRecord']['updatedat'] = date('Y-m-d H:m:s');
 			$_POST['ReviewRecord']['vote'] = $_POST['vote'] ;
 			$reviewRecord->attributes=$_POST['ReviewRecord'];			
 			
@@ -124,13 +124,13 @@ class ReviewRecordController extends Controller
 		
 		$model=$this->loadModel($id);
 		
-		$record = Event::model()->findByPk($model->record);
+		$record = Record::model()->findByPk($model->record);
 		
 		if($record===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		
-		$recordGenre = EventGenre::model()->findAll(array("condition"=>"id_record =  $record->id","order"=>"id_record"));
-		$recordTag = EventTag::model()->findAll(array("condition"=>"id_record =  $record->id","order"=>"id_record"));	
+		$recordGenre = RecordGenre::model()->findAll(array("condition"=>"id_record =  $record->id","order"=>"id_record"));
+		$recordTag = RecordTag::model()->findAll(array("condition"=>"id_record =  $record->id","order"=>"id_record"));	
 		
 		$touser = User::model()->findByPk($model->touser);
 		
