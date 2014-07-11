@@ -44,13 +44,7 @@
 							    <div class="small-12 columns ">
 								<?php echo CHtml::link($record->title, array('record/view', 'id' => $record->id), array('class' => 'sottotitle grey-dark')); ?>
 <!--								<div class="breakOffTest">
-								    <a class="ico-label _tag inline grey">
-									<?php
-									foreach ($eventType as $key => $value) {
-									    $types = Eventtypes::model()->findByPk($value->id_type);
-									    echo strtolower($types->type) . ', ';
-									}
-									?>
+								    <a class="ico-label _tag inline grey">									
 								    </a></div>-->
 								<div class="breakOffTest">
 								    <a class="ico-label _note inline grey breakOffTest">
