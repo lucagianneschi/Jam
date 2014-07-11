@@ -17,10 +17,12 @@
 			'items'=>array(
 			/*	array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),*/
+				array('label'=>'Gii', 'url'=>array('/gii')),
 				array('label'=>'Review Event', 'url'=>array('/reviewEvent/create','event'=>1)), 
-			    	array('label'=>'Review Record', 'url'=>array('/reviewRecord/create','record'=>1)),
+			    array('label'=>'Review Record', 'url'=>array('/reviewRecord/create','record'=>1)),
+			    array('label'=>'Event', 'url'=>array('/event/create')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),				
 			),
 		)); ?>
 	</div><!-- mainmenu -->

@@ -12,18 +12,12 @@
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
-		<?php echo $form->error($model,'active'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'address'); ?>
@@ -32,27 +26,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'attendeecounter'); ?>
-		<?php echo $form->textField($model,'attendeecounter'); ?>
-		<?php echo $form->error($model,'attendeecounter'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'cancelledcounter'); ?>
-		<?php echo $form->textField($model,'cancelledcounter'); ?>
-		<?php echo $form->error($model,'cancelledcounter'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'city'); ?>
 		<?php echo $form->textField($model,'city',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'city'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'commentcounter'); ?>
-		<?php echo $form->textField($model,'commentcounter'); ?>
-		<?php echo $form->error($model,'commentcounter'); ?>
 	</div>
 
 	<div class="row">
@@ -80,12 +56,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'invitedcounter'); ?>
-		<?php echo $form->textField($model,'invitedcounter'); ?>
-		<?php echo $form->error($model,'invitedcounter'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'latitude'); ?>
 		<?php echo $form->textField($model,'latitude'); ?>
 		<?php echo $form->error($model,'latitude'); ?>
@@ -101,30 +71,6 @@
 		<?php echo $form->labelEx($model,'longitude'); ?>
 		<?php echo $form->textField($model,'longitude'); ?>
 		<?php echo $form->error($model,'longitude'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'lovecounter'); ?>
-		<?php echo $form->textField($model,'lovecounter'); ?>
-		<?php echo $form->error($model,'lovecounter'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'refusedcounter'); ?>
-		<?php echo $form->textField($model,'refusedcounter'); ?>
-		<?php echo $form->error($model,'refusedcounter'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'reviewcounter'); ?>
-		<?php echo $form->textField($model,'reviewcounter'); ?>
-		<?php echo $form->error($model,'reviewcounter'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'sharecounter'); ?>
-		<?php echo $form->textField($model,'sharecounter'); ?>
-		<?php echo $form->error($model,'sharecounter'); ?>
 	</div>
 
 	<div class="row">

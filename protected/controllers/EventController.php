@@ -34,6 +34,7 @@ class EventController extends Controller
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
 				'users'=>array('@'),
+				'expression'=>Yii::app()->session['type'].'== VENUE || '.Yii::app()->session['type'].' == JAMMER',
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
@@ -63,12 +64,26 @@ class EventController extends Controller
 	public function actionCreate()
 	{
 		$model=new Event;
-
+		
+		$fromuser = User::model()->findByPk(Yii::app()->session['id']);
+		
+		if($fromuser===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Event']))
 		{
+			$_POST['Event']['city'] =  ''; //ricavato dalla geocomplete
+			$_POST['Event']['cover'] = ''; //ricavato da plugin per upload image
+			$_POST['Event']['fromuser'] = $fromuser->id;
+			$_POST['Event']['latitude'] = 0; //ricavato dalla geocomplete
+			$_POST['Event']['longitude'] = 0; //ricavato dalla geocomplete
+			$_POST['Event']['thumbnail'] = ''; //ricavato da plugin per upload image
+			$_POST['Event']['createdat'] = date('Y-m-d H:i:s');
+			$_POST['Event']['updatedat'] = date('Y-m-d H:i:s');
+			
 			$model->attributes=$_POST['Event'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -89,7 +104,7 @@ class EventController extends Controller
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Event']))
 		{

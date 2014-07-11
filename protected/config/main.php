@@ -40,12 +40,16 @@ return array(
 		/*
 		'urlManager'=>array(
 			'urlFormat'=>'path',
+			'showScriptName'=>true,
+			
 			'rules'=>array(
 				'gii'=>'gii',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
+		  	
+		     
 		),
 		*/
 		'clientScript'=>array(
