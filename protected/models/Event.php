@@ -72,7 +72,7 @@ class Event extends CActiveRecord
 	    	array('commentcounter, lovecounter,reviewcounter, sharecounter', 'default', 'value'=>0),
 	    	array('attendeecounter, cancelledcounter,invitedcounter, refusedcounter', 'default', 'value'=>0),
 	        array('active', 'default', 'value'=>1),
-	    	array('address, city, description, locationname, title', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
+	    	array('city, description, locationname, title', 'match', 'pattern'=>'/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, active, address, attendeecounter, cancelledcounter, city, commentcounter, cover, description, eventdate, fromuser, invitedcounter, latitude, locationname, longitude, lovecounter, refusedcounter, reviewcounter, sharecounter, thumbnail, title, createdat, updatedat', 'safe', 'on'=>'search'),
@@ -123,7 +123,7 @@ class Event extends CActiveRecord
 				'reviewcounter'=>Yii::t('string','model.reviewcounter'),
 				'sharecounter'=>Yii::t('string','model.sharecounter'),
 				'thumbnail'=>Yii::t('string','model.thumbnail'),
-				'title'=>Yii::t('string','model.title'),
+				'title'=>Yii::t('string','view.uploadevent.event_title'),
 				'createdat'=>Yii::t('string','model.createdat'),
 		        'updatedat'=>Yii::t('string','model.updatedat'),
 		);

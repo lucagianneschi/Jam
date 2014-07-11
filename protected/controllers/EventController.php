@@ -185,4 +185,26 @@ class EventController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	public function beforeAction($action) {
+	    if( parent::beforeAction($action) ) {
+	        /* @var $cs CClientScript */
+	        $cs = Yii::app()->clientScript;
+	        
+	       	$baseUrl = Yii::app()->baseUrl; 
+	        	        
+	        $cs->registerCssFile($baseUrl.'/css/formBlackStyle.css');
+			$cs->registerScriptFile('http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places');
+	        $cs->registerScriptFile($baseUrl.'/js/plugins/geocomplete/jquery.geocomplete.js');			
+			$cs->registerScriptFile($baseUrl.'/js/custom/utils.js');
+	        return true;
+	    }
+	    return false;
+	}
+	
+	public function afterAction($action) {
+		$cs = Yii::app()->clientScript;
+		
+		$cs->registerScript('geocomplete','geocomplete("#geocomplete");');
+	}
 }

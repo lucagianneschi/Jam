@@ -4,103 +4,230 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'event-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>true,
-)); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'address'); ?>
-		<?php echo $form->textField($model,'address',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'address'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'city'); ?>
-		<?php echo $form->textField($model,'city',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'city'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'cover'); ?>
-		<?php echo $form->textField($model,'cover',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'cover'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'description'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'eventdate'); ?>
-		<?php echo $form->textField($model,'eventdate'); ?>
-		<?php echo $form->error($model,'eventdate'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'fromuser'); ?>
-		<?php echo $form->textField($model,'fromuser',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'fromuser'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'latitude'); ?>
-		<?php echo $form->textField($model,'latitude'); ?>
-		<?php echo $form->error($model,'latitude'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'locationname'); ?>
-		<?php echo $form->textField($model,'locationname',array('size'=>60,'maxlength'=>80)); ?>
-		<?php echo $form->error($model,'locationname'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'longitude'); ?>
-		<?php echo $form->textField($model,'longitude'); ?>
-		<?php echo $form->error($model,'longitude'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'thumbnail'); ?>
-		<?php echo $form->textField($model,'thumbnail',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'thumbnail'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'title'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'createdat'); ?>
-		<?php echo $form->textField($model,'createdat'); ?>
-		<?php echo $form->error($model,'createdat'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'updatedat'); ?>
-		<?php echo $form->textField($model,'updatedat'); ?>
-		<?php echo $form->error($model,'updatedat'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-
 </div><!-- form -->
+
+<div class="bg-grey-dark">
+    <div class="row formBlack" id="uploadEvent">
+		<div  class="large-12 columns">
+		    <div class="row">
+				<div  class="large-12 columns">
+				    <h3><?php echo Yii::t('string','view.uploadevent.upload') ?></h3>
+				</div>				
+		    </div>
+		    <div class="row">
+				<div  class="large-12 columns formBlack-box">
+				    
+					<div id="uploadEvent01">
+						<div class="form">	
+							<?php $form = $this -> beginWidget('CActiveForm', array('id' => 'event-form',
+								// Please note: When you enable ajax validation, make sure the corresponding
+								// controller action is handling ajax validation correctly.
+								// There is a call to performAjaxValidation() commented in generated controller code.
+								// See class documentation of CActiveForm for details on this.
+								'enableAjaxValidation' => true, ));
+			 				?>
+			 				<div class="row">
+							    <div  class="large-12 columns formBlack-title">
+							        <h2><?php echo Yii::t('string','view.uploadevent.create') ?></h2>												
+							    </div>	
+							</div>				
+							<div class="row formBlack-body">
+							    <div  class="small-6 columns">							        
+								    <div class="row">
+										<?php echo $form -> labelEx($model, 'title'); ?>
+										<?php echo $form -> textField($model, 'title', array('size' => 60, 'maxlength' => 100)); ?>
+										<?php echo $form -> error($model, 'title'); ?>
+									</div>
+									<!--------------------------- UPLOAD IMAGE -------------------------------->
+							        <div class="row upload-box">
+							            <div  class="small-3 columns" id="tumbnail-pane">
+											<div class="thumbnail-box">
+											    <div id="uploadImage_tumbnail-pane" class="uploadImage_tumbnail-pane">
+													<img id="uploadImage_tumbnail" name="uploadImage_tumbnail" alt/>
+													 <?php //echo CHtml::image('', array('id'=>'uploadImage_tumbnail', 'name'=>'uploadImage_tumbnail'));  ?>
+											    </div>
+											</div>
+							            </div>
+							            <div  class="small-9 columns">							        						
+							                <a  class="text orange" data-reveal-id="upload"><?php echo Yii::t('string','view.uploadevent.upload_image_mandatory'); ?></a>
+							
+							                <div id="upload" class="reveal-modal upload-reveal">							
+							                    <div class="row">
+							                        <div  class="large-12 columns formBlack-title">
+							                            <h2><?php echo Yii::t('string','view.uploadevent.upload_image'); ?></h2>		
+							                        </div>	
+							                    </div>
+							                    <div class="row">							
+							                        <div  class="large-12 columns formBlack-title">                                                                                                           	
+							                            <a class="buttonOrange _add sottotitle" id="uploader_img_button"><?php echo Yii::t('string','view.uploadevent.select_file');?></a>			
+							                        </div>
+							
+							                    </div>
+							                    <div class="row">							
+							                        <div  class="small-10 small-centered columns align-center">
+													    <div id="uploadImage_preview_box">
+															<img src="" id="spotter_uploadImage_preview" alt/>
+															<input type="hidden" id="spotter_x" name="crop_x" value="0">
+															<input type="hidden" id="spotter_y" name="crop_y" value="0">
+															<input type="hidden" id="spotter_w" name="crop_w" value="100">
+															<input type="hidden" id="spotter_h" name="crop_h" value="100">
+													    </div>
+							                        </div>
+							
+							                    </div>
+							
+							                    <div class="row">							
+							                        <div  class="small-3 small-offset-9 columns">
+							                            <input type="button" id="uploadImage_save" name="uploadImage_save" class="buttonNext no-display" value="<?php echo Yii::t('string','view.save'); ?>">
+							                        </div>
+							                    </div>
+							
+							                </div>							
+							            </div>	
+							        </div>
+									<!--------------------------- FINE UPLOAD IMAGE -------------------------------->
+									<div class="row">
+									    
+									    	<?php echo $form -> labelEx($model, 'eventdate'); ?>
+									    	<?php 
+									    		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+												    'name'=>'Event[eventdate]',
+												    // additional javascript options for the date picker plugin
+												    'options'=>array(
+												        'showAnim'=>'fold',
+          												'dateFormat'=>'yy-mm-dd',
+												         'onSelect'=>'js:function(i,j){
+										                       function JSClock() {
+										                          var time = new Date();
+										                          var hour = time.getHours();
+										                          var minute = time.getMinutes();
+										                          var second = time.getSeconds();
+										                          var temp="";
+										                          temp +=(hour<10)? "0"+hour : hour;
+										                          temp += (minute < 10) ? ":0"+minute : ":"+minute ;
+										                          return temp;
+										                        }
+										
+										                        $v=$(this).val();
+										                        $(this).val($v+" "+JSClock());
+										                          
+										                 }'
+												    ),
+												    'htmlOptions'=>array(
+												        'style'=>'height:20px;'
+												    ),
+												));
+									    	?>
+									    	<?php echo $form -> error($model, 'eventdate'); ?>
+										
+									    
+									</div>
+									<div class="row">										
+								        <label for="jammers"><?php echo Yii::t('string','view.uploadevent.jammer_name'); ?></label>
+								        <input type="text" />
+								        <?php /*
+											$this->widget('application.extensions.autocomplete.EJuiAutoCompleteFkField', array(
+											      'model'=>$model, 
+											      'attribute'=>'id', //the FK field (from CJuiInputWidget)
+											      // controller method to return the autoComplete data (from CJuiAutoComplete)
+											      'sourceUrl'=>Yii::app()->createUrl('/user/findUser'), 
+											      // defaults to false.  set 'true' to display the FK field with 'readonly' attribute.
+											      'showFKField'=>true,
+											       // display size of the FK field.  only matters if not hidden.  defaults to 10
+											      'FKFieldSize'=>15, 
+											      'relName'=>'eventTag', // the relation name defined above
+											      'displayAttr'=>'PostCodeAndProvince',  // attribute or pseudo-attribute to display
+											      // length of the AutoComplete/display field, defaults to 50
+											      'autoCompleteLength'=>60,
+											      // any attributes of CJuiAutoComplete and jQuery JUI AutoComplete widget may 
+											      // also be defined.  read the code and docs for all options
+											      'options'=>array(
+											          // number of characters that must be typed before 
+											          // autoCompleter returns a value, defaults to 2
+											          'minLength'=>3, 
+											      ),
+											 ));
+											*/
+											?>        	
+								    </div>							
+									<div class="row">
+										<?php echo $form -> labelEx($model, 'locationname'); ?>
+										<?php echo $form -> textField($model, 'locationname', array('size' => 60, 'maxlength' => 80)); ?>
+										<?php echo $form -> error($model, 'locationname'); ?>
+									</div>
+							        <div class="row">
+										<?php echo $form -> labelEx($model, 'address'); ?>
+										<?php echo $form -> textField($model, 'address', array('size' => 60, 'maxlength' => 100)); ?>
+										<?php echo $form -> error($model, 'address'); ?>
+									</div>
+									
+							    </div>
+							    
+							    
+								<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+								<script>
+							      $(function(){
+							        	console.log(geocomplete("#Event_address"));
+							       		
+							      });
+							    </script>
+							    <div  class="small-6 columns">
+									<div class="row">
+										<?php echo $form -> labelEx($model, 'description'); ?>
+										<?php echo $form -> textArea($model, 'description', array('rows' => 6, 'cols' => 50)); ?>
+										<?php echo $form -> error($model, 'description'); ?>
+									</div>
+									<div class="row">
+									    <label style="padding-bottom: 0px !important;" id="label-tag-localType"><?php //echo $views['uploadEvent']['select_genre']; ?><span class="orange">*</span><small class="error"><?php //echo $views['uploadEvent']['enter_genre']; ?></small></label>		
+									    <div id="tag-localType">
+											<?php /*
+											$index = 0;
+											foreach ($views['tag']['localType'] as $key => $value) {
+											    ?>
+									    		<input onclick="checkmaxLocalType(this, 1)" type="checkbox" name="tag-localType<?php echo $index ?>" id="tag-localType<?php echo $index ?>" value="<?php echo $key ?>" class="no-display">
+									    		<label for="tag-localType<?php echo $index ?>"><?php echo $value ?></label>
+											    <?php
+											    $index++;
+											} */
+											?>
+									    </div>
+							        </div>
+							        <div class="row" style="margin-top: 30px">
+									    <label style="padding-bottom: 0px !important;" id="label-tag-music"><?php //echo $views['uploadEvent']['select_genre_music']; ?><span class="orange">*</span><small class="error"><?php //echo $views['uploadEvent']['enter_genre_music']; ?></small></label>		
+									    <div id="tag-music">
+											<?php /*
+											$index = 0;
+											foreach ($views['tag']['music'] as $key => $value) {
+											    ?>
+									    		<input onclick="checkmaxGenre(this, 1)" type="checkbox" name="tag-music<?php echo $index ?>" id="tag-music<?php echo $index ?>" value="<?php echo $key ?>" class="no-display">
+									    		<label for="tag-music<?php echo $index ?>"><?php echo $value ?></label>
+											    <?php
+											    $index++;
+											} */
+											?>
+									    </div>
+									</div>
+							    </div>
+							
+							</div>
+							<div class="row">
+							    <div  class="small-6 columns">
+							        <div class="note grey-light" style="padding-top: 50px;"><span class="orange">* </span><?php echo Yii::t('string','view.mandatory_fields')  ?></div>
+							    </div>	
+							    <div  class="small-6 columns" >
+							        <!--input type="submit" name="uploadEvent01-next" id="uploadEvent01-next" class="buttonNext" value="<?php //echo Yii::t('string','view.create'); ?>" style="float: right;"/-->
+							    	<div class="row buttons">
+										<?php echo CHtml::submitButton($model -> isNewRecord ? Yii::t('string','view.create') : Yii::t('string','view.save'), array('class'=>'buttonNext', 'style'=>'float: right')); ?>
+									</div>
+							    </div>	
+							</div>	
+													
+						
+						<?php $this -> endWidget(); ?>   
+					</div>								
+				   
+				</div>
+		    </div>
+		</div>
+    </div>	
+</div>
