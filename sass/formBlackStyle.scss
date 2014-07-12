@@ -34,7 +34,6 @@
   	font-size: 14px;
   	color: $grey-light;
   	text-align:left !important; 
-  //	padding-bottom:20px !important; 
   	.error{
   		background: none !important;
 	  	color: $red !important;
@@ -44,7 +43,6 @@
 
 .formBlack input[type='text'], textarea, .error textarea, select{
 	background-color:$black; 
-	// padding: 20px 5px;
 	min-height:40px;
   	color: $white;  
   	border: 0px;
@@ -56,9 +54,6 @@
     }    
 }
 
-.formBlack .error input{
-	//margin-bottom: 14px !important;	
-}
 
 .formBlack .buttonOrange{
 	width: auto;
@@ -104,7 +99,6 @@
 	height: 103px;
 	border: $grey 1px solid;
 	margin: 0px !important;
-	cursor: pointer;
 	margin-bottom: 20px !important;
 	margin-top: 20px !important;
 	.thumbnail-box{

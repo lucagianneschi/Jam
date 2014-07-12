@@ -70,27 +70,58 @@ class EventController extends Controller
 		if($fromuser===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		
+		$genre = Genre::model()->findAll();
+		
+		if($genre===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		
+		$eventTypes = Eventtypes::model()->findAll();
+		
+		if($eventTypes===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Event']))
 		{
-			$_POST['Event']['city'] =  ''; //ricavato dalla geocomplete
-			$_POST['Event']['cover'] = ''; //ricavato da plugin per upload image
-			$_POST['Event']['fromuser'] = $fromuser->id;
-			$_POST['Event']['latitude'] = 0; //ricavato dalla geocomplete
-			$_POST['Event']['longitude'] = 0; //ricavato dalla geocomplete
-			$_POST['Event']['thumbnail'] = ''; //ricavato da plugin per upload image
+			
+			$_POST['Event']['cover'] = 'cover'; //ricavato da plugin per upload image
+			$_POST['Event']['fromuser'] = $fromuser->id;			
+			$_POST['Event']['thumbnail'] = 'thumbnail'; //ricavato da plugin per upload image
 			$_POST['Event']['createdat'] = date('Y-m-d H:i:s');
 			$_POST['Event']['updatedat'] = date('Y-m-d H:i:s');
 			
 			$model->attributes=$_POST['Event'];
-			if($model->save())
+			if($model->save()){
+				$eventGenre =new EventGenre;
+				$eventGenre->id_event = $model->id;
+				$eventGenre->id_genre = $_POST['Event']['genre'];
+				
+				if(!$eventGenre->save()){
+					throw new CHttpException(405,'Errors saving event genre');
+				}
+				
+				$eventType =new EventType;
+				$eventType->id_event = $model->id;
+				$eventType->id_type = $_POST['Event']['eventtype'];
+				if(!$eventType->save()){
+					throw new CHttpException(405,'Errors saving event type');
+				}
 				$this->redirect(array('view','id'=>$model->id));
+				
+			}
+			else{
+				Yii::log("errors saving event: " . var_export($model->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);			
+				throw new CHttpException(405,'Error saving event');
+			}
+				
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'genre'=>$genre,
+			'eventTypes' => $eventTypes,
 		));
 	}
 
@@ -194,17 +225,10 @@ class EventController extends Controller
 	       	$baseUrl = Yii::app()->baseUrl; 
 	        	        
 	        $cs->registerCssFile($baseUrl.'/css/formBlackStyle.css');
-			$cs->registerScriptFile('http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places');
 	        $cs->registerScriptFile($baseUrl.'/js/plugins/geocomplete/jquery.geocomplete.js');			
 			$cs->registerScriptFile($baseUrl.'/js/custom/utils.js');
 	        return true;
 	    }
 	    return false;
-	}
-	
-	public function afterAction($action) {
-		$cs = Yii::app()->clientScript;
-		
-		$cs->registerScript('geocomplete','geocomplete("#geocomplete");');
-	}
+	}	
 }

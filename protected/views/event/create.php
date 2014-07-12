@@ -13,4 +13,4 @@ $this->menu=array(
 );*/
 ?>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'genre'=>$genre,'eventTypes'=>$eventTypes)); ?>

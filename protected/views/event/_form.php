@@ -24,7 +24,9 @@
 								// controller action is handling ajax validation correctly.
 								// There is a call to performAjaxValidation() commented in generated controller code.
 								// See class documentation of CActiveForm for details on this.
-								'enableAjaxValidation' => true, ));
+								'enableAjaxValidation' => true,
+								
+								 ));
 			 				?>
 			 				<div class="row">
 							    <div  class="large-12 columns formBlack-title">
@@ -59,10 +61,21 @@
 							                    </div>
 							                    <div class="row">							
 							                        <div  class="large-12 columns formBlack-title">                                                                                                           	
-							                            <a class="buttonOrange _add sottotitle" id="uploader_img_button"><?php echo Yii::t('string','view.uploadevent.select_file');?></a>			
-							                        </div>
-							
+							                            <a class="buttonOrange _add sottotitle" id="uploader_img_button"><?php echo Yii::t('string','view.uploadevent.select_file');?></a>
+							                            <div class="row">
+														        <?php echo $form->labelEx($model,'image'); ?>
+														        <?php echo CHtml::activeFileField($model, 'image'); ?>  
+														        <?php echo $form->error($model,'image'); ?>
+														</div>
+														<?php if($model->isNewRecord!='1'){ ?>
+														<div class="row">
+														     <?php echo CHtml::image(Yii::app()->request->baseUrl.'/banner/'.$model->image,"image",array("width"=>200)); ?> 
+														</div>	
+														<?php } ?>	
+							                        </div>	                        
+													
 							                    </div>
+							                   
 							                    <div class="row">							
 							                        <div  class="small-10 small-centered columns align-center">
 													    <div id="uploadImage_preview_box">
@@ -159,52 +172,79 @@
 										<?php echo $form -> labelEx($model, 'address'); ?>
 										<?php echo $form -> textField($model, 'address', array('size' => 60, 'maxlength' => 100)); ?>
 										<?php echo $form -> error($model, 'address'); ?>
+										<?php echo $form -> error($model, 'city'); ?>
+									</div>
+							        <div class="row no-display">	
+										<?php echo $form -> labelEx($model, 'latitude'); ?>
+										<?php echo $form -> textField($model, 'latitude', array('size' => 60, 'maxlength' => 100)); ?>
+										<?php echo $form -> error($model, 'latitude'); ?>
+									</div>
+							        <div class="row  no-display">	
+										<?php echo $form -> labelEx($model, 'longitude'); ?>
+										<?php echo $form -> textField($model, 'longitude', array('size' => 60, 'maxlength' => 100)); ?>
+										<?php echo $form -> error($model, 'longitude'); ?>
+									</div>
+							        <div class="row no-display">	
+										<?php echo $form -> labelEx($model, 'city'); ?>
+										<?php echo $form -> textField($model, 'city', array('size' => 60, 'maxlength' => 100)); ?>										
+										<span data-geo="locality" id="spanCity"></span>										
 									</div>
 									
-							    </div>
-							    
-							    
-								<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-								<script>
-							      $(function(){
-							        	console.log(geocomplete("#Event_address"));
-							       		
-							      });
-							    </script>
+							    </div>							    
 							    <div  class="small-6 columns">
 									<div class="row">
 										<?php echo $form -> labelEx($model, 'description'); ?>
-										<?php echo $form -> textArea($model, 'description', array('rows' => 6, 'cols' => 50)); ?>
-										<?php echo $form -> error($model, 'description'); ?>
+										<?php echo $form -> textArea($model, 'description', array('rows' => 6, 'cols' => 50, 'style'=>'height: 178px;')); ?>
+										<?php echo $form -> error($model, 'description'); ?>										 
 									</div>
 									<div class="row">
-									    <label style="padding-bottom: 0px !important;" id="label-tag-localType"><?php //echo $views['uploadEvent']['select_genre']; ?><span class="orange">*</span><small class="error"><?php //echo $views['uploadEvent']['enter_genre']; ?></small></label>		
-									    <div id="tag-localType">
-											<?php /*
-											$index = 0;
-											foreach ($views['tag']['localType'] as $key => $value) {
-											    ?>
-									    		<input onclick="checkmaxLocalType(this, 1)" type="checkbox" name="tag-localType<?php echo $index ?>" id="tag-localType<?php echo $index ?>" value="<?php echo $key ?>" class="no-display">
-									    		<label for="tag-localType<?php echo $index ?>"><?php echo $value ?></label>
-											    <?php
-											    $index++;
-											} */
-											?>
-									    </div>
+										<div  class="small-12 columns">	
+											<div class="row">									
+										    	<label style="padding-top: 20px !important;" id="label-tag-localType"><?php echo Yii::t('string','view.uploadevent.select_genre'); ?><span class="orange">*</span></label>									    		
+										    </div>
+										    <div class="row">
+											    <div id="tag-localType">
+													<?php		
+													
+													foreach ($eventTypes as $key => $value) {									
+														
+													    ?>
+											    		<input onclick="checkmax(this, 1, 'type')" type="checkbox" name="tag-localType<?php echo $value->id ?>" id="tag-localType<?php echo $value->id ?>" value="<?php echo $value->id ?>" class="no-display">
+											    		<label for="tag-localType<?php echo $value->id ?>"><?php echo $value->type ?></label>
+													    <?php
+													    												
+													} 
+													?>
+											    </div>
+										    </div>
+										    <div class="row" style="text-align: right" id='boxtype'>
+												<?php echo $form -> textField($model, 'eventtype',array('style'=>'display:none')); ?>
+												<?php echo $form -> error($model, 'eventtype'); ?>
+										    </div>
+										</div> 
 							        </div>
-							        <div class="row" style="margin-top: 30px">
-									    <label style="padding-bottom: 0px !important;" id="label-tag-music"><?php //echo $views['uploadEvent']['select_genre_music']; ?><span class="orange">*</span><small class="error"><?php //echo $views['uploadEvent']['enter_genre_music']; ?></small></label>		
-									    <div id="tag-music">
-											<?php /*
-											$index = 0;
-											foreach ($views['tag']['music'] as $key => $value) {
-											    ?>
-									    		<input onclick="checkmaxGenre(this, 1)" type="checkbox" name="tag-music<?php echo $index ?>" id="tag-music<?php echo $index ?>" value="<?php echo $key ?>" class="no-display">
-									    		<label for="tag-music<?php echo $index ?>"><?php echo $value ?></label>
-											    <?php
-											    $index++;
-											} */
-											?>
+							        <div class="row">
+										<div  class="small-12 columns">	
+							        		<div class="row" style="margin-top: 30px">
+									    		<label style="padding-bottom: 0px !important;" id="label-tag-music"><?php echo Yii::t('string','view.uploadevent.select_genre_music'); ?><span class="orange">*</span></label>
+									    	</div>
+									    	 <div class="row">			
+										   		 <div id="tag-music">
+													<?php 											
+													foreach ($genre as $key => $value) {
+													    ?>
+											    		<input onclick="checkmax(this, 1, 'genre')" type="checkbox" name="tag-music<?php echo $value->id ?>" id="tag-music<?php echo $value->id ?>" value="<?php echo $value->id ?>" class="no-display">
+											    		<label for="tag-music<?php echo $value->id ?>"><?php echo $value->genre ?></label>
+													    <?php
+													   
+													} 
+													?>
+												</div>
+											</div>
+											<div class="row" style="text-align: right" id='boxgenre'>
+										    	<?php echo $form -> textField($model, 'genre',array('style'=>'display:none')); ?>
+												<?php echo $form -> error($model, 'genre'); ?>
+										    </div>
 									    </div>
 									</div>
 							    </div>
@@ -231,3 +271,16 @@
 		</div>
     </div>	
 </div>
+
+						    
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script>
+  $(function(){
+    	geocomplete("#Event_address");   		
+  });
+  function compileForm(location){
+  	$('#Event_latitude').val(location.latitude); 
+  	$('#Event_longitude').val(location.longitude);
+  	$('#Event_city').val($('#spanCity').html());
+  }
+</script>

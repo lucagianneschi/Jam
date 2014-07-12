@@ -42,6 +42,9 @@ class Event extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+	public $eventtype;
+	public $genre;
+	public $image;
 	public function tableName()
 	{
 		return 'event';
@@ -59,6 +62,9 @@ class Event extends CActiveRecord
 		    array('active', 'boolean', 'message'=>'Invalid {attribute} format'),
 			array('attendeecounter, cancelledcounter, commentcounter, invitedcounter, lovecounter, refusedcounter, reviewcounter, sharecounter', 'numerical', 'integerOnly'=>true),
 			array('latitude, longitude', 'numerical'),
+			array('eventtype, genre','required', 'message' => 'Please enter a {attribute}'),
+			array('image', 'file','types'=>'jpg, gif, png', 'allowEmpty'=>true, 'on'=>'update'),
+			array('image', 'length', 'max'=>255, 'on'=>'insert,update'),
 			array('address, city, cover, thumbnail', 'length', 'max'=>100),
 		    array('title, address, city', 'length', 'max'=>100,'tooLong'=>'{attribute} must be at most 100 characters'),
 		    array('title, address, city', 'length', 'min'=>2,'tooShort'=>'{attribute} must be at least 2 characters'),
@@ -113,7 +119,9 @@ class Event extends CActiveRecord
 				'cover'=>Yii::t('string','model.cover'),
 				'description'=>Yii::t('string','model.description'),
 		        'eventdate'=>Yii::t('string','model.event.eventdate'),
+		        'eventtype'=>Yii::t('string','model.type'),
 				'fromuser'=>Yii::t('string','model.fromuser'),
+				'genre'=>Yii::t('string','model.genre'),
 		        'invitedcounter'=>Yii::t('string','model.event.invitedcounter'),
 				'latitude'=>Yii::t('string','model.latitude'),
 		        'locationname'=>Yii::t('string','model.event.locationname'),
