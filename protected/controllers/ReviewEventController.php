@@ -243,6 +243,10 @@ class ReviewEventController extends Controller
 		}
 	}
 	
+	/**
+	 * Before action
+	 * @param Aciton to be performed before save operation
+	 */
 	public function beforeAction($action) {
 	    if( parent::beforeAction($action) ) {
 	        /* @var $cs CClientScript */
