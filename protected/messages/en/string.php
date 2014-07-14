@@ -12,6 +12,12 @@
  * @todo                
  */
 return array(
+//----------------------CONTROLLERS----------------------//
+    'controller.404' => 'The requested page does not exist.',
+//----------------------EVENT-----------------------//
+    'controller.event.errorGenre' =>'Errors saving event genre',
+    'controller.event.errorType' =>'Errors saving event type',
+    'controller.event.errorSave' =>'Error saving event',
 //----------------------MODELS----------------------//
     'model.active' => 'Active',
     'model.address' => 'Address',
