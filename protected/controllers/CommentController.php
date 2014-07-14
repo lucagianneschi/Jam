@@ -201,12 +201,6 @@ class CommentController extends Controller {
 		));
 		break;
 	}
-// manca fare il render dell'oggetto commentato
-	$this->render('create', array(
-	    'model' => $comment,
-	    'fromuser' => $fromuser,
-	    'touser' => $touser,
-	));
     }
 
     /**
@@ -214,21 +208,150 @@ class CommentController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id_object, $classType) {
 	$model = $this->loadModel($id);
-
 	// Uncomment the following line if AJAX validation is needed
-	// $this->performAjaxValidation($model);
+	$this->performAjaxValidation($model);
+	switch ($classType) {
+	    case 'Album':
+		$object = Album::model()->findByPk($id_object);
+		break;
+	    case 'Comment':
+		$object = Comment::model()->findByPk($id_object);
+		break;
+	    case 'Event':
+		$object = Event::model()->findByPk($id_object);
+		break;
+	    case 'Image':
+		$object = Image::model()->findByPk($id_object);
+		break;
+	    case 'Record':
+		$object = Record::model()->findByPk($id_object);
+		break;
+	    case 'ReviewEvent':
+		$object = ReviewEvent::model()->findByPk($id_object);
+		break;
+	    case 'ReviewRecord':
+		$object = ReviewRecord::model()->findByPk($id_object);
+		break;
+	    case 'Video':
+		$object = Video::model()->findByPk($id_object);
+		break;
+	}
+	if ($object === null)
+	    throw new CHttpException(404, 'The requested page does not exist.');
+
+	if ($model->touser === null)
+	    throw new CHttpException(404, 'The requested page does not exist.');
+
+	$fromuser = User::model()->findByPk(Yii::app()->session['id']);
+
+	if ($fromuser === null)
+	    throw new CHttpException(404, 'The requested page does not exist.');
 
 	if (isset($_POST['Comment'])) {
-	    $model->attributes = $_POST['Comment'];
-	    if ($model->save())
-		$this->redirect(array('view', 'id' => $model->id));
+	    $_POST['Post']['fromuser'] = $fromuser->id;
+	    $_POST['Post']['touser'] = $touser->id;
+	    $_POST['Post']['latitude'] = null;
+	    $_POST['Post']['longitude'] = null;
+	    $_POST['Post']['createdat'] = date('Y-m-d H:i:s');
+	    $_POST['Post']['updatedat'] = date('Y-m-d H:i:s');
+	    switch ($classType) {
+		case 'Album':
+		    $_POST['Post']['album'] = $id_object;
+		    break;
+		case 'Comment':
+		    $_POST['Post']['comment'] = $id_object;
+		    break;
+		case 'Event':
+		    $_POST['Post']['event'] = $id_object;
+		    break;
+		case 'Image':
+		    $_POST['Post']['image'] = $id_object;
+		    break;
+		case 'Record':
+		    $_POST['Post']['record'] = $id_object;
+		    break;
+		case 'ReviewEvent':
+		    $_POST['Post']['reviewevent'] = $id_object;
+		    break;
+		case 'ReviewRecord':
+		    $_POST['Post']['reviewrecord'] = $id_object;
+		    break;
+		case 'Video':
+		    $_POST['Post']['video'] = $id_object;
+		    break;
+	    }
+	    $comment->attributes = $_POST['Comment'];
+	    if ($comment->save())
+		$this->redirect(array('view', 'id' => $comment->id));
 	}
-
-	$this->render('update', array(
-	    'model' => $model,
-	));
+	switch ($classType) {
+	    case 'Album':
+		$this->render('create', array(
+		    'model' => $comment,
+		    'fromuser' => $fromuser,
+		    'touser' => $touser,
+		    'album' => $object
+		));
+		break;
+	    case 'Comment':
+		$this->render('create', array(
+		    'model' => $comment,
+		    'fromuser' => $fromuser,
+		    'touser' => $touser,
+		    'comment' => $object
+		));
+		break;
+	    case 'Event':
+		$this->render('create', array(
+		    'model' => $comment,
+		    'fromuser' => $fromuser,
+		    'touser' => $touser,
+		    'event' => $object
+		));
+		break;
+	    case 'Image':
+		$this->render('create', array(
+		    'model' => $comment,
+		    'fromuser' => $fromuser,
+		    'touser' => $touser,
+		    'image' => $object
+		));
+		break;
+	    case 'Record':
+		$this->render('create', array(
+		    'model' => $comment,
+		    'fromuser' => $fromuser,
+		    'touser' => $touser,
+		    'record' => $object
+		));
+		break;
+	    case 'ReviewEvent':
+		$this->render('create', array(
+		    'model' => $comment,
+		    'fromuser' => $fromuser,
+		    'touser' => $touser,
+		    'reviewevent' => $object
+		));
+		break;
+	    case 'ReviewRecord':
+		$this->render('create', array(
+		    'model' => $comment,
+		    'fromuser' => $fromuser,
+		    'touser' => $touser,
+		    'reviewrecord' => $object
+		));
+		break;
+	    case 'Video':
+		$this->render('create', array(
+		    'model' => $comment,
+		    'fromuser' => $fromuser,
+		    'touser' => $touser,
+		    'video' => $object
+		));
+		break;
+	}
     }
 
     /**
