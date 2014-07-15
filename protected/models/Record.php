@@ -194,15 +194,14 @@ class Record extends CActiveRecord {
                    lovecounter,
 		   reviewcounter,
                    sharecounter,
-                   r.thumbnail thumbnail_r,
                    title,
 		   year,
                    createdat,
 		   u.id id_u,
 		   username,
 		   type,
-		   u.thumbnail thumbnail_u
-              FROM record e, user u
+		   thumbnail
+              FROM record r, user u
              WHERE active = 1
                AND r.id =" . $id;
 	$results = mysqli_query($connection, $sql);
@@ -218,7 +217,7 @@ class Record extends CActiveRecord {
 	    //vedere se tutti i campi dello user sono OK
 	    $fromuser = array();
 	    $fromuser['id'] = $row['id_u'];
-	    $fromuser['thumbnail_u'] = $row['thumbnail_u'];
+	    $fromuser['thumbnail'] = $row['thumbnail'];
 	    $fromuser['type'] = $row['type'];
 	    $fromuser['username'] = $row['username'];
 	    $record = array();
@@ -247,7 +246,6 @@ class Record extends CActiveRecord {
 	    $record['lovecounter'] = $row['lovecounter'];
 	    $record['reviewcounter'] = $row['reviewcounter'];
 	    $record['sharecounter'] = $row['sharecounter'];
-	    $record['thumbnail_r'] = $row['thumbnail_r'];
 	    $record['title'] = $row['title'];
 	    //query sul tag
 	    $sql_tag = "SELECT id_user
@@ -281,7 +279,7 @@ class Record extends CActiveRecord {
 		$types_record[] = $row_type_record;
 	    }
 	    $record['recordtypes'] = $types_record;
-	    $record['year'] = $row['city'];
+	    $record['year'] = $row['year'];
 	    $records[$row['id']] = $record;
 	}
 	return $records;
