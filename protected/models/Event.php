@@ -209,10 +209,9 @@ class Event extends CActiveRecord {
     }
 
     /**
-     * Returns an array of event for the the profile page
+     * Returns an array of event for the the event page: Just one to be displayed
      * @param integer $id id of the event
      * @return array $images array of events to be displayed on the profile page, false in case of error
-     * @todo recuperare i featuring dalla eventTag e genre dalla EventGenre
      */
     public function event($id) {
 	$dbConnection = new DBConnection();
