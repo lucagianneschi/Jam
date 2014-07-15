@@ -231,6 +231,7 @@ class Event extends CActiveRecord {
                    locationname,
 		   longitude,
                    lovecounter,
+		   reviewcounter,
                    sharecounter,
                    e.thumbnail thumbnail_e,
                    title,
@@ -285,6 +286,7 @@ class Event extends CActiveRecord {
 	    $event['locationname'] = $row['locationname'];
 	    $event['longitude'] = $row['longitude'];
 	    $event['lovecounter'] = $row['lovecounter'];
+	    $event['reviewcounter'] = $row['reviewcounter'];
 	    $event['sharecounter'] = $row['sharecounter'];
 	    $event['thumbnail_e'] = $row['thumbnail_e'];
 	    $event['title'] = $row['title'];
@@ -326,14 +328,13 @@ class Event extends CActiveRecord {
     }
 
     /**
-     * Returns an array of event for the the profile page
+     * Returns an array of events (non instances of the model event) for the the profile page
      * @param integer $id id of the user that owns the page
      * @param integer $limit number of album to be displayed
      * @param integer $skip number of album to be skipped
-     * @return array $images array of events to be displayed on the profile page, false in case of error
-     * @todo recuperare i featuring dalla eventTag
+     * @return array $events array of events to be displayed on the profile page, false in case of error
      */
-    public function profile($id, $limit = 15, $skip = 0) {
+    public function profile($id, $limit = 3, $skip = 0) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {
@@ -347,6 +348,7 @@ class Event extends CActiveRecord {
 		   eventdate,
                    locationname,
                    lovecounter,
+		   reviewcounter,
                    sharecounter,
                    thumbnail,
                    title,
@@ -374,6 +376,7 @@ class Event extends CActiveRecord {
 	    $event['eventdate'] = new DateTime($row['eventdate']);
 	    $event['locationname'] = $row['locationname'];
 	    $event['lovecounter'] = $row['lovecounter'];
+	    $event['reviewcounter'] = $row['reviewcounter'];
 	    $event['sharecounter'] = $row['sharecounter'];
 	    //query sul tag
 	    $sql_tag = "SELECT id_user
