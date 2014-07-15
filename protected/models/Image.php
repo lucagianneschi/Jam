@@ -190,7 +190,6 @@ class Image extends CActiveRecord {
 	    $image->path = $row['path'];
 	    $image->sharecounter = $row['sharecounter'];
 	    $image->thumbnail = $row['thumbnail'];
-	    $image->createdat = $row['createdat'];
 	    $images[$row['id']] = $image;
 	}
 	return $images;

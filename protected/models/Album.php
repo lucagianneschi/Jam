@@ -163,6 +163,7 @@ class Album extends CActiveRecord {
 	$albums = array();
 	$sql = "SELECT id,
                    commentcounter,
+		   cover,
 		   fromuser,
                    imagecounter,
                    lovecounter,
@@ -189,13 +190,12 @@ class Album extends CActiveRecord {
 	    $album = new Album;
 	    $album->id = $row['id'];
 	    $album->commentcounter = $row['commentcounter'];
+	    $album->cover = $row['cover'];
 	    $album->imagecounter = $row['imagecounter'];
 	    $album->lovecounter = $row['lovecounter'];
 	    $album->sharecounter = $row['sharecounter'];
 	    $album->thumbnail = $row['thumbnail'];
 	    $album->title = $row['title'];
-	    $album->createdat = new DateTime($row['createdat']);
-	    $album->updatedat = new DateTime($row['updatedat']);
 	    $albums[$row['id']] = $album;
 	}
 	return $albums;
