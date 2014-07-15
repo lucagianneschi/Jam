@@ -148,11 +148,11 @@ class Album extends CActiveRecord {
     }
 
     /**
-     * Returns an array of album for the the profile page
+     * Returns an array of album for the the profile page or uploadAlbum page
      * @param integer $id id of the user who own the page
      * @param integer $limit number of album to be displayed
      * @param integer $skip number of album to be skipped
-     * @return array $albums array of onfo to be displayed on the profile page, false in case of error
+     * @return array $albums array of info to be displayed on the profile page or uploadAlbum page, false in case of error
      */
     public function profileOrUpload($id, $limit = 3, $skip = 0) {
 	$dbConnection = new DBConnection();
@@ -161,19 +161,19 @@ class Album extends CActiveRecord {
 	    return false;
 	}
 	$albums = array();
-	$sql = "SELECT a.id id_a,
-                   a.commentcounter,
-		   a.fromuser,
-                   a.imagecounter,
-                   a.lovecounter,
-                   a.sharecounter,
-                   a.thumbnail thumbnail_a,
-                   a.title,
-                   a.createdat
-              FROM album a
-             WHERE a.active = 1
-               AND a.fromuser =" . $id .
-		"ORDER BY a.createdat ASC
+	$sql = "SELECT id,
+                   commentcounter,
+		   fromuser,
+                   imagecounter,
+                   lovecounter,
+                   sharecounter,
+                   thumbnail,
+                   title,
+                   createdat
+              FROM album 
+             WHERE active = 1
+               AND fromuser =" . $id .
+		"ORDER BY createdat DES
              LIMIT" . $limit .
 		"SKIP" . $skip;
 	$results = mysqli_query($connection, $sql);
@@ -187,12 +187,12 @@ class Album extends CActiveRecord {
 	}
 	foreach ($rows_album as $row) {
 	    $album = new Album;
-	    $album->id = $row['id_a'];
+	    $album->id = $row['id'];
 	    $album->commentcounter = $row['commentcounter'];
 	    $album->imagecounter = $row['imagecounter'];
 	    $album->lovecounter = $row['lovecounter'];
 	    $album->sharecounter = $row['sharecounter'];
-	    $album->thumbnail = $row['thumbnail_a'];
+	    $album->thumbnail = $row['thumbnail'];
 	    $album->title = $row['title'];
 	    $album->createdat = new DateTime($row['createdat']);
 	    $album->updatedat = new DateTime($row['updatedat']);
