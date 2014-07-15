@@ -174,12 +174,126 @@ class Record extends CActiveRecord {
     }
 
     /**
+     * Returns an array of record for the the record page: Just one to be displayed
+     * @param integer $id id of the 
+     * @return array $images array of records to be displayed on the profile page, false in case of error
+     */
+    public function record($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$records = array();
+	$sql = "SELECT r.id id_r,
+	           buylink,
+		   city,
+                   commentcounter,
+		   cover,
+		   fromuser,
+                   lovecounter,
+		   reviewcounter,
+                   sharecounter,
+                   r.thumbnail thumbnail_r,
+                   title,
+		   year,
+                   createdat,
+		   u.id id_u,
+		   username,
+		   type,
+		   u.thumbnail thumbnail_u
+              FROM record e, user u
+             WHERE active = 1
+               AND r.id =" . $id;
+	$results = mysqli_query($connection, $sql);
+	if (!$results) {
+	    return false;
+	}
+	while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
+	    $rows_record[] = $row;
+	if (!is_array($rows_record)) {
+	    return $records;
+	}
+	foreach ($rows_record as $row) {
+	    //vedere se tutti i campi dello user sono OK
+	    $fromuser = array();
+	    $fromuser['id'] = $row['id_u'];
+	    $fromuser['thumbnail_u'] = $row['thumbnail_u'];
+	    $fromuser['type'] = $row['type'];
+	    $fromuser['username'] = $row['username'];
+	    $record = array();
+	    $record['id'] = $row['id_r'];
+	    $record['buylink'] = $row['buylink'];
+	    $record['city'] = $row['city'];
+	    $record['commentcounter'] = $row['commentcounter'];
+	    $record['fromuser'] = $fromuser;
+	    //query sul genre
+	    $sql_genre = "SELECT id_genre
+		            FROM record_genre
+		           WHERE id_record = " . $row['id_r'];
+	    $results_genre_record = mysqli_query($connection, $sql_genre);
+	    if (!$results_genre_record) {
+		return false;
+	    }
+	    $genres = array();
+	    $rows_genre = array();
+	    while ($row_genre = mysqli_fetch_array($results_genre_record, MYSQLI_ASSOC))
+		$rows_genre[] = $row_genre;
+	    foreach ($rows_genre as $row_genre) {
+		$genres[] = $row_genre;
+	    }
+	    $record['genres'] = $genres;
+	    $record['label'] = $row['label'];
+	    $record['lovecounter'] = $row['lovecounter'];
+	    $record['reviewcounter'] = $row['reviewcounter'];
+	    $record['sharecounter'] = $row['sharecounter'];
+	    $record['thumbnail_r'] = $row['thumbnail_r'];
+	    $record['title'] = $row['title'];
+	    //query sul tag
+	    $sql_tag = "SELECT id_user
+		          FROM record_tag
+		         WHERE id = " . $row['id_r'];
+	    $results_tag = mysqli_query($connection, $sql_tag);
+	    if (!$results_tag) {
+		return false;
+	    }
+	    $tags_record = array();
+	    $rows_tag_record = array();
+	    while ($row_tag_record = mysqli_fetch_array($results_tag, MYSQLI_ASSOC))
+		$rows_tag_record[] = $row_tag_record;
+	    foreach ($rows_tag_record as $row_tag_record) {
+		$tags_record[] = $row_tag_record;
+	    }
+	    $record['tags'] = $tags_record;
+	    //query sul tag
+	    $sql_type = "SELECT id_type
+		           FROM record_type
+		          WHERE id = " . $row['id_r'];
+	    $results_type = mysqli_query($connection, $sql_type);
+	    if (!$results_type) {
+		return false;
+	    }
+	    $types_record = array();
+	    $rows_type_record = array();
+	    while ($row_type_record = mysqli_fetch_array($results_type, MYSQLI_ASSOC))
+		$rows_type_record[] = $row_tag_record;
+	    foreach ($rows_tag_record as $row_type_record) {
+		$types_record[] = $row_type_record;
+	    }
+	    $record['recordtypes'] = $types_record;
+	    $record['year'] = $row['city'];
+	    $records[$row['id']] = $record;
+	}
+	return $records;
+    }
+
+    /**
      * Returns an array of record (non instances of the model record) for the the profile page
      * @param integer $id id of the user that owns the page
      * @param integer $limit number of album to be displayed
      * @param integer $skip number of album to be skipped
      * @return array $records array of records to be displayed on the profile page, false in case of error
-     * @todo recuperare i featuring dalla eventTag
+     * @todo recuperare i featuring dalla recordTag
      */
     public function profileorUpload($id, $limit = 3, $skip = 0) {
 	$dbConnection = new DBConnection();
@@ -206,11 +320,11 @@ class Record extends CActiveRecord {
 	    return false;
 	}
 	while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
-	    $rows_event[] = $row;
-	if (!is_array($rows_event)) {
+	    $rows_record[] = $row;
+	if (!is_array($rows_record)) {
 	    return $records;
 	}
-	foreach ($rows_event as $row) {
+	foreach ($rows_record as $row) {
 	    $record['id'] = $row['id'];
 	    $record['commentcounter'] = $row['commentcounter'];
 	    $record['lovecounter'] = $row['lovecounter'];
