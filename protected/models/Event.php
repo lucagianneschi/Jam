@@ -36,16 +36,33 @@
  * @property EventType[] $eventTypes
  * @property ReviewEvent[] $reviewEvents
  * @property UserEvent[] $userEvents
+ * 
+ * The followings are the public variables
+ * @property integer $eventtype
+ * @property integer $genre
+ * 
+ * @property string $image
+ * @property integer $cropID
+ * @property double $cropX
+ * @property double $cropY
+ * @property double $cropW
+ * @property double $cropH
  */
 class Event extends CActiveRecord {
+    	
 
-    /**
-     * @return string the associated database table name
-     */
     public $eventtype;
-    public $genre;
-    public $image;
-
+	public $genre;
+	
+	public $image;
+	public $cropID;
+	public $cropX;
+	public $cropY;
+	public $cropW;
+	public $cropH;
+	/**
+	 * @return string the associated database table name
+	 */
     public function tableName() {
 	return 'event';
     }
@@ -57,7 +74,7 @@ class Event extends CActiveRecord {
 	// NOTE: you should only define rules for those attributes that
 	// will receive user inputs.
 	return array(
-	    array('address, city, cover, createdat, description, eventdate, fromuser, latitude, locationname, longitude, thumbnail, title, updatedat', 'required'),
+	    array('address, city, cover, createdat, description, eventdate, fromuser, image, latitude, locationname, longitude, thumbnail, title, updatedat', 'required'),
 	    array('active', 'boolean', 'message' => 'Invalid {attribute} format'),
 	    array('attendeecounter, cancelledcounter, commentcounter, invitedcounter, lovecounter, refusedcounter, reviewcounter, sharecounter', 'numerical', 'integerOnly' => true),
 	    array('latitude, longitude', 'numerical'),
@@ -118,6 +135,7 @@ class Event extends CActiveRecord {
 	    'eventdate' => Yii::t('string', 'model.event.eventdate'),
 	    'eventtype' => Yii::t('string', 'model.type'),
 	    'fromuser' => Yii::t('string', 'model.fromuser'),
+	    'image'=>Yii::t('string','view.uploadevent.upload_image'),
 	    'genre' => Yii::t('string', 'model.genre'),
 	    'invitedcounter' => Yii::t('string', 'model.event.invitedcounter'),
 	    'latitude' => Yii::t('string', 'model.latitude'),

@@ -106,5 +106,22 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		// param for upload images
+		'extensionsAccepted' => array('jpg','jpeg','png','gif'),
+		'maxSize' => 2 * 1024 * 1024,		
+		// path upload images
+		'users_dir' => array( 
+			'temp'=> 'users/temp', //cartella con file temporanei
+			'thumbnail'=> 'users/images/thumbnail', //profile thumbnail 
+			'avatar'=>'users/images/avatar', //profile
+			'albumcover' => 'users/images/albumcover',
+			'albumcoverthumb' => 'users/images/albumcoverthumb',
+			'photos' => 'users/images/photos',
+			'recordcover' => 'users/images/recordcover',
+			'recordcoverthumb' => 'users/images/recordcoverthumb',
+			'eventcoverthumb' => 'users/images/eventcoverthumb',
+			'eventcover' => 'users/images/eventcover',
+			'songs' => 'users/images/songs',
+		),
 	),
 );

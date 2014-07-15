@@ -57,7 +57,7 @@
 
 .formBlack .buttonOrange{
 	width: auto;
-	height: 30px !important;
+	
 	font-size: 14px;
 	color: $white;
 	line-height: 20px;
@@ -66,6 +66,7 @@
 	cursor: pointer;
 	background-repeat: no-repeat;
 	background-color: $orange;	
+	border: 0px !important;
 }
 
 .formBlack .buttonNext{
@@ -193,6 +194,20 @@
 .ui-datepicker-calendar{
 	width: 216px !important;
 }
+
+.qq-upload-button{
+	box-sizing: initial !important;
+	background: $orange !important;
+	border-bottom: 0px solid #DDD !important;
+	color: $white !important;
+	width: 100% !important;
+	&:hover{
+		background: $orange !important;		
+	}
+	
+	
+}
+
 
 //----------------------------- featuring --------------------------
 .formBlack{

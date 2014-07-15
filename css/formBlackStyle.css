@@ -60,7 +60,6 @@
 /* line 58, ../sass/formBlackStyle.scss */
 .formBlack .buttonOrange {
   width: auto;
-  height: 30px !important;
   font-size: 14px;
   color: #f3f3f3;
   line-height: 20px;
@@ -69,9 +68,10 @@
   cursor: pointer;
   background-repeat: no-repeat;
   background-color: #ff7505;
+  border: 0px !important;
 }
 
-/* line 71, ../sass/formBlackStyle.scss */
+/* line 72, ../sass/formBlackStyle.scss */
 .formBlack .buttonNext {
   border: 0px;
   color: #f3f3f3;
@@ -83,7 +83,7 @@
   background-color: #232323;
 }
 
-/* line 82, ../sass/formBlackStyle.scss */
+/* line 83, ../sass/formBlackStyle.scss */
 .formBlack .buttonBlack {
   border: 0px;
   color: #787878;
@@ -95,14 +95,14 @@
   background-color: #232323;
 }
 
-/* line 93, ../sass/formBlackStyle.scss */
+/* line 94, ../sass/formBlackStyle.scss */
 .formBlack .errorMessage {
   font-size: 14px !important;
   color: #ed1c24 !important;
   text-align: right !important;
 }
 
-/* line 98, ../sass/formBlackStyle.scss */
+/* line 99, ../sass/formBlackStyle.scss */
 .formBlack .upload-box {
   height: 103px;
   border: #787878 1px solid;
@@ -110,7 +110,7 @@
   margin-bottom: 20px !important;
   margin-top: 20px !important;
 }
-/* line 104, ../sass/formBlackStyle.scss */
+/* line 105, ../sass/formBlackStyle.scss */
 .formBlack .upload-box .thumbnail-box {
   text-align: center !important;
   background-color: #303030 !important;
@@ -118,22 +118,22 @@
   margin: 1px !important;
   width: 99px !important;
 }
-/* line 111, ../sass/formBlackStyle.scss */
+/* line 112, ../sass/formBlackStyle.scss */
 .formBlack .upload-box .thumbnail {
   background-color: #303030 !important;
   height: 106px;
   width: 108px;
 }
-/* line 116, ../sass/formBlackStyle.scss */
+/* line 117, ../sass/formBlackStyle.scss */
 .formBlack .upload-box .small-3 {
   padding: 0px !important;
 }
-/* line 119, ../sass/formBlackStyle.scss */
+/* line 120, ../sass/formBlackStyle.scss */
 .formBlack .upload-box .small-9 {
   padding-left: 10% !important;
   padding-top: 10% !important;
 }
-/* line 123, ../sass/formBlackStyle.scss */
+/* line 124, ../sass/formBlackStyle.scss */
 .formBlack .upload-box .upload-reveal {
   background-color: #232323;
   left: 10%;
@@ -141,7 +141,7 @@
   width: 270%;
 }
 
-/* line 132, ../sass/formBlackStyle.scss */
+/* line 133, ../sass/formBlackStyle.scss */
 .formBlack input[type='checkbox'] + label {
   background-color: #303030 !important;
   height: 25px !important;
@@ -154,12 +154,12 @@
   padding-right: 10px;
 }
 
-/* line 144, ../sass/formBlackStyle.scss */
+/* line 145, ../sass/formBlackStyle.scss */
 .formBlack input[type='checkbox']:checked + label {
   background-color: #ff7505 !important;
 }
 
-/* line 148, ../sass/formBlackStyle.scss */
+/* line 149, ../sass/formBlackStyle.scss */
 .ui-datepicker {
   width: 216px;
   height: auto;
@@ -167,24 +167,24 @@
   font: 9pt Arial, sans-serif;
 }
 
-/* line 156, ../sass/formBlackStyle.scss */
+/* line 157, ../sass/formBlackStyle.scss */
 .ui-datepicker-header {
   background-color: #303030;
   color: #787878 !important;
   line-height: 30px;
 }
-/* line 160, ../sass/formBlackStyle.scss */
+/* line 161, ../sass/formBlackStyle.scss */
 .ui-datepicker-header a {
   color: #787878 !important;
 }
 
-/* line 168, ../sass/formBlackStyle.scss */
+/* line 169, ../sass/formBlackStyle.scss */
 .ui-datepicker-title {
   text-align: center;
   font-weight: bold;
 }
 
-/* line 173, ../sass/formBlackStyle.scss */
+/* line 174, ../sass/formBlackStyle.scss */
 .ui-datepicker-prev, .ui-datepicker-next {
   display: inline-block;
   width: 30px;
@@ -195,28 +195,41 @@
   overflow: hidden;
 }
 
-/* line 183, ../sass/formBlackStyle.scss */
+/* line 184, ../sass/formBlackStyle.scss */
 .ui-datepicker-prev {
   float: left;
   background-position: center -30px;
 }
 
-/* line 187, ../sass/formBlackStyle.scss */
+/* line 188, ../sass/formBlackStyle.scss */
 .ui-datepicker-next {
   float: right;
   background-position: center 0px;
 }
 
-/* line 193, ../sass/formBlackStyle.scss */
+/* line 194, ../sass/formBlackStyle.scss */
 .ui-datepicker-calendar {
   width: 216px !important;
 }
 
-/* line 199, ../sass/formBlackStyle.scss */
+/* line 198, ../sass/formBlackStyle.scss */
+.qq-upload-button {
+  box-sizing: initial !important;
+  background: #ff7505 !important;
+  border-bottom: 0px solid #DDD !important;
+  color: #f3f3f3 !important;
+  width: 100% !important;
+}
+/* line 204, ../sass/formBlackStyle.scss */
+.qq-upload-button:hover {
+  background: #ff7505 !important;
+}
+
+/* line 214, ../sass/formBlackStyle.scss */
 .formBlack #s2id_trackFeaturing {
   margin-bottom: 10px !important;
 }
-/* line 202, ../sass/formBlackStyle.scss */
+/* line 217, ../sass/formBlackStyle.scss */
 .formBlack .select2-container-multi .select2-choices {
   font-size: 14px;
   background: #1c1c1c !important;
@@ -224,30 +237,30 @@
   border: 1px solid #303030 !important;
   margin-left: 0px !important;
 }
-/* line 208, ../sass/formBlackStyle.scss */
+/* line 223, ../sass/formBlackStyle.scss */
 .formBlack .select2-container-multi .select2-choices:focus {
   background-color: #303030 !important;
   border-bottom: 0px solid #787878 !important;
 }
-/* line 214, ../sass/formBlackStyle.scss */
+/* line 229, ../sass/formBlackStyle.scss */
 .formBlack .select2-container-active {
   border: 1px solid #303030 !important;
 }
-/* line 218, ../sass/formBlackStyle.scss */
+/* line 233, ../sass/formBlackStyle.scss */
 .formBlack .select2-no-results {
   display: none !important;
 }
-/* line 222, ../sass/formBlackStyle.scss */
+/* line 237, ../sass/formBlackStyle.scss */
 .formBlack .select2-drop {
   color: #f3f3f3 !important;
   background: #1c1c1c !important;
   border: 1px solid #1c1c1c !important;
 }
-/* line 228, ../sass/formBlackStyle.scss */
+/* line 243, ../sass/formBlackStyle.scss */
 .formBlack .select2-highlighted {
   background: #ff7505 !important;
 }
-/* line 231, ../sass/formBlackStyle.scss */
+/* line 246, ../sass/formBlackStyle.scss */
 .formBlack .select2-search-choice {
   font-weight: 500 !important;
   height: 30px !important;
@@ -260,14 +273,14 @@
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
-/* line 243, ../sass/formBlackStyle.scss */
+/* line 258, ../sass/formBlackStyle.scss */
 .formBlack .select2-search input.select2-active {
   background: #1c1c1c !important;
   color: #f3f3f3 !important;
 }
 
 /* Progress Bar */
-/* line 251, ../sass/formBlackStyle.scss */
+/* line 266, ../sass/formBlackStyle.scss */
 .ui-progressbar,
 .ui-progressbar-value {
   position: relative;
@@ -277,7 +290,7 @@
   border-radius: 1px;
 }
 
-/* line 260, ../sass/formBlackStyle.scss */
+/* line 275, ../sass/formBlackStyle.scss */
 .ui-progressbar {
   cursor: pointer;
   margin: 15px 0 20px 0;
@@ -286,13 +299,13 @@
   top: 10px;
 }
 
-/* line 268, ../sass/formBlackStyle.scss */
+/* line 283, ../sass/formBlackStyle.scss */
 .ui-progressbar-value {
   top: 12px;
   background: #ff7505;
 }
 
-/* line 273, ../sass/formBlackStyle.scss */
+/* line 288, ../sass/formBlackStyle.scss */
 .ui-progressbar-value span.progressTooltip {
   position: absolute;
   display: block;

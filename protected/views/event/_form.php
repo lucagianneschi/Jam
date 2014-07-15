@@ -50,40 +50,68 @@
 											    </div>
 											</div>
 							            </div>
-							            <div  class="small-9 columns">							        						
-							                <a  class="text orange" data-reveal-id="upload"><?php echo Yii::t('string','view.uploadevent.upload_image_mandatory'); ?></a>
-							
+							            <div  class="small-9 columns">							            	
+											<a  class="text orange" data-reveal-id="upload"><?php echo Yii::t('string','view.uploadevent.upload_image_mandatory') ?></a>
+											 <?php echo $form->error($model,'image');  ?>
 							                <div id="upload" class="reveal-modal upload-reveal">							
 							                    <div class="row">
 							                        <div  class="large-12 columns formBlack-title">
 							                            <h2><?php echo Yii::t('string','view.uploadevent.upload_image'); ?></h2>		
 							                        </div>	
-							                    </div>
+							                    </div>							                    
 							                    <div class="row">							
-							                        <div  class="large-12 columns formBlack-title">                                                                                                           	
-							                            <a class="buttonOrange _add sottotitle" id="uploader_img_button"><?php echo Yii::t('string','view.uploadevent.select_file');?></a>
-							                            <div class="row">
-														        <?php echo $form->labelEx($model,'image'); ?>
-														        <?php echo CHtml::activeFileField($model, 'image'); ?>  
-														        <?php echo $form->error($model,'image'); ?>
-														</div>
-														<?php if($model->isNewRecord!='1'){ ?>
-														<div class="row">
-														     <?php echo CHtml::image(Yii::app()->request->baseUrl.'/banner/'.$model->image,"image",array("width"=>200)); ?> 
-														</div>	
-														<?php } ?>	
-							                        </div>	                        
-													
+							                        <div  class="small-5 small-centered columns formBlack-title"> 
+							                            <?php
+															$this->widget('ext.EFineUploader.EFineUploader',
+															 array(
+															       'id'=>'FineUploader',								       
+															       'config'=>array(
+																       'autoUpload'=>true,
+																       'request'=>array(
+																          'endpoint'=> $this->createUrl('upload'),
+																          'params'=>array('YII_CSRF_TOKEN'=>Yii::app()->request->csrfToken),
+																       ),
+																       'text'=> array('uploadButton'=>'<div class="buttonOrange _add sottotitle ">'.Yii::t('string','view.uploadevent.select_file').'</div>'),
+																       'retry'=>array('enableAuto'=>true,'preventRetryResponseProperty'=>true),
+																       'chunking'=>array('enable'=>true,'partSize'=>100),//bytes
+																       'callbacks'=>array(
+															               'onComplete'=>"js:function(id, name, response){
+															               		console.log(name);
+															               		console.log(response);
+															               		$('#cropImg').load('". $this->createUrl('cropImg') ."/name/'+response.filename);
+															             //       $('#cropDialog').dialog('open');
+															             //       $('#avatar-preview').attr('src','". Yii::app()->request->baseUrl ."/upload/temp/'+response.filename);
+																		//		$('#JcropForm_image').val('". Yii::app()->request->baseUrl ."/upload/temp/'+response.filename);
+															               }",
+															               'onError'=>"js:function(id, name, errorReason){
+															               	 	console.log(errorReason);
+															               	 alert(errorReason)}",
+															           ),
+																       'validation'=>array(
+															                 'allowedExtensions'=>array('jpg','jpeg','png', 'gif'),
+															                 'sizeLimit'=>2 * 1024 * 1024,//maximum file size in bytes
+															                 'minSizeLimit'=>0,// minimum file size in bytes
+																       ),
+																   )
+															 ));   ?>
+							                        </div>
 							                    </div>
-							                   
+							                   						        						
+							               
+											
 							                    <div class="row">							
 							                        <div  class="small-10 small-centered columns align-center">
 													    <div id="uploadImage_preview_box">
-															<img src="" id="spotter_uploadImage_preview" alt/>
-															<input type="hidden" id="spotter_x" name="crop_x" value="0">
-															<input type="hidden" id="spotter_y" name="crop_y" value="0">
-															<input type="hidden" id="spotter_w" name="crop_w" value="100">
-															<input type="hidden" id="spotter_h" name="crop_h" value="100">
+													    	<div id="cropImg"></div>
+													    	
+															<?php 
+											                    echo $form->hiddenField($model,'image',array('maxlength'=>100)); 
+																echo $form->hiddenField($model,'cropID');
+																echo $form->hiddenField($model,'cropX', array('value' => '0'));
+																echo $form->hiddenField($model,'cropY', array('value' => '0'));
+																echo $form->hiddenField($model,'cropW', array('value' => '100'));
+																echo $form->hiddenField($model,'cropH', array('value' => '100'));
+																?>	
 													    </div>
 							                        </div>
 							
@@ -276,7 +304,9 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script>
   $(function(){
-    	geocomplete("#Event_address");   		
+    	geocomplete("#Event_address");
+    	
+    			
   });
   function compileForm(location){
   	$('#Event_latitude').val(location.latitude); 

@@ -32,7 +32,7 @@ class EventController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','upload','cropImg'),
 				'users'=>array('@'),
 				'expression'=>Yii::app()->session['type'].'== VENUE || '.Yii::app()->session['type'].' == JAMMER',
 			),
@@ -111,11 +111,11 @@ class EventController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 				
 			}
-			else{
+	/*		else{
 				Yii::log("errors saving event: " . var_export($model->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);			
 				throw new CHttpException(405,'Error saving event');
 			}
-				
+		*/		
 		}
 
 		$this->render('create',array(
@@ -188,6 +188,50 @@ class EventController extends Controller
 			'model'=>$model,
 		));
 	}
+	
+	/*
+	 * upload image
+	 */ 
+	public function actionUpload()
+        {
+        	
+            $tempFolder=Yii::app()->baseUrl.'/'.Yii::app()->params['users_dir']['temp'].'/';
+			
+			if(!@opendir($tempFolder)){
+				mkdir($tempFolder, 0777, TRUE);
+				mkdir($tempFolder.'chunks', 0777, TRUE);
+			}
+			
+     		Yii::import("ext.EFineUploader.qqFileUploader");
+ 
+            $uploader = new qqFileUploader();
+            $uploader->allowedExtensions = Yii::app()->params['extensionsAccepted'];
+            $uploader->sizeLimit = Yii::app()->params['maxSize'];//maximum file size in bytes
+            $uploader->chunksFolder = $tempFolder.'chunks';
+ 			
+ 			$result = $uploader->handleUpload($tempFolder);
+            $result['filename'] = $uploader->getUploadName();
+            $result['folder'] = $webFolder;
+ 
+            $uploadedFile=$tempFolder.$result['filename'];
+ 
+            header("Content-Type: text/plain");
+            $result=htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+            echo $result;
+            Yii::app()->end();
+		
+        }
+		
+	/*
+	 * preview e crop image
+	 */ 
+	public function actionCropImg()
+    {
+		
+		Yii::app()->clientScript->scriptMap=array( (YII_DEBUG ?  'jquery.js':'jquery.min.js')=>false, );
+        $imageUrl = Yii::app()->baseUrl.'/'.Yii::app()->params['users_dir']['temp'].'/'. $_GET['name'];
+        $this->renderPartial('cropImg', array('imageUrl'=>$imageUrl), false, true);
+    }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
