@@ -196,7 +196,7 @@ class Album extends CActiveRecord {
 	    $album->title = $row['title'];
 	    $album->createdat = new DateTime($row['createdat']);
 	    $album->updatedat = new DateTime($row['updatedat']);
-	    $albums[$row['id_a']] = $album;
+	    $albums[$row['id']] = $album;
 	}
 	return $albums;
     }
