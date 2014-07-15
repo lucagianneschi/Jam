@@ -192,6 +192,69 @@ class Event extends CActiveRecord {
 
     /**
      * Returns an array of event for the the profile page
+     * @param integer $id id of the event
+     * @return array $images array of events to be displayed on the profile page, false in case of error
+     * @todo recuperare i featuring dalla eventTag e genre dalla EventGenre
+     */
+    public function event($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$events = array();
+	$sql = "SELECT id,
+	           address,
+		   city,
+                   commentcounter,
+		   eventdate,
+		   fromuser,
+                   locationname,
+                   lovecounter,
+                   sharecounter,
+                   e.thumbnail thumbnail_e,
+                   title,
+                   createdat,
+		   username,
+		   type,
+		   u.thumbnail thumbnail_u,
+              FROM event e,
+	           user u
+             WHERE active = 1
+               AND id =" . $id;
+	$results = mysqli_query($connection, $sql);
+	if (!$results) {
+	    return false;
+	}
+	while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
+	    $rows_event[] = $row;
+	if (!is_array($rows_event)) {
+	    return $events;
+	}
+	foreach ($rows_event as $row) {
+	    $fromuser = new User;
+	    $fromuser->type =  $row['thumbnail_u'];
+	    $fromuser->type =  $row['type'];
+	    $fromuser->username =  $row['username'];
+	    $event = new Event;
+	    $event->id = $row['id'];
+	    $event->address = $row['address'];
+	    $event->city = $row['city'];
+	    $event->commentcounter = $row['commentcounter'];
+	    $event->eventdate = new DateTime($row['eventdate']);
+	    $event->fromuser = $fromuser;
+	    $event->locationname = $row['locationname'];
+	    $event->lovecounter = $row['lovecounter'];
+	    $event->sharecounter = $row['sharecounter'];
+	    $event->thumbnail = $row['thumbnail'];
+	    $event->title = $row['title'];
+	    $events[$row['id']] = $event;
+	}
+	return $events;
+    }
+
+    /**
+     * Returns an array of event for the the profile page
      * @param integer $id id of the user that owns the page
      * @param integer $limit number of album to be displayed
      * @param integer $skip number of album to be skipped
@@ -210,7 +273,6 @@ class Event extends CActiveRecord {
 		   city,
                    commentcounter,
 		   eventdate,
-		   fromuser,
                    locationname,
                    lovecounter,
                    sharecounter,
