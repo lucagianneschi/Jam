@@ -163,19 +163,14 @@ class Album extends CActiveRecord {
 	$albums = array();
 	$sql = "SELECT a.id id_a,
                    a.commentcounter,
-                   a.fromuser,
+		   a.fromuser,
                    a.imagecounter,
                    a.lovecounter,
                    a.sharecounter,
                    a.thumbnail thumbnail_a,
                    a.title,
-                   a.createdat,
-                   u.id id_u,
-                   u.username,
-                   u.thumbnail thumbnail_u,
-                   u.type
-              FROM album a,
-                   user u
+                   a.createdat
+              FROM album a
              WHERE a.active = 1
                AND a.fromuser =" . $id .
 		"ORDER BY a.createdat ASC
@@ -194,12 +189,6 @@ class Album extends CActiveRecord {
 	    $album = new Album;
 	    $album->id = $row['id_a'];
 	    $album->commentcounter = $row['commentcounter'];
-	    $fromuser = new User;
-	    $fromuser->id = $row['id_u'];
-	    $fromuser->thumbnail = $row['thumbnail_u'];
-	    $fromuser->username = $row['username'];
-	    $fromuser->type = $row['type'];
-	    $album->fromuser = $fromuser;
 	    $album->imagecounter = $row['imagecounter'];
 	    $album->lovecounter = $row['lovecounter'];
 	    $album->sharecounter = $row['sharecounter'];
