@@ -183,13 +183,12 @@ class Image extends CActiveRecord {
 	    return $images;
 	}
 	foreach ($rows_image as $row) {
-	    $image = new Image;
-	    $image->id = $row['id'];
-	    $image->commentcounter = $row['commentcounter'];
-	    $image->lovecounter = $row['lovecounter'];
-	    $image->path = $row['path'];
-	    $image->sharecounter = $row['sharecounter'];
-	    $image->thumbnail = $row['thumbnail'];
+	    $image['id'] = $row['id'];
+	    $image['commentcounter'] = $row['commentcounter'];
+	    $image['lovecounter'] = $row['lovecounter'];
+	    $image['path'] = $row['path'];
+	    $image['sharecounter'] = $row['sharecounter'];
+	    $image['thumbnail'] = $row['thumbnail'];
 	    $images[$row['id']] = $image;
 	}
 	return $images;

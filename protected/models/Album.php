@@ -148,7 +148,7 @@ class Album extends CActiveRecord {
     }
 
     /**
-     * Returns an array of album for the the profile page or uploadAlbum page
+     * Returns an array of album info (no album model) for the the profile page or uploadAlbum page
      * @param integer $id id of the user who own the page
      * @param integer $limit number of album to be displayed
      * @param integer $skip number of album to be skipped
@@ -187,15 +187,14 @@ class Album extends CActiveRecord {
 	    return $albums;
 	}
 	foreach ($rows_album as $row) {
-	    $album = new Album;
-	    $album->id = $row['id'];
-	    $album->commentcounter = $row['commentcounter'];
-	    $album->cover = $row['cover'];
-	    $album->imagecounter = $row['imagecounter'];
-	    $album->lovecounter = $row['lovecounter'];
-	    $album->sharecounter = $row['sharecounter'];
-	    $album->thumbnail = $row['thumbnail'];
-	    $album->title = $row['title'];
+	    $album['id'] = $row['id'];
+	    $album['commentcounter'] = $row['commentcounter'];
+	    $album['cover'] = $row['cover'];
+	    $album['imagecounter'] = $row['imagecounter'];
+	    $album['lovecounter'] = $row['lovecounter'];
+	    $album['sharecounter'] = $row['sharecounter'];
+	    $album['thumbnail'] = $row['thumbnail'];
+	    $album['title'] = $row['title'];
 	    $albums[$row['id']] = $album;
 	}
 	return $albums;
