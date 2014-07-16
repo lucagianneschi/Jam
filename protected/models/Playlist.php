@@ -125,4 +125,42 @@ class Playlist extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	
+    /**
+     * Returns an array of playslist for the header
+     * @param integer $id id of the album that contains the playslists
+     * @param integer $limit number of album to be displayed
+     * @return array $playslists array of playslists to be displayed on the profile page, false in case of error
+     */
+    public function header($id, $limit = 1) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$playslists = array();
+	$sql = "SELECT id,
+		   name
+              FROM playslist 
+             WHERE active = 1
+               AND fromuser =" . $id .
+	 "ORDER BY createdat DES
+             LIMIT" . $limit .
+	$results = mysqli_query($connection, $sql);
+	if (!$results) {
+	    return false;
+	}
+	while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
+	    $rows_playslist[] = $row;
+	if (!is_array($rows_playslist)) {
+	    return $playslists;
+	}
+	foreach ($rows_playslist as $row) {
+	    $playslist['id'] = $row['id'];
+	    $playslist['name'] = $row['name'];
+	    $playslists[$row['id']] = $playslist;
+	}
+	return $playslists;
+    }
 }
