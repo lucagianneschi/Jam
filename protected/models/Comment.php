@@ -220,8 +220,21 @@ class Comment extends CActiveRecord {
 	    $comment['fromuser'] = $fromuser;
 	    $comment['lovecounter'] = $row['lovecounter'];
 	    $comment['sharecounter'] = $row['sharecounter'];
-	    //@todo recuperare i tag del comment
-
+	    $sql_tag = "SELECT id_user
+		  FROM comment_tag
+		 WHERE id_comment = " . $row['id_c'];
+	    $results_comment_tag = mysqli_query($connection, $sql_tag);
+	    if (!$results_comment_tag) {
+		return false;
+	    }
+	    $tags_comment = array();
+	    $rows_tag_comment = array();
+	    while ($row_tag_comment = mysqli_fetch_array($results_comment_tag, MYSQLI_ASSOC))
+		$rows_tag_comment[] = $row_tag_comment;
+	    foreach ($rows_tag_comment as $row_tag_comment) {
+		$tags_comment[] = $row_tag_comment;
+	    }
+	    $comment['tags'] = $tags_comment;
 	    $comment['text'] = $row['text'];
 	    $comments[$row['id']] = $comment;
 	}
