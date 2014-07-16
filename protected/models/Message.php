@@ -112,8 +112,8 @@ class Message extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
 	return parent::model($className);
-    }
-
+    }    
+    
     /**
      * Returns an array of message for the the message page
      * @param integer $id id of the touser or the fromuser
@@ -125,7 +125,9 @@ class Message extends CActiveRecord {
 	if ($connection === false) {
 	    return false;
 	}
+	$list = array();
 	$messages = array();
+	$users = array();
 	$sql = "SELECT m.id id_m,
 		       text, 
 	               m.createdat createdat_m,
@@ -137,10 +139,11 @@ class Message extends CActiveRecord {
 		       tu.type type_tu,
 		       tu.thumbnail thumbnail_tu,
 		       tu.username username_tu
-              FROM message m, user fu
+              FROM message m, user fu, user tu
              WHERE active = 1
                AND fromuser =" . $id .
-		"OR =". $id ;
+		"OR =". $id .
+		"ORDER BY createdat_m";
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -161,6 +164,7 @@ class Message extends CActiveRecord {
 	    $touser['thumbnail_tu'] = $row['thumbnail_tu'];
 	    $touser['type_tu'] = $row['type_tu'];
 	    $touser['username_tu'] = $row['username_tu'];
+	    $fromuser['id_fu'] == $id ? array_push($users, $touser) : array_push($users, $fromuser);
 	    $message = array();
 	    $message['id'] = $row['id_m'];
 	    $message['createdat'] = $row['createdat_m'];
@@ -169,7 +173,9 @@ class Message extends CActiveRecord {
 	    $message['touser'] = $touser;
 	    $messages[$row['id']] = $message;
 	}
-	return $messages;
+	$list['messages'] = $messages;
+	$list['users'] = array_unique($users);
+	return $list;
     }
 
 }
