@@ -234,7 +234,6 @@ class Event extends CActiveRecord {
                    sharecounter,
                    e.thumbnail thumbnail_e,
                    title,
-                   createdat,
 		   u.id id_u,
 		   username,
 		   type,
