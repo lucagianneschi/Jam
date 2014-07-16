@@ -178,7 +178,7 @@ class Record extends CActiveRecord {
      * @param integer $id id of the 
      * @return array $images array of records to be displayed on the profile page, false in case of error
      */
-    public function record($id) {
+    public function recordPage($id) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {

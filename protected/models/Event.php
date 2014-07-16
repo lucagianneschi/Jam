@@ -213,7 +213,7 @@ class Event extends CActiveRecord {
      * @param integer $id id of the event
      * @return array $images array of events to be displayed on the profile page, false in case of error
      */
-    public function event($id) {
+    public function eventPage($id) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {
