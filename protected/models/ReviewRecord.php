@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "review_record".
+ * This is the model class for table "review_rrcord".
  *
- * The followings are the available columns in table 'review_record':
+ * The followings are the available columns in table 'review_rrcord':
  * @property string $id
  * @property integer $active
  * @property integer $commentcounter
@@ -31,7 +31,7 @@ class ReviewRecord extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'review_record';
+		return 'review_rrcord';
 	}
 
 	/**
@@ -144,4 +144,61 @@ class ReviewRecord extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	    /**
+     * Returns an array of reviewrecord for the the event page
+     * @param integer $id id of the event
+     * @return array $reviewrecord array of reviewrecords to be displayed on the event page, false in case of error
+     */
+    public function recordPage($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$reviews = array();
+	$sql = "SELECT rr.id id_rr,
+                   rr.commentcounter,
+		   rr.createdat createdat_rr,
+                   rr.lovecounter lovecounter_rr,
+		   rr.record record_rr,
+		   rr.reviewcounter reviewcounter_rr,
+                   rr.sharecounter sharecounter_rr,
+		   rr.text text_rr,
+		   rr.vote vote_rr,
+		   u.id id_u,
+		   u.username username_u,
+		   u.type type_u,
+		   u.thumbnail thumbnail_u
+              FROM review_record rr, user u
+             WHERE rr.active = 1
+               AND rr.event =" . $id;
+	$results = mysqli_query($connection, $sql);
+	if (!$results) {
+	    return false;
+	}
+	while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
+	    $rows_event_rrview[] = $row;
+	if (!is_array($rows_event_rrview)) {
+	    return $reviews;
+	}
+	foreach ($rows_event_rrview as $row) {
+	    $fromuser = array();
+	    $fromuser['id'] = $row['id_u'];
+	    $fromuser['thumbnail'] = $row['thumbnail_u'];
+	    $fromuser['type'] = $row['type_u'];
+	    $fromuser['username'] = $row['username_u'];
+	    $review = array();
+	    $review['id'] = $row['id_e'];
+	    $review['commentcounter'] = $row['commentcounter_rr'];
+	    $review['fromuser'] = $fromuser;
+	    $review['lovecounter'] = $row['lovecounter_rr'];
+	    $review['reviewcounter'] = $row['reviewcounter_rr'];
+	    $review['sharecounter'] = $row['sharecounter_rr'];
+	    $review['text'] = $row['text_rr'];
+	    $review['vote'] = $row['vote_rr'];
+	    $reviews[$row['id_rr']] = $review;
+	}
+	return $reviews;
+    }
 }
