@@ -196,4 +196,73 @@ class ReviewEvent extends CActiveRecord {
 	return $reviews;
     }
 
+    /**
+     * Returns an array of reviewevent for the the event page
+     * @param integer $id id of the event
+     * @param string $type of the user (SPOTTER/JAMMER/VENUE)
+     * @return array $reviewevent array of reviewevents to be displayed on the event page, false in case of error
+     */
+    public function profile($id, $type) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$reviews = array();
+	$sql = "SELECT re.id id_re,
+                   re.commentcounter,
+		   re.createdat createdat_re,
+                   re.event event_re,
+                   re.lovecounter lovecounter_re,
+		   re.reviewcounter reviewcounter_re,
+                   re.sharecounter sharecounter_re,
+		   re.text text_re,
+		   re.vote vote_re,
+		   e.title title_e,
+		   e.thumbnail thumbnail_e,
+		   u.id id_u,
+		   u.username username_u,
+		   u.type type_u,
+		   u.thumbnail thumbnail_u
+              FROM review_event re, user u, event e
+             WHERE re.active = 1";
+	if ($type == 'SPOTTER') {
+	    $sql .= " AND re.fromuser = " . $id . "";
+	} else {
+	    $sql .= " AND re.touser = " . $id . "";
+	}
+	$results = mysqli_query($connection, $sql);
+	if (!$results) {
+	    return false;
+	}
+	while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
+	    $rows_event_review[] = $row;
+	if (!is_array($rows_event_review)) {
+	    return $reviews;
+	}
+	foreach ($rows_event_review as $row) {
+	    //@todo fare check sulle property richieste per l'event
+	    $event = array();
+	    $event['title'] = $row['title_e'];
+	    $event['thumbnail'] = $row['thumbnail_e'];
+	    $fromuser = array();
+	    $fromuser['id'] = $row['id_u'];
+	    $fromuser['thumbnail'] = $row['thumbnail_u'];
+	    $fromuser['type'] = $row['type_u'];
+	    $fromuser['username'] = $row['username_u'];
+	    $review = array();
+	    $review['id'] = $row['id_re'];
+	    $review['commentcounter'] = $row['commentcounter_re'];
+	    $review['fromuser'] = $fromuser;
+	    $review['event'] = $event;
+	    $review['lovecounter'] = $row['lovecounter_re'];
+	    $review['reviewcounter'] = $row['reviewcounter_re'];
+	    $review['sharecounter'] = $row['sharecounter_re'];
+	    $review['text'] = $row['text_re'];
+	    $review['vote'] = $row['vote_re'];
+	    $reviews[$row['id_re']] = $review;
+	}
+	return $reviews;
+    }
+
 }
