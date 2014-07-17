@@ -7,7 +7,7 @@
  * @property string $id
  * @property integer $active
  * @property integer $commentcounter
- * @property string $event
+ * @property string $review
  * @property string $fromuser
  * @property double $latitude
  * @property double $longitude
@@ -21,7 +21,7 @@
  *
  * The followings are the available model relations:
  * @property User $fromuser0
- * @property Event $event0
+ * @property Event $review0
  * @property User $touser0
  */
 class ReviewEvent extends CActiveRecord {
@@ -52,7 +52,7 @@ class ReviewEvent extends CActiveRecord {
 	    array('vote', 'numerical', 'max' => 5, 'tooBig' => '{attribute} can be at most 5'),
 	    array('vote', 'numerical', 'min' => 1, 'tooSmall' => '{attribute} can be at least 1'),
 	    array('active', 'default', 'value' => 1),
-	    array('commentcounter, lovecounter, sharecounter', 'default', 'value'=>0),
+	    array('commentcounter, lovecounter, sharecounter', 'default', 'value' => 0),
 	    array('text', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
@@ -80,13 +80,13 @@ class ReviewEvent extends CActiveRecord {
 	return array(
 	    'id' => Yii::t('string', 'model.id'),
 	    'active' => Yii::t('string', 'model.active'),
-	    'commentcounter'=>Yii::t('string','model.commentcounter'),
+	    'commentcounter' => Yii::t('string', 'model.commentcounter'),
 	    'event' => Yii::t('string', 'model.event'),
 	    'fromuser' => Yii::t('string', 'model.fromuser'),
 	    'latitude' => Yii::t('string', 'model.latitude'),
 	    'longitude' => Yii::t('string', 'model.longitude'),
-	    'lovecounter'=>Yii::t('string','model.lovecounter'),
-	    'sharecounter'=>Yii::t('string','model.sharecounter'),
+	    'lovecounter' => Yii::t('string', 'model.lovecounter'),
+	    'sharecounter' => Yii::t('string', 'model.sharecounter'),
 	    'text' => Yii::t('string', 'model.review.text'),
 	    'touser' => Yii::t('string', 'model.touser'),
 	    'vote' => Yii::t('string', 'model.vote'),
@@ -137,6 +137,63 @@ class ReviewEvent extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
 	return parent::model($className);
+    }
+
+    /**
+     * Returns an array of reviewevent for the the event page
+     * @param integer $id id of the event
+     * @return array $reviewevent array of reviewevents to be displayed on the event page, false in case of error
+     */
+    public function eventPage($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$reviews = array();
+	$sql = "SELECT re.id id_re,
+                   re.commentcounter,
+		   re.createdat createdat_re,
+                   re.event event_re,
+                   re.lovecounter lovecounter_re,
+		   re.reviewcounter reviewcounter_re,
+                   re.sharecounter sharecounter_re,
+		   re.text text_re,
+		   re.vote vote_re,
+		   u.id id_u,
+		   u.username username_u,
+		   u.type type_u,
+		   u.thumbnail thumbnail_u
+              FROM review_event re, user u
+             WHERE re.active = 1
+               AND re.event =" . $id;
+	$results = mysqli_query($connection, $sql);
+	if (!$results) {
+	    return false;
+	}
+	while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
+	    $rows_event_review[] = $row;
+	if (!is_array($rows_event_review)) {
+	    return $reviews;
+	}
+	foreach ($rows_event_review as $row) {
+	    $fromuser = array();
+	    $fromuser['id'] = $row['id_u'];
+	    $fromuser['thumbnail'] = $row['thumbnail_u'];
+	    $fromuser['type'] = $row['type_u'];
+	    $fromuser['username'] = $row['username_u'];
+	    $review = array();
+	    $review['id'] = $row['id_re'];
+	    $review['commentcounter'] = $row['commentcounter_re'];
+	    $review['fromuser'] = $fromuser;
+	    $review['lovecounter'] = $row['lovecounter_re'];
+	    $review['reviewcounter'] = $row['reviewcounter_re'];
+	    $review['sharecounter'] = $row['sharecounter_re'];
+	    $review['text'] = $row['text_re'];
+	    $review['vote'] = $row['vote_re'];
+	    $reviews[$row['id_re']] = $review;
+	}
+	return $reviews;
     }
 
 }
