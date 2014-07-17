@@ -136,6 +136,57 @@ class Song extends CActiveRecord {
     }
 
     /**
+     * Returns an array of song for the header, info to be displayed in the player
+     * @param integer $id id of the album that contains the songs
+     * @return array $songs array of songs to be displayed on the profile page, false in case of error
+     */
+    function selectSongsInPlaylist($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "SELECT s.id id_s,
+		       s.updatedat,
+		       s.active,
+		       s.duration,
+		       s.fromuser,
+		       s.path,
+		       s.record,
+		       s.title title_s,
+		       u.id id_u,
+		       u.username,
+		       r.id id_r,
+		       r.thumbnail thumbnail_r,
+		       r.title title_r,
+		       pl.fromuser fromuser_pl
+		  FROM playlist pl, playlist_song ps, record r, song s, user u
+		 WHERE fromuser_pl =" .$id.
+		  "AND s.id = ps.id_song 
+		   AND pl.fromuser = u.id 
+		   AND s.record = r.id 
+		   AND ps.playlist = pl.id s.active = 1
+		 LIMIT 15";
+	$results = mysqli_query($connection, $sql);
+	if (!$results) {
+	    return false;
+	}
+	while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
+	    $rows[] = $row;
+	$songs = array();
+	foreach ($rows as $row) {
+	    $song['artist']= $row['username'];
+	    $song['duration']= $row['duration'];
+	    $song['path']= $row['path'];
+	    $song['title_record']= $row['title_r'];
+	    $song['title_song']= $row['title_s'];
+	    $song['thumbnail']= $row['thumbnail_r'];
+	    $songs[$row['id_s']] = $song;
+	}
+	return $songs;
+    }
+
+    /**
      * Returns an array of song for the the profile page
      * @param integer $id id of the album that contains the songs
      * @param integer $limit number of album to be displayed
