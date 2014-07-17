@@ -254,7 +254,7 @@ class Event extends CActiveRecord {
 	    //vedere se tutti i campi dello user sono OK
 	    $fromuser = array();
 	    $fromuser['id'] = $row['id_u'];
-	    $fromuser['thumbnail_u'] = $row['thumbnail_u'];
+	    $fromuser['thumbnail'] = $row['thumbnail_u'];
 	    $fromuser['type'] = $row['type'];
 	    $fromuser['username'] = $row['username'];
 	    $event = array();
@@ -320,7 +320,7 @@ class Event extends CActiveRecord {
 		$types_event[] = $row_type_event;
 	    }
 	    $event['eventtypes'] = $types_event;
-	    $events[$row['id']] = $event;
+	    $events[$row['id_e']] = $event;
 	}
 	return $events;
     }

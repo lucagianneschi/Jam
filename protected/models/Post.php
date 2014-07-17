@@ -226,7 +226,7 @@ class Post extends CActiveRecord {
 	    $touser['username'] = $row['username_tu'];
 	    $touser['type'] = $row['type_tu'];
 	    $touser['thumbnail'] = $row['thumbnail_tu'];
-	    $post['id'] = $row['id'];
+	    $post['id'] = $row['id_p'];
 	    $post['fromuser'] = $fromuser;
 	    $post['commentcounter'] = $row['commentcounter'];
 	    $post['lovecounter'] = $row['lovecounter'];
@@ -249,7 +249,7 @@ class Post extends CActiveRecord {
 	    $post['tags'] = $tags_post;
 	    $post['text'] = $row['text'];
 	    $post['touser'] = $touser;
-	    $posts[$row['id']] = $post;
+	    $posts[$row['id_p']] = $post;
 	}
 	return $posts;
     }

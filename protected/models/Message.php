@@ -155,23 +155,23 @@ class Message extends CActiveRecord {
 	}
 	foreach ($rows_message as $row) {
 	    $fromuser = array();
-	    $fromuser['id_fu'] = $row['id_fu'];
-	    $fromuser['thumbnail_fu'] = $row['thumbnail_fu'];
-	    $fromuser['type_fu'] = $row['type_fu'];
-	    $fromuser['username_fu'] = $row['username_fu'];
+	    $fromuser['id'] = $row['id_fu'];
+	    $fromuser['thumbnail'] = $row['thumbnail_fu'];
+	    $fromuser['type'] = $row['type_fu'];
+	    $fromuser['username'] = $row['username_fu'];
 	    $touser = array();
-	    $touser['id_tu'] = $row['id_tu'];
-	    $touser['thumbnail_tu'] = $row['thumbnail_tu'];
-	    $touser['type_tu'] = $row['type_tu'];
-	    $touser['username_tu'] = $row['username_tu'];
-	    $fromuser['id_fu'] == $id ? array_push($users, $touser) : array_push($users, $fromuser);
+	    $touser['id'] = $row['id_tu'];
+	    $touser['thumbnail'] = $row['thumbnail_tu'];
+	    $touser['type'] = $row['type_tu'];
+	    $touser['username'] = $row['username_tu'];
+	    $fromuser['id'] == $id ? array_push($users, $touser) : array_push($users, $fromuser);
 	    $message = array();
 	    $message['id'] = $row['id_m'];
 	    $message['createdat'] = $row['createdat_m'];
 	    $message['fromuser'] = $fromuser;    
 	    $message['text'] = $row['text'];
 	    $message['touser'] = $touser;
-	    $messages[$row['id']] = $message;
+	    $messages[$row['id_m']] = $message;
 	}
 	$list['messages'] = $messages;
 	$list['users'] = array_unique($users);

@@ -278,7 +278,7 @@ class Record extends CActiveRecord {
 	    }
 	    $record['recordtypes'] = $types_record;
 	    $record['year'] = $row['year'];
-	    $records[$row['id']] = $record;
+	    $records[$row['id_r']] = $record;
 	}
 	return $records;
     }

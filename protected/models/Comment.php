@@ -215,7 +215,7 @@ class Comment extends CActiveRecord {
 	    $fromuser['thumbnail'] = $row['thumbnail'];
 	    $fromuser['type'] = $row['type'];
 	    $fromuser['username'] = $row['username'];
-	    $comment['id'] = $row['id'];
+	    $comment['id'] = $row['id_c'];
 	    $comment['commentcounter'] = $row['commentcounter'];
 	    $comment['fromuser'] = $fromuser;
 	    $comment['lovecounter'] = $row['lovecounter'];
@@ -236,7 +236,7 @@ class Comment extends CActiveRecord {
 	    }
 	    $comment['tags'] = $tags_comment;
 	    $comment['text'] = $row['text'];
-	    $comments[$row['id']] = $comment;
+	    $comments[$row['id_c']] = $comment;
 	}
 	return $comments;
     }

@@ -169,7 +169,7 @@ class Image extends CActiveRecord {
                    createdat
               FROM image 
              WHERE active = 1
-               AND album =" . $id .
+               AND album = " . $id .
 		"ORDER BY createdat ASC
              LIMIT" . $limit .
 		"SKIP" . $skip;
