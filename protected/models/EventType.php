@@ -97,4 +97,9 @@ class EventType extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public function primaryKey()
+		{
+		        return 'id_event';
+		}
 }

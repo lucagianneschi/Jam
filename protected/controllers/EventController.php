@@ -85,13 +85,17 @@ class EventController extends Controller
 
 		if(isset($_POST['Event']))
 		{
-			
-			$_POST['Event']['cover'] = 'cover'; //ricavato da plugin per upload image
-			$_POST['Event']['fromuser'] = $fromuser->id;			
-			$_POST['Event']['thumbnail'] = 'thumbnail'; //ricavato da plugin per upload image
+			$_POST['Event']['cover'] = 'cover';
+			$_POST['Event']['thumbnail'] = 'thumbnail';	
+			$_POST['Event']['fromuser'] = $fromuser->id;
 			$_POST['Event']['createdat'] = date('Y-m-d H:i:s');
 			$_POST['Event']['updatedat'] = date('Y-m-d H:i:s');
-			
+			$model->image = $_POST['Event']['image'];
+			$model->cropID = $_POST['Event']['cropID'];
+			$model->cropX = $_POST['Event']['cropX'];
+			$model->cropY = $_POST['Event']['cropY'];
+			$model->cropW = $_POST['Event']['cropW'];
+			$model->cropH = $_POST['Event']['cropH'];
 			$model->attributes=$_POST['Event'];
 			if($model->save()){
 				$eventGenre =new EventGenre;
@@ -110,12 +114,13 @@ class EventController extends Controller
 				}
 				$this->redirect(array('view','id'=>$model->id));
 				
+				
 			}
-	/*		else{
+			else{
 				Yii::log("errors saving event: " . var_export($model->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);			
 				throw new CHttpException(405,'Error saving event');
-			}
-		*/		
+				}
+				
 		}
 
 		$this->render('create',array(
@@ -133,19 +138,70 @@ class EventController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$model->image = $model->cover;
+		
+		$genre = Genre::model()->findAll();
+		
+		if($genre===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		
+		$eventTypes = Eventtypes::model()->findAll();
+		
+		if($eventTypes===null)
+			throw new CHttpException(404,'The requested page does not exist.');
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Event']))
 		{
-			$model->attributes=$_POST['Event'];
-			if($model->save())
+			$_POST['Event']['cover'] = $model->cover;
+			$_POST['Event']['thumbnail'] = $model->thumbnail;	
+			$_POST['Event']['updatedat'] = date('Y-m-d H:i:s');
+			$model->image = $_POST['Event']['image'];
+			$model->cropID = $_POST['Event']['cropID'];
+			$model->cropX = $_POST['Event']['cropX'];
+			$model->cropY = $_POST['Event']['cropY'];
+			$model->cropW = $_POST['Event']['cropW'];
+			$model->cropH = $_POST['Event']['cropH'];
+			$model->attributes=$_POST['Event'];			
+			
+			if($model->save()){
+				
+				
+				$eventGenre = EventGenre::model()->findByAttributes(array('id_event'=>$model->id));
+				
+				if($eventGenre===null)
+					throw new CHttpException(404,'Errors finding event genre.');
+		
+				$eventGenre->id_genre = (int) $_POST['Event']['genre'];
+				$eventGenre->id_event = (int) $model->id;
+				if(!$eventGenre->save()){
+					throw new CHttpException(405,'Errors saving event genre');
+				}
+				
+				$eventType = EventType::model()->findByAttributes(array('id_event'=>$model->id));
+				if($eventType===null)
+					throw new CHttpException(404,'The requested page does not exist.');
+				
+				$eventType->id_type = (int)$_POST['Event']['eventtype'];
+				if(!$eventType->save()){
+					throw new CHttpException(405,'Errors saving event type');
+				}
 				$this->redirect(array('view','id'=>$model->id));
+				
+			}
+			else{
+				Yii::log("errors saving event: " . var_export($model->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);			
+				throw new CHttpException(405,'Error upload event');
+				} 
+			
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+			'genre'=>$genre,
+			'eventTypes' => $eventTypes,
 		));
 	}
 
@@ -195,11 +251,10 @@ class EventController extends Controller
 	public function actionUpload()
         {
         	
-            $tempFolder=Yii::app()->baseUrl.'/'.Yii::app()->params['users_dir']['temp'].'/';
+            $tempFolder=Yii::getPathOfAlias('webroot').'/'.Yii::app()->params['users_dir']['temp'].'/';
 			
-			if(!@opendir($tempFolder)){
+			if(!is_dir($tempFolder)){
 				mkdir($tempFolder, 0777, TRUE);
-				mkdir($tempFolder.'chunks', 0777, TRUE);
 			}
 			
      		Yii::import("ext.EFineUploader.qqFileUploader");

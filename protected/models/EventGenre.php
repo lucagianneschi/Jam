@@ -86,7 +86,8 @@ class EventGenre extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-
+	
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
@@ -97,4 +98,9 @@ class EventGenre extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public function primaryKey()
+		{
+		        return 'id_event';
+		}
 }

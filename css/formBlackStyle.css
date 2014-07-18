@@ -225,11 +225,16 @@
   background: #ff7505 !important;
 }
 
-/* line 214, ../sass/formBlackStyle.scss */
+/* line 211, ../sass/formBlackStyle.scss */
+.upload-box img {
+  max-width: none !important;
+}
+
+/* line 219, ../sass/formBlackStyle.scss */
 .formBlack #s2id_trackFeaturing {
   margin-bottom: 10px !important;
 }
-/* line 217, ../sass/formBlackStyle.scss */
+/* line 222, ../sass/formBlackStyle.scss */
 .formBlack .select2-container-multi .select2-choices {
   font-size: 14px;
   background: #1c1c1c !important;
@@ -237,30 +242,30 @@
   border: 1px solid #303030 !important;
   margin-left: 0px !important;
 }
-/* line 223, ../sass/formBlackStyle.scss */
+/* line 228, ../sass/formBlackStyle.scss */
 .formBlack .select2-container-multi .select2-choices:focus {
   background-color: #303030 !important;
   border-bottom: 0px solid #787878 !important;
 }
-/* line 229, ../sass/formBlackStyle.scss */
+/* line 234, ../sass/formBlackStyle.scss */
 .formBlack .select2-container-active {
   border: 1px solid #303030 !important;
 }
-/* line 233, ../sass/formBlackStyle.scss */
+/* line 238, ../sass/formBlackStyle.scss */
 .formBlack .select2-no-results {
   display: none !important;
 }
-/* line 237, ../sass/formBlackStyle.scss */
+/* line 242, ../sass/formBlackStyle.scss */
 .formBlack .select2-drop {
   color: #f3f3f3 !important;
   background: #1c1c1c !important;
   border: 1px solid #1c1c1c !important;
 }
-/* line 243, ../sass/formBlackStyle.scss */
+/* line 248, ../sass/formBlackStyle.scss */
 .formBlack .select2-highlighted {
   background: #ff7505 !important;
 }
-/* line 246, ../sass/formBlackStyle.scss */
+/* line 251, ../sass/formBlackStyle.scss */
 .formBlack .select2-search-choice {
   font-weight: 500 !important;
   height: 30px !important;
@@ -273,14 +278,14 @@
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
-/* line 258, ../sass/formBlackStyle.scss */
+/* line 263, ../sass/formBlackStyle.scss */
 .formBlack .select2-search input.select2-active {
   background: #1c1c1c !important;
   color: #f3f3f3 !important;
 }
 
 /* Progress Bar */
-/* line 266, ../sass/formBlackStyle.scss */
+/* line 271, ../sass/formBlackStyle.scss */
 .ui-progressbar,
 .ui-progressbar-value {
   position: relative;
@@ -290,7 +295,7 @@
   border-radius: 1px;
 }
 
-/* line 275, ../sass/formBlackStyle.scss */
+/* line 280, ../sass/formBlackStyle.scss */
 .ui-progressbar {
   cursor: pointer;
   margin: 15px 0 20px 0;
@@ -299,13 +304,13 @@
   top: 10px;
 }
 
-/* line 283, ../sass/formBlackStyle.scss */
+/* line 288, ../sass/formBlackStyle.scss */
 .ui-progressbar-value {
   top: 12px;
   background: #ff7505;
 }
 
-/* line 288, ../sass/formBlackStyle.scss */
+/* line 293, ../sass/formBlackStyle.scss */
 .ui-progressbar-value span.progressTooltip {
   position: absolute;
   display: block;

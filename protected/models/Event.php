@@ -91,14 +91,21 @@ class Event extends CActiveRecord {
 	    array('locationname', 'length', 'min' => 2, 'tooShort' => '{attribute} must be at least 2 characters'),
 	    array('createdat, updatedat', 'date', 'format' => 'yyyy-M-d H:m:s'),
 	    array('eventdate', 'date', 'format' => 'yyyy-M-d H:m'),
+	    array('eventdate', 'dateValid'),
 	    array('commentcounter, lovecounter,reviewcounter, sharecounter', 'default', 'value' => 0),
 	    array('attendeecounter, cancelledcounter,invitedcounter, refusedcounter', 'default', 'value' => 0),
 	    array('active', 'default', 'value' => 1),
 	    array('city, description, locationname, title', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
-	    array('id, active, address, attendeecounter, cancelledcounter, city, commentcounter, cover, description, eventdate, fromuser, invitedcounter, latitude, locationname, longitude, lovecounter, refusedcounter, reviewcounter, sharecounter, thumbnail, title, createdat, updatedat', 'safe', 'on' => 'search'),
-	);
+	    array('id, active, address, attendeecounter, cancelledcounter, city, commentcounter, cover, description, eventdate, fromuser, image, invitedcounter, latitude, locationname, longitude, lovecounter, refusedcounter, reviewcounter, sharecounter, thumbnail, title, createdat, updatedat', 'safe', 'on' => 'search'),
+		);
+    }
+	
+	public function dateValid($attribute){
+		$eventDate = strtotime($this->eventdate); 
+        if($eventDate  < strtotime('now'))
+            $this->addError($attribute, 'Please enter a correct date');  
     }
 
     /**
@@ -206,6 +213,25 @@ class Event extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
 	return parent::model($className);
+    }
+	
+	/*
+	 *  crop before save
+	 */ 
+	protected function beforeSave(){
+		
+		if($this->image != $this->cover){
+			
+			$cropImage =  new CropImage($this);
+			
+			$image = $cropImage->crop(300, Yii::app()->params['users_dir']['eventcover'], 100, Yii::app()->params['users_dir']['eventcoverthumb']);
+			
+			$this->cover = $image;
+			
+			$this->thumbnail = $image;
+		}
+		return parent::beforeSave(); // don't forget this line!
+
     }
 
     /**

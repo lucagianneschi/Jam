@@ -2,6 +2,7 @@
 /runtime/
 /nbproject/private/
 /.settings
+/users
 /.sass-cache
 nbproject/project.properties
 nbproject/project.xml

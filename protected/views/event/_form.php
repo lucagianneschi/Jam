@@ -20,10 +20,6 @@
 					<div id="uploadEvent01">
 						<div class="form">	
 							<?php $form = $this -> beginWidget('CActiveForm', array('id' => 'event-form',
-								// Please note: When you enable ajax validation, make sure the corresponding
-								// controller action is handling ajax validation correctly.
-								// There is a call to performAjaxValidation() commented in generated controller code.
-								// See class documentation of CActiveForm for details on this.
 								'enableAjaxValidation' => true,
 								
 								 ));
@@ -45,8 +41,14 @@
 							            <div  class="small-3 columns" id="tumbnail-pane">
 											<div class="thumbnail-box">
 											    <div id="uploadImage_tumbnail-pane" class="uploadImage_tumbnail-pane">
-													<img id="uploadImage_tumbnail" name="uploadImage_tumbnail" alt/>
-													 <?php //echo CHtml::image('', array('id'=>'uploadImage_tumbnail', 'name'=>'uploadImage_tumbnail'));  ?>
+											    	<?php $previewWidth = 100; $previewHeight = 100;?>
+														<div id="avatar-thumb" style="position:relative; overflow:hidden; width:<?=$previewWidth?>px; height:<?=$previewHeight?>px; ">
+															<?php if(isset($model->thumbnail)){
+																 $thumbnail = Yii::app()->params['users_dir']['eventcoverthumb'].'/'.$model->thumbnail;
+															}
+															?>
+															<img id="avatar-preview" class='no-display' src="<?php echo $thumbnail ?>">
+														</div>
 											    </div>
 											</div>
 							            </div>
@@ -76,43 +78,38 @@
 																       'chunking'=>array('enable'=>true,'partSize'=>100),//bytes
 																       'callbacks'=>array(
 															               'onComplete'=>"js:function(id, name, response){
-															               		console.log(name);
-															               		console.log(response);
-															               		$('#cropImg').load('". $this->createUrl('cropImg') ."/name/'+response.filename);
-															             //       $('#cropDialog').dialog('open');
-															             //       $('#avatar-preview').attr('src','". Yii::app()->request->baseUrl ."/upload/temp/'+response.filename);
-																		//		$('#JcropForm_image').val('". Yii::app()->request->baseUrl ."/upload/temp/'+response.filename);
+															               		$('#cropImg').load('". $this->createUrl('cropImg') ."/name/'+encodeURI(response.filename));
+															               		$('#uploadImage_save').removeClass('no-display');
+															                    $('#avatar-preview').attr('src','". Yii::app()->request->baseUrl ."/".Yii::app()->params['users_dir']['temp']."/'+response.filename);
+																				$('#Event_image').val('". Yii::getPathOfAlias('webroot') ."/".Yii::app()->params['users_dir']['temp']."/'+response.filename);
 															               }",
-															               'onError'=>"js:function(id, name, errorReason){
-															               	 	console.log(errorReason);
-															               	 alert(errorReason)}",
+															               'onError'=>"js:function(id, name, errorReason){ alert(errorReason)}",
 															           ),
 																       'validation'=>array(
-															                 'allowedExtensions'=>array('jpg','jpeg','png', 'gif'),
-															                 'sizeLimit'=>2 * 1024 * 1024,//maximum file size in bytes
+															                 'allowedExtensions'=>Yii::app()->params['extensionsAccepted'],
+															                 'sizeLimit'=>Yii::app()->params['maxSize'],//maximum file size in bytes
 															                 'minSizeLimit'=>0,// minimum file size in bytes
 																       ),
 																   )
 															 ));   ?>
 							                        </div>
 							                    </div>
-							                   						        						
-							               
-											
+							                   	<div class="row">	
+							                   		<div id="cropImg"></div>
+							                   	</div>	 											
 							                    <div class="row">							
 							                        <div  class="small-10 small-centered columns align-center">
-													    <div id="uploadImage_preview_box">
-													    	<div id="cropImg"></div>
-													    	
-															<?php 
-											                    echo $form->hiddenField($model,'image',array('maxlength'=>100)); 
-																echo $form->hiddenField($model,'cropID');
-																echo $form->hiddenField($model,'cropX', array('value' => '0'));
-																echo $form->hiddenField($model,'cropY', array('value' => '0'));
-																echo $form->hiddenField($model,'cropW', array('value' => '100'));
-																echo $form->hiddenField($model,'cropH', array('value' => '100'));
-																?>	
-													    </div>
+							                        	<?php 
+							                        		$previewWidth = 100; $previewHeight = 100;
+										                    echo $form->hiddenField($model,'image',array('maxlength'=>100)); 
+															echo $form->hiddenField($model,'thumbnail');
+															echo $form->hiddenField($model,'cover');
+															echo $form->hiddenField($model,'cropX', array('value' => '0'));
+															echo $form->hiddenField($model,'cropY', array('value' => '0'));
+															echo $form->hiddenField($model,'cropW', array('value' => '100'));
+															echo $form->hiddenField($model,'cropH', array('value' => '100'));
+															?>	
+													   
 							                        </div>
 							
 							                    </div>
@@ -130,13 +127,15 @@
 									<div class="row">
 									    
 									    	<?php echo $form -> labelEx($model, 'eventdate'); ?>
-									    	<?php 
+									    	<?php
+									    		
 									    		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
 												    'name'=>'Event[eventdate]',
 												    // additional javascript options for the date picker plugin
 												    'options'=>array(
 												        'showAnim'=>'fold',
           												'dateFormat'=>'yy-mm-dd',
+          												'minDate'=>  date ("Y-m-d"),
 												         'onSelect'=>'js:function(i,j){
 										                       function JSClock() {
 										                          var time = new Date();
@@ -151,13 +150,16 @@
 										
 										                        $v=$(this).val();
 										                        $(this).val($v+" "+JSClock());
+																
 										                          
-										                 }'
+										                 }',
+										                
 												    ),
 												    'htmlOptions'=>array(
 												        'style'=>'height:20px;'
 												    ),
 												));
+												
 									    	?>
 									    	<?php echo $form -> error($model, 'eventdate'); ?>
 										
@@ -304,8 +306,16 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script>
   $(function(){
-    	geocomplete("#Event_address");
-    	
+    	geocomplete("#Event_address");    	
+    	<?php if(isset($model->eventdate) && $model->eventdate != "CURRENT_TIMESTAMP"){ ?>
+    		$('#Event_eventdate').val("<?php echo date("Y-m-d H:i", strtotime($model->eventdate)) ?>")
+    		
+    	<?php } ?>
+    	if($('#avatar-preview').attr('src') != "") $('#avatar-preview').removeClass('no-display');
+    	$( "#uploadImage_save" ).click(function() {
+		  	$('#avatar-preview').removeClass('no-display');
+		  	$('#upload').foundation('reveal', 'close');
+		});
     			
   });
   function compileForm(location){
