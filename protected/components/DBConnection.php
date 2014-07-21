@@ -50,7 +50,7 @@ class DBConnection {
      */
     public function connect() {
 	try {
-	    $connection = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PSW, MYSQL_DB);
+	    $connection = mysqli_connect('jam-vm-dev-1.cloudapp.net:3306', 'jamyourself', 'J4my0urs3lf', 'jamdb');
 	    if (mysqli_connect_errno($connection)) {
 		return false;
 	    } else {
