@@ -146,7 +146,7 @@ class Playlist extends CActiveRecord
              WHERE active = 1
                AND fromuser =" . $id .
 	 "ORDER BY createdat DES
-             LIMIT" . $limit .
+             LIMIT" . $limit;
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
