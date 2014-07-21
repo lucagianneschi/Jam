@@ -34,7 +34,7 @@ class EventController extends Controller
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update','upload','cropImg'),
 				'users'=>array('@'),
-				'expression'=>Yii::app()->session['type'].'== VENUE || '.Yii::app()->session['type'].' == JAMMER',
+				'expression'=>'"'.Yii::app()->session['type'].'"== "VENUE" || "'.Yii::app()->session['type'].'" == "JAMMER"',
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
@@ -138,71 +138,79 @@ class EventController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-		$model->image = $model->cover;
 		
-		$genre = Genre::model()->findAll();
+		if($model->fromuser == Yii::app()->session['id']){
 		
-		if($genre===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		
-		$eventTypes = Eventtypes::model()->findAll();
-		
-		if($eventTypes===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-
-		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
-
-		if(isset($_POST['Event']))
-		{
-			$_POST['Event']['cover'] = $model->cover;
-			$_POST['Event']['thumbnail'] = $model->thumbnail;	
-			$_POST['Event']['updatedat'] = date('Y-m-d H:i:s');
-			$model->image = $_POST['Event']['image'];
-			$model->cropID = $_POST['Event']['cropID'];
-			$model->cropX = $_POST['Event']['cropX'];
-			$model->cropY = $_POST['Event']['cropY'];
-			$model->cropW = $_POST['Event']['cropW'];
-			$model->cropH = $_POST['Event']['cropH'];
-			$model->attributes=$_POST['Event'];			
+			$model->image = $model->cover;
 			
-			if($model->save()){
+			$genre = Genre::model()->findAll();
+			
+			if($genre===null)
+				throw new CHttpException(404,'The requested page does not exist.');
+			
+			$eventTypes = Eventtypes::model()->findAll();
+			
+			if($eventTypes===null)
+				throw new CHttpException(404,'The requested page does not exist.');
+	
+			// Uncomment the following line if AJAX validation is needed
+			$this->performAjaxValidation($model);
+	
+			if(isset($_POST['Event']))
+			{
+				$_POST['Event']['cover'] = $model->cover;
+				$_POST['Event']['thumbnail'] = $model->thumbnail;	
+				$_POST['Event']['updatedat'] = date('Y-m-d H:i:s');
+				$model->image = $_POST['Event']['image'];
+				$model->cropID = $_POST['Event']['cropID'];
+				$model->cropX = $_POST['Event']['cropX'];
+				$model->cropY = $_POST['Event']['cropY'];
+				$model->cropW = $_POST['Event']['cropW'];
+				$model->cropH = $_POST['Event']['cropH'];
+				$model->attributes=$_POST['Event'];			
 				
-				
-				$eventGenre = EventGenre::model()->findByAttributes(array('id_event'=>$model->id));
-				
-				if($eventGenre===null)
-					throw new CHttpException(404,'Errors finding event genre.');
-		
-				$eventGenre->id_genre = (int) $_POST['Event']['genre'];
-				$eventGenre->id_event = (int) $model->id;
-				if(!$eventGenre->save()){
-					throw new CHttpException(405,'Errors saving event genre');
+				if($model->save()){
+					
+					
+					$eventGenre = EventGenre::model()->findByAttributes(array('id_event'=>$model->id));
+					
+					if($eventGenre===null)
+						throw new CHttpException(404,'Errors finding event genre.');
+			
+					$eventGenre->id_genre = (int) $_POST['Event']['genre'];
+					$eventGenre->id_event = (int) $model->id;
+					if(!$eventGenre->save()){
+						throw new CHttpException(405,'Errors saving event genre');
+					}
+					
+					$eventType = EventType::model()->findByAttributes(array('id_event'=>$model->id));
+					if($eventType===null)
+						throw new CHttpException(404,'The requested page does not exist.');
+					
+					$eventType->id_type = (int)$_POST['Event']['eventtype'];
+					if(!$eventType->save()){
+						throw new CHttpException(405,'Errors saving event type');
+					}
+					$this->redirect(array('view','id'=>$model->id));
+					
 				}
-				
-				$eventType = EventType::model()->findByAttributes(array('id_event'=>$model->id));
-				if($eventType===null)
-					throw new CHttpException(404,'The requested page does not exist.');
-				
-				$eventType->id_type = (int)$_POST['Event']['eventtype'];
-				if(!$eventType->save()){
-					throw new CHttpException(405,'Errors saving event type');
-				}
-				$this->redirect(array('view','id'=>$model->id));
+				else{
+					Yii::log("errors saving event: " . var_export($model->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);			
+					throw new CHttpException(405,'Error upload event');
+					} 
 				
 			}
-			else{
-				Yii::log("errors saving event: " . var_export($model->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);			
-				throw new CHttpException(405,'Error upload event');
-				} 
-			
+	
+			$this->render('update',array(
+				'model'=>$model,
+				'genre'=>$genre,
+				'eventTypes' => $eventTypes,
+			));
 		}
-
-		$this->render('update',array(
-			'model'=>$model,
-			'genre'=>$genre,
-			'eventTypes' => $eventTypes,
-		));
+		else{
+			Yii::log("Upload Event: not authorized: " . var_export($model->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);			
+			throw new CHttpException(403,'You are not authorized to perform this action');
+		}
 	}
 
 	/**

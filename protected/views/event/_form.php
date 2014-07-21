@@ -43,7 +43,9 @@
 											    <div id="uploadImage_tumbnail-pane" class="uploadImage_tumbnail-pane">
 											    	<?php $previewWidth = 100; $previewHeight = 100;?>
 														<div id="avatar-thumb" style="position:relative; overflow:hidden; width:<?=$previewWidth?>px; height:<?=$previewHeight?>px; ">
-															<?php if(isset($model->thumbnail)){
+															<?php 
+															$thumbnail = "";
+															if(isset($model->thumbnail)){
 																 $thumbnail = Yii::app()->params['users_dir']['eventcoverthumb'].'/'.$model->thumbnail;
 															}
 															?>
@@ -78,10 +80,11 @@
 																       'chunking'=>array('enable'=>true,'partSize'=>100),//bytes
 																       'callbacks'=>array(
 															               'onComplete'=>"js:function(id, name, response){
-															               		$('#cropImg').load('". $this->createUrl('cropImg') ."/name/'+encodeURI(response.filename));
-															               		$('#uploadImage_save').removeClass('no-display');
+															               		$('#cropImg').load('". $this->createUrl('cropImg') ."/name/'+encodeURI(response.filename));															               		
 															                    $('#avatar-preview').attr('src','". Yii::app()->request->baseUrl ."/".Yii::app()->params['users_dir']['temp']."/'+response.filename);
-																				$('#Event_image').val('". Yii::getPathOfAlias('webroot') ."/".Yii::app()->params['users_dir']['temp']."/'+response.filename);
+																				$('#Event_image').val('". Yii::app()->params['users_dir']['temp']."/'+response.filename);
+																				$('#uploadImage_save').removeClass('no-display');
+																				console.log($('#Event_image').val());
 															               }",
 															               'onError'=>"js:function(id, name, errorReason){ alert(errorReason)}",
 															           ),
