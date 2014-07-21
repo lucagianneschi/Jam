@@ -308,9 +308,12 @@ class Record extends CActiveRecord {
               FROM record  
              WHERE active = 1
                AND fromuser =" . $id .
-		"ORDER BY createdat DES
-             LIMIT" . $limit .
-		"SKIP" . $skip;
+		"ORDER BY createdat DESC";
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
+	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;

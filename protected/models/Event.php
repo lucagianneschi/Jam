@@ -99,13 +99,13 @@ class Event extends CActiveRecord {
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
 	    array('id, active, address, attendeecounter, cancelledcounter, city, commentcounter, cover, description, eventdate, fromuser, image, invitedcounter, latitude, locationname, longitude, lovecounter, refusedcounter, reviewcounter, sharecounter, thumbnail, title, createdat, updatedat', 'safe', 'on' => 'search'),
-		);
+	);
     }
-	
-	public function dateValid($attribute){
-		$eventDate = strtotime($this->eventdate); 
-        if($eventDate  < strtotime('now'))
-            $this->addError($attribute, 'Please enter a correct date');  
+
+    public function dateValid($attribute) {
+	$eventDate = strtotime($this->eventdate);
+	if ($eventDate < strtotime('now'))
+	    $this->addError($attribute, 'Please enter a correct date');
     }
 
     /**
@@ -214,24 +214,24 @@ class Event extends CActiveRecord {
     public static function model($className = __CLASS__) {
 	return parent::model($className);
     }
-	
-	/*
-	 *  crop before save
-	 */ 
-	protected function beforeSave(){
-		
-		if($this->image != $this->cover){
-			
-			$cropImage =  new CropImage($this);
-			
-			$image = $cropImage->crop(300, Yii::app()->params['users_dir']['eventcover'], 100, Yii::app()->params['users_dir']['eventcoverthumb']);
-			
-			$this->cover = $image;
-			
-			$this->thumbnail = $image;
-		}
-		return parent::beforeSave(); // don't forget this line!
 
+    /*
+     *  crop before save
+     */
+
+    protected function beforeSave() {
+
+	if ($this->image != $this->cover) {
+
+	    $cropImage = new CropImage($this);
+
+	    $image = $cropImage->crop(300, Yii::app()->params['users_dir']['eventcover'], 100, Yii::app()->params['users_dir']['eventcoverthumb']);
+
+	    $this->cover = $image;
+
+	    $this->thumbnail = $image;
+	}
+	return parent::beforeSave(); // don't forget this line!
     }
 
     /**
@@ -252,9 +252,9 @@ class Event extends CActiveRecord {
                    commentcounter,
 		   eventdate,
 		   fromuser,
-		   latitude,
+		   e.latitude latitude_e,
                    locationname,
-		   longitude,
+		   e.longitude longitude_e,
                    lovecounter,
 		   reviewcounter,
                    sharecounter,
@@ -306,9 +306,9 @@ class Event extends CActiveRecord {
 		$genres[] = $row_genre;
 	    }
 	    $event['genres'] = $genres;
-	    $event['latitude'] = $row['latitude'];
+	    $event['latitude'] = $row['latitude_e'];
 	    $event['locationname'] = $row['locationname'];
-	    $event['longitude'] = $row['longitude'];
+	    $event['longitude'] = $row['longitude_e'];
 	    $event['lovecounter'] = $row['lovecounter'];
 	    $event['reviewcounter'] = $row['reviewcounter'];
 	    $event['sharecounter'] = $row['sharecounter'];
@@ -380,9 +380,12 @@ class Event extends CActiveRecord {
               FROM event  
              WHERE active = 1
                AND fromuser =" . $id .
-		"ORDER BY eventdate DES
-             LIMIT" . $limit .
-		"SKIP" . $skip;
+		"ORDER BY eventdate DESC";
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
+	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;

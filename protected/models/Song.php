@@ -161,8 +161,8 @@ class Song extends CActiveRecord {
 		       r.title title_r,
 		       pl.fromuser fromuser_pl
 		  FROM playlist pl, playlist_song ps, record r, song s, user u
-		 WHERE fromuser_pl =" .$id.
-		  "AND s.id = ps.id_song 
+		 WHERE fromuser_pl =" . $id .
+		"AND s.id = ps.id_song 
 		   AND pl.fromuser = u.id 
 		   AND s.record = r.id 
 		   AND ps.playlist = pl.id s.active = 1
@@ -175,12 +175,12 @@ class Song extends CActiveRecord {
 	    $rows[] = $row;
 	$songs = array();
 	foreach ($rows as $row) {
-	    $song['artist']= $row['username'];
-	    $song['duration']= $row['duration'];
-	    $song['path']= $row['path'];
-	    $song['title_record']= $row['title_r'];
-	    $song['title_song']= $row['title_s'];
-	    $song['thumbnail']= $row['thumbnail_r'];
+	    $song['artist'] = $row['username'];
+	    $song['duration'] = $row['duration'];
+	    $song['path'] = $row['path'];
+	    $song['title_record'] = $row['title_r'];
+	    $song['title_song'] = $row['title_s'];
+	    $song['thumbnail'] = $row['thumbnail_r'];
 	    $songs[$row['id_s']] = $song;
 	}
 	return $songs;
@@ -192,7 +192,7 @@ class Song extends CActiveRecord {
      * @param integer $limit number of album to be displayed
      * @return array $songs array of songs to be displayed on the profile page, false in case of error
      */
-    public function profile($id, $limit = 15) {
+    public function profile($id, $limit = 15, $skip = 0) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {
@@ -210,8 +210,12 @@ class Song extends CActiveRecord {
               FROM song 
              WHERE active = 1
                AND record =" . $id .
-		"ORDER BY position ASC
-             LIMIT" . $limit;
+		"ORDER BY position ASC";
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
+	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;

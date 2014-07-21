@@ -112,14 +112,14 @@ class Message extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
 	return parent::model($className);
-    }    
-    
+    }
+
     /**
      * Returns an array of message for the the message page
      * @param integer $id id of the touser or the fromuser
      * @return array $images array of messages to be displayed on the message page, false in case of error
      */
-    public function messagePage($id) {
+    public function messagePage($id, $limit = 10, $skip = 0) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {
@@ -142,8 +142,13 @@ class Message extends CActiveRecord {
               FROM message m, user fu, user tu
              WHERE active = 1
                AND fromuser =" . $id .
-		"OR =". $id .
+		"OR =" . $id .
 		"ORDER BY createdat_m";
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
+	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -168,7 +173,7 @@ class Message extends CActiveRecord {
 	    $message = array();
 	    $message['id'] = $row['id_m'];
 	    $message['createdat'] = $row['createdat_m'];
-	    $message['fromuser'] = $fromuser;    
+	    $message['fromuser'] = $fromuser;
 	    $message['text'] = $row['text'];
 	    $message['touser'] = $touser;
 	    $messages[$row['id_m']] = $message;

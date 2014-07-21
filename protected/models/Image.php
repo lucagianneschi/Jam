@@ -170,9 +170,12 @@ class Image extends CActiveRecord {
               FROM image 
              WHERE active = 1
                AND album = " . $id .
-		"ORDER BY createdat ASC
-             LIMIT" . $limit .
-		"SKIP" . $skip;
+		"ORDER BY createdat DESC";
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
+	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;

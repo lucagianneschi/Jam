@@ -194,12 +194,15 @@ class Comment extends CActiveRecord {
 		   type,
                    username,
                    c.createdat createdat_c
-              FROM comment 
+              FROM comment c,user u
              WHERE active = 1
-               AND" . $classtype . "=" . $id .
-		"ORDER BY createdat DES
-             LIMIT" . $limit .
-		"SKIP" . $skip;
+               AND" . $classtype . " = " . $id .
+		"ORDER BY createdat DESC";
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
+	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;

@@ -152,8 +152,8 @@ class Post extends CActiveRecord {
               FROM post
              WHERE active = 1
                AND touser =" . $id .
-	      "AND fromuser =" . $id .
-	    "LIMIT 1
+		"AND fromuser =" . $id .
+		"LIMIT 1
 	  ORDER BY createdat DES";
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
@@ -203,9 +203,12 @@ class Post extends CActiveRecord {
               FROM post p, user fu, user tu
              WHERE active = 1
                AND touser =" . $id .
-		"ORDER BY createdat DES
-            LIMIT" . $limit .
-		"SKIP" . $skip;
+		"ORDER BY createdat DESC";
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
+	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -231,7 +234,6 @@ class Post extends CActiveRecord {
 	    $post['commentcounter'] = $row['commentcounter'];
 	    $post['lovecounter'] = $row['lovecounter'];
 	    $post['sharecounter'] = $row['sharecounter'];
-	    //query sul tag
 	    $sql_tag = "SELECT id_user
 		          FROM post_tag
 		         WHERE id = " . $row['id'];
