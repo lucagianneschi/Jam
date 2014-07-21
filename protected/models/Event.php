@@ -57,8 +57,6 @@ class Event extends CActiveRecord {
     public $cropW;
     public $cropH;
     public $eventtype;
-    public $tag;
-    public $genre;
 
     /**
      * @return string the associated database table name
@@ -278,7 +276,6 @@ class Event extends CActiveRecord {
 	    return $events;
 	}
 	foreach ($rows_event as $row) {
-	    //vedere se tutti i campi dello user sono OK
 	    $fromuser = array();
 	    $fromuser['id'] = $row['id_u'];
 	    $fromuser['thumbnail'] = $row['thumbnail_u'];
@@ -291,7 +288,6 @@ class Event extends CActiveRecord {
 	    $event['commentcounter'] = $row['commentcounter'];
 	    $event['eventdate'] = new DateTime($row['eventdate']);
 	    $event['fromuser'] = $fromuser;
-	    //query sul genre
 	    $sql_genre = "SELECT id_genre
 		            FROM event_genre
 		           WHERE id_event = " . $row['id_e'];
@@ -315,10 +311,9 @@ class Event extends CActiveRecord {
 	    $event['sharecounter'] = $row['sharecounter'];
 	    $event['thumbnail_e'] = $row['thumbnail_e'];
 	    $event['title'] = $row['title'];
-	    //query sul tag
 	    $sql_tag = "SELECT id_user
 		          FROM event_tag
-		         WHERE id = " . $row['id_e'];
+		         WHERE id_event = " . $row['id_e'];
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
 		return false;
@@ -331,10 +326,9 @@ class Event extends CActiveRecord {
 		$tags_event[] = $row_tag_event;
 	    }
 	    $event['tags'] = $tags_event;
-	    //query sul tag
 	    $sql_type = "SELECT id_type
 		           FROM event_type
-		          WHERE id = " . $row['id_e'];
+		          WHERE id_event = " . $row['id_e'];
 	    $results_type = mysqli_query($connection, $sql_type);
 	    if (!$results_type) {
 		return false;
@@ -342,8 +336,8 @@ class Event extends CActiveRecord {
 	    $types_event = array();
 	    $rows_type_event = array();
 	    while ($row_type_event = mysqli_fetch_array($results_type, MYSQLI_ASSOC))
-		$rows_type_event[] = $row_tag_event;
-	    foreach ($rows_tag_event as $row_type_event) {
+		$rows_type_event[] = $row_type_event;
+	    foreach ($rows_type_event as $row_type_event) {
 		$types_event[] = $row_type_event;
 	    }
 	    $event['eventtypes'] = $types_event;
