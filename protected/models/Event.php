@@ -268,7 +268,6 @@ class Event extends CActiveRecord {
              WHERE e.active = 1
 	       AND u.active = 1
                AND e.id = " . $id;
-	echo $sql;
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -381,7 +380,7 @@ class Event extends CActiveRecord {
                    createdat
               FROM event  
              WHERE active = 1
-               AND fromuser =" . $id .
+               AND fromuser = " . $id .
 		" ORDER BY eventdate DESC";
 	if ($skip != 0) {
 	    $sql .= " LIMIT " . $skip . ", " . $limit;
@@ -407,10 +406,9 @@ class Event extends CActiveRecord {
 	    $event['lovecounter'] = $row['lovecounter'];
 	    $event['reviewcounter'] = $row['reviewcounter'];
 	    $event['sharecounter'] = $row['sharecounter'];
-	    //query sul tag
 	    $sql_tag = "SELECT id_user
 		          FROM event_tag
-		         WHERE id = " . $row['id'];
+		         WHERE id_event = " . $row['id'];
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
 		return false;
