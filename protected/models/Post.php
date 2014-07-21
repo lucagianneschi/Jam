@@ -152,9 +152,9 @@ class Post extends CActiveRecord {
               FROM post
              WHERE active = 1
                AND touser =" . $id .
-		"AND fromuser =" . $id .
+		"AND fromuser = " . $id .
 		"LIMIT 1
-	  ORDER BY createdat DES";
+	  ORDER BY createdat DESC";
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;

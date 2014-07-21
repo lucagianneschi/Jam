@@ -210,7 +210,7 @@ class Song extends CActiveRecord {
               FROM song 
              WHERE active = 1
                AND record =" . $id .
-		"ORDER BY position ASC";
+		" ORDER BY position ASC";
 	if ($skip != 0) {
 	    $sql .= " LIMIT " . $skip . ", " . $limit;
 	} else {

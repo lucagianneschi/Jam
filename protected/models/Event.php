@@ -247,8 +247,8 @@ class Event extends CActiveRecord {
 	}
 	$events = array();
 	$sql = "SELECT e.id id_e,
-	           address,
-		   city,
+	           e.address address_e,
+		   e.city city_e,
                    commentcounter,
 		   eventdate,
 		   fromuser,
@@ -265,8 +265,10 @@ class Event extends CActiveRecord {
 		   type,
 		   u.thumbnail thumbnail_u
               FROM event e, user u
-             WHERE active = 1
-               AND e.id =" . $id;
+             WHERE e.active = 1
+	       AND u.active = 1
+               AND e.id = " . $id;
+	echo $sql;
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -285,8 +287,8 @@ class Event extends CActiveRecord {
 	    $fromuser['username'] = $row['username'];
 	    $event = array();
 	    $event['id'] = $row['id_e'];
-	    $event['address'] = $row['address'];
-	    $event['city'] = $row['city'];
+	    $event['address'] = $row['address_e'];
+	    $event['city'] = $row['city_e'];
 	    $event['commentcounter'] = $row['commentcounter'];
 	    $event['eventdate'] = new DateTime($row['eventdate']);
 	    $event['fromuser'] = $fromuser;
@@ -380,7 +382,7 @@ class Event extends CActiveRecord {
               FROM event  
              WHERE active = 1
                AND fromuser =" . $id .
-		"ORDER BY eventdate DESC";
+		" ORDER BY eventdate DESC";
 	if ($skip != 0) {
 	    $sql .= " LIMIT " . $skip . ", " . $limit;
 	} else {

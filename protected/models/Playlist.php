@@ -137,8 +137,8 @@ class Playlist extends CActiveRecord {
 		   name
               FROM playslist 
              WHERE active = 1
-               AND fromuser =" . $id .
-		"ORDER BY createdat DESC";
+               AND fromuser = " . $id .
+		" ORDER BY createdat DESC";
 	if ($skip != 0) {
 	    $sql .= " LIMIT " . $skip . ", " . $limit;
 	} else {

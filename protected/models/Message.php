@@ -141,9 +141,9 @@ class Message extends CActiveRecord {
 		       tu.username username_tu
               FROM message m, user fu, user tu
              WHERE active = 1
-               AND fromuser =" . $id .
-		"OR =" . $id .
-		"ORDER BY createdat_m";
+               AND fromuser = " . $id .
+		" OR =" . $id .
+		" ORDER BY createdat_m";
 	if ($skip != 0) {
 	    $sql .= " LIMIT " . $skip . ", " . $limit;
 	} else {
