@@ -22,7 +22,8 @@ class CropImage {
   
 	 	
 	public function crop($dim_image, $path_dest_image, $dim_thumb = null, $path_dest_thumb = null){
-		$filename = $this->image;
+			
+		$filename = Yii::getPathOfAlias('webroot') ."/".$this->image;
 		
 		list($width, $height, $type, $attr) = getimagesize($filename);
 	
