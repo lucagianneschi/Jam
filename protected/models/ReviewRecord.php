@@ -11,7 +11,6 @@
  * @property double $latitude
  * @property double $longitude
  * @property string $record
- * @property integer $reviewcounter
  * @property integer $sharecounter
  * @property string $text
  * @property string $touser
@@ -156,7 +155,6 @@ class ReviewRecord extends CActiveRecord {
 		   rr.createdat createdat_rr,
                    rr.lovecounter lovecounter_rr,
 		   rr.record record_rr,
-		   rr.reviewcounter reviewcounter_rr,
                    rr.sharecounter sharecounter_rr,
 		   rr.text text_rr,
 		   rr.vote vote_rr,
@@ -187,7 +185,6 @@ class ReviewRecord extends CActiveRecord {
 	    $review['commentcounter'] = $row['commentcounter_rr'];
 	    $review['fromuser'] = $fromuser;
 	    $review['lovecounter'] = $row['lovecounter_rr'];
-	    $review['reviewcounter'] = $row['reviewcounter_rr'];
 	    $review['sharecounter'] = $row['sharecounter_rr'];
 	    $review['text'] = $row['text_rr'];
 	    $review['vote'] = $row['vote_rr'];
@@ -216,7 +213,6 @@ class ReviewRecord extends CActiveRecord {
 		   rr.createdat createdat_rr,
                    rr.lovecounter lovecounter_rr,
 		   rr.record record_rr,
-		   rr.reviewcounter reviewcounter_rr,
                    rr.sharecounter sharecounter_rr,
 		   rr.text text_rr,
 		   rr.vote vote_rr,
@@ -262,7 +258,6 @@ class ReviewRecord extends CActiveRecord {
 	    $review['fromuser'] = $fromuser;
 	    $review['lovecounter'] = $row['lovecounter_rr'];
 	    $review['record'] = $record;
-	    $review['reviewcounter'] = $row['reviewcounter_rr'];
 	    $review['sharecounter'] = $row['sharecounter_rr'];
 	    $review['text'] = $row['text_rr'];
 	    $review['vote'] = $row['vote_rr'];

@@ -11,7 +11,6 @@
  * @property string $fromuser
  * @property double $latitude
  * @property double $longitude
- * @property integer $reviewcounter
  * @property integer $sharecounter
  * @property string $text
  * @property string $touser
@@ -156,7 +155,6 @@ class ReviewEvent extends CActiveRecord {
 		   re.createdat createdat_re,
                    re.event event_re,
                    re.lovecounter lovecounter_re,
-		   re.reviewcounter reviewcounter_re,
                    re.sharecounter sharecounter_re,
 		   re.text text_re,
 		   re.vote vote_re,
@@ -167,6 +165,7 @@ class ReviewEvent extends CActiveRecord {
               FROM review_event re, user u
              WHERE re.active = 1
                AND re.event = " . $id;
+	echo $sql;
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -187,7 +186,6 @@ class ReviewEvent extends CActiveRecord {
 	    $review['commentcounter_re'] = $row['commentcounter_re'];
 	    $review['fromuser'] = $fromuser;
 	    $review['lovecounter_re'] = $row['lovecounter_re'];
-	    $review['reviewcounter_re'] = $row['reviewcounter_re'];
 	    $review['sharecounter_re'] = $row['sharecounter_re'];
 	    $review['text_re'] = $row['text_re'];
 	    $review['vote_re'] = $row['vote_re'];
@@ -216,7 +214,6 @@ class ReviewEvent extends CActiveRecord {
 		   re.createdat createdat_re,
                    re.event event_re,
                    re.lovecounter lovecounter_re,
-		   re.reviewcounter reviewcounter_re,
                    re.sharecounter sharecounter_re,
 		   re.text text_re,
 		   re.vote vote_re,
@@ -228,6 +225,7 @@ class ReviewEvent extends CActiveRecord {
 		   u.thumbnail thumbnail_u
               FROM review_event re, user u, event e
              WHERE re.active = 1";
+	echo $sql;
 	if ($type == 'SPOTTER') {
 	    $sql .= " AND re.fromuser = " . $id . "";
 	} else {
@@ -262,7 +260,6 @@ class ReviewEvent extends CActiveRecord {
 	    $review['fromuser'] = $fromuser;
 	    $review['event'] = $event;
 	    $review['lovecounter'] = $row['lovecounter_re'];
-	    $review['reviewcounter'] = $row['reviewcounter_re'];
 	    $review['sharecounter'] = $row['sharecounter_re'];
 	    $review['text'] = $row['text_re'];
 	    $review['vote'] = $row['vote_re'];
