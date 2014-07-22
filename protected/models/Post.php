@@ -151,10 +151,9 @@ class Post extends CActiveRecord {
                    createdat
               FROM post
              WHERE active = 1
-               AND touser =" . $id .
-		"AND fromuser = " . $id .
-		"LIMIT 1
-	  ORDER BY createdat DESC";
+               AND touser = " . $id .
+	     " AND fromuser = " . $id .
+	    "LIMIT 1";
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -187,11 +186,11 @@ class Post extends CActiveRecord {
 	}
 	$posts = array();
 	$sql = "SELECT p.id id_p,
-                   commentcounter,
-                   lovecounter,
-                   sharecounter,
-                   text,
-                   createdat,
+                   p.commentcounter,
+                   p.lovecounter,
+                   p.sharecounter,
+                   p.text,
+                   p.createdat createdat_p,
 		   fu.id id_fu,
 		   fu.username username_fu,
 		   fu.type type_fu,
@@ -199,11 +198,12 @@ class Post extends CActiveRecord {
 		   tu.id id_tu,
 		   tu.username username_tu,
 		   tu.type type_tu,
-		   tu.thumbnail thumbnail_tu,
+		   tu.thumbnail thumbnail_tu
               FROM post p, user fu, user tu
-             WHERE active = 1
-               AND touser =" . $id .
-		"ORDER BY createdat DESC";
+             WHERE p.active = 1
+               AND p.touser = " . $id .
+	     " AND p.touser = tu.id
+	 ORDER BY p.createdat DESC";
 	if ($skip != 0) {
 	    $sql .= " LIMIT " . $skip . ", " . $limit;
 	} else {
@@ -220,23 +220,23 @@ class Post extends CActiveRecord {
 	}
 	foreach ($rows_post as $row) {
 	    $fromuser = array();
-	    $fromuser['id'] = $row['id_fu'];
-	    $fromuser['username'] = $row['username_fu'];
-	    $fromuser['type'] = $row['type_fu'];
-	    $fromuser['thumbnail'] = $row['thumbnail_fu'];
+	    $fromuser['id_fu'] = $row['id_fu'];
+	    $fromuser['username_fu'] = $row['username_fu'];
+	    $fromuser['type_fu'] = $row['type_fu'];
+	    $fromuser['thumbnail_fu'] = $row['thumbnail_fu'];
 	    $touser = array();
-	    $touser['id'] = $row['id_tu'];
-	    $touser['username'] = $row['username_tu'];
-	    $touser['type'] = $row['type_tu'];
-	    $touser['thumbnail'] = $row['thumbnail_tu'];
-	    $post['id'] = $row['id_p'];
+	    $touser['id_tu'] = $row['id_tu'];
+	    $touser['username_tu'] = $row['username_tu'];
+	    $touser['type_tu'] = $row['type_tu'];
+	    $touser['thumbnail_tu'] = $row['thumbnail_tu'];
+	    $post['id_p'] = $row['id_p'];
 	    $post['fromuser'] = $fromuser;
 	    $post['commentcounter'] = $row['commentcounter'];
 	    $post['lovecounter'] = $row['lovecounter'];
 	    $post['sharecounter'] = $row['sharecounter'];
 	    $sql_tag = "SELECT id_user
 		          FROM post_tag
-		         WHERE id = " . $row['id'];
+		         WHERE id_post = " . $row['id_p'];
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
 		return false;
