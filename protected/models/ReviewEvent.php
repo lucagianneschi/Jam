@@ -166,7 +166,7 @@ class ReviewEvent extends CActiveRecord {
 		   u.thumbnail thumbnail_u
               FROM review_event re, user u
              WHERE re.active = 1
-               AND re.event =" . $id;
+               AND re.event = " . $id;
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -178,31 +178,33 @@ class ReviewEvent extends CActiveRecord {
 	}
 	foreach ($rows_event_review as $row) {
 	    $fromuser = array();
-	    $fromuser['id'] = $row['id_u'];
-	    $fromuser['thumbnail'] = $row['thumbnail_u'];
-	    $fromuser['type'] = $row['type_u'];
-	    $fromuser['username'] = $row['username_u'];
+	    $fromuser['id_u'] = $row['id_u'];
+	    $fromuser['thumbnail_u'] = $row['thumbnail_u'];
+	    $fromuser['type_u'] = $row['type_u'];
+	    $fromuser['username_u'] = $row['username_u'];
 	    $review = array();
-	    $review['id'] = $row['id_re'];
-	    $review['commentcounter'] = $row['commentcounter_re'];
+	    $review['id_re'] = $row['id_re'];
+	    $review['commentcounter_re'] = $row['commentcounter_re'];
 	    $review['fromuser'] = $fromuser;
-	    $review['lovecounter'] = $row['lovecounter_re'];
-	    $review['reviewcounter'] = $row['reviewcounter_re'];
-	    $review['sharecounter'] = $row['sharecounter_re'];
-	    $review['text'] = $row['text_re'];
-	    $review['vote'] = $row['vote_re'];
+	    $review['lovecounter_re'] = $row['lovecounter_re'];
+	    $review['reviewcounter_re'] = $row['reviewcounter_re'];
+	    $review['sharecounter_re'] = $row['sharecounter_re'];
+	    $review['text_re'] = $row['text_re'];
+	    $review['vote_re'] = $row['vote_re'];
 	    $reviews[$row['id_re']] = $review;
 	}
 	return $reviews;
     }
-
+ 
     /**
      * Returns an array of reviewevent for the the event page
      * @param integer $id id of the event
+     * @param integer $limit number of review to display
+     * @param integer $skip number of review to skip
      * @param string $type of the user (SPOTTER/JAMMER/VENUE)
      * @return array $reviewevent array of reviewevents to be displayed on the event page, false in case of error
      */
-    public function profile($id, $type) {
+    public function profile($id, $type, $limit = 3, $skip = 0) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {
@@ -231,6 +233,11 @@ class ReviewEvent extends CActiveRecord {
 	} else {
 	    $sql .= " AND re.touser = " . $id . "";
 	}
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
+	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -241,7 +248,6 @@ class ReviewEvent extends CActiveRecord {
 	    return $reviews;
 	}
 	foreach ($rows_event_review as $row) {
-	    //@todo fare check sulle property richieste per l'event
 	    $event = array();
 	    $event['title'] = $row['title_e'];
 	    $event['thumbnail'] = $row['thumbnail_e'];
@@ -251,7 +257,7 @@ class ReviewEvent extends CActiveRecord {
 	    $fromuser['type'] = $row['type_u'];
 	    $fromuser['username'] = $row['username_u'];
 	    $review = array();
-	    $review['id'] = $row['id_re'];
+	    $review['id_re'] = $row['id_re'];
 	    $review['commentcounter'] = $row['commentcounter_re'];
 	    $review['fromuser'] = $fromuser;
 	    $review['event'] = $event;

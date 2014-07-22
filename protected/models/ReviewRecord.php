@@ -199,10 +199,12 @@ class ReviewRecord extends CActiveRecord {
     /**
      * Returns an array of reviewrecord for the the record page
      * @param integer $id id of the record
+     * @param integer $limit number of review to display
+     * @param integer $skip number of review to skip
      * @param string $type of the user (SPOTTER/JAMMER/VENUE)
      * @return array $reviewrecord array of reviewrecords to be displayed on the record page, false in case of error
      */
-    public function profile($id, $type) {
+    public function profile($id, $type, $limit = 3, $skip = 0) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {
@@ -230,6 +232,11 @@ class ReviewRecord extends CActiveRecord {
 	    $sql .= " AND rr.fromuser = " . $id . "";
 	} else {
 	    $sql .= " AND rr.touser = " . $id . "";
+	}
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
 	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
