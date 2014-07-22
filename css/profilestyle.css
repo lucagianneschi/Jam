@@ -842,27 +842,34 @@ section.active > .title a {
 }
 
 /* line 766, ../sass/profilestyle.scss */
-#social-Post .box {
-  margin-bottom: 10px;
+.social-Post {
+  background-color: #f3f3f3 !important;
+  padding-bottom: 20px;
 }
 
-/* line 770, ../sass/profilestyle.scss */
+/* line 771, ../sass/profilestyle.scss */
 .box-post {
   border: 1px solid #d8d8d8;
   padding: 5px;
 }
 
-/* line 775, ../sass/profilestyle.scss */
+/* line 776, ../sass/profilestyle.scss */
 .post {
   color: #787878 !important;
   font-size: 14px !important;
   padding: 6px 15px 6px 30px !important;
   border: #fff 0px solid !important;
-  background-color: #fff !important;
-  background: url(../images/icon/write.png) no-repeat 8px 6px !important;
+  background: white url(../images/icon/write.png) no-repeat 8px 6px !important;
 }
 
-/* line 784, ../sass/profilestyle.scss */
+/* line 785, ../sass/profilestyle.scss */
+.errorMessage {
+  font-size: 14px !important;
+  color: #ed1c24 !important;
+  text-align: right !important;
+}
+
+/* line 791, ../sass/profilestyle.scss */
 .box-write {
   background-color: #fff !important;
   padding: 5px !important;
@@ -870,30 +877,30 @@ section.active > .title a {
   height: 45px;
 }
 
-/* line 791, ../sass/profilestyle.scss */
+/* line 798, ../sass/profilestyle.scss */
 .post-button {
   color: #fff;
   background-color: #ff7505 !important;
   border: #fff 0px solid !important;
-  height: 34px !important;
-  width: 90px !important;
+  height: 50px !important;
+  width: 100% !important;
 }
 
-/* line 799, ../sass/profilestyle.scss */
+/* line 806, ../sass/profilestyle.scss */
 .post-button-send {
   background-repeat: no-repeat;
   background-image: url(../images/icon/btn-loader.gif);
   background-position: center center;
 }
 
-/* line 804, ../sass/profilestyle.scss */
+/* line 811, ../sass/profilestyle.scss */
 .comment-btn-loader {
   background-repeat: no-repeat !important;
   background-image: url(../images/icon/btn-loader.gif) !important;
   background-position: center center !important;
 }
 
-/* line 809, ../sass/profilestyle.scss */
+/* line 816, ../sass/profilestyle.scss */
 .comment-btn {
   color: #fff;
   background-color: #787878 !important;
@@ -902,42 +909,42 @@ section.active > .title a {
   width: 90px !important;
 }
 
-/* line 817, ../sass/profilestyle.scss */
+/* line 824, ../sass/profilestyle.scss */
 #social-Post #post-error {
   margin-bottom: 15px;
   display: none;
   cursor: pointer;
 }
 
-/* line 824, ../sass/profilestyle.scss */
+/* line 831, ../sass/profilestyle.scss */
 .comment-error {
   display: none;
   cursor: pointer;
   padding-bottom: 5px;
 }
 
-/* line 833, ../sass/profilestyle.scss */
+/* line 840, ../sass/profilestyle.scss */
 .box-opinion {
   padding: 5px !important;
   padding-bottom: 1px !important;
   background: #d8d8d8 !important;
   margin-bottom: 50px;
 }
-/* line 838, ../sass/profilestyle.scss */
+/* line 845, ../sass/profilestyle.scss */
 .box-opinion .box-write {
   margin-bottom: 5px !important;
 }
-/* line 841, ../sass/profilestyle.scss */
+/* line 848, ../sass/profilestyle.scss */
 .box-opinion .line {
   border-bottom: 1px solid #d8d8d8;
   padding-bottom: 5px !important;
 }
-/* line 845, ../sass/profilestyle.scss */
+/* line 852, ../sass/profilestyle.scss */
 .box-opinion .text {
   margin-bottom: 10px;
 }
 
-/* line 851, ../sass/profilestyle.scss */
+/* line 858, ../sass/profilestyle.scss */
 .box-singole-comment {
   padding: 10px !important;
   padding-bottom: 1px !important;
@@ -945,30 +952,30 @@ section.active > .title a {
   margin-bottom: 5px;
 }
 
-/* line 858, ../sass/profilestyle.scss */
+/* line 865, ../sass/profilestyle.scss */
 .box-commentSpace {
   margin-bottom: 0px !important;
 }
 
-/* line 864, ../sass/profilestyle.scss */
+/* line 871, ../sass/profilestyle.scss */
 .welcome-stream {
   text-align: center;
   margin: 45px 0;
 }
-/* line 867, ../sass/profilestyle.scss */
+/* line 874, ../sass/profilestyle.scss */
 .welcome-stream h3 {
   color: #ff7505;
 }
-/* line 870, ../sass/profilestyle.scss */
+/* line 877, ../sass/profilestyle.scss */
 .welcome-stream h5 {
   color: white;
 }
-/* line 873, ../sass/profilestyle.scss */
+/* line 880, ../sass/profilestyle.scss */
 .welcome-stream p {
   margin-bottom: 0;
 }
 
-/* line 880, ../sass/profilestyle.scss */
+/* line 887, ../sass/profilestyle.scss */
 .discover-button {
   width: 100%;
   height: 45px;
@@ -987,36 +994,36 @@ section.active > .title a {
   -o-transition-duration: 300ms;
   transition-duration: 300ms;
 }
-/* line 891, ../sass/profilestyle.scss */
+/* line 898, ../sass/profilestyle.scss */
 .discover-button:hover {
   background-color: #ff7505;
 }
 
-/* line 896, ../sass/profilestyle.scss */
+/* line 903, ../sass/profilestyle.scss */
 .discover-button-active {
   background-color: #ff7505;
 }
 
-/* line 901, ../sass/profilestyle.scss */
+/* line 908, ../sass/profilestyle.scss */
 .newBadge .small-2 {
   padding-right: 0;
 }
-/* line 905, ../sass/profilestyle.scss */
+/* line 912, ../sass/profilestyle.scss */
 .newBadge .badgeThumb {
   text-align: center;
   padding-top: 5px;
 }
-/* line 910, ../sass/profilestyle.scss */
+/* line 917, ../sass/profilestyle.scss */
 .newBadge h5 {
   margin-bottom: 0;
 }
 
-/* line 916, ../sass/profilestyle.scss */
+/* line 923, ../sass/profilestyle.scss */
 #modalRelation {
   top: 10% !important;
 }
 
-/* line 920, ../sass/profilestyle.scss */
+/* line 927, ../sass/profilestyle.scss */
 #spinnerRelation.box {
   background-color: #fff;
 }

@@ -763,8 +763,9 @@ section.active > .title a{
 
 //------------------ POST ------------------------------
 
-#social-Post .box{
-	margin-bottom: 10px;
+.social-Post{
+	background-color: $white !important;
+	padding-bottom: 20px;
 }
 
 .box-post{
@@ -777,9 +778,15 @@ section.active > .title a{
   font-size:14px !important;  
   padding:6px 15px 6px 30px !important;
   border:#fff 0px solid !important;  
-  background-color: #fff !important;
-  background: url(../images/icon/write.png) no-repeat 8px 6px !important;   
+  background: #fff url(../images/icon/write.png) no-repeat 8px 6px !important;   
 }
+
+
+.errorMessage{
+	font-size: 14px !important;
+	color: $red !important;
+	text-align: right !important;
+} 
 
 .box-write{
   background-color: #fff !important;
@@ -792,8 +799,8 @@ section.active > .title a{
   color: #fff;
   background-color: $orange !important;
   border:#fff 0px solid !important; 
-  height: 34px !important; 
-  width: 90px !important;
+  height: 50px !important; 
+  width: 100% !important;
 }
 
 .post-button-send {

@@ -39,17 +39,17 @@ class Post extends CActiveRecord {
 	// NOTE: you should only define rules for those attributes that
 	// will receive user inputs.
 	return array(
-	    array('fromuser, lovecounter, text, touser, updatedat', 'required', 'message' => '{attribute} field is missing'),
+	    array('createdat, fromuser, text, touser, updatedat', 'required', 'message' => '{attribute} field is missing'),
 	    array('active', 'boolean', 'message' => 'Invalid {attribute} format'),
 	    array('commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly' => true, 'message' => 'Invalid {attribute} format'),
 	    array('fromuser, touser', 'length', 'max' => 11, 'message' => 'Invalid {attribute} format'),
 	    array('latitude, longitude', 'numerical', 'message' => 'Invalid {attribute} format'),
 	    array('text', 'length', 'max' => 80, 'tooLong' => '{attribute} must be at most 80 characters'),
 	    array('text', 'length', 'min' => 2, 'tooShort' => '{attribute} must be at least 2 characters'),
-	    array('createdat, updatedat', 'date', 'format' => 'Y-m-d H:m:s'),
+	    array('createdat, updatedat', 'date', 'format' => 'yyyy-M-d H:m:s'),
 	    array('commentcounter, lovecounter, sharecounter', 'default', 'value' => 0),
 	    array('active', 'default', 'value' => 1),
-	    array('text', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
+	//    array('text', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
 	    array('id, active, commentcounter, fromuser,latitude, longitude, lovecounter, sharecounter, text, touser, createdat, updatedat', 'safe', 'on' => 'search'),

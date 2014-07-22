@@ -57,6 +57,7 @@ class Event extends CActiveRecord {
     public $cropW;
     public $cropH;
     public $eventtype;
+	public $genre;
 
     /**
      * @return string the associated database table name

@@ -57,36 +57,41 @@ class PostController extends Controller {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
-	$post = new Post;
-
-	$fromuser = User::model()->findByPk(Yii::app()->session['id']);
-
-	if ($fromuser === null)
-	    throw new CHttpException(404, 'The requested page does not exist.');
-
-	//touser deve essere il proprietario della pagina sulla quale si scrive
-	// Uncomment the following line if AJAX validation is needed
-	$this->performAjaxValidation($post);
-
-	if (isset($_POST['Post'])) {
-	    $_POST['Post']['fromuser'] = $fromuser->id;
-	    //$_POST['Post']['touser'] = $touser->id;
-	    $_POST['Post']['latitude'] = null;
-	    $_POST['Post']['longitude'] = null;
-	    $_POST['Post']['createdat'] = date('Y-m-d H:i:s');
-	    $_POST['Post']['updatedat'] = date('Y-m-d H:i:s');
-	    $post->attributes = $_POST['Post'];
-	    if ($post->save())
-		$this->redirect(array('view', 'id' => $post->id));
-	}
-
-	$this->render('create', array(
-	    'model' => $post,
-	    'fromuser' => $fromuser,
-		//'touser'=>$touser,
-		//'postTag'=>$postTag,
-	));
+    public function actionCreate($id) {
+		$post = new Post;
+	
+		$fromuser = User::model()->findByPk(Yii::app()->session['id']);
+	
+		if ($fromuser === null)
+		    throw new CHttpException(404, 'The requested page does not exist.');
+		
+		$touser = User::model()->findByPk($id);
+	
+		if ($touser === null)
+		    throw new CHttpException(404, 'The requested page does not exist.');
+	
+		//touser deve essere il proprietario della pagina sulla quale si scrive
+		// Uncomment the following line if AJAX validation is needed
+		//$this->performAjaxValidation($post);
+	
+		if (isset($_POST['Post'])) {
+		    $_POST['Post']['fromuser'] = $fromuser->id;
+		    $_POST['Post']['touser'] = $touser->id;
+		    $_POST['Post']['latitude'] = null;
+		    $_POST['Post']['longitude'] = null;
+		    $_POST['Post']['createdat'] = date('Y-m-d H:i:s');
+		    $_POST['Post']['updatedat'] = date('Y-m-d H:i:s');
+		    $post->attributes = $_POST['Post'];
+		    if ($post->save())
+				$this->redirect(array('view', 'id' => $post->id));
+			else{			
+				Yii::log("errors saving post: " . var_export($post->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);
+			}
+		}
+	
+		$this->render('create', array(
+		    'model' => $post,
+		));
     }
 
     /**
@@ -95,20 +100,32 @@ class PostController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-	$model = $this->loadModel($id);
-
-	// Uncomment the following line if AJAX validation is needed
-	// $this->performAjaxValidation($model);
-
-	if (isset($_POST['Post'])) {
-	    $model->attributes = $_POST['Post'];
-	    if ($model->save())
-		$this->redirect(array('view', 'id' => $model->id));
-	}
-
-	$this->render('update', array(
-	    'model' => $model,
-	));
+		$post = $this->loadModel($id);
+		
+		$fromuser = User::model()->findByPk(Yii::app()->session['id']);
+	
+		if ($fromuser === null)
+		    throw new CHttpException(404, 'The requested page does not exist.');
+				
+		if($fromuser->id != $post->fromuser)
+			throw new CHttpException(403,'You are not authorized to perform this action');
+		
+		// Uncomment the following line if AJAX validation is needed
+		//$this->performAjaxValidation($post);
+	
+		if (isset($_POST['Post'])) {
+			$_POST['Post']['updatedat'] = date('Y-m-d H:i:s');
+		    $post->attributes = $_POST['Post'];
+		    if ($post->save())
+				$this->redirect(array('view', 'id' => $post->id));
+			else{			
+				Yii::log("errors update post: " . var_export($post->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);
+			}
+		}
+	
+		$this->render('update', array(
+		    'model' => $post,
+		));
     }
 
     /**
@@ -182,7 +199,8 @@ class PostController extends Controller {
 	    /* @var $cs CClientScript */
 	    $cs = Yii::app()->clientScript;
 	    $baseUrl = Yii::app()->baseUrl;
-	    $cs->registerCssFile($baseUrl . '/css/formWhiteStyle.css');
+	    $cs->registerCssFile($baseUrl . '/css/profileStyle.css');
+		
 	    return true;
 	}
 	return false;
