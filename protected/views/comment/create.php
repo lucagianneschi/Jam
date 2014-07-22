@@ -13,5 +13,4 @@ $this->breadcrumbs=array(
 //);
 ?>
 
-<h1>Create Comment</h1>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

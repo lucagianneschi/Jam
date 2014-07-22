@@ -22,6 +22,7 @@
 			    array('label'=>'Review Record', 'url'=>array('/reviewRecord/create','record'=>1)),
 			    array('label'=>'Event', 'url'=>array('/event/create')),
 			    array('label'=>'Post', 'url'=>array('/post/create','id'=>1)),
+			    array('label'=>'Comment', 'url'=>array('/comment/create','id'=>1, 'class'=>'event')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),				
 			),

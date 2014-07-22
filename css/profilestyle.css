@@ -905,8 +905,8 @@ section.active > .title a {
   color: #fff;
   background-color: #787878 !important;
   border: #fff 0px solid !important;
-  height: 34px !important;
-  width: 90px !important;
+  height: 50px !important;
+  width: 100% !important;
 }
 
 /* line 824, ../sass/profilestyle.scss */

@@ -47,7 +47,8 @@ class CommentController extends Controller {
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id) {
+    public function actionView($id = null) {
+    	$id = $_GET['id'];
 	$this->render('view', array(
 	    'model' => $this->loadModel($id),
 	));
@@ -57,150 +58,51 @@ class CommentController extends Controller {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate($id_object, $classType) {
-	switch ($classType) {
-	    case 'Album':
-		$object = Album::model()->findByPk($id_object);
-		break;
-	    case 'Comment':
-		$object = Comment::model()->findByPk($id_object);
-		break;
-	    case 'Event':
-		$object = Event::model()->findByPk($id_object);
-		break;
-	    case 'Image':
-		$object = Image::model()->findByPk($id_object);
-		break;
-	    case 'Record':
-		$object = Record::model()->findByPk($id_object);
-		break;
-	    case 'ReviewEvent':
-		$object = ReviewEvent::model()->findByPk($id_object);
-		break;
-	    case 'ReviewRecord':
-		$object = ReviewRecord::model()->findByPk($id_object);
-		break;
-	    case 'Video':
-		$object = Video::model()->findByPk($id_object);
-		break;
-	}
-	$touser = User::model()->findByPk($object->fromuser);
-	if ($touser === null)
-	    throw new CHttpException(404, 'The requested page does not exist.');
+    public function actionCreate($id = null, $class = null) {
+    	$id = $_GET['id'];
+		$class = $_GET['class'];
+		
+		$object = $class::model()->findByPk($id);
+		
+		if ($object === null)
+	    	throw new CHttpException(404, 'The requested page does not exist.');
+		
+		$touser = User::model()->findByPk($object->fromuser);
+		
+		if ($touser === null)
+	    	throw new CHttpException(404, 'The requested page does not exist.');
+		
+		$fromuser = User::model()->findByPk(Yii::app()->session['id']);
 
-	$fromuser = User::model()->findByPk(Yii::app()->session['id']);
-
-	if ($fromuser === null)
-	    throw new CHttpException(404, 'The requested page does not exist.');
-
-	$comment = new Comment;
-
-	// Uncomment the following line if AJAX validation is needed
-	$this->performAjaxValidation($comment);
-
-	if (isset($_POST['Comment'])) {
-	    $_POST['Post']['fromuser'] = $fromuser->id;
-	    $_POST['Post']['touser'] = $touser->id;
-	    $_POST['Post']['latitude'] = null;
-	    $_POST['Post']['longitude'] = null;
-	    $_POST['Post']['createdat'] = date('Y-m-d H:i:s');
-	    $_POST['Post']['updatedat'] = date('Y-m-d H:i:s');
-	    switch ($classType) {
-		case 'Album':
-		    $_POST['Post']['album'] = $id_object;
-		    break;
-		case 'Comment':
-		    $_POST['Post']['comment'] = $id_object;
-		    break;
-		case 'Event':
-		    $_POST['Post']['event'] = $id_object;
-		    break;
-		case 'Image':
-		    $_POST['Post']['image'] = $id_object;
-		    break;
-		case 'Record':
-		    $_POST['Post']['record'] = $id_object;
-		    break;
-		case 'ReviewEvent':
-		    $_POST['Post']['reviewevent'] = $id_object;
-		    break;
-		case 'ReviewRecord':
-		    $_POST['Post']['reviewrecord'] = $id_object;
-		    break;
-		case 'Video':
-		    $_POST['Post']['video'] = $id_object;
-		    break;
-	    }
-	    $comment->attributes = $_POST['Comment'];
-	    if ($comment->save())
-		$this->redirect(array('view', 'id' => $comment->id));
-	}
-	switch ($classType) {
-	    case 'Album':
+		if ($fromuser === null)
+	    	throw new CHttpException(404, 'The requested page does not exist.');
+		
+		$comment = new Comment;
+		
+		// Uncomment the following line if AJAX validation is needed
+		//$this->performAjaxValidation($comment);
+		
+		if (isset($_POST['Comment'])) {
+			$_POST['Comment']['fromuser'] = $fromuser->id;
+		    $_POST['Comment']['touser'] = $touser->id;
+		    $_POST['Comment']['latitude'] = null;
+		    $_POST['Comment']['longitude'] = null;
+		    $_POST['Comment']['createdat'] = date('Y-m-d H:i:s');
+		    $_POST['Comment']['updatedat'] = date('Y-m-d H:i:s');
+			$_POST['Comment'][$class] = $id;
+			
+			$comment->attributes = $_POST['Comment'];
+		    if ($comment->save())
+				$this->redirect(array('view', 'id' => $comment->id));
+			else Yii::log("errors save comment: " . var_export($comment->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);
+		}
+		
+		
+		
 		$this->render('create', array(
 		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'album' => $object
 		));
-		break;
-	    case 'Comment':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'comment' => $object
-		));
-		break;
-	    case 'Event':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'event' => $object
-		));
-		break;
-	    case 'Image':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'image' => $object
-		));
-		break;
-	    case 'Record':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'record' => $object
-		));
-		break;
-	    case 'ReviewEvent':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'reviewevent' => $object
-		));
-		break;
-	    case 'ReviewRecord':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'reviewrecord' => $object
-		));
-		break;
-	    case 'Video':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'video' => $object
-		));
-		break;
-	}
+	
     }
 
     /**
@@ -208,150 +110,35 @@ class CommentController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id_object, $classType) {
-	$model = $this->loadModel($id);
-	// Uncomment the following line if AJAX validation is needed
-	$this->performAjaxValidation($model);
-	switch ($classType) {
-	    case 'Album':
-		$object = Album::model()->findByPk($id_object);
-		break;
-	    case 'Comment':
-		$object = Comment::model()->findByPk($id_object);
-		break;
-	    case 'Event':
-		$object = Event::model()->findByPk($id_object);
-		break;
-	    case 'Image':
-		$object = Image::model()->findByPk($id_object);
-		break;
-	    case 'Record':
-		$object = Record::model()->findByPk($id_object);
-		break;
-	    case 'ReviewEvent':
-		$object = ReviewEvent::model()->findByPk($id_object);
-		break;
-	    case 'ReviewRecord':
-		$object = ReviewRecord::model()->findByPk($id_object);
-		break;
-	    case 'Video':
-		$object = Video::model()->findByPk($id_object);
-		break;
-	}
-	if ($object === null)
-	    throw new CHttpException(404, 'The requested page does not exist.');
+    public function actionUpdate($id = null) {
+    	$id = $_GET['id'];
+		
+		$comment = $this->loadModel($id);
+	
+		// Uncomment the following line if AJAX validation is needed
+		//$this->performAjaxValidation($model);
+		
+		$fromuser = User::model()->findByPk(Yii::app()->session['id']);
 
-	if ($model->touser === null)
-	    throw new CHttpException(404, 'The requested page does not exist.');
+		if ($fromuser === null)
+		    throw new CHttpException(404, 'The requested page does not exist.');
+			
+		if ($fromuser->id != $comment->fromuser)
+		    throw new CHttpException(403,'You are not authorized to perform this action');
 
-	$fromuser = User::model()->findByPk(Yii::app()->session['id']);
-
-	if ($fromuser === null)
-	    throw new CHttpException(404, 'The requested page does not exist.');
-
-	if (isset($_POST['Comment'])) {
-	    $_POST['Post']['fromuser'] = $fromuser->id;
-	    $_POST['Post']['touser'] = $touser->id;
-	    $_POST['Post']['latitude'] = null;
-	    $_POST['Post']['longitude'] = null;
-	    $_POST['Post']['createdat'] = date('Y-m-d H:i:s');
-	    $_POST['Post']['updatedat'] = date('Y-m-d H:i:s');
-	    switch ($classType) {
-		case 'Album':
-		    $_POST['Post']['album'] = $id_object;
-		    break;
-		case 'Comment':
-		    $_POST['Post']['comment'] = $id_object;
-		    break;
-		case 'Event':
-		    $_POST['Post']['event'] = $id_object;
-		    break;
-		case 'Image':
-		    $_POST['Post']['image'] = $id_object;
-		    break;
-		case 'Record':
-		    $_POST['Post']['record'] = $id_object;
-		    break;
-		case 'ReviewEvent':
-		    $_POST['Post']['reviewevent'] = $id_object;
-		    break;
-		case 'ReviewRecord':
-		    $_POST['Post']['reviewrecord'] = $id_object;
-		    break;
-		case 'Video':
-		    $_POST['Post']['video'] = $id_object;
-		    break;
-	    }
-	    $comment->attributes = $_POST['Comment'];
-	    if ($comment->save())
-		$this->redirect(array('view', 'id' => $comment->id));
-	}
-	switch ($classType) {
-	    case 'Album':
-		$this->render('create', array(
+		if (isset($_POST['Comment'])) {
+	   		 $_POST['Comment']['updatedat'] = date('Y-m-d H:i:s');
+	    	
+	    	$comment->attributes = $_POST['Comment'];
+	    	if ($comment->save())
+				$this->redirect(array('view', 'id' => $comment->id));
+			
+			else Yii::log("errors update comment: " . var_export($comment->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);
+		}
+		$this->render('update', array(
 		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'album' => $object
 		));
-		break;
-	    case 'Comment':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'comment' => $object
-		));
-		break;
-	    case 'Event':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'event' => $object
-		));
-		break;
-	    case 'Image':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'image' => $object
-		));
-		break;
-	    case 'Record':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'record' => $object
-		));
-		break;
-	    case 'ReviewEvent':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'reviewevent' => $object
-		));
-		break;
-	    case 'ReviewRecord':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'reviewrecord' => $object
-		));
-		break;
-	    case 'Video':
-		$this->render('create', array(
-		    'model' => $comment,
-		    'fromuser' => $fromuser,
-		    'touser' => $touser,
-		    'video' => $object
-		));
-		break;
-	}
+	
     }
 
     /**
@@ -359,7 +146,8 @@ class CommentController extends Controller {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete($id = null) {
+    	$id = $_GET['id'];
 	$this->loadModel($id)->delete();
 
 	// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -427,7 +215,7 @@ class CommentController extends Controller {
 
 	    $baseUrl = Yii::app()->baseUrl;
 
-	    $cs->registerCssFile($baseUrl . '/css/formWhiteStyle.css');
+	     $cs->registerCssFile($baseUrl . '/css/profileStyle.css');
 
 
 	    return true;
