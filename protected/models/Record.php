@@ -186,22 +186,22 @@ class Record extends CActiveRecord {
 	}
 	$records = array();
 	$sql = "SELECT r.id id_r,
-	           buylink,
-		   city,
-                   commentcounter,
-		   cover,
-                   lovecounter,
-		   reviewcounter,
-                   sharecounter,
-                   title,
-		   year,
+	           r.buylink,
+		   r.city,
+                   r.commentcounter,
+		   r.cover,
+                   r.lovecounter,
+		   r.reviewcounter,
+                   r.sharecounter,
+                   r.title,
+		   r.year,
 		   u.id id_u,
-		   username,
-		   type,
-		   thumbnail
+		   u.username,
+		   u.type,
+		   u.thumbnail thumbnail_u
               FROM record r, user u
-             WHERE active = 1
-               AND r.id =" . $id;
+             WHERE r.active = 1
+               AND r.id = " . $id;
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -212,19 +212,17 @@ class Record extends CActiveRecord {
 	    return $records;
 	}
 	foreach ($rows_record as $row) {
-	    //vedere se tutti i campi dello user sono OK
 	    $fromuser = array();
-	    $fromuser['id'] = $row['id_u'];
-	    $fromuser['thumbnail'] = $row['thumbnail'];
-	    $fromuser['type'] = $row['type'];
-	    $fromuser['username'] = $row['username'];
+	    $fromuser['id_u'] = $row['id_u'];
+	    $fromuser['thumbnail_u'] = $row['thumbnail_u'];
+	    $fromuser['type_u'] = $row['type'];
+	    $fromuser['username_u'] = $row['username'];
 	    $record = array();
 	    $record['id'] = $row['id_r'];
 	    $record['buylink'] = $row['buylink'];
-	    $record['city'] = $row['city'];
+	    $record['city_r'] = $row['city_r'];
 	    $record['commentcounter'] = $row['commentcounter'];
 	    $record['fromuser'] = $fromuser;
-	    //query sul genre
 	    $sql_genre = "SELECT id_genre
 		            FROM record_genre
 		           WHERE id_record = " . $row['id_r'];
@@ -245,10 +243,9 @@ class Record extends CActiveRecord {
 	    $record['reviewcounter'] = $row['reviewcounter'];
 	    $record['sharecounter'] = $row['sharecounter'];
 	    $record['title'] = $row['title'];
-	    //query sul tag
 	    $sql_tag = "SELECT id_user
 		          FROM record_tag
-		         WHERE id = " . $row['id_r'];
+		         WHERE id_record = " . $row['id_r'];
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
 		return false;
@@ -261,22 +258,6 @@ class Record extends CActiveRecord {
 		$tags_record[] = $row_tag_record;
 	    }
 	    $record['tags'] = $tags_record;
-	    //query sul tag
-	    $sql_type = "SELECT id_type
-		           FROM record_type
-		          WHERE id = " . $row['id_r'];
-	    $results_type = mysqli_query($connection, $sql_type);
-	    if (!$results_type) {
-		return false;
-	    }
-	    $types_record = array();
-	    $rows_type_record = array();
-	    while ($row_type_record = mysqli_fetch_array($results_type, MYSQLI_ASSOC))
-		$rows_type_record[] = $row_tag_record;
-	    foreach ($rows_tag_record as $row_type_record) {
-		$types_record[] = $row_type_record;
-	    }
-	    $record['recordtypes'] = $types_record;
 	    $record['year'] = $row['year'];
 	    $records[$row['id_r']] = $record;
 	}
