@@ -135,7 +135,7 @@ class Playlist extends CActiveRecord {
 	$playslists = array();
 	$sql = "SELECT id,
 		   name
-              FROM playslist 
+              FROM playlist 
              WHERE active = 1
                AND fromuser = " . $id .
 		" ORDER BY createdat DESC";
