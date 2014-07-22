@@ -265,7 +265,7 @@ class User extends CActiveRecord {
 			youtubechannel
 			FROM user
 			WHERE active = 1
-			AND   id = " .$id;
+			AND   id = " . $id;
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -290,11 +290,31 @@ class User extends CActiveRecord {
 	    $user['friendshipcounter'] = $row['friendshipcounter'];
 	    $user['googlepluspage'] = $row['googlepluspage'];
 	    $user['jammercounter'] = $row['jammercounter'];
-	    $user['jammertype'] = $row['jammertype'];
+	    $user['jammertype'] = $row['type'] != 'JAMMER' ? false : $row['jammertype'];
 	    $user['lastname'] = $row['lastname'];
 	    $user['level'] = $row['level'];
 	    $user['latitude'] = $row['latitude'];
+	    $user['localtype'] = $row['type'] != 'VENUE' ? false : $row['localtype'];
 	    $user['longitude'] = $row['longitude'];
+	    if ($row['type'] == 'JAMMER') {
+		$sql = "SELECT id_instrument, name
+                          FROM user_members
+                         WHERE id_user = " . $row['id'];
+		$results_members = mysqli_query($connection, $sql);
+		if (!$results_members) {
+		    return false;
+		}
+		while ($row_members = mysqli_fetch_array($results_members, MYSQLI_ASSOC))
+		    $rows_members[] = $row_members;
+		$members = array();
+		foreach ($rows_members as $row_members) {
+		    $members['instrument'] = $row_members['id_instrument'];
+		    $members['name'] = $row_members['name'];
+		}
+		$user['members'] = $members;
+	    } else {
+		$user['members'] = false;
+	    }
 	    $user['sex'] = $row['sex'];
 	    $user['twitterpage'] = $row['twitterpage'];
 	    $user['type'] = $row['type'];
