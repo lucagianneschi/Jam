@@ -50,8 +50,9 @@ class ReviewEventController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($id = null)
 	{
+		$id = $_GET['id'];
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,9 +63,9 @@ class ReviewEventController extends Controller
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $event the ID of the model event
 	 */
-	public function actionCreate($event)
+	public function actionCreate($event = null)
 	{
-		
+		$event = $_GET['id'];
 		$event = Event::model()->findByPk($event);
 		
 		if($event===null)
@@ -122,9 +123,9 @@ class ReviewEventController extends Controller
 	 * @param integer $id the ID of the model to be updated
 	 * @param integer $event the id of the model event
 	 */
-	public function actionUpdate($id)
+	public function actionUpdate($id = null)
 	{
-		
+		$id = $_GET['id'];
 		$model=$this->loadModel($id);
 		
 		$event = Event::model()->findByPk($model->event);
@@ -181,8 +182,9 @@ class ReviewEventController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+	public function actionDelete($id = null)
 	{
+		$id = $_GET['id'];
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
