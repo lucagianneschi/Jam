@@ -68,6 +68,9 @@ return array(
     'model.albumtag.id_album' => 'ID Album',
     //----------------------MODEL:BADGE----------------------//
     'model.badge.badge' => 'Badge',
+    //----------------------MODEL:COMMENT---------------------//
+    'model.comment.reviewevent' => 'Review Event',
+    'model.comment.reviewrecord' => 'Review Record',
     //----------------------MODEL:COMMENTTAG-----------------//
     'model.commenttag.id_comment' => 'ID Comment',
     //----------------------MODEL:EVENT----------------------//

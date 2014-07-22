@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'comment':
  * @property string $id
  * @property integer $active
- * @property string $comment
+ * @property string $album
  * @property string $comment
  * @property integer $commentcounter
  * @property string $event
@@ -16,6 +16,8 @@
  * @property double $longitude
  * @property integer $lovecounter
  * @property string $record
+ * @property string $reviewevent
+ * @property string $reviewrecord
  * @property integer $sharecounter
  * @property string $song
  * @property string $text
@@ -25,12 +27,14 @@
  * @property string $updatedat
  *
  * The followings are the available model relations:
- * @property Album $comment0
+ * @property Album $album0
  * @property User $fromuser0
  * @property User $touser0
  * @property Event $event0
  * @property Image $image0
  * @property Record $record0
+ * @property ReviewEvent $reviewevent0
+ * @property ReviewRecord $reviewrecord0
  * @property Song $song0
  * @property Video $video0
  * @property Comment $comment0
@@ -57,7 +61,7 @@ class Comment extends CActiveRecord {
 	    array('active', 'boolean', 'message' => 'Invalid {attribute} format'),
 	    array('commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly' => true, 'message' => 'Invalid {attribute} format'),
 	    array('latitude, longitude', 'numerical', 'message' => 'Invalid {attribute} format'),
-	    array('comment, comment, event, fromuser, image, record, song, touser, video', 'length', 'max' => 11, 'message' => 'Invalid {attribute} format'),
+	    array('album, comment, event, fromuser, image, record, reviewevent, reviewrecord, song, touser, video', 'length', 'max' => 11, 'message' => 'Invalid {attribute} format'),
 	    array('createdat, updatedat', 'date', 'format' => 'yyyy-M-d H:m:s'),
 	    array('text', 'length', 'max' => 3000, 'tooLong' => '{attribute} must be at most 3000 characters'),
 	    array('text', 'length', 'min' => 2, 'tooShort' => '{attribute} must be at least 2 characters'),
@@ -66,7 +70,7 @@ class Comment extends CActiveRecord {
 	//    array('text', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
-	    array('id, active, comment, comment, commentcounter, event, fromuser, image, latitude, longitude, lovecounter, record, sharecounter, song, text, touser, video, createdat, updatedat', 'safe', 'on' => 'search'),
+	    array('id, active, comment, comment, commentcounter, event, fromuser, image, latitude, longitude, lovecounter, record, reviewevent,reviewrecord, sharecounter, song, text, touser, video, createdat, updatedat', 'safe', 'on' => 'search'),
 	);
     }
 
@@ -77,12 +81,14 @@ class Comment extends CActiveRecord {
 	// NOTE: you may need to adjust the relation name and the related
 	// class name for the relations automatically generated below.
 	return array(
-	    'comment0' => array(self::BELONGS_TO, 'Album', 'comment'),
+	    'album0' => array(self::BELONGS_TO, 'Album', 'comment'),
 	    'fromuser0' => array(self::BELONGS_TO, 'User', 'fromuser'),
 	    'touser0' => array(self::BELONGS_TO, 'User', 'touser'),
 	    'event0' => array(self::BELONGS_TO, 'Event', 'event'),
 	    'image0' => array(self::BELONGS_TO, 'Image', 'image'),
 	    'record0' => array(self::BELONGS_TO, 'Record', 'record'),
+	    'reviewevent0' => array(self::BELONGS_TO, 'ReviewEvent', 'reviewevent'),
+	    'reviewrecord0' => array(self::BELONGS_TO, 'ReviewRecord', 'reviewrecord'),
 	    'song0' => array(self::BELONGS_TO, 'Song', 'song'),
 	    'video0' => array(self::BELONGS_TO, 'Video', 'video'),
 	    'comment0' => array(self::BELONGS_TO, 'Comment', 'comment'),
@@ -98,7 +104,7 @@ class Comment extends CActiveRecord {
 	return array(
 	    'id' => Yii::t('string', 'model.id'),
 	    'active' => Yii::t('string', 'model.active'),
-	    'comment' => Yii::t('string', 'model.comment'),
+	    'album' => Yii::t('string', 'model.album'),
 	    'comment' => Yii::t('string', 'model.comment'),
 	    'commentcounter' => Yii::t('string', 'model.commentcounter'),
 	    'event' => Yii::t('string', 'model.event'),
@@ -108,6 +114,8 @@ class Comment extends CActiveRecord {
 	    'longitude' => Yii::t('string', 'model.longitude'),
 	    'lovecounter' => Yii::t('string', 'model.lovecounter'),
 	    'record' => Yii::t('string', 'model.record'),
+	    'reviewevent' => Yii::t('string', 'model.comment.reviewevent'),
+	    'reviewrecord' => Yii::t('string', 'model.comment.reviewrecord'),
 	    'sharecounter' => Yii::t('string', 'model.sharecounter'),
 	    'song' => Yii::t('string', 'model.song'),
 	    'text' => Yii::t('string', 'model.text'),
@@ -137,7 +145,7 @@ class Comment extends CActiveRecord {
 
 	$criteria->compare('id', $this->id, true);
 	$criteria->compare('active', $this->active);
-	$criteria->compare('comment', $this->comment, true);
+	$criteria->compare('album', $this->album, true);
 	$criteria->compare('comment', $this->comment, true);
 	$criteria->compare('commentcounter', $this->commentcounter);
 	$criteria->compare('event', $this->event, true);
@@ -147,6 +155,8 @@ class Comment extends CActiveRecord {
 	$criteria->compare('longitude', $this->longitude);
 	$criteria->compare('lovecounter', $this->lovecounter);
 	$criteria->compare('record', $this->record, true);
+	$criteria->compare('reviewevent', $this->reviewevent, true);
+	$criteria->compare('reviewrecord', $this->reviewrecord, true);
 	$criteria->compare('sharecounter', $this->sharecounter);
 	$criteria->compare('song', $this->song, true);
 	$criteria->compare('text', $this->text, true);
@@ -185,19 +195,19 @@ class Comment extends CActiveRecord {
 	}
 	$comments = array();
 	$sql = "SELECT c.id id_c,
-                   commentcounter,
-		   fromuser,
-                   lovecounter,
-                   sharecounter,
+                   c.commentcounter,
+		   c.fromuser,
+                   c.lovecounter,
+                   c.sharecounter,
 		   u.id id_u,
-                   thumbnail,
-		   type,
-                   username,
+                   u.thumbnail,
+		   u.type,
+                   u.username,
                    c.createdat createdat_c
               FROM comment c,user u
-             WHERE active = 1
-               AND" . $classtype . " = " . $id .
-		"ORDER BY createdat DESC";
+             WHERE c.active = 1
+               AND " . $classtype . " = " . $id .
+	" ORDER BY createdat DESC";
 	if ($skip != 0) {
 	    $sql .= " LIMIT " . $skip . ", " . $limit;
 	} else {
@@ -215,14 +225,14 @@ class Comment extends CActiveRecord {
 	foreach ($rows_comment as $row) {
 	    $fromuser = array();
 	    $fromuser['id'] = $row['id_u'];
-	    $fromuser['thumbnail'] = $row['thumbnail'];
-	    $fromuser['type'] = $row['type'];
-	    $fromuser['username'] = $row['username'];
+	    $fromuser['thumbnail'] = $row['u.thumbnail'];
+	    $fromuser['type'] = $row['u.type'];
+	    $fromuser['username'] = $row['u.username'];
 	    $comment['id'] = $row['id_c'];
-	    $comment['commentcounter'] = $row['commentcounter'];
+	    $comment['commentcounter'] = $row['c.commentcounter'];
 	    $comment['fromuser'] = $fromuser;
-	    $comment['lovecounter'] = $row['lovecounter'];
-	    $comment['sharecounter'] = $row['sharecounter'];
+	    $comment['lovecounter'] = $row['c.lovecounter'];
+	    $comment['sharecounter'] = $row['c.sharecounter'];
 	    $sql_tag = "SELECT id_user
 		  FROM comment_tag
 		 WHERE id_comment = " . $row['id_c'];
@@ -238,7 +248,7 @@ class Comment extends CActiveRecord {
 		$tags_comment[] = $row_tag_comment;
 	    }
 	    $comment['tags'] = $tags_comment;
-	    $comment['text'] = $row['text'];
+	    $comment['text'] = $row['c.text'];
 	    $comments[$row['id_c']] = $comment;
 	}
 	return $comments;
