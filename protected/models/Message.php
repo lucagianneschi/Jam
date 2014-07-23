@@ -5,10 +5,12 @@
  *
  * The followings are the available columns in table 'message':
  * @property string $id
+ * @property integer $id_user
  * @property integer $active
  * @property string $fromuser
  * @property string $text
  * @property string $touser
+ * @property string $type
  * @property string $createdat
  * @property string $updatedat
  *
@@ -32,18 +34,19 @@ class Message extends CActiveRecord {
 	// NOTE: you should only define rules for those attributes that
 	// will receive user inputs.
 	return array(
-	    array('id, active, fromuser, text, touser, updatedat', 'required', 'message' => '{attribute} field is missing'),
+	    array('active, id_user, fromuser, text, touser, type, updatedat', 'required', 'message' => '{attribute} field is missing'),
 	    array('active', 'boolean', 'message' => 'Invalid {attribute} format'),
+	    array('type', 'length', 'max'=>10),
 	    array('fromuser, touser', 'length', 'max' => 11, 'message' => 'Invalid {attribute} format'),
 	    array('createdat', 'safe'),
 	    array('text', 'length', 'max' => 3000, 'tooLong' => '{attribute} must be at most 3000 characters'),
 	    array('text', 'length', 'min' => 2, 'tooShort' => '{attribute} must be at least 2 characters'),
 	    array('active', 'default', 'value' => 1),
-	    array('createdat, updatedat', 'date', 'format' => 'Y-m-d H:m:s'),
-	    array('text', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
+	    array('createdat, updatedat', 'date', 'format' => 'yyyy-M-d H:m:s'),
+//	    array('text', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
-	    array('id, active, fromuser, text, touser, createdat, updatedat', 'safe', 'on' => 'search'),
+	    array('id,id_user, active, fromuser, text, touser, type, createdat, updatedat', 'safe', 'on' => 'search'),
 	);
     }
 
@@ -65,10 +68,12 @@ class Message extends CActiveRecord {
     public function attributeLabels() {
 	return array(
 	    'id' => Yii::t('string', 'model.id'),
+	    'id_user' => Yii::t('string', 'model.id_user'),
 	    'active' => Yii::t('string', 'model.active'),
 	    'fromuser' => Yii::t('string', 'model.fromuser'),
 	    'text' => Yii::t('string', 'model.text'),
 	    'touser' => Yii::t('string', 'model.touser'),
+	    'type' => Yii::t('string', 'model.type'),
 	    'createdat' => Yii::t('string', 'model.createdat'),
 	    'updatedat' => Yii::t('string', 'model.updatedat'),
 	);
@@ -92,10 +97,12 @@ class Message extends CActiveRecord {
 	$criteria = new CDbCriteria;
 
 	$criteria->compare('id', $this->id, true);
+	$criteria->compare('id_user', $this->id_user,true);
 	$criteria->compare('active', $this->active);
 	$criteria->compare('fromuser', $this->fromuser, true);
 	$criteria->compare('text', $this->text, true);
 	$criteria->compare('touser', $this->touser, true);
+	$criteria->compare('type', $this->type,true);
 	$criteria->compare('createdat', $this->createdat, true);
 	$criteria->compare('updatedat', $this->updatedat, true);
 
