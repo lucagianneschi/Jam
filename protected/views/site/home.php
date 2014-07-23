@@ -10,12 +10,6 @@
 	<title><?php echo Yii::t('string', 'metatag.home.title') ?></title>
 	<meta name="description" content="<?php echo Yii::t('string', 'metatag.home.description') ?>">
 	<meta name="keywords" content="<?php echo Yii::t('string', 'metatag.home.keywords') ?>">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
-	<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
-	<link rel="stylesheet" href="css/home.css" type="text/css" media="screen">
-	<!----------------- colorbox ---------------------------->
-	<link rel="stylesheet" href="css/colorbox/colorbox.css"></link>
 	<!-- <link rel="stylesheet" href="css/style.min.css" type="text/css" media="screen"> -->
 	<!--[if IE]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     </head>
@@ -164,15 +158,6 @@
 		<div class="grid_1 omega">&nbsp;</div>
 	    </div>
 	</div>
-
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jquery/jquery.stellar.min.js"></script>
-	<script type="text/javascript" src="js/jquery/waypoints.min.js"></script>
-	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="js/customs/home.js"></script>
-	<script type="text/javascript" src="js/customs/access.js"></script>
-	<!----------- colorbox // lightbox foto ---------------------------------------------------->
-	<script type="text/javascript" src="js/plugins/colorbox/jquery.colorbox.js"></script>
 	<script>
 	    function scrollto(id)
 	    {
