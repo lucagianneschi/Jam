@@ -35,7 +35,7 @@
 												    <div class="small-3 columns ">							    						
 														<div class="coverThumb" style="cursor: pointer">
 														    <!--img src="<?php echo $elReviewedThumb; ?>" onerror="this.src='<?php echo $defThumb ?>'" alt-->
-														    <?php echo CHtml::image(Yii::app()->request->baseUrl.'/'.$event->thumbnail, $event->title, array('onerror'=>'this.src="'.Yii::app()->request->baseUrl.'/images/default/defaultEventThumb.jpg"'));  ?>
+														    <?php echo CHtml::image(Yii::app()->request->baseUrl.'/'.Yii::app()->params['users_dir']['eventcoverthumb'].'/'.$event->thumbnail, $event->title, array('onerror'=>'this.src="'.Yii::app()->request->baseUrl.'/images/default/defaultEventThumb.jpg"'));  ?>
 														</div>
 												    </div>						
 												    <div class="small-9 columns ">
@@ -75,7 +75,7 @@
 																		<div class="icon-header">								                                    									                                    	
 									                                    	<?php 
 									                                    	$userType = $touser->type == 'JAMMER' ? 'Jammer' : 'Venue';
-									                                    	echo CHtml::image(Yii::app()->request->baseUrl.'/'.$touser->thumbnail, $touser->username, array('onerror'=>'this.src="'.Yii::app()->request->baseUrl.'/images/default/defaultAvatarThumb'.$userType.'.jpg"'));  ?>
+									                                    	echo CHtml::image(Yii::app()->request->baseUrl.'/'.Yii::app()->params['users_dir']['thumbnail'].'/'.$touser->thumbnail, $touser->username, array('onerror'=>'this.src="'.Yii::app()->request->baseUrl.'/images/default/defaultAvatarThumb'.$userType.'.jpg"'));  ?>
 																		</div>
 																    </div>
 																    <div class="small-10 columns ">
@@ -120,7 +120,7 @@
 																<div class="row">
 																    <div class="small-2 columns ">
 																	<div class="icon-header">																	    
-																	   <?php echo CHtml::image(Yii::app()->request->baseUrl.'/'.$user->thumbnail, $user->username, array('onerror'=>'this.src="'.Yii::app()->request->baseUrl.'/images/default/defaultAvatarThumb'.$userType.'.jpg"'));  ?>
+																	   <?php echo CHtml::image(Yii::app()->request->baseUrl.'/'.Yii::app()->params['users_dir']['thumbnail'].'/'.$user->thumbnail, $user->username, array('onerror'=>'this.src="'.Yii::app()->request->baseUrl.'/images/default/defaultAvatarThumb'.$userType.'.jpg"'));  ?>
 																	</div>
 																    </div>
 																    <div class="small-10 columns">

@@ -29,7 +29,7 @@ class ReviewRecord extends CActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-	return 'review_rrcord';
+	return 'review_record';
     }
 
     /**
