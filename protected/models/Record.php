@@ -221,6 +221,7 @@ class Record extends CActiveRecord {
 	    $record['id'] = $row['id_r'];
 	    $record['buylink'] = $row['buylink'];
 	    $record['city_r'] = $row['city_r'];
+	    $record['cover'] = $row['cover'];
 	    $record['commentcounter'] = $row['commentcounter'];
 	    $record['fromuser'] = $fromuser;
 	    $sql_genre = "SELECT id_genre
