@@ -61,7 +61,7 @@ class ReviewRecordController extends Controller {
      * @param integer $record the ID of the model record
      */
     public function actionCreate($record = null) {
-	$record = $_GET['id'];
+	$record = $_GET['record'];
 	$record = Record::model()->findByPk($record);
 
 	if ($record === null)

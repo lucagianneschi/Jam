@@ -65,7 +65,7 @@ class ReviewEventController extends Controller
 	 */
 	public function actionCreate($event = null)
 	{
-		$event = $_GET['id'];
+		$event = $_GET['event'];
 		$event = Event::model()->findByPk($event);
 		
 		if($event===null)
