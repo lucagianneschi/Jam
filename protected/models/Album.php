@@ -163,7 +163,6 @@ class Album extends CActiveRecord {
 	$albums = array();
 	$sql = "SELECT id,
                    commentcounter,
-		   cover,
 		   fromuser,
                    imagecounter,
                    lovecounter,
@@ -192,7 +191,6 @@ class Album extends CActiveRecord {
 	foreach ($rows_album as $row) {
 	    $album['id'] = $row['id'];
 	    $album['commentcounter'] = $row['commentcounter'];
-	    $album['cover'] = $row['cover'];
 	    $album['imagecounter'] = $row['imagecounter'];
 	    $album['lovecounter'] = $row['lovecounter'];
 	    $album['sharecounter'] = $row['sharecounter'];
