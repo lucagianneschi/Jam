@@ -162,6 +162,7 @@ class Image extends CActiveRecord {
 	$sql = "SELECT id,
 		   album,
                    commentcounter,
+		   description,
                    lovecounter,
 		   path,
                    sharecounter,
@@ -188,6 +189,7 @@ class Image extends CActiveRecord {
 	foreach ($rows_image as $row) {
 	    $image['id'] = $row['id'];
 	    $image['commentcounter'] = $row['commentcounter'];
+	    $image['description'] = $row['description'];
 	    $image['lovecounter'] = $row['lovecounter'];
 	    $image['path'] = $row['path'];
 	    $image['sharecounter'] = $row['sharecounter'];
