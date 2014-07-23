@@ -232,6 +232,7 @@ class Post extends CActiveRecord {
 	    $post['id_p'] = $row['id_p'];
 	    $post['fromuser'] = $fromuser;
 	    $post['commentcounter'] = $row['commentcounter'];
+	    $post['createdat'] = $row['createdat_p'];
 	    $post['lovecounter'] = $row['lovecounter'];
 	    $post['sharecounter'] = $row['sharecounter'];
 	    $sql_tag = "SELECT id_user
