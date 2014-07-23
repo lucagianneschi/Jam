@@ -248,7 +248,9 @@ class Event extends CActiveRecord {
 	$sql = "SELECT e.id id_e,
 	           e.address address_e,
 		   e.city city_e,
+		   e.cover,
                    e.commentcounter,
+		   e.description,
 		   e.eventdate,
 		   e.fromuser,
 		   e.latitude latitude_e,
@@ -257,11 +259,10 @@ class Event extends CActiveRecord {
                    e.lovecounter,
 		   e.reviewcounter,
                    e.sharecounter,
-                   e.thumbnail thumbnail_e,
                    e.title,
 		   u.id id_u,
 		   u.username,
-		   type,
+		   u.type,
 		   u.thumbnail thumbnail_u
               FROM event e, user u
              WHERE e.active = 1
@@ -286,7 +287,9 @@ class Event extends CActiveRecord {
 	    $event['id'] = $row['id_e'];
 	    $event['address'] = $row['address_e'];
 	    $event['city'] = $row['city_e'];
+	    $event['cover'] = $row['cover'];
 	    $event['commentcounter'] = $row['commentcounter'];
+	    $event['description'] = $row['description'];
 	    $event['eventdate'] = new DateTime($row['eventdate']);
 	    $event['fromuser'] = $fromuser;
 	    $sql_genre = "SELECT id_genre
