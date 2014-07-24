@@ -110,18 +110,19 @@ return array(
 		'extensionsAccepted' => array('jpg','jpeg','png','gif'),
 		'maxSize' => 2 * 1024 * 1024,		
 		// path upload images
-		'users_dir' => array( 
-			'temp'=> 'users/temp', //cartella con file temporanei
-			'thumbnail'=> 'users/images/thumbnail', //profile thumbnail 
-			'avatar'=>'users/images/avatar', //profile
-			'albumcover' => 'users/images/albumcover',
-			'albumcoverthumb' => 'users/images/albumcoverthumb',
-			'photos' => 'users/images/photos',
-			'recordcover' => 'users/images/recordcover',
-			'recordcoverthumb' => 'users/images/recordcoverthumb',
-			'eventcoverthumb' => 'users/images/eventcoverthumb',
-			'eventcover' => 'users/images/eventcover',
-			'songs' => 'users/images/songs',
+		'users_dir' => array(
+			'users'=>'users', 
+			'temp'=> 'users/temp', //cartella con file temporanei			
+			'thumbnail'=> 'images/thumbnail', //profile thumbnail 
+			'avatar'=>'images/avatar', //profile
+			'albumcover' => 'images/albumcover',
+			'albumcoverthumb' => 'images/albumcoverthumb',
+			'photos' => 'images/photos',
+			'recordcover' => 'images/recordcover',
+			'recordcoverthumb' => 'images/recordcoverthumb',
+			'eventcoverthumb' => 'images/eventcoverthumb',
+			'eventcover' => 'images/eventcover',
+			'songs' => 'images/songs',
 		),
 	),
 );

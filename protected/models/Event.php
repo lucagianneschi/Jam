@@ -223,8 +223,12 @@ class Event extends CActiveRecord {
 	if ($this->image != $this->cover) {
 
 	    $cropImage = new CropImage($this);
-
-	    $image = $cropImage->crop(300, Yii::app()->params['users_dir']['eventcover'], 100, Yii::app()->params['users_dir']['eventcoverthumb']);
+		
+		$dir_corver = Yii::app()->params['users_dir']['users'] .'/'. Yii::app()->session['id'] . '/' . Yii::app()->params['users_dir']['eventcover'];
+		
+		$dir_thumb = Yii::app()->params['users_dir']['users'] .'/'. Yii::app()->session['id'] . '/' . Yii::app()->params['users_dir']['eventcoverthumb'];
+		
+	    $image = $cropImage->crop(300, $dir_corver, 100, $dir_thumb);
 
 	    $this->cover = $image;
 
