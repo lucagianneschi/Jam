@@ -199,6 +199,7 @@ class Comment extends CActiveRecord {
 		   c.fromuser,
                    c.lovecounter,
                    c.sharecounter,
+		   c.text,
 		   u.id id_u,
                    u.thumbnail,
 		   u.type,
@@ -207,7 +208,7 @@ class Comment extends CActiveRecord {
               FROM comment c,user u
              WHERE c.active = 1
                AND " . $classtype . " = " . $id .
-	" ORDER BY createdat DESC";
+	" ORDER BY c.createdat DESC";
 	if ($skip != 0) {
 	    $sql .= " LIMIT " . $skip . ", " . $limit;
 	} else {
@@ -225,14 +226,14 @@ class Comment extends CActiveRecord {
 	foreach ($rows_comment as $row) {
 	    $fromuser = array();
 	    $fromuser['id'] = $row['id_u'];
-	    $fromuser['thumbnail'] = $row['u.thumbnail'];
-	    $fromuser['type'] = $row['u.type'];
-	    $fromuser['username'] = $row['u.username'];
+	    $fromuser['thumbnail'] = $row['thumbnail'];
+	    $fromuser['type'] = $row['type'];
+	    $fromuser['username'] = $row['username'];
 	    $comment['id'] = $row['id_c'];
-	    $comment['commentcounter'] = $row['c.commentcounter'];
+	    $comment['commentcounter'] = $row['commentcounter'];
 	    $comment['fromuser'] = $fromuser;
-	    $comment['lovecounter'] = $row['c.lovecounter'];
-	    $comment['sharecounter'] = $row['c.sharecounter'];
+	    $comment['lovecounter'] = $row['lovecounter'];
+	    $comment['sharecounter'] = $row['sharecounter'];
 	    $sql_tag = "SELECT id_user
 		  FROM comment_tag
 		 WHERE id_comment = " . $row['id_c'];
@@ -245,10 +246,10 @@ class Comment extends CActiveRecord {
 	    while ($row_tag_comment = mysqli_fetch_array($results_comment_tag, MYSQLI_ASSOC))
 		$rows_tag_comment[] = $row_tag_comment;
 	    foreach ($rows_tag_comment as $row_tag_comment) {
-		$tags_comment[] = $row_tag_comment;
+		array_push($tags_comment, $rows_tag_comment['id_user']);
 	    }
 	    $comment['tags'] = $tags_comment;
-	    $comment['text'] = $row['c.text'];
+	    $comment['text'] = $row['text'];
 	    $comments[$row['id_c']] = $comment;
 	}
 	return $comments;
