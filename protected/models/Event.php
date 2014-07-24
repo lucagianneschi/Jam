@@ -315,7 +315,7 @@ class Event extends CActiveRecord {
 	    $event['title'] = $row['title'];
 	    $sql_tag = "SELECT u.username, u.thumbnail, u.id, u.type
 		          FROM event_tag et, user u
-		         WHERE id_event = " . $row['id_e'].
+		         WHERE et.id_event = " . $row['id_e'].
 		         " AND et.id_user = u.id";
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
@@ -336,7 +336,7 @@ class Event extends CActiveRecord {
 	    $event['tags'] = $tags_event;
 	    $sql_type = "SELECT type
 		           FROM event_type et, eventtypes t
-		          WHERE id_event = " . $row['id_e'].
+		          WHERE et.id_event = " . $row['id_e'].
 		          " AND et.id_type = t.type";
 	    $results_type = mysqli_query($connection, $sql_type);
 	    if (!$results_type) {

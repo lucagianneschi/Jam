@@ -279,9 +279,10 @@ class User extends CActiveRecord {
 	    $user['address'] = $row['address'];
 	    $user['background'] = $row['background'];
 	    $badges = array();
-	    $sql_badge = "SELECT id_badge
-                            FROM user_badge
-                           WHERE id_user = " . $row['id'];
+	    $sql_badge = "SELECT badge
+                            FROM user_badge ub, badge b
+                           WHERE ub.id_user = " . $row['id'] .
+		           " AND  ub.id_user = b.id";
 	    $results_badge = mysqli_query($connection, $sql_badge);
 	    if (!$results_badge) {
 		return false;
@@ -312,9 +313,10 @@ class User extends CActiveRecord {
 	    $user['localtype'] = $row['type'] != 'VENUE' ? false : $row['localtype'];
 	    $user['longitude'] = $row['longitude'];
 	    if ($row['type'] == 'JAMMER') {
-		$sql = "SELECT id_member
-                          FROM user_member
-                         WHERE id_user = " . $row['id'];
+		$sql = "SELECT m.name, i.type
+                          FROM user_member um, member m, instrument i
+                         WHERE um.id_user = " . $row['id'] .
+			" AND m.instrument = i.type";
 		$results_members = mysqli_query($connection, $sql);
 		if (!$results_members) {
 		    return false;
@@ -324,7 +326,10 @@ class User extends CActiveRecord {
 		    $rows_members[] = $row_members;
 		$members = array();
 		foreach ($rows_members as $row_members) {
-		    array_push($members, $row_members['id_member']);
+		    $member = array();
+		    $member['name'] = $row_members['name'];
+		    $member['type'] = $row_members['type'];
+		    array_push($members, $member);
 		}
 		$user['members'] = $members;
 	    } else {

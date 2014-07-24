@@ -226,7 +226,7 @@ class Record extends CActiveRecord {
 	    $record['fromuser'] = $fromuser;
 	    $sql_genre = "SELECT g.genre
 		            FROM record_genre rg, genre g
-		           WHERE id_record = " . $row['id_r'] .
+		           WHERE rg.id_record = " . $row['id_r'] .
 		    " AND g.id = rg.id_genre";
 	    ;
 	    $results_genre_record = mysqli_query($connection, $sql_genre);
@@ -248,7 +248,7 @@ class Record extends CActiveRecord {
 	    $record['title'] = $row['title'];
 	    $sql_tag = "SELECT u.username, u.thumbnail, u.id, u.type
 		          FROM record_tag rt, user u
-		         WHERE id_record = " . $row['id_r'] .
+		         WHERE rt.id_record = " . $row['id_r'] .
 		    " AND rt.id_user = u.id";
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
