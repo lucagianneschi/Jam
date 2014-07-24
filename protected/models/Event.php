@@ -57,7 +57,7 @@ class Event extends CActiveRecord {
     public $cropW;
     public $cropH;
     public $eventtype;
-	public $genre;
+    public $genre;
 
     /**
      * @return string the associated database table name
@@ -219,19 +219,12 @@ class Event extends CActiveRecord {
      */
 
     protected function beforeSave() {
-
 	if ($this->image != $this->cover) {
-
 	    $cropImage = new CropImage($this);
-		
-		$dir_corver = Yii::app()->params['users_dir']['users'] .'/'. Yii::app()->session['id'] . '/' . Yii::app()->params['users_dir']['eventcover'];
-		
-		$dir_thumb = Yii::app()->params['users_dir']['users'] .'/'. Yii::app()->session['id'] . '/' . Yii::app()->params['users_dir']['eventcoverthumb'];
-		
+	    $dir_corver = Yii::app()->params['users_dir']['users'] . '/' . Yii::app()->session['id'] . '/' . Yii::app()->params['users_dir']['eventcover'];
+	    $dir_thumb = Yii::app()->params['users_dir']['users'] . '/' . Yii::app()->session['id'] . '/' . Yii::app()->params['users_dir']['eventcoverthumb'];
 	    $image = $cropImage->crop(300, $dir_corver, 100, $dir_thumb);
-
 	    $this->cover = $image;
-
 	    $this->thumbnail = $image;
 	}
 	return parent::beforeSave(); // don't forget this line!
@@ -296,9 +289,10 @@ class Event extends CActiveRecord {
 	    $event['description'] = $row['description'];
 	    $event['eventdate'] = new DateTime($row['eventdate']);
 	    $event['fromuser'] = $fromuser;
-	    $sql_genre = "SELECT id_genre
-		            FROM event_genre
-		           WHERE id_event = " . $row['id_e'];
+	    $sql_genre = "SELECT g.genre
+		            FROM event_genre eg, genre g
+		           WHERE eg.id_event = " . $row['id_e'].
+		           " AND g.id = eg.id_genre";
 	    $results_genre_event = mysqli_query($connection, $sql_genre);
 	    if (!$results_genre_event) {
 		return false;
@@ -319,9 +313,10 @@ class Event extends CActiveRecord {
 	    $event['sharecounter'] = $row['sharecounter'];
 	    $event['thumbnail_e'] = $row['thumbnail_e'];
 	    $event['title'] = $row['title'];
-	    $sql_tag = "SELECT id_user
-		          FROM event_tag
-		         WHERE id_event = " . $row['id_e'];
+	    $sql_tag = "SELECT u.username, u.thumbnail, u.id, u.type
+		          FROM event_tag et, user u
+		         WHERE id_event = " . $row['id_e'].
+		         " AND et.id_user = u.id";
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
 		return false;
@@ -334,9 +329,10 @@ class Event extends CActiveRecord {
 		$tags_event[] = $row_tag_event;
 	    }
 	    $event['tags'] = $tags_event;
-	    $sql_type = "SELECT id_type
-		           FROM event_type
-		          WHERE id_event = " . $row['id_e'];
+	    $sql_type = "SELECT type
+		           FROM event_type et, eventtypes t
+		          WHERE id_event = " . $row['id_e'].
+		          " AND et.id_type = t.type";
 	    $results_type = mysqli_query($connection, $sql_type);
 	    if (!$results_type) {
 		return false;
