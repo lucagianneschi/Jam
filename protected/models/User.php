@@ -250,6 +250,7 @@ class User extends CActiveRecord {
 			googlepluspage,
 			jammercounter,
 			jammertype,
+			lang,
 			lastname,
 			level,
 			latitude,
@@ -304,6 +305,7 @@ class User extends CActiveRecord {
 	    $user['googlepluspage'] = $row['googlepluspage'];
 	    $user['jammercounter'] = $row['jammercounter'];
 	    $user['jammertype'] = $row['type'] != 'JAMMER' ? false : $row['jammertype'];
+	    $user['lang'] = $row['lang'];
 	    $user['lastname'] = $row['lastname'];
 	    $user['level'] = $row['level'];
 	    $user['latitude'] = $row['latitude'];
