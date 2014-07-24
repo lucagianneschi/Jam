@@ -121,44 +121,64 @@ class Playlist extends CActiveRecord {
     }
 
     /**
-     * Returns an array of playslist for the header
-     * @param integer $id id of the album that contains the playslists
-     * @param integer $limit number of album to be displayed
-     * @return array $playslists array of playslists to be displayed on the profile page, false in case of error
+     * Returns the static model of the specified AR class.
+     * Please note that you should have this exact method in all your CActiveRecord descendants!
+     * @param string $className active record class name.
+     * @return Playlist the static model class
      */
-    public function header($id, $limit = 1, $skip = 0) {
+    function header($id) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {
 	    return false;
 	}
-	$playslists = array();
-	$sql = "SELECT id,
-		   name
-              FROM playlist 
-             WHERE active = 1
-               AND fromuser = " . $id .
-		" ORDER BY createdat DESC";
-	if ($skip != 0) {
-	    $sql .= " LIMIT " . $skip . ", " . $limit;
-	} else {
-	    $sql .= " LIMIT " . $limit;
-	}
+	$sql = "SELECT s.id id_s,
+		       s.updatedat,
+		       s.active,
+		       s.duration,
+		       s.fromuser,
+		       s.path,
+		       s.record,
+		       s.title title_s,
+		       u.id id_u,
+		       u.username,
+		       r.id id_r,
+		       r.thumbnail thumbnail_r,
+		       r.title title_r,
+		       pl.fromuser fromuser_pl,
+		       pl.id pl_id,
+		       pl.name name_pl
+		  FROM playlist pl, playlist_song ps, record r, song s, user u
+		 WHERE pl.fromuser = " . $id .
+		" AND s.id = ps.id_song 
+		   AND pl.fromuser = u.id 
+		   AND s.record = r.id 
+		   AND ps.id_playlist = pl.id
+		   AND s.active = 1
+		 LIMIT 15";
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
 	}
 	while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC))
-	    $rows_playslist[] = $row;
-	if (!is_array($rows_playslist)) {
-	    return $playslists;
+	    $rows[] = $row;
+	$playlist = array();
+	$songs = array();
+	$info = array();
+	foreach ($rows as $row) {
+	    $info['id'] = $row['pl_id'];
+	    $info['name'] = $row['name'];
+	    $song['artist'] = $row['username'];
+	    $song['duration'] = $row['duration'];
+	    $song['path'] = $row['path'];
+	    $song['title_record'] = $row['title_r'];
+	    $song['title_song'] = $row['title_s'];
+	    $song['thumbnail'] = $row['thumbnail_r'];
+	    $songs[$row['id_s']] = $song;
 	}
-	foreach ($rows_playslist as $row) {
-	    $playslist['id'] = $row['id'];
-	    $playslist['name'] = $row['name'];
-	    $playslists[$row['id']] = $playslist;
-	}
-	return $playslists;
+	$playlist['info'] = $info;
+	$playlist['songs'] = $songs;
+	return $playlist;
     }
 
 }
