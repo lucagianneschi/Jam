@@ -279,6 +279,20 @@ class User extends CActiveRecord {
 	    $user['id'] = $row['id'];
 	    $user['address'] = $row['address'];
 	    $user['background'] = $row['background'];
+	    $badges = array();
+	    $sql_badge = "SELECT badge
+                            FROM badge
+                           WHERE id = " . $row['id'];
+	    $results_badge = mysqli_query($connection, $sql_badge);
+	    if (!$results_badge) {
+		return false;
+	    }
+	    while ($row_badges = mysqli_fetch_array($results_badge, MYSQLI_ASSOC))
+		$rows_badges[] = $row_badges;
+	    foreach ($rows_badges as $row_badges) {
+		$badges['badge'] = $row_badges['badge'];
+	    }
+	    $user['badges'] = $badges;
 	    $user['birthday'] = $row['birthday'];
 	    $user['city'] = $row['city'];
 	    $user['collaborationcounter'] = $row['collaborationcounter'];
@@ -328,3 +342,4 @@ class User extends CActiveRecord {
     }
 
 }
+
