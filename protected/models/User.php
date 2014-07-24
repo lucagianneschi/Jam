@@ -223,9 +223,7 @@ class User extends CActiveRecord {
     /**
      * Returns an array of user info (no user model) for the the profile page
      * @param integer $id id of the user who own the page
-     * @param integer $limit number of user to be displayed
-     * @param integer $skip number of user to be skipped
-     * @return array $users array of info to be displayed on the profile page or uploadAlbum page, false in case of error
+     * @return array $users array of info to be displayed on the profile page
      */
     public function profile($id) {
 	$dbConnection = new DBConnection();
@@ -265,7 +263,7 @@ class User extends CActiveRecord {
 			youtubechannel
 			FROM user
 			WHERE active = 1
-			AND   id = " . $id;
+			AND id = " . $id;
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -280,17 +278,18 @@ class User extends CActiveRecord {
 	    $user['address'] = $row['address'];
 	    $user['background'] = $row['background'];
 	    $badges = array();
-	    $sql_badge = "SELECT badge
-                            FROM badge
-                           WHERE id = " . $row['id'];
+	    $sql_badge = "SELECT id_badge
+                            FROM user_badge
+                           WHERE id_user = " . $row['id'];
 	    $results_badge = mysqli_query($connection, $sql_badge);
 	    if (!$results_badge) {
 		return false;
 	    }
+	    $rows_badges = array();
 	    while ($row_badges = mysqli_fetch_array($results_badge, MYSQLI_ASSOC))
 		$rows_badges[] = $row_badges;
 	    foreach ($rows_badges as $row_badges) {
-		$badges['badge'] = $row_badges['badge'];
+		array_push($badges, $row_badges['id_badge']);
 	    }
 	    $user['badges'] = $badges;
 	    $user['birthday'] = $row['birthday'];
@@ -311,19 +310,19 @@ class User extends CActiveRecord {
 	    $user['localtype'] = $row['type'] != 'VENUE' ? false : $row['localtype'];
 	    $user['longitude'] = $row['longitude'];
 	    if ($row['type'] == 'JAMMER') {
-		$sql = "SELECT id_instrument, name
-                          FROM user_members
+		$sql = "SELECT id_member
+                          FROM user_member
                          WHERE id_user = " . $row['id'];
 		$results_members = mysqli_query($connection, $sql);
 		if (!$results_members) {
 		    return false;
 		}
+		$rows_members = array();
 		while ($row_members = mysqli_fetch_array($results_members, MYSQLI_ASSOC))
 		    $rows_members[] = $row_members;
 		$members = array();
 		foreach ($rows_members as $row_members) {
-		    $members['instrument'] = $row_members['id_instrument'];
-		    $members['name'] = $row_members['name'];
+		    array_push($members, $row_members['id_member']);
 		}
 		$user['members'] = $members;
 	    } else {
@@ -342,4 +341,3 @@ class User extends CActiveRecord {
     }
 
 }
-
