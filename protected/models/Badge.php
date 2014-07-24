@@ -54,7 +54,7 @@ class Badge extends CActiveRecord
 	{
 		return array(
 			'id'=>Yii::t('string','model.id'),
-		        'id'=>Yii::t('string','model.badge.badge'),
+		        'badge'=>Yii::t('string','model.badge.badge'),
 		);
 	}
 
