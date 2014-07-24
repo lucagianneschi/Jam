@@ -161,11 +161,12 @@ class Song extends CActiveRecord {
 		       r.title title_r,
 		       pl.fromuser fromuser_pl
 		  FROM playlist pl, playlist_song ps, record r, song s, user u
-		 WHERE fromuser_pl =" . $id .
-		"AND s.id = ps.id_song 
+		 WHERE pl.fromuser = " . $id .
+		 " AND s.id = ps.id_song 
 		   AND pl.fromuser = u.id 
 		   AND s.record = r.id 
-		   AND ps.playlist = pl.id s.active = 1
+		   AND ps.id_playlist = pl.id
+		   AND s.active = 1
 		 LIMIT 15";
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
