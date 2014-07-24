@@ -224,9 +224,11 @@ class Record extends CActiveRecord {
 	    $record['cover'] = $row['cover'];
 	    $record['commentcounter'] = $row['commentcounter'];
 	    $record['fromuser'] = $fromuser;
-	    $sql_genre = "SELECT id_genre
-		            FROM record_genre
-		           WHERE id_record = " . $row['id_r'];
+	    $sql_genre = "SELECT g.genre
+		            FROM record_genre rg, genre g
+		           WHERE id_record = " . $row['id_r'] .
+		    " AND g.id = rg.id_genre";
+	    ;
 	    $results_genre_record = mysqli_query($connection, $sql_genre);
 	    if (!$results_genre_record) {
 		return false;
@@ -244,9 +246,10 @@ class Record extends CActiveRecord {
 	    $record['reviewcounter'] = $row['reviewcounter'];
 	    $record['sharecounter'] = $row['sharecounter'];
 	    $record['title'] = $row['title'];
-	    $sql_tag = "SELECT id_user
-		          FROM record_tag
-		         WHERE id_record = " . $row['id_r'];
+	    $sql_tag = "SELECT u.username, u.thumbnail, u.id, u.type
+		          FROM record_tag rt, user u
+		         WHERE id_record = " . $row['id_r'] .
+		    " AND rt.id_user = u.id";
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
 		return false;
@@ -256,7 +259,12 @@ class Record extends CActiveRecord {
 	    while ($row_tag_record = mysqli_fetch_array($results_tag, MYSQLI_ASSOC))
 		$rows_tag_record[] = $row_tag_record;
 	    foreach ($rows_tag_record as $row_tag_record) {
-		$tags_record[] = $row_tag_record;
+		$user = array();
+		$user['id'] = $row_tag_record['id'];
+		$user['username'] = $row_tag_record['username'];
+		$user['thumbnail'] = $row_tag_record['thumbnail'];
+		$user['type'] = $row_tag_record['type'];
+		$tags_record[] = $user;
 	    }
 	    $record['tags'] = $tags_record;
 	    $record['year'] = $row['year'];

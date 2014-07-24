@@ -235,9 +235,10 @@ class Post extends CActiveRecord {
 	    $post['createdat'] = $row['createdat_p'];
 	    $post['lovecounter'] = $row['lovecounter'];
 	    $post['sharecounter'] = $row['sharecounter'];
-	    $sql_tag = "SELECT id_user
-		          FROM post_tag
-		         WHERE id_post = " . $row['id_p'];
+	    $sql_tag = "SELECT u.username, u.type, u.thumbnail, u.id
+		          FROM post_tag pt, user u
+		         WHERE id_post = " . $row['id_p'].
+		         " AND pt.id_user = u.id";
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
 		return false;
@@ -247,7 +248,12 @@ class Post extends CActiveRecord {
 	    while ($row_tag_post = mysqli_fetch_array($results_tag, MYSQLI_ASSOC))
 		$rows_tag_post[] = $row_tag_post;
 	    foreach ($rows_tag_post as $row_tag_post) {
-		$tags_post[] = $row_tag_post;
+		$user = array();
+		$user['id'] = $row_tag_post['id'];
+		$user['username'] = $row_tag_post['username'];
+		$user['thumbnail'] = $row_tag_post['thumbnail'];
+		$user['type'] = $row_tag_post['type'];
+		$tags_post[] = $user;
 	    }
 	    $post['tags'] = $tags_post;
 	    $post['text'] = $row['text'];

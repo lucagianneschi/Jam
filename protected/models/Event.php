@@ -326,7 +326,12 @@ class Event extends CActiveRecord {
 	    while ($row_tag_event = mysqli_fetch_array($results_tag, MYSQLI_ASSOC))
 		$rows_tag_event[] = $row_tag_event;
 	    foreach ($rows_tag_event as $row_tag_event) {
-		$tags_event[] = $row_tag_event;
+		$user = array();
+		$user['id'] = $row_tag_event['id'];
+		$user['username'] = $row_tag_event['username'];
+		$user['thumbnail'] = $row_tag_event['thumbnail'];
+		$user['type'] = $row_tag_event['type'];
+		$tags_event[] = $user;
 	    }
 	    $event['tags'] = $tags_event;
 	    $sql_type = "SELECT type
