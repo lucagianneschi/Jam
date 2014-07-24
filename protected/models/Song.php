@@ -192,7 +192,7 @@ class Song extends CActiveRecord {
      * @param integer $limit number of album to be displayed
      * @return array $songs array of songs to be displayed on the profile page, false in case of error
      */
-    public function profile($id, $limit = 15, $skip = 0) {
+    public function profileOrRecordPage($id, $limit = 15, $skip = 0) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {
@@ -206,6 +206,7 @@ class Song extends CActiveRecord {
 		   path,
 		   position,
                    sharecounter,
+		   title,
                    createdat
               FROM song 
              WHERE active = 1
@@ -233,7 +234,6 @@ class Song extends CActiveRecord {
 	    $song['path'] = $row['path'];
 	    $song['position'] = $row['position'];
 	    $song['sharecounter'] = $row['sharecounter'];
-	    $song['thumbnail'] = $row['thumbnail'];
 	    $song['title'] = $row['title'];
 	    $songs[$row['id']] = $song;
 	}
