@@ -15,9 +15,9 @@ return array(
 //----------------------CONTROLLERS----------------------//
     'controller.404' => 'The requested page does not exist.',
 //----------------------EVENT-----------------------//
-    'controller.event.errorGenre' =>'Errors saving event genre',
-    'controller.event.errorType' =>'Errors saving event type',
-    'controller.event.errorSave' =>'Error saving event',
+    'controller.event.errorGenre' => 'Errors saving event genre',
+    'controller.event.errorType' => 'Errors saving event type',
+    'controller.event.errorSave' => 'Error saving event',
 //----------------------MODELS----------------------//
     'model.active' => 'Active',
     'model.address' => 'Address',
@@ -467,6 +467,7 @@ return array(
     'view.profile.status.badge23' => 'Journalist',
     'view.profile.status.coll' => 'Collaborate',
     'view.profile.status.foll' => 'Follow',
+    'view.profile.status.pts' => 'pts',
     'view.profile.status.sendmsg' => 'Send Message',
     //----------------------END-OF-PROFILE-----------//
 //-------------MEDIA-RECORD-O----EVENT---------------//
