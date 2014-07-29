@@ -4,10 +4,10 @@
 	<div id="profile" style="max-width:500px; float:right" class="row">
 	    <div class="large-12 columns">
 		<div id='box-userinfo'>
-		    <?php require_once($baseUrl . "content/profile/box/box-userinfo.php"); ?>
+		    <?php require_once($baseUrl . "views/profile/box/box-userinfo.php"); ?>
 		</div>
 		<div id='box-information' >
-		    <?php require_once($baseUrl . "content/profile/box/box-information.php"); ?>
+		    <?php require_once($baseUrl . "views/profile/box/box-information.php"); ?>
 		</div>
 		<div id="box-record"></div>
 		<script type="text/javascript">
@@ -17,7 +17,7 @@
 			json_data.username = '<?php echo $user['username']; ?>';
 			$.ajax({
 			    type: "POST",
-			    url: "content/profile/box/box-record.php",
+			    url: "views/profile/box/box-record.php",
 			    data: json_data,
 			    async: true,
 			    beforeSend: function(xhr) {
@@ -57,7 +57,7 @@
     			json_data.id = '<?php echo $user['id']; ?>';
     			$.ajax({
     			    type: "POST",
-    			    url: "content/profile/box/box-event.php",
+    			    url: "views/profile/box/box-event.php",
     			    data: json_data,
     			    async: true,
     			    beforeSend: function(xhr) {
@@ -99,7 +99,7 @@
     			json_data.friendshipCounter = '<?php echo $user['friendshipcounter']; ?>';
     			$.ajax({
     			    type: "POST",
-    			    url: "content/profile/box/box-friends.php",
+    			    url: "views/profile/box/box-friends.php",
     			    data: json_data,
     			    async: true,
     			    beforeSend: function(xhr) {
@@ -131,7 +131,7 @@
     			json_data.followingCounter = '<?php echo $user['followingcounter']; ?>';
     			$.ajax({
     			    type: "POST",
-    			    url: "content/profile/box/box-following.php",
+    			    url: "views/profile/box/box-following.php",
     			    data: json_data,
     			    async: true,
     			    beforeSend: function(xhr) {
@@ -164,7 +164,7 @@
 			json_data.id = '<?php echo $user['id']; ?>';
 			$.ajax({
 			    type: "POST",
-			    url: "content/profile/box/box-album.php",
+			    url: "views/profile/box/box-album.php",
 			    data: json_data,
 			    async: true,
 			    beforeSend: function(xhr) {
@@ -195,7 +195,7 @@
 	<div id="social" style="max-width:500px; float:left" class="row">
 	    <div class="large-12 columns">
 		<div id='box-status'>
-		    <?php require_once($baseUrl . "content/profile/box/box-status.php"); ?>
+		    <?php require_once($baseUrl . "views/profile/box/box-status.php"); ?>
 		</div>
 
 		<div id="box-recordReview"></div>	
@@ -206,7 +206,7 @@
 			json_data.type = '<?php echo $user['type']; ?>';
 			$.ajax({
 			    type: "POST",
-			    url: "content/profile/box/box-recordReview.php",
+			    url: "views/profile/box/box-recordReview.php",
 			    data: json_data,
 			    async: true,
 			    beforeSend: function(xhr) {
@@ -242,7 +242,7 @@
 			json_data.type = '<?php echo $user['type']; ?>';
 			$.ajax({
 			    type: "POST",
-			    url: "content/profile/box/box-eventReview.php",
+			    url: "views/profile/box/box-eventReview.php",
 			    data: json_data,
 			    async: true,
 			    beforeSend: function(xhr) {
@@ -278,7 +278,7 @@
 			json_data.type = '<?php echo $user['type']; ?>';
 			$.ajax({
 			    type: "POST",
-			    url: "content/profile/box/box-activity.php",
+			    url: "views/profile/box/box-activity.php",
 			    data: json_data,
 			    async: true,
 			    beforeSend: function(xhr) {
@@ -313,7 +313,7 @@
     			json_data.collaborationcounter = '<?php echo $user['collaborationcounter']; ?>';
     			$.ajax({
     			    type: "POST",
-    			    url: "content/profile/box/box-collaboration.php",
+    			    url: "views/profile/box/box-collaboration.php",
     			    data: json_data,
     			    async: true,
     			    beforeSend: function(xhr) {
@@ -346,7 +346,7 @@
     			json_data.followersCounter = '<?php echo $user['followerscounter']; ?>';
     			$.ajax({
     			    type: "POST",
-    			    url: "content/profile/box/box-followers.php",
+    			    url: "views/profile/box/box-followers.php",
     			    data: json_data,
     			    async: true,
     			    beforeSend: function(xhr) {
@@ -381,7 +381,7 @@
 			json_data.type = '<?php echo $user['type']; ?>';
 			$.ajax({
 			    type: "POST",
-			    url: "content/profile/box/box-post.php",
+			    url: "views/profile/box/box-post.php",
 			    data: json_data,
 			    async: true,
 			    beforeSend: function(xhr) {
@@ -417,7 +417,7 @@
 			    json_data.skip = skip;
 			    $.ajax({
 				type: "POST",
-				url: "content/profile/box/box-opinion.php",
+				url: "views/profile/box/box-opinion.php",
 				data: json_data,
 				async: true,
 				beforeSend: function(xhr) {
@@ -470,7 +470,7 @@
 	    json_data.tot = tot;
 	    $.ajax({
 		type: "POST",
-		url: "content/profile/box/box-relation.php",
+		url: "views/profile/box/box-relation.php",
 		data: json_data,
 		async: true,
 		beforeSend: function(xhr) {
