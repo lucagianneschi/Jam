@@ -120,6 +120,23 @@ class Playlist extends CActiveRecord {
 	return parent::model($className);
     }
 
+        /**
+     * Set to 0 active field of Playlist instance, return false in case of error
+     * @param integer $id id of the playlist
+     */
+    public function logicalDelete($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE playlist
+	          SET active = 0
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+    
     /**
      * Increment counters of Playlist instance, return false in case of error
      * @param integer $id id of the album to increment the counter

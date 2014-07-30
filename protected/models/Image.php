@@ -164,6 +164,23 @@ class Image extends CActiveRecord {
     }
 
     /**
+     * Set to 0 active field of Image instance, return false in case of error
+     * @param integer $id id of the image
+     */
+    public function logicalDelete($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE image
+	          SET active = 0
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of image for the the profile page
      * @param integer $id id of the album that contains the images
      * @param integer $limit number of album to be displayed

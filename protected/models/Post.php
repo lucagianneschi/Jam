@@ -153,6 +153,23 @@ class Post extends CActiveRecord {
     }
 
     /**
+     * Set to 0 active field of Post instance, return false in case of error
+     * @param integer $id id of the post
+     */
+    public function logicalDelete($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE post
+	          SET active = 0
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of posts (non instances of the model post) for the the profile page
      * @param integer $id id of the user that owns the page
      * @return array $posts array of posts to be displayed on the stream page, false in case of error

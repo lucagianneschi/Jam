@@ -221,6 +221,23 @@ class User extends CActiveRecord {
     }
 
     /**
+     * Set to 0 active field of User instance, return false in case of error
+     * @param integer $id id of the user
+     */
+    public function logicalDelete($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE user
+	          SET active = 0
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Increment counters of Comment instance, return false in case of error
      * @param integer $id id of the album to increment the counter
      * @param string counter to be incremented
@@ -238,7 +255,7 @@ class User extends CActiveRecord {
 	} elseif (!is_null($point) && $counter == 'level') {
 	    $sql = "UPDATE user
 	          SET level = level + " . $point .
-		   " WHERE id = " . $id;
+		    " WHERE id = " . $id;
 	}
 	else
 	    return false;

@@ -148,7 +148,7 @@ class Album extends CActiveRecord {
     }
 
     /**
-     * Increment counters of ALbum instance, return false in case of error
+     * Increment counters of Album instance, return false in case of error
      * @param integer $id id of the album to increment the counter
      * @param string counter to be incremented
      */
@@ -160,6 +160,23 @@ class Album extends CActiveRecord {
 	}
 	$sql = "UPDATE album
 	          SET " . $counter . " = " . $counter . " + 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
+     * Set to 0 active field of Album instance, return false in case of error
+     * @param integer $id id of the album 
+     */
+    public function logicalDelete($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE album
+	          SET active = 0
 		WHERE id = " . $id;
 	$results = mysqli_query($connection, $sql);
 	return (!$results) ? false : true;

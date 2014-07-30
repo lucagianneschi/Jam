@@ -144,4 +144,21 @@ class Video extends CActiveRecord {
 	return (!$results) ? false : true;
     }
 
+    /**
+     * Set to 0 active field of Video instance, return false in case of error
+     * @param integer $id id of the video
+     */
+    public function logicalDelete($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE video
+	          SET active = 0
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
 }

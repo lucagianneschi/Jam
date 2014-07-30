@@ -157,6 +157,23 @@ class ReviewRecord extends CActiveRecord {
     }
 
     /**
+     * Set to 0 active field of ReviewRecord instance, return false in case of error
+     * @param integer $id id of the reviewrecord
+     */
+    public function logicalDelete($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE review_record
+	          SET active = 0
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of reviewrecord for the the event page
      * @param integer $id id of the event
      * @return array $reviewrecord array of reviewrecords to be displayed on the event page, false in case of error

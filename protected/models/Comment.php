@@ -199,6 +199,23 @@ class Comment extends CActiveRecord {
     }
 
     /**
+     * Set to 0 active field of Comment instance, return false in case of error
+     * @param integer $id id of the comment
+     */
+    public function logicalDelete($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE comment
+	          SET active = 0
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+    
+    /**
      * Returns an array of c info (no comment model) for the the profile page or uploadAlbum page
      * @param integer $id id of the user who own the page
      * @param integer $limit number of comment to be displayed

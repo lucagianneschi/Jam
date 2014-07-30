@@ -36,7 +36,7 @@ class Message extends CActiveRecord {
 	return array(
 	    array('active, id_user, fromuser, text, touser, type, updatedat', 'required', 'message' => '{attribute} field is missing'),
 	    array('active', 'boolean', 'message' => 'Invalid {attribute} format'),
-	    array('type', 'length', 'max'=>10),
+	    array('type', 'length', 'max' => 10),
 	    array('fromuser, touser', 'length', 'max' => 11, 'message' => 'Invalid {attribute} format'),
 	    array('createdat', 'safe'),
 	    array('text', 'length', 'max' => 3000, 'tooLong' => '{attribute} must be at most 3000 characters'),
@@ -97,12 +97,12 @@ class Message extends CActiveRecord {
 	$criteria = new CDbCriteria;
 
 	$criteria->compare('id', $this->id, true);
-	$criteria->compare('id_user', $this->id_user,true);
+	$criteria->compare('id_user', $this->id_user, true);
 	$criteria->compare('active', $this->active);
 	$criteria->compare('fromuser', $this->fromuser, true);
 	$criteria->compare('text', $this->text, true);
 	$criteria->compare('touser', $this->touser, true);
-	$criteria->compare('type', $this->type,true);
+	$criteria->compare('type', $this->type, true);
 	$criteria->compare('createdat', $this->createdat, true);
 	$criteria->compare('updatedat', $this->updatedat, true);
 
@@ -119,6 +119,23 @@ class Message extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
 	return parent::model($className);
+    }
+
+    /**
+     * Set to 0 active field of Message instance, return false in case of error
+     * @param integer $id id of the message
+     */
+    public function logicalDelete($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE message
+	          SET active = 0
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
     }
 
     /**

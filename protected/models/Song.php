@@ -144,6 +144,23 @@ class Song extends CActiveRecord {
     }
 
     /**
+     * Set to 0 active field of Song instance, return false in case of error
+     * @param integer $id id of the song
+     */
+    public function logicalDelete($id) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE song
+	          SET active = 0
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of song for the the profile page
      * @param integer $id id of the album that contains the songs
      * @param integer $limit number of album to be displayed
