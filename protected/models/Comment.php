@@ -67,7 +67,7 @@ class Comment extends CActiveRecord {
 	    array('text', 'length', 'min' => 2, 'tooShort' => '{attribute} must be at least 2 characters'),
 	    array('commentcounter, lovecounter, sharecounter', 'default', 'value' => 0),
 	    array('active', 'default', 'value' => 1),
-	//    array('text', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
+	    //    array('text', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
 	    array('id, active, comment, comment, commentcounter, event, fromuser, image, latitude, longitude, lovecounter, record, reviewevent,reviewrecord, sharecounter, song, text, touser, video, createdat, updatedat', 'safe', 'on' => 'search'),
@@ -181,6 +181,24 @@ class Comment extends CActiveRecord {
     }
 
     /**
+     * Increment counters of Comment instance, return false in case of error
+     * @param integer $id id of the album to increment the counter
+     * @param string counter to be incremented
+     */
+    public function incrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE album
+	          SET " . $counter . " = " . $counter . " + 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of c info (no comment model) for the the profile page or uploadAlbum page
      * @param integer $id id of the user who own the page
      * @param integer $limit number of comment to be displayed
@@ -208,7 +226,7 @@ class Comment extends CActiveRecord {
               FROM comment c,user u
              WHERE c.active = 1
                AND " . $classtype . " = " . $id .
-	" ORDER BY c.createdat DESC";
+		" ORDER BY c.createdat DESC";
 	if ($skip != 0) {
 	    $sql .= " LIMIT " . $skip . ", " . $limit;
 	} else {

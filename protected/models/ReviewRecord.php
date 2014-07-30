@@ -139,6 +139,24 @@ class ReviewRecord extends CActiveRecord {
     }
 
     /**
+     * Increment counters of ReviewRecord instance, return false in case of error
+     * @param integer $id id of the album to increment the counter
+     * @param string counter to be incremented
+     */
+    public function incrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE album
+	          SET " . $counter . " = " . $counter . " + 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of reviewrecord for the the event page
      * @param integer $id id of the event
      * @return array $reviewrecord array of reviewrecords to be displayed on the event page, false in case of error

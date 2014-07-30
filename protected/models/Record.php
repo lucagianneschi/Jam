@@ -174,6 +174,24 @@ class Record extends CActiveRecord {
     }
 
     /**
+     * Increment counters of ALbum instance, return false in case of error
+     * @param integer $id id of the album to increment the counter
+     * @param string counter to be incremented
+     */
+    public function incrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE album
+	          SET " . $counter . " = " . $counter . " + 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of record for the the record page: Just one to be displayed
      * @param integer $id id of the 
      * @return array $images array of records to be displayed on the profile page, false in case of error

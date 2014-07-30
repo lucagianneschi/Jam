@@ -121,12 +121,30 @@ class Playlist extends CActiveRecord {
     }
 
     /**
+     * Increment counters of Playlist instance, return false in case of error
+     * @param integer $id id of the album to increment the counter
+     * @param string counter to be incremented
+     */
+    public function incrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE album
+	          SET " . $counter . " = " . $counter . " + 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
      * @return Playlist the static model class
      */
-    function header($id) {
+    public function header($id) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {

@@ -231,6 +231,24 @@ class Event extends CActiveRecord {
     }
 
     /**
+     * Increment counters of Event instance, return false in case of error
+     * @param integer $id id of the album to increment the counter
+     * @param string counter to be incremented
+     */
+    public function incrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE album
+	          SET " . $counter . " = " . $counter . " + 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of event for the the event page: Just one to be displayed
      * @param integer $id id of the event
      * @return array $images array of events to be displayed on the profile page, false in case of error
@@ -291,8 +309,8 @@ class Event extends CActiveRecord {
 	    $event['fromuser'] = $fromuser;
 	    $sql_genre = "SELECT g.genre
 		            FROM event_genre eg, genre g
-		           WHERE eg.id_event = " . $row['id_e'].
-		           " AND g.id = eg.id_genre";
+		           WHERE eg.id_event = " . $row['id_e'] .
+		    " AND g.id = eg.id_genre";
 	    $results_genre_event = mysqli_query($connection, $sql_genre);
 	    if (!$results_genre_event) {
 		return false;
@@ -315,8 +333,8 @@ class Event extends CActiveRecord {
 	    $event['title'] = $row['title'];
 	    $sql_tag = "SELECT u.username, u.thumbnail, u.id, u.type
 		          FROM event_tag et, user u
-		         WHERE et.id_event = " . $row['id_e'].
-		         " AND et.id_user = u.id";
+		         WHERE et.id_event = " . $row['id_e'] .
+		    " AND et.id_user = u.id";
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
 		return false;
@@ -336,8 +354,8 @@ class Event extends CActiveRecord {
 	    $event['tags'] = $tags_event;
 	    $sql_type = "SELECT type
 		           FROM event_type et, eventtypes t
-		          WHERE et.id_event = " . $row['id_e'].
-		          " AND et.id_type = t.type";
+		          WHERE et.id_event = " . $row['id_e'] .
+		    " AND et.id_type = t.type";
 	    $results_type = mysqli_query($connection, $sql_type);
 	    if (!$results_type) {
 		return false;

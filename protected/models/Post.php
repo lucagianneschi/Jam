@@ -49,7 +49,7 @@ class Post extends CActiveRecord {
 	    array('createdat, updatedat', 'date', 'format' => 'yyyy-M-d H:m:s'),
 	    array('commentcounter, lovecounter, sharecounter', 'default', 'value' => 0),
 	    array('active', 'default', 'value' => 1),
-	//    array('text', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
+	    //    array('text', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
 	    array('id, active, commentcounter, fromuser,latitude, longitude, lovecounter, sharecounter, text, touser, createdat, updatedat', 'safe', 'on' => 'search'),
@@ -135,6 +135,24 @@ class Post extends CActiveRecord {
     }
 
     /**
+     * Increment counters of Post instance, return false in case of error
+     * @param integer $id id of the album to increment the counter
+     * @param string counter to be incremented
+     */
+    public function incrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE album
+	          SET " . $counter . " = " . $counter . " + 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of posts (non instances of the model post) for the the profile page
      * @param integer $id id of the user that owns the page
      * @return array $posts array of posts to be displayed on the stream page, false in case of error
@@ -152,8 +170,8 @@ class Post extends CActiveRecord {
               FROM post
              WHERE active = 1
                AND touser = " . $id .
-	     " AND fromuser = " . $id .
-	    "LIMIT 1";
+		" AND fromuser = " . $id .
+		"LIMIT 1";
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -202,7 +220,7 @@ class Post extends CActiveRecord {
               FROM post p, user fu, user tu
              WHERE p.active = 1
                AND p.touser = " . $id .
-	     " AND p.touser = tu.id
+		" AND p.touser = tu.id
 	 ORDER BY p.createdat DESC";
 	if ($skip != 0) {
 	    $sql .= " LIMIT " . $skip . ", " . $limit;
@@ -237,8 +255,8 @@ class Post extends CActiveRecord {
 	    $post['sharecounter'] = $row['sharecounter'];
 	    $sql_tag = "SELECT u.username, u.type, u.thumbnail, u.id
 		          FROM post_tag pt, user u
-		         WHERE id_post = " . $row['id_p'].
-		         " AND pt.id_user = u.id";
+		         WHERE id_post = " . $row['id_p'] .
+		    " AND pt.id_user = u.id";
 	    $results_tag = mysqli_query($connection, $sql_tag);
 	    if (!$results_tag) {
 		return false;

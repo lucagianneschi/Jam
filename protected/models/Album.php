@@ -148,6 +148,24 @@ class Album extends CActiveRecord {
     }
 
     /**
+     * Increment counters of ALbum instance, return false in case of error
+     * @param integer $id id of the album to increment the counter
+     * @param string counter to be incremented
+     */
+    public function incrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE album
+	          SET " . $counter . " = " . $counter . " + 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of album info (no album model) for the the profile page or uploadAlbum page
      * @param integer $id id of the user who own the page
      * @param integer $limit number of album to be displayed
