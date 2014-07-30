@@ -82,6 +82,22 @@ class FileManagerService {
 	return $path;
     }
 
+        /**
+     * get record cover path
+     * 
+     * @param int $userId user id
+     * @param int $photoId photo id
+     * @return  path if found
+     */
+    public function getUserAvatarPath($userId, $photoId, $thumb = false) {
+	$pathInnerString = ($thumb == false) ? Yii::app()->params['users_dir']['avatar'] : Yii::app()->params['users_dir']['thumbnail'];
+	$path = Yii::app()->params['users_dir'] . DIRECTORY_SEPARATOR . $userId . DIRECTORY_SEPARATOR . $pathInnerString . DIRECTORY_SEPARATOR . $photoId;
+	if (!file_exists($path)) {
+	    return false;
+	}
+	return $path;
+    }
+    
     /**
      * get song path
      * 
