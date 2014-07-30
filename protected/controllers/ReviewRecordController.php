@@ -32,7 +32,7 @@ class ReviewRecordController extends Controller {
 	    array('allow', // allow authenticated user to perform 'create' and 'update' actions
 		'actions' => array('create', 'update'),
 		'users' => array('@'),
-		'expression'=>Yii::app()->session['type'].'== SPOTTER',
+		'expression' => Yii::app()->session['type'] . '== SPOTTER',
 	    ),
 	    array('allow', // allow admin user to perform 'admin' and 'delete' actions
 		'actions' => array('admin', 'delete'),
@@ -49,7 +49,7 @@ class ReviewRecordController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id = null) {
-    	$id = $_GET['id'];
+	$id = $_GET['id'];
 	$this->render('view', array(
 	    'model' => $this->loadModel($id),
 	));
@@ -96,8 +96,10 @@ class ReviewRecordController extends Controller {
 	    $_POST['ReviewRecord']['vote'] = $_POST['vote'];
 	    $reviewRecord->attributes = $_POST['ReviewRecord'];
 
-	    if ($reviewRecord->save())
+	    if ($reviewRecord->save()) {
+		Record::model()->incrementCounter($_GET['record'], 'reviewcounter');
 		$this->redirect(array('view', 'id' => $reviewRecord->id));
+	    }
 	}
 
 	$this->render('create', array(
@@ -117,7 +119,7 @@ class ReviewRecordController extends Controller {
      * @param integer $record the id of the model record
      */
     public function actionUpdate($id = null) {
-    	$id = $_GET['id'];
+	$id = $_GET['id'];
 
 	$model = $this->loadModel($id);
 
@@ -173,7 +175,7 @@ class ReviewRecordController extends Controller {
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id = null) {
-    	$id = $_GET['id'];
+	$id = $_GET['id'];
 	$this->loadModel($id)->delete();
 
 	// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser

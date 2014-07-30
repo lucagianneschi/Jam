@@ -48,7 +48,7 @@ class CommentController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id = null) {
-    	$id = $_GET['id'];
+	$id = $_GET['id'];
 	$this->render('view', array(
 	    'model' => $this->loadModel($id),
 	));
@@ -59,50 +59,49 @@ class CommentController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate($id = null, $class = null) {
-    	$id = $_GET['id'];
-		$class = $_GET['class'];
-		
-		$object = $class::model()->findByPk($id);
-		
-		if ($object === null)
-	    	throw new CHttpException(404, 'The requested page does not exist.');
-		
-		$touser = User::model()->findByPk($object->fromuser);
-		
-		if ($touser === null)
-	    	throw new CHttpException(404, 'The requested page does not exist.');
-		
-		$fromuser = User::model()->findByPk(Yii::app()->session['id']);
+	$id = $_GET['id'];
+	$class = $_GET['class'];
 
-		if ($fromuser === null)
-	    	throw new CHttpException(404, 'The requested page does not exist.');
-		
-		$comment = new Comment;
-		
-		// Uncomment the following line if AJAX validation is needed
-		//$this->performAjaxValidation($comment);
-		
-		if (isset($_POST['Comment'])) {
-			$_POST['Comment']['fromuser'] = $fromuser->id;
-		    $_POST['Comment']['touser'] = $touser->id;
-		    $_POST['Comment']['latitude'] = null;
-		    $_POST['Comment']['longitude'] = null;
-		    $_POST['Comment']['createdat'] = date('Y-m-d H:i:s');
-		    $_POST['Comment']['updatedat'] = date('Y-m-d H:i:s');
-			$_POST['Comment'][$class] = $id;
-			
-			$comment->attributes = $_POST['Comment'];
-		    if ($comment->save())
-				$this->redirect(array('view', 'id' => $comment->id));
-			else Yii::log("errors save comment: " . var_export($comment->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);
-		}
-		
-		
-		
-		$this->render('create', array(
-		    'model' => $comment,
-		));
-	
+	$object = $class::model()->findByPk($id);
+
+	if ($object === null)
+	    throw new CHttpException(404, 'The requested page does not exist.');
+
+	$touser = User::model()->findByPk($object->fromuser);
+
+	if ($touser === null)
+	    throw new CHttpException(404, 'The requested page does not exist.');
+
+	$fromuser = User::model()->findByPk(Yii::app()->session['id']);
+
+	if ($fromuser === null)
+	    throw new CHttpException(404, 'The requested page does not exist.');
+
+	$comment = new Comment;
+
+	// Uncomment the following line if AJAX validation is needed
+	//$this->performAjaxValidation($comment);
+
+	if (isset($_POST['Comment'])) {
+	    $_POST['Comment']['fromuser'] = $fromuser->id;
+	    $_POST['Comment']['touser'] = $touser->id;
+	    $_POST['Comment']['latitude'] = null;
+	    $_POST['Comment']['longitude'] = null;
+	    $_POST['Comment']['createdat'] = date('Y-m-d H:i:s');
+	    $_POST['Comment']['updatedat'] = date('Y-m-d H:i:s');
+	    $_POST['Comment'][$class] = $id;
+
+	    $comment->attributes = $_POST['Comment'];
+	    if ($comment->save()) {
+		$class::model()->incrementCounter($id, 'commentcounter');
+		$this->redirect(array('view', 'id' => $comment->id));
+	    }
+	    else
+		Yii::log("errors save comment: " . var_export($comment->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);
+	}
+	$this->render('create', array(
+	    'model' => $comment,
+	));
     }
 
     /**
@@ -111,34 +110,33 @@ class CommentController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id = null) {
-    	$id = $_GET['id'];
-		
-		$comment = $this->loadModel($id);
-	
-		// Uncomment the following line if AJAX validation is needed
-		//$this->performAjaxValidation($model);
-		
-		$fromuser = User::model()->findByPk(Yii::app()->session['id']);
+	$id = $_GET['id'];
 
-		if ($fromuser === null)
-		    throw new CHttpException(404, 'The requested page does not exist.');
-			
-		if ($fromuser->id != $comment->fromuser)
-		    throw new CHttpException(403,'You are not authorized to perform this action');
+	$comment = $this->loadModel($id);
 
-		if (isset($_POST['Comment'])) {
-	   		 $_POST['Comment']['updatedat'] = date('Y-m-d H:i:s');
-	    	
-	    	$comment->attributes = $_POST['Comment'];
-	    	if ($comment->save())
-				$this->redirect(array('view', 'id' => $comment->id));
-			
-			else Yii::log("errors update comment: " . var_export($comment->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);
-		}
-		$this->render('update', array(
-		    'model' => $comment,
-		));
-	
+	// Uncomment the following line if AJAX validation is needed
+	//$this->performAjaxValidation($model);
+
+	$fromuser = User::model()->findByPk(Yii::app()->session['id']);
+
+	if ($fromuser === null)
+	    throw new CHttpException(404, 'The requested page does not exist.');
+
+	if ($fromuser->id != $comment->fromuser)
+	    throw new CHttpException(403, 'You are not authorized to perform this action');
+
+	if (isset($_POST['Comment'])) {
+	    $_POST['Comment']['updatedat'] = date('Y-m-d H:i:s');
+
+	    $comment->attributes = $_POST['Comment'];
+	    if ($comment->save())
+		$this->redirect(array('view', 'id' => $comment->id));
+	    else
+		Yii::log("errors update comment: " . var_export($comment->getErrors(), true), CLogger::LEVEL_WARNING, __METHOD__);
+	}
+	$this->render('update', array(
+	    'model' => $comment,
+	));
     }
 
     /**
@@ -147,7 +145,7 @@ class CommentController extends Controller {
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id = null) {
-    	$id = $_GET['id'];
+	$id = $_GET['id'];
 	$this->loadModel($id)->delete();
 
 	// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -215,7 +213,7 @@ class CommentController extends Controller {
 
 	    $baseUrl = Yii::app()->baseUrl;
 
-	     $cs->registerCssFile($baseUrl . '/css/profileStyle.css');
+	    $cs->registerCssFile($baseUrl . '/css/profileStyle.css');
 
 
 	    return true;
