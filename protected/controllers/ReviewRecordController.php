@@ -226,7 +226,7 @@ class ReviewRecordController extends Controller {
      * @param ReviewRecord $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-	if (isset($_POST['ajax']) && $_POST['ajax'] === 'review-event-form') {
+	if (isset($_POST['ajax']) && $_POST['ajax'] === 'review-record-form') {
 	    echo CActiveForm::validate($model);
 	    Yii::app()->end();
 	}
