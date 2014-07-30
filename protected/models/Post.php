@@ -145,7 +145,7 @@ class Post extends CActiveRecord {
 	if ($connection === false) {
 	    return false;
 	}
-	$sql = "UPDATE album
+	$sql = "UPDATE post
 	          SET " . $counter . " = " . $counter . " + 1
 		WHERE id = " . $id;
 	$results = mysqli_query($connection, $sql);

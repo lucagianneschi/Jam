@@ -149,7 +149,7 @@ class ReviewRecord extends CActiveRecord {
 	if ($connection === false) {
 	    return false;
 	}
-	$sql = "UPDATE album
+	$sql = "UPDATE review_record
 	          SET " . $counter . " = " . $counter . " + 1
 		WHERE id = " . $id;
 	$results = mysqli_query($connection, $sql);
