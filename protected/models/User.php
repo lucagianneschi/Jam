@@ -221,6 +221,32 @@ class User extends CActiveRecord {
     }
 
     /**
+     * Increment counters of Comment instance, return false in case of error
+     * @param integer $id id of the album to increment the counter
+     * @param string counter to be incremented
+     */
+    public function incrementCounter($id, $counter, $point = null) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	if (is_null($point) && $counter != 'level') {
+	    $sql = "UPDATE user
+	          SET " . $counter . " = " . $counter . " + 1
+		WHERE id = " . $id;
+	} elseif (!is_null($point) && $counter == 'level') {
+	    $sql = "UPDATE user
+	          SET level = level + " . $point .
+		   " WHERE id = " . $id;
+	}
+	else
+	    return false;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Returns an array of user info (no user model) for the the profile page
      * @param integer $id id of the user who own the page
      * @return array $users array of info to be displayed on the profile page
@@ -282,7 +308,7 @@ class User extends CActiveRecord {
 	    $sql_badge = "SELECT badge
                             FROM user_badge ub, badge b
                            WHERE ub.id_user = " . $row['id'] .
-		           " AND  ub.id_user = b.id";
+		    " AND  ub.id_user = b.id";
 	    $results_badge = mysqli_query($connection, $sql_badge);
 	    if (!$results_badge) {
 		return false;
