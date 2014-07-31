@@ -48,10 +48,10 @@ if ($reviews) {
 				foreach ($reviews as $key => $value) {
 				    $eventReview_objectId = $value['id'];
 				    if ($type == 'SPOTTER') {
-					$eventReview_user_objectId = $value['event']['fromuser']['id'];
-					$eventReview_user_thumbnail = $value['event']['fromuser']['thumbnail'];
-					$eventReview_user_username = $value['event']['fromuser']['username'];
-					$eventReview_user_type = $value['event']['fromuser']['type'];
+					$eventReview_user_objectId = $value['touser']['id'];
+					$eventReview_user_thumbnail = $value['touser']['thumbnail'];
+					$eventReview_user_username = $value['touser']['username'];
+					$eventReview_user_type = $value['touser']['type'];
 				    } else {
 					$eventReview_user_objectId = $value['fromuser']['id'];
 					$eventReview_user_thumbnail = $value['fromuser']['thumbnail'];
@@ -111,7 +111,7 @@ if ($reviews) {
 	    				<a href="event.php?event=<?php echo $eventReview_objectId ?>" >
 	    				    <div class="row">
 	    					<div  class="small-2 columns ">
-	    					    <div class="coverThumb"><img src="<?php echo $pathEvent; ?>" onerror="this.src='<?php echo DEFEVENTTHUMB; ?>'" alt="<?php echo $eventReview_title; ?>"></div>						
+	    					    <div class="coverThumb"><img src="<?php echo $pathEvent; ?>" onerror="this.src='<?php Yii::app()->params['defaultImages']['DEFEVENTTHUMB']; ?>'" alt="<?php echo $eventReview_title; ?>"></div>						
 	    					</div>
 	    					<div  class="small-10 columns ">
 	    					    <div class="row ">							
