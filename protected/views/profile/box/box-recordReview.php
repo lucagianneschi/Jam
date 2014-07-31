@@ -53,7 +53,7 @@ if ($reviews) {
 				    $recordReview_thumbnailCover = $value['record']['thumbnail'];
 				    $recordObjectId = $value['record']['id'];
 				    $recordReview_title = $value['record']['title'];
-				    $recordReview_data = ucwords(strftime("%A %d %B %Y - %H:%M", strtotime($value->getCreatedat())));
+				    $recordReview_data = ucwords(strftime("%A %d %B %Y - %H:%M", strtotime($value['createdat'])));
 				    $recordReview_rating = $value['vote'];
 				    $recordReview_text = $value['text'];
 				    $recordReview_love = $value['lovecounter'];
