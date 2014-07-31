@@ -109,7 +109,7 @@ $fileManagerService = new FileManagerService();
 	    $album_love = $value['lovecounter'];
 	    $album_comment = $value['commentcounter'];
 	    $album_share = $value['sharecounter'];
-	    $connectionService = new ConnectionService();
+
 	    if (existsRelation($connectionService, 'user', $currentUserId, 'album', $album_id, 'LOVE')) {
 		$css_love = '_love orange';
 		$text_love = Yii::t('string', 'view.unlove');

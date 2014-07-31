@@ -7,12 +7,11 @@
  * @typeUser: tipo utente (JAMMER, VENUE o SPOTTER)
  */
 
-
+$events = Event::model()->profile($_POST['id'], 3, 0);
 $typeUser = $_POST['typeUser'];
 
-if (isset($_SESSION['id'])) {
+if ($events) {
     $currentUserId = $_SESSION['id'];
-    $events = Event::model()->profile($_POST['id'], 3, 0);
     $eventCounter = count($events);
     ?>
     <div class="row" id='profile-Event'>
