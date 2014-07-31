@@ -189,7 +189,7 @@ class ReviewEvent extends CActiveRecord {
 	    $review['sharecounter_re'] = $row['sharecounter_re'];
 	    $review['text_re'] = $row['text_re'];
 	    $review['vote_re'] = $row['vote_re'];
-	    $reviews[$row['id_re']] = $review;
+	    $reviews[$row['id']] = $review;
 	}
 	return $reviews;
     }
@@ -253,12 +253,18 @@ class ReviewEvent extends CActiveRecord {
 		   re.text text_re,
 		   re.vote vote_re,
 		   e.title title_e,
+		   e.id id_e,
+		   e.fromuser fromuser_e,
 		   e.thumbnail thumbnail_e,
-		   u.id id_u,
-		   u.username username_u,
-		   u.type type_u,
-		   u.thumbnail thumbnail_u
-              FROM review_event re, user u, event e
+		   fu.id id_fu,
+		   fu.username username_fu,
+		   fu.type type_fu,
+		   fu.thumbnail thumbnail_fu
+		   tu.id id_tu,
+		   tu.username username_tu,
+		   tu.type type_tu,
+		   tu.thumbnail thumbnail_tu
+              FROM review_event re, user fu, user tu, event e
              WHERE re.active = 1";
 	echo $sql;
 	if ($type == 'SPOTTER') {
@@ -282,23 +288,30 @@ class ReviewEvent extends CActiveRecord {
 	}
 	foreach ($rows_event_review as $row) {
 	    $event = array();
+	    $event['id'] = $row['id_e'];
 	    $event['title'] = $row['title_e'];
 	    $event['thumbnail'] = $row['thumbnail_e'];
 	    $fromuser = array();
-	    $fromuser['id'] = $row['id_u'];
-	    $fromuser['thumbnail'] = $row['thumbnail_u'];
-	    $fromuser['type'] = $row['type_u'];
-	    $fromuser['username'] = $row['username_u'];
+	    $fromuser['id'] = $row['id_fu'];
+	    $fromuser['thumbnail'] = $row['thumbnail_fu'];
+	    $fromuser['type'] = $row['type_fu'];
+	    $fromuser['username'] = $row['username_fu'];
+	    $touser = array();
+	    $touser['id'] = $row['id_tu'];
+	    $touser['thumbnail'] = $row['thumbnail_tu'];
+	    $touser['type'] = $row['type_tu'];
+	    $touser['username'] = $row['username_tu'];
 	    $review = array();
-	    $review['id_re'] = $row['id_re'];
+	    $review['id'] = $row['id_re'];
 	    $review['commentcounter'] = $row['commentcounter_re'];
 	    $review['fromuser'] = $fromuser;
 	    $review['event'] = $event;
 	    $review['lovecounter'] = $row['lovecounter_re'];
 	    $review['sharecounter'] = $row['sharecounter_re'];
 	    $review['text'] = $row['text_re'];
+	    $review['touser'] = $touser;
 	    $review['vote'] = $row['vote_re'];
-	    $reviews[$row['id_re']] = $review;
+	    $reviews[$row['id']] = $review;
 	}
 	return $reviews;
     }
