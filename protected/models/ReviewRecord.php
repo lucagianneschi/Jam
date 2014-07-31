@@ -253,11 +253,15 @@ class ReviewRecord extends CActiveRecord {
 		   rr.vote vote_rr,
 		   r.title title_r,
 		   r.thumbnail thumbnail_r,
-		   u.id id_u,
-		   u.username username_u,
-		   u.type type_u,
-		   u.thumbnail thumbnail_u
-              FROM review_record rr, user u, record r
+		   fu.id id_fu,
+		   fu.username username_fu,
+		   fu.type type_fu,
+		   fu.thumbnail thumbnail_fu
+		   tu.id id_tu,
+		   tu.username username_tu,
+		   tu.type type_tu,
+		   tu.thumbnail thumbnail_tu
+              FROM review_record rr, user tu,user fu, record r
              WHERE rr.active = 1";
 	if ($type == 'SPOTTER') {
 	    $sql .= " AND rr.fromuser = " . $id . "";
@@ -280,13 +284,19 @@ class ReviewRecord extends CActiveRecord {
 	}
 	foreach ($rows_event_rrview as $row) {
 	    $record = array();
+	    $record['id'] = $row['id_r'];
 	    $record['title'] = $row['title_r'];
 	    $record['thumbnail'] = $row['thumbnail_r'];
 	    $fromuser = array();
-	    $fromuser['id'] = $row['id_u'];
-	    $fromuser['thumbnail'] = $row['thumbnail_u'];
-	    $fromuser['type'] = $row['type_u'];
-	    $fromuser['username'] = $row['username_u'];
+	    $fromuser['id'] = $row['id_fu'];
+	    $fromuser['thumbnail'] = $row['thumbnail_fu'];
+	    $fromuser['type'] = $row['type_fu'];
+	    $fromuser['username'] = $row['username_fu'];
+	    $touser = array();
+	    $touser['id'] = $row['id_tu'];
+	    $touser['thumbnail'] = $row['thumbnail_tu'];
+	    $touser['type'] = $row['type_tu'];
+	    $touser['username'] = $row['username_tu'];
 	    $review = array();
 	    $review['id'] = $row['id_rr'];
 	    $review['commentcounter'] = $row['commentcounter_rr'];
@@ -295,6 +305,7 @@ class ReviewRecord extends CActiveRecord {
 	    $review['record'] = $record;
 	    $review['sharecounter'] = $row['sharecounter_rr'];
 	    $review['text'] = $row['text_rr'];
+	    $review['touser'] = $touser;
 	    $review['vote'] = $row['vote_rr'];
 	    $reviews[$row['id_rr']] = $review;
 	}
