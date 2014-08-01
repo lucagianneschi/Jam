@@ -143,7 +143,7 @@ class ReviewEvent extends CActiveRecord {
      * @param integer $id id of the event
      * @return array $reviewevent array of reviewevents to be displayed on the event page, false in case of error
      */
-    public function eventPage($id) {
+    public function eventPage($id, $limit, $skip) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {
@@ -165,7 +165,11 @@ class ReviewEvent extends CActiveRecord {
               FROM review_event re, user u
              WHERE re.active = 1
                AND re.event = " . $id;
-	echo $sql;
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
+	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
@@ -266,7 +270,6 @@ class ReviewEvent extends CActiveRecord {
 		   tu.thumbnail thumbnail_tu
               FROM review_event re, user fu, user tu, event e
              WHERE re.active = 1";
-	echo $sql;
 	if ($type == 'SPOTTER') {
 	    $sql .= " AND re.fromuser = " . $id . "";
 	} else {

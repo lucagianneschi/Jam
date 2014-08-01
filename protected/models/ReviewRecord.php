@@ -178,7 +178,7 @@ class ReviewRecord extends CActiveRecord {
      * @param integer $id id of the event
      * @return array $reviewrecord array of reviewrecords to be displayed on the event page, false in case of error
      */
-    public function recordPage($id) {
+    public function recordPage($id, $limit, $skip) {
 	$dbConnection = new DBConnection();
 	$connection = $dbConnection->connect();
 	if ($connection === false) {
@@ -200,6 +200,11 @@ class ReviewRecord extends CActiveRecord {
               FROM review_record rr, user u
              WHERE rr.active = 1
                AND rr.record =" . $id;
+	if ($skip != 0) {
+	    $sql .= " LIMIT " . $skip . ", " . $limit;
+	} else {
+	    $sql .= " LIMIT " . $limit;
+	}
 	$results = mysqli_query($connection, $sql);
 	if (!$results) {
 	    return false;
