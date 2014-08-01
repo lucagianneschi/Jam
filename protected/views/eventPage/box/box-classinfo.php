@@ -12,7 +12,7 @@ $title = $event['title'];
 $genre = '';
 $space = '';
 foreach ($event['genre'] as $key => $value) {
-    $genre = $genre . $space . Yii::t('string', 'tag.localtyple.'.$value);
+    $genre = $genre . $space . Yii::t('string', 'tag.localtype.'.$value);
     $space = ', ';
 }
 $fileManagerService = new FileManagerService();
