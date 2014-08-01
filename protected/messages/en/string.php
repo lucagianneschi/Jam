@@ -472,6 +472,8 @@ return array(
     //----------------------END-OF-PROFILE-----------//
 //-------------MEDIA-RECORD-O----EVENT---------------//
     'view.media.addreview' => 'Add a review',
+    'view.media.comments' => ' Comment',
+    'view.media.other' => 'Other ',
     'view.media.view' => 'View all',
     //-------------------------COMMENT---------------------//
     'view.media.comment.title' => 'Comment',
@@ -485,10 +487,13 @@ return array(
     'view.media.info.title' => 'information',
     //----------------------RECORD---------------------//
     'view.media.record.buy' => 'Buy album at',
-    'view.media.record.comment' => ' Comment',
-    'view.media.record.other' => 'Other ',
     'view.media.record.title' => 'Tracklist',
     //---------------REVIEW----------------------------//
+    //----------------------EVENT-REVIEW-------------//
+    'view.media.event.eventreview.nodata' => 'There are no reviews',
+    'view.media.event.eventreview.rating' => 'Rating',
+    'view.media.event.eventreview.read' => 'Read',
+    'view.media.event.eventreview.title' => 'Event Reviews',
     'view.media.review.title' => 'Reviews',
     'view.media.review.review' => 'Review',
     //----------------------END--OF--MEDIA-RECORD-O----EVENT-----------//
