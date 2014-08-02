@@ -9,12 +9,12 @@
 
 
 <!---------------------------------- FOUNDATION  ------------------------------------------>
-<script src="js/foundation/foundation.js"></script>
+<!--<script src="js/foundation/foundation.js"></script>
 <script src="js/foundation/foundation.section.js"></script>
 <script src="js/foundation/foundation.clearing.js"></script>
 <script src="js/foundation/foundation.reveal.js"></script>
 <script src="js/foundation/foundation.abide.js"></script>
-<script src="js/foundation/foundation.tooltips.js"></script>
+<script src="js/foundation/foundation.tooltips.js"></script>-->
 <!--
 <script src="js/foundation/foundation.alerts.js"></script>
 
