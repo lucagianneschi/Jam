@@ -37,7 +37,7 @@ if (isset($_SESSION['id'])) {
 		<br>	
 		<div class="row">
 		    <div class="small-3 columns">
-			<h5><?php echo $views['footer']['aboutjam']; ?></h5>
+			<h5><?php echo Yii::t('string', 'views.footer.aboutjam'); ?></h5>
 			<a href="#"><?php echo Yii::t('string', 'views.footer.aboutus'); ?></a><br>
 			<a href="#"><?php echo Yii::t('string', 'views.footer.virtualtour'); ?></a><br>
 			<a href="#"><?php echo Yii::t('string', 'views.footer.career'); ?></a><br>
