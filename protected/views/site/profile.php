@@ -1,5 +1,5 @@
 <?php
-$baseUrl = Yii::app()->baseUrl;
+$baseUrl = Yii::app()->basePath;
 if (isset($_GET['id'])) {
     $users = User::model()->profile($_GET['id']);
     if (count($users) != 0 && $users != false) {
@@ -14,17 +14,16 @@ if (isset($_GET['id'])) {
     	<meta name="description" content="<?php echo Yii::t('string', 'metatag.profile.description') ?>">
     	<meta name="keywords" content="<?php echo Yii::t('string', 'metatag.profile.keywords') ?>">
     	<!-- METADATI-->
-	    <?php require_once($baseUrl . "views/general/meta.php"); ?>
         </head>
         <body>
     	<!-- HEADER -->
-	    <?php require_once($baseUrl . 'views/general/header/main.php'); ?>
+	    <?php require_once Yii::getPathOfAlias('application') . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'header' . DIRECTORY_SEPARATOR . 'main.php'; ?>
     	<!-- BODY -->
-	    <?php require_once($baseUrl . 'views/profile/main.php'); ?>
+	    <?php require_once Yii::getPathOfAlias('application') . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'profile' . DIRECTORY_SEPARATOR . 'main.php'; ?>
     	<!-- FOOTER -->
-	    <?php require_once($baseUrl . 'views/general/footer.php'); ?>	
+	    <?php require_once Yii::getPathOfAlias('application') . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'general' . DIRECTORY_SEPARATOR . 'footer.php'; ?>
     	<!-- SCRIPT -->
-	    <?php require_once($baseUrl . "views/general/script.php"); ?>
+	    <?php require_once Yii::getPathOfAlias('application') . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'general' . DIRECTORY_SEPARATOR . 'script.php'; ?>
     	<script>
     <?php if ($user['type'] == 'JAMMER') { ?>
 		    loadBoxRecord();

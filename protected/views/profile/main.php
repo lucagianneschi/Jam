@@ -1,13 +1,13 @@
-<?php $baseUrl = Yii::app()->baseUrl; ?>
+<?php $baseUrl = Yii::app()->basePath ?>
 <div class="bg-double">	
     <div id='scroll-profile' class='hcento' style="width: 50%;float: left;">						
 	<div id="profile" style="max-width:500px; float:right" class="row">
 	    <div class="large-12 columns">
 		<div id='box-userinfo'>
-		    <?php require_once($baseUrl . "views/profile/box/box-userinfo.php"); ?>
+		    <?php require_once Yii::getPathOfAlias('application') . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'profile' . DIRECTORY_SEPARATOR . 'box' . DIRECTORY_SEPARATOR . 'box-userinfo.php'; ?>
 		</div>
 		<div id='box-information' >
-		    <?php require_once($baseUrl . "views/profile/box/box-information.php"); ?>
+		    <?php require_once Yii::getPathOfAlias('application') . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'profile' . DIRECTORY_SEPARATOR . 'box' . DIRECTORY_SEPARATOR . 'box-information.php'; ?>
 		</div>
 		<div id="box-record"></div>
 		<script type="text/javascript">
@@ -195,7 +195,7 @@
 	<div id="social" style="max-width:500px; float:left" class="row">
 	    <div class="large-12 columns">
 		<div id='box-status'>
-		    <?php require_once($baseUrl . "views/profile/box/box-status.php"); ?>
+		    <?php require_once Yii::getPathOfAlias('application') . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'profile' . DIRECTORY_SEPARATOR . 'box' . DIRECTORY_SEPARATOR . 'box-status.php'; ?>
 		</div>
 
 		<div id="box-recordReview"></div>	
