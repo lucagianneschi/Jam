@@ -57,6 +57,14 @@ return array(
 		'foundation' => array(
 		    'baseUrl' => 'js/foundation',
 		    'js' => array('foundation.js', 'foundation.section.js', 'foundation.clearing.js', 'foundation.reveal.js', 'foundation.abide.js', 'foundation.tooltips.js'),
+		),
+		'custom' => array(
+		    'baseUrl' => 'js/custom',
+		    'js' => array('layout.js', 'utils.js', 'player.js', 'header.js','relation.js'),
+		),
+		'stylesheets' => array(
+		    'baseUrl' => 'css',
+		    'css' => array('headerstyle.js', 'plugins/jplayer/jplayer.pink.flag.css', 'headerstyle.css', 'footerstyle.css'),
 		)
 	    ),
 	),
