@@ -65,6 +65,7 @@ class SiteController extends Controller {
     public function actionProfile() {
 	$cs = Yii::app()->clientScript;
 	$baseUrl = Yii::app()->baseUrl;
+	$cs->registerCssFile($baseUrl . '/css/profilestyle.css');
 	$cs->registerScriptFile($baseUrl . '/js/custom/profile.js');
 	$cs->registerScriptFile($baseUrl . '/js/custom/post.js');
 	$cs->registerScriptFile($baseUrl . '/js/custom/love.js');
