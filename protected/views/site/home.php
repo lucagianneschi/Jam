@@ -14,7 +14,7 @@
 	<!--[if IE]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     </head>
     <body>
-	<div id="logo" onclick="scrollto('top');"><img src="/images/home/logo.png" alt ="Jamyourself: Meritocratic Social Music Discovering"  width="150" height="118"></div>
+	<div id="logo" onclick="scrollto('top');"><?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/logo.png', 'Jamyourself: Meritocratic Social Music Discovering', array("width" => "150px", "height" => "118px")); ?></div>
 	<div class="menu">
 	    <div class="facebook" onclick="window.open('<?php echo Yii::t('string', 'view.home.facebook'); ?>');"></div>
 	    <div class="twitter" onclick="window.open('<?php echo Yii::t('string', 'view.home.twitter'); ?>');"></div>
@@ -36,13 +36,13 @@
 	    </div>
 	</div>
 	<div id="private-beta">
-	    <?php echo  CHtml::image(Yii::app()->request->baseUrl.'/images/home/privatebeta.png','Private Beta', array("width"=>"147px" ,"height"=>"145px", "style"=>"margin-bottom: -7px;")); ?>	    
+	    <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/privatebeta.png', 'Private Beta', array("width" => "147px", "height" => "145px", "style" => "margin-bottom: -7px;")); ?>	    
             <!--<img src="/images/home/privatebeta.png" alt ="Private Beta" style="margin-bottom: -7px;" width="147" height="145">-->
 	</div>
 	<div id="top" class="slide top" data-stellar-background-ratio="0.7">
 	    <div class="container clearfix">		
 		<div class="grid_12">
-		    <?php echo  CHtml::image(Yii::app()->request->baseUrl.'/images/home/logo-big.png','Jamyourself: Meritocratic Social Music Discovering', array("width"=>"280px" ,"height"=>"280px")); ?>
+		    <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/logo-big.png', 'Jamyourself: Meritocratic Social Music Discovering', array("width" => "280px", "height" => "280px")); ?>
 		    <!--<img src="/images/home/logo-big.png" alt ="Jamyourself: Meritocratic Social Music Discovering" width="280" height="280">-->
 		    <h1><?php echo Yii::t('string', 'view.home.stand_out'); ?></h1>
 		    <h2><?php echo Yii::t('string', 'view.home.be_the_first'); ?><br><?php echo Yii::t('string', 'view.home.and_take'); ?></h2>
@@ -54,13 +54,13 @@
 	    <div class="container clearfix">
 		<div class="grid_1">&nbsp;</div>
 		<div class="grid_5">
-		    <?php echo  CHtml::image(Yii::app()->request->baseUrl.'/images/home/rank-spot.png','', array("width"=>"180px" ,"height"=>"120px")); ?>
+		    <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/rank-spot.png', '', array("width" => "180px", "height" => "120px")); ?>
 		    <!--<img src="/images/home/rank-spot.png" alt width="180" height="120">-->
 		    <h2><?php echo Yii::t('string', 'view.home.top'); ?></h2>
 		    <p><?php echo Yii::t('string', 'view.home.points'); ?><br><?php echo Yii::t('string', 'view.home.best'); ?></p>
 		</div>
 		<div class="grid_5">
-		    <?php echo  CHtml::image(Yii::app()->request->baseUrl.'/images/home/badge-spot.png','', array("width"=>"180px" ,"height"=>"120px")); ?>
+		    <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/badge-spot.png', '', array("width" => "180px", "height" => "120px")); ?>
 		    <!--<img src="/images/home/badge-spot.png" alt width="180" height="120">-->
 		    <h2><?php echo Yii::t('string', 'view.home.talents'); ?></h2>
 		    <p><?php echo Yii::t('string', 'view.home.badge'); ?><br><?php echo Yii::t('string', 'view.home.worth'); ?></p>
@@ -73,21 +73,21 @@
 	    <div class="container clearfix">
 		<div class="grid_4">
 		    <div class="spot" onclick="scrollto('spotter');">
-			<?php echo  CHtml::image(Yii::app()->request->baseUrl.'/images/home/spotter-spot.png','', array("width"=>"94px" ,"height"=>"150px")); ?>
+			<?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/spotter-spot.png', '', array("width" => "94px", "height" => "150px")); ?>
 			<!--<img src="/images/home/spotter-spot.png" alt width="94" height="150">-->
 			<h2><?php echo Yii::t('string', 'view.home.are_you'); ?><br><?php echo Yii::t('string', 'view.home.music_lover'); ?></h2>
 		    </div>
 		</div>
 		<div class="grid_4">
 		    <div class="spot" onclick="scrollto('jammer');">
-			<?php echo  CHtml::image(Yii::app()->request->baseUrl.'/images/home/jammer-spot.png','', array("width"=>"94px" ,"height"=>"150px")); ?>
+			<?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/jammer-spot.png', '', array("width" => "94px", "height" => "150px")); ?>
 			<!--<img src="/images/home/jammer-spot.png" alt width="94" height="150">-->
 			<h2><?php echo Yii::t('string', 'view.home.are_you'); ?><br><?php echo Yii::t('string', 'view.home.emerging_artist'); ?></h2>
 		    </div>
 		</div>
 		<div class="grid_4 omega">
 		    <div class="spot" onclick="scrollto('venue');">
-			<?php echo  CHtml::image(Yii::app()->request->baseUrl.'/images/home/venue-spot.png','', array("width"=>"94px" ,"height"=>"150px")); ?>
+			<?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/venue-spot.png', '', array("width" => "94px", "height" => "150px")); ?>
 			<!--<img src="/images/home/venue-spot.png" alt width="94" height="150">-->
 			<h2><?php echo Yii::t('string', 'view.home.own'); ?><br><?php echo Yii::t('string', 'view.home.venue'); ?></h2>
 		    </div>
@@ -98,7 +98,7 @@
 	<div class="slide" id="jammer" data-stellar-background-ratio="0.7">
 	    <div class="container clearfix">
 		<div class="grid_5 jam-user">
-		    <?php echo  CHtml::image(Yii::app()->request->baseUrl.'/images/home/jammer.png','', array("width"=>"200px" ,"height"=>"350px")); ?>
+		    <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/jammer.png', '', array("width" => "200px", "height" => "350px")); ?>
 		    <!--<img src="/images/home/jammer.png" alt width="220" height="350">-->
 		</div>
 		<div class="grid_6 omega">
@@ -112,7 +112,7 @@
 	<div class="slide" id="spotter" data-stellar-background-ratio="0.7">
 	    <div class="container clearfix">
 		<div class="grid_5 jam-user">
-		    <?php echo  CHtml::image(Yii::app()->request->baseUrl.'/images/home/spotter.png','', array("width"=>"200px" ,"height"=>"350px")); ?>
+		    <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/spotter.png', '', array("width" => "200px", "height" => "350px")); ?>
 		    <!--<img src="/images/home/spotter.png" alt width="220" height="350">-->
 		</div>
 		<div class="grid_6 omega">
@@ -127,7 +127,7 @@
 	<div class="slide" id="venue" data-stellar-background-ratio="0.7">
 	    <div class="container clearfix">
 		<div class="grid_5 jam-user">
-		    <?php echo  CHtml::image(Yii::app()->request->baseUrl.'/images/home/venue.png','', array("width"=>"200px" ,"height"=>"350px")); ?>
+		    <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/venue.png', '', array("width" => "200px", "height" => "350px")); ?>
 		    <!--<img src="/images/home/venue.png" alt width="220" height="350">-->
 		</div>
 		<div class="grid_6 omega">
