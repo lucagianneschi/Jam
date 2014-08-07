@@ -20,7 +20,7 @@ $playlistCurrentUser = array();
     	</script>		
     	<div  class="row hcento-hero" style="padding-bottom: 20px;">
     	    <div id="header-profile" class="small-6 columns" style="padding-bottom: 20px">
-		    <?php require_once './header/box-profile.php'; ?>
+		    <?php require_once Yii::getPathOfAlias('application') . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'header' . DIRECTORY_SEPARATOR . 'box-profile.php'; ?>
     	    </div>
     	    <!-- TODO - ci devo mettere una chiamata ajax al box per parallelizzare il caricamento-->					
     	    <script type="text/javascript">
@@ -58,7 +58,7 @@ $playlistCurrentUser = array();
     	    </script>			
     	    <div id="header-social" class="small-6 columns" style="padding-bottom: 20px">				
     		<!-- TODO - ci devo mettere una chiamata ajax al box per parallelizzare il caricamento-->
-		    <?php //require_once './content/header/box-social.php';  ?>
+		    <?php //require_once Yii::getPathOfAlias('application') . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'header' . DIRECTORY_SEPARATOR . 'box-social.php'; ?>
     	    </div>
     	</div>
 	    <?php
@@ -107,76 +107,76 @@ $playlistCurrentUser = array();
                             <div class="no-display" id="noPlaylist"><?php echo Yii::t('string', 'view.header.song'); ?></div>
                         </div>			
                     </div>
-                    <!------------------------------------- LOGO --------------------------------------------->
+                    <!-- LOGO-->
                     <div class="large-2 columns logo" id="header-box-logo">				
                         <div id="logo">
-                            <a href="stream.php?user=<?php echo $currentUserId; ?>"><img src="images/header/logo.png" border="0" alt="Jamyourself: Meritocratic Social Music Discovering"></a>
-                        </div>					
-                    </div>
-                    <!--SWITCH-->
-                    <div class="small-5 columns no-display " id='header-box-switch'>
-                        <div class="header">
-                            <div class="switch round" onclick="getSwich()">
-                                <input id="z" name="switch-z" type="radio" checked>
-                                <label for="z"><?php echo Yii::t('string', 'view.header.radio.profile'); ?></label>
-                                <input id="z1" name="switch-z" type="radio">
-                                <label for="z1"><?php echo Yii::t('string', 'view.header.radio.social'); ?></label>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>	
-                    <div class="large-5 small-6 columns" id="header-box-search">					
-                        <div class="row">
-                            <div class="large-10 small-10 columns">
-                                <div class="row">
-                                    <div class="large-8 small-12 columns " style="padding: 0px;">
-                                        <div class="header inline">
-                                            <!--SEARCH-->						
-                                            <form class="inline" action="">
-                                                <span><input id='header-btn-search' name='header-btn-search' type="search" class="search" placeholder="<?php echo Yii::t('string', 'view.header.search'); ?>"></span>
-                                                <!-- <span><input type="search" class="search-small show-for-small" placeholder="Cerca "></span> -->
-                                            </form>
-                                        </div>	
-                                    </div>
-                                    <div class="large-4 columns hide-for-small " id="header-btn-notify">
-                                        <div class="header inline" style="float: right;">
-                                            <!--a class="ico-label _flag inline" onclick="headerShow()" ><span class="round alert label iconNotification <?php echo $css_not ?>"><?php echo $totNotification ?></span></a-->
-					    <a class="ico-label _flag inline" onclick="headerShow()" ></a>
-					    <a href="stream.php?user=<?php echo $currentUserId; ?>" class="ico-label _stream inline"></a>
-                                            <a class="ico-label _setting inline"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="large-2 small-2 columns">
-                                <a id="add-main-btn" class="add inline _add inline"></a>
-                            </div>
-                        </div>						
-                    </div>			
-                </div>	
-                <div id="add" style="display: none;">
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <div class="add-btn" onclick="location.href = 'uploadRecord.php'"><?php echo Yii::t('string', 'view.header.optadd1'); ?></div>
-                            <div class="add-btn" onclick="location.href = 'uploadEvent.php'"><?php echo Yii::t('string', 'view.header.optadd1'); ?></div>
-                            <div class="add-btn" onclick="location.href = 'uploadAlbum.php'"><?php echo Yii::t('string', 'view.header.optadd3'); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <script>
-		var addState = 0;
-		$('#add-main-btn').click(function() {
-		    $('#add').slideToggle();
-		    if (addState === 0) {
-			$('._add').css('background-image', 'url(images/icon/close.png)');
-			addState = 1;
-		    } else {
-			$('._add').css('background-image', 'url(images/icon/add.png)');
-			addState = 0;
-		    }
-		});
-                </script>
-            </div>
-        </div>
+                            <a href="stream.php?user=<?php echo $currentUserId; ?>"><?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/header/logo.png', 'Jamyourself: Meritocratic Social Music Discovering'); ?></div></a>
+		    </div>					
+		</div>
+		<!--SWITCH-->
+		<div class="small-5 columns no-display " id='header-box-switch'>
+		    <div class="header">
+			<div class="switch round" onclick="getSwich()">
+			    <input id="z" name="switch-z" type="radio" checked>
+			    <label for="z"><?php echo Yii::t('string', 'view.header.radio.profile'); ?></label>
+			    <input id="z1" name="switch-z" type="radio">
+			    <label for="z1"><?php echo Yii::t('string', 'view.header.radio.social'); ?></label>
+			    <span></span>
+			</div>
+		    </div>
+		</div>	
+		<div class="large-5 small-6 columns" id="header-box-search">					
+		    <div class="row">
+			<div class="large-10 small-10 columns">
+			    <div class="row">
+				<div class="large-8 small-12 columns " style="padding: 0px;">
+				    <div class="header inline">
+					<!--SEARCH-->						
+					<form class="inline" action="">
+					    <span><input id='header-btn-search' name='header-btn-search' type="search" class="search" placeholder="<?php echo Yii::t('string', 'view.header.search'); ?>"></span>
+					    <!-- <span><input type="search" class="search-small show-for-small" placeholder="Cerca "></span> -->
+					</form>
+				    </div>	
+				</div>
+				<div class="large-4 columns hide-for-small " id="header-btn-notify">
+				    <div class="header inline" style="float: right;">
+					<!--a class="ico-label _flag inline" onclick="headerShow()" ><span class="round alert label iconNotification <?php echo $css_not ?>"><?php echo $totNotification ?></span></a-->
+					<a class="ico-label _flag inline" onclick="headerShow()" ></a>
+					<a href="stream.php?user=<?php echo $currentUserId; ?>" class="ico-label _stream inline"></a>
+					<a class="ico-label _setting inline"></a>
+				    </div>
+				</div>
+			    </div>
+			</div>
+			<div class="large-2 small-2 columns">
+			    <a id="add-main-btn" class="add inline _add inline"></a>
+			</div>
+		    </div>						
+		</div>			
+	    </div>	
+	    <div id="add" style="display: none;">
+		<div class="row">
+		    <div class="large-12 columns">
+			<div class="add-btn" onclick="location.href = 'uploadRecord.php'"><?php echo Yii::t('string', 'view.header.optadd1'); ?></div>
+			<div class="add-btn" onclick="location.href = 'uploadEvent.php'"><?php echo Yii::t('string', 'view.header.optadd1'); ?></div>
+			<div class="add-btn" onclick="location.href = 'uploadAlbum.php'"><?php echo Yii::t('string', 'view.header.optadd3'); ?></div>
+		    </div>
+		</div>
+	    </div>
+	    <script>
+	    var addState = 0;
+	    $('#add-main-btn').click(function() {
+		$('#add').slideToggle();
+		if (addState === 0) {
+		    $('._add').css('background-image', 'url(images/icon/close.png)');
+		    addState = 1;
+		} else {
+		    $('._add').css('background-image', 'url(images/icon/add.png)');
+		    addState = 0;
+		}
+	    });
+	    </script>
+	</div>
     </div>
+</div>
 </header>
