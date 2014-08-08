@@ -1,5 +1,4 @@
 <?php
-$baseUrl = Yii::app()->basePath;
 if (isset($_GET['id'])) {
     $users = User::model()->profile($_GET['id']);
     if (count($users) != 0 && $users != false) {
