@@ -13,3 +13,4 @@ config.rb
 /protected/messages/it/it.controllers.lang.php
 /protected/messages/it/it.views.lang.php
 /protected/views/site/test.php
+/protected/controllers/LoveControlleFake.php
