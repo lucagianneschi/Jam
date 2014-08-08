@@ -64,6 +64,19 @@ class SiteController extends Controller {
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
+    public function actionMessage($id = null) {
+	$cs = Yii::app()->clientScript;
+	$baseUrl = Yii::app()->baseUrl;
+	$cs->registerCssFile($baseUrl . '/css/messageStyle.css');
+	$cs->registerScriptFile($baseUrl . '/js/custom/message.js');
+	$id = $_GET['id'];
+	$this->render('message', array('id' => $id));
+    }
+
+    /**
+     * This is the default 'index' action that is invoked
+     * when an action is not explicitly requested by users.
+     */
     public function actionProfile($id = null) {
 	$cs = Yii::app()->clientScript;
 	$baseUrl = Yii::app()->baseUrl;

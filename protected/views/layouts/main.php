@@ -19,10 +19,11 @@
 			/* 	array('label'=>'Home', 'url'=>array('/site/index')),
 			  array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')), */
 			array('label' => 'Gii', 'url' => array('/gii')),
-			array('label' => 'Home', 'url' => array('/site/home'),'visible' => Yii::app()->user->isGuest),
-			array('label' => 'Profile SPOTTER', 'url' => array('/site/profile','id' => 1)),
-			array('label' => 'Profile JAMMER', 'url' => array('/site/profile','id' => 2)),
+			array('label' => 'Home', 'url' => array('/site/home'), 'visible' => Yii::app()->user->isGuest),
+			array('label' => 'Profile SPOTTER', 'url' => array('/site/profile', 'id' => 1)),
+			array('label' => 'Profile JAMMER', 'url' => array('/site/profile', 'id' => 2)),
 			array('label' => 'Test', 'url' => array('/site/test')),
+			array('label' => 'Message', 'url' => array('/site/message', 'id' => 1)),
 			array('label' => 'Review Event', 'url' => array('/reviewEvent/create', 'event' => 1)),
 			array('label' => 'Review Record', 'url' => array('/reviewRecord/create', 'record' => 1)),
 			array('label' => 'Event', 'url' => array('/event/create')),
@@ -36,7 +37,7 @@
 		?>
 	    </div><!-- mainmenu -->
 
-<?php echo $content; ?>
+	    <?php echo $content; ?>
 
 	    <div class="clear"></div>
 
