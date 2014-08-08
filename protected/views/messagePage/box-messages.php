@@ -137,7 +137,6 @@ if (isset($_POST['user']) && $_POST['user'] == 'newmessage') {
 		    $toType = $touser['type'];
 		    $currentUserId = $_SESSION['id'];
 		    $fromType = $_SESSION['type'];
-
 //			if($fromType == 'SPOTTER' || ($fromType != 'SPOTTER' && $toType != 'SPOTTER')){
 		    if (!is_null($toType)) {
 			?>
@@ -155,7 +154,7 @@ if (isset($_POST['user']) && $_POST['user'] == 'newmessage') {
 		    <?php } else { ?>
 			<div class="row">
 			    <div class="large-12 columns">
-				<div class="line-date"><small><?php echo echo Yii::t('string', 'views.message.error2'); ?></small></div>
+				<div class="line-date"><small><?php echo Yii::t('string', 'views.message.error2'); ?></small></div>
 			    </div>
 			</div>	
 			<?php
