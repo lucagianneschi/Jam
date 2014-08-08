@@ -52,7 +52,7 @@ return array(
 	    'packages' => array(
 		'jquery' => array(
 		    'baseUrl' => 'js/jquery',
-		    'js' => array('jquery-1.8.3.min.js','jquery.easing.1.3.js'),
+		    'js' => array('jquery-1.8.3.min.js', 'jquery.easing.1.3.js'),
 		),
 		'foundation' => array(
 		    'baseUrl' => 'js/foundation',
@@ -110,6 +110,12 @@ return array(
     'params' => array(
 	// this is used in contact page
 	'adminEmail' => 'webmaster@example.com',
+	//social profiles definition
+	'socialLinks' => array(
+	    'FACEBOOK' => 'https://www.facebook.com/Jamyourselfcom',
+	    'TWITTER' => 'https://twitter.com/Jamyourself',
+	    'BLOG' => 'http://blog.jamyourself.com/',
+	),
 	//default images definition
 	'defaultImages' => array(
 	    'DEFBGD' => Yii::app()->request->baseUrl . '/images/default/defaultBackground.jpg',

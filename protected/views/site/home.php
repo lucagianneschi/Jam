@@ -16,9 +16,9 @@
     <body>
 	<div id="logo" onclick="scrollto('top');"><?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/home/logo.png', 'Jamyourself: Meritocratic Social Music Discovering', array("width" => "150px", "height" => "118px")); ?></div>
 	<div class="menu">
-	    <div class="facebook" onclick="window.open('<?php echo Yii::t('string', 'view.home.facebook'); ?>');"></div>
-	    <div class="twitter" onclick="window.open('<?php echo Yii::t('string', 'view.home.twitter'); ?>');"></div>
-        <!-- div class="blog" onclick="window.open('<?php echo Yii::t('string', 'view.home.blog'); ?>')" ><?php echo Yii::t('string', 'view.home.blog'); ?></div -->
+	    <div class="facebook" onclick="window.open('<?php echo Yii::app()->params['socialLinks']['FACEBOOK']; ?>');"></div>
+	    <div class="twitter" onclick="window.open('<?php echo  Yii::app()->params['socialLinks']['TWITTER']; ?>');"></div>
+        <!-- div class="blog" onclick="window.open('<?php echo  Yii::app()->params['socialLinks']['BLOG']; ?>')" ><?php echo Yii::t('string', 'view.home.blog'); ?></div -->
 	    <div class="subscribe" onclick="scrollto('subscribe');"><?php echo Yii::t('string', 'view.home.subscribe'); ?></div>
 	    <div class="login"><a class="loginLB" href="#login_content"><?php echo Yii::t('string', 'view.home.login'); ?></a></div>
 
@@ -68,7 +68,6 @@
 		<div class="grid_1 omega">&nbsp;</div>
 	    </div>
 	</div>
-
 	<div class="slide spot-link" data-stellar-background-ratio="0.7">
 	    <div class="container clearfix">
 		<div class="grid_4">
