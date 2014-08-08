@@ -52,7 +52,7 @@ return array(
 	    'packages' => array(
 		'jquery' => array(
 		    'baseUrl' => 'js/jquery',
-		    'js' => array('jquery-1.8.3.min.js'),
+		    'js' => array('jquery-1.8.3.min.js','jquery.easing.1.3.js'),
 		),
 		'foundation' => array(
 		    'baseUrl' => 'js/foundation',
@@ -60,11 +60,15 @@ return array(
 		),
 		'custom' => array(
 		    'baseUrl' => 'js/custom',
-		    'js' => array('layout.js', 'utils.js', 'player.js', 'header.js','relation.js'),
+		    'js' => array('layout.js', 'utils.js', 'player.js', 'header.js', 'relation.js'),
+		),
+		'plugins' => array(
+		    'baseUrl' => 'js/plugins',
+		    'js' => array('jplayer/jquery.jplayer.min.js', 'jplayer/jplayer.playlist.min.js'),
 		),
 		'stylesheets' => array(
 		    'baseUrl' => 'css',
-		    'css' => array('headerstyle.js', 'plugins/jplayer/jplayer.pink.flag.css', 'headerstyle.css', 'footerstyle.css'),
+		    'css' => array('normalize.css', 'app.css', 'style.css', 'profilestyle.css', 'headerstyle.js', 'plugins/jplayer/jplayer.pink.flag.css', 'headerstyle.css', 'footerstyle.css', 'touchCarousel/touchcarousel.css', 'touchCarousel/grey-blue-skin.css', 'royalslider/royalslider.css', 'royalslider/rs-default.css', 'royalslider/rs-minimal-white.css', 'colorbox/colorbox.css', 'scrollbar/jquery.mCustomScrollbar.css'),
 		)
 	    ),
 	),
