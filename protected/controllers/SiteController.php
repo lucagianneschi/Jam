@@ -24,28 +24,30 @@ class SiteController extends Controller {
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
-    public function actionEvent() {
+    public function actionEvent($id = null) {
 	$cs = Yii::app()->clientScript;
 	$baseUrl = Yii::app()->baseUrl;
 	$cs->registerScriptFile($baseUrl . '/js/custom/profile.js');
 	$cs->registerScriptFile($baseUrl . '/js/custom/post.js');
 	$cs->registerScriptFile($baseUrl . '/js/custom/love.js');
 	$cs->registerScriptFile($baseUrl . '/js/custom/opinion.js');
-	$this->render('event');
+	$id = $_GET['id'];
+	$this->render('event', array('id' => $id));
     }
 
     /**
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
-    public function actionRecord() {
+    public function actionRecord($id = null) {
 	$cs = Yii::app()->clientScript;
 	$baseUrl = Yii::app()->baseUrl;
 	$cs->registerScriptFile($baseUrl . '/js/custom/profile.js');
 	$cs->registerScriptFile($baseUrl . '/js/custom/post.js');
 	$cs->registerScriptFile($baseUrl . '/js/custom/love.js');
 	$cs->registerScriptFile($baseUrl . '/js/custom/opinion.js');
-	$this->render('record');
+	$id = $_GET['id'];
+	$this->render('record', array('id' => $id));
     }
 
     /**
@@ -62,7 +64,7 @@ class SiteController extends Controller {
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
-    public function actionProfile() {
+    public function actionProfile($id = null) {
 	$cs = Yii::app()->clientScript;
 	$baseUrl = Yii::app()->baseUrl;
 	$cs->registerCssFile($baseUrl . '/css/profilestyle.css');
@@ -70,7 +72,8 @@ class SiteController extends Controller {
 	$cs->registerScriptFile($baseUrl . '/js/custom/post.js');
 	$cs->registerScriptFile($baseUrl . '/js/custom/love.js');
 	$cs->registerScriptFile($baseUrl . '/js/custom/opinion.js');
-	$this->render('profile');
+	$id = $_GET['id'];
+	$this->render('profile', array('id' => $id));
     }
 
     /**
