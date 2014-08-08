@@ -16,33 +16,33 @@
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,400italic,600,700,200' rel='stylesheet' type='text/css' />
 
 <!-- fountation style -->
-<link rel="stylesheet" href="css/normalize.css" />
+<!--<link rel="stylesheet" href="css/normalize.css" />
 <link rel="stylesheet" href="css/app.css" />
 <link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/profilestyle.css" />
-<link rel="stylesheet" href="css/headerstyle.css" /> 
-<link rel="stylesheet" href="css/footerStyle.css" /> 
+<link rel="stylesheet" href="css/profilestyle.css" />-->
+<!--<link rel="stylesheet" href="css/headerstyle.css" /> 
+<link rel="stylesheet" href="css/footerStyle.css" /> -->
 <link rel="stylesheet" href="css/formBlackStyle.css" />
 <link rel="stylesheet" href="css/formWhiteStyle.css" />
 <link rel="stylesheet" href="css/signupStyle.css" />
 <link rel="stylesheet" href="css/uploadRecordStyle.css" />
 <link rel="stylesheet" href="css/uploadEventStyle.css" />
 <link rel="stylesheet" href="css/uploadAlbumStyle.css" />
-<link rel="stylesheet" href="css/messageStyle.css" />
+<!--<link rel="stylesheet" href="css/messageStyle.css" />-->
 <!---------------- touchCarouser ------------------------>
-<link rel="stylesheet" href="css/touchCarousel/touchcarousel.css" />
-<link rel="stylesheet" href="css/touchCarousel/grey-blue-skin.css" />
+<!--<link rel="stylesheet" href="css/touchCarousel/touchcarousel.css" />-->
+<!--<link rel="stylesheet" href="css/touchCarousel/grey-blue-skin.css" />-->
 <!---------------- jcrop style--------------------------->
-<link rel="stylesheet" href="css/jquery.Jcrop.min.css" type="text/css"></link>
-<script src="js/plugins/vendor/custom.modernizr.js"></script>
+<!--<link rel="stylesheet" href="css/jquery.Jcrop.min.css" type="text/css"></link>
+<script src="js/plugins/vendor/custom.modernizr.js"></script>-->
 <!----------------- royalslider ------------------------->
-<link rel="stylesheet" href="css/royalslider/royalslider.css"></link>
+<!--<link rel="stylesheet" href="css/royalslider/royalslider.css"></link>
 <link rel="stylesheet" href="css/royalslider/rs-default.css"></link>
-<link class="rs-file" href="css/royalslider/rs-minimal-white.css" rel="stylesheet"></link>
+<link class="rs-file" href="css/royalslider/rs-minimal-white.css" rel="stylesheet"></link>-->
 <!----------------- colorbox ---------------------------->
-<link rel="stylesheet" href="css/colorbox/colorbox.css"></link>
+<!--<link rel="stylesheet" href="css/colorbox/colorbox.css"></link>-->
 <!--------------- scrollbar ------------------------------->
-<link rel="stylesheet" href="css/scrollbar/jquery.mCustomScrollbar.css"  />
+<!--<link rel="stylesheet" href="css/scrollbar/jquery.mCustomScrollbar.css"  />-->
 <!--------------- rating ---------------------------------->
 <link rel="stylesheet" href="css/rating/jquery.rating.css"  /> 
 
@@ -53,10 +53,10 @@
 
 <!----------------------------------- PLAYLIST ---------------------------------->
 
-<link href="css/jplayer/jplayer.pink.flag.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/plugins/jplayer/jquery.jplayer.min.js"></script>
-<script type="text/javascript" src="js/plugins/jplayer/jplayer.playlist.min.js"></script>
-<script type="text/javascript" src="js/customs/header.js"></script>
+<!--<link href="css/jplayer/jplayer.pink.flag.css" rel="stylesheet" type="text/css" />-->
+<!--<script type="text/javascript" src="js/plugins/jplayer/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="js/plugins/jplayer/jplayer.playlist.min.js"></script>-->
+<!--<script type="text/javascript" src="js/customs/header.js"></script>-->
 
 <!----------------------------------- FAVICON ---------------------------------->
 <link rel="shortcut icon" href="images/icon/favicon.ico"/>
