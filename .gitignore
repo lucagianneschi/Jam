@@ -1,5 +1,5 @@
 /assets
-/runtime
+/protected/runtime/
 /nbproject/private/
 /.settings
 /users

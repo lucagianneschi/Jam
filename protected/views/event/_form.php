@@ -46,7 +46,7 @@
 															<?php 
 															$thumbnail = "";
 															if(isset($model->thumbnail)){
-																 $thumbnail = Yii::app()->params['users_dir']['eventcoverthumb'].'/'.$model->thumbnail;
+																 $thumbnail = Yii::app()->params['users_dir']['users'] .'/'. Yii::app()->session['id'] . '/'.Yii::app()->params['users_dir']['eventcoverthumb'].'/'.$model->thumbnail;
 															}
 															?>
 															<img id="avatar-preview" class='no-display' src="<?php echo $thumbnail ?>">
