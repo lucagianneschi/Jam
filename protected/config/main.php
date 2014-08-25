@@ -21,7 +21,7 @@ return array(
 	    'class' => 'system.gii.GiiModule',
 	    'password' => 'g11',
 	    // If removed, Gii defaults to localhost only. Edit carefully to taste.
-	    'ipFilters' => array('2.236.95.12', '91.252.164.214', '127.0.0.1', '::1'), //array('127.0.0.1','::1'),
+	    'ipFilters' => array('2.236.95.12', '79.30.42.145', '127.0.0.1', '::1'), //array('127.0.0.1','::1'),
 	),
     ),
     'sourceLanguage' => 'en_us',

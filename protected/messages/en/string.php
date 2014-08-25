@@ -666,8 +666,8 @@ return array(
     'metatag.message.title' => '',
     'metatag.message.description' => '',
     'metatag.message.keywords' => '',
-    'metatag.profile.title' => '',
-    'metatag.profile.description' => '',
+    'metatag.profile.title' => 'My Personal Page:',
+    'metatag.profile.description' => 'Jamyourself personal page',
     'metatag.profile.keywords' => '',
     'metatag.record.title' => '',
     'metatag.record.description' => '',
@@ -691,5 +691,11 @@ return array(
     'metatag.uploadReview.description' => '',
     'metatag.uploadReview.keywords' => '',
 //-----------------END-----METATAG---------------------//
+//-----------------CONTROLLERS---------------------//
+    'controller.touser' => 'Invalid Recipient for this action',
+    'controller.fromuser' => 'Invalid Sender for this action',
+    'controller.object' => 'Invalid Oject for this action',
+    'controller.unauthorized' => 'You are not authorized to perform this action',
+//-----------END------CONTROLLERS---------------------//
 );
 ?>
