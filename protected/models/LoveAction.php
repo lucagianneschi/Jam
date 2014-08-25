@@ -32,6 +32,7 @@ class LoveAction extends CActiveRecord {
 	    array('id_user, classname, id_object', 'required', 'message' => '{attribute} field is missing'),
 	    array('id_user, id_object', 'length', 'max' => 11, 'message' => 'Invalid {attribute} format'),
 	    array('createdat', 'date', 'format' => 'Y-m-d H:m:s', 'message' => '{attribute}: invalid date format'),
+	    array('classname', 'in', 'range' => array('Album', 'Image', 'Record', 'Song', 'Video', 'ReviewRecord','ReviewEvent','Event', 'Post', 'Comment'), 'allowEmpty' => false, 'message' => 'Invalid {attribute} value'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
 	    array('id, id_user, classname, id_object, createdat', 'safe', 'on' => 'search'),
@@ -98,6 +99,33 @@ class LoveAction extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
 	return parent::model($className);
+    }
+
+    /**
+     * Returns true or false if the loveaction exist or not
+     * @param integer $id_user id of the user to check the loveaction
+     * @param integer $classname to check the loveaction
+     * @param integer $id_object id of the object to  check the loveaction
+     * @return boolean true in case of existing loveaction, false otherwise
+     */
+    public function loveCheck($id_user, $classname, $id_object) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "SELECT id
+              FROM loveaction 
+             WHERE id_user = " . $id_user .
+		"AND id_object = " . $id_object .
+		"AND classname = " . $classname;
+	$results = mysqli_query($connection, $sql);
+	$num_rows = mysql_num_rows($results);
+	if ($num_rows == 1) {
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
 }
