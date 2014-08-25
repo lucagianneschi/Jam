@@ -46,7 +46,7 @@ class Image extends CActiveRecord {
 	    array('active', 'boolean', 'message' => 'Invalid {attribute} format'),
 	    array('commentcounter, lovecounter, sharecounter', 'numerical', 'integerOnly' => true),
 	    array('latitude, longitude', 'numerical', 'message' => 'Invalid {attribute} format'),
-	    array('createdat, updatedat', 'date', 'format' => 'Y-m-d H:m:s'),
+	    array('createdat, updatedat', 'date', 'format' => 'yyyy-M-d H:m:s'),
 	    array('album, fromuser', 'length', 'max' => 11, 'message' => 'Invalid {attribute} format'),
 	    array('path, thumbnail', 'length', 'max' => 100),
 	    array('description', 'length', 'max' => 3000, 'tooLong' => '{attribute} must be at most 3000 characters'),
@@ -54,7 +54,7 @@ class Image extends CActiveRecord {
 	    array('description, createdat, updatedat', 'safe'),
 	    array('commentcounter, lovecounter, sharecounter', 'default', 'value' => 0),
 	    array('active', 'default', 'value' => 1),
-	    array('description', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
+	//    array('description', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
 	    array('id, active, album, commentcounter, description, fromuser, latitude, longitude, lovecounter, path, sharecounter, thumbnail, createdat, updatedat', 'safe', 'on' => 'search'),

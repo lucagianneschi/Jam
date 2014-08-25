@@ -43,7 +43,7 @@ class Album extends CActiveRecord {
 	// NOTE: you should only define rules for those attributes that
 	// will receive user inputs.
 	return array(
-	    array('id, active, fromuser, title, createdat, updatedat', 'required', 'message' => '{attribute} field is missing'),
+	    array('active, fromuser, title, createdat, updatedat', 'required', 'message' => '{attribute} field is missing'),
 	    array('active', 'boolean', 'message' => 'Invalid {attribute} format'),
 	    array('commentcounter, imagecounter, lovecounter, sharecounter', 'numerical', 'integerOnly' => true, 'message' => 'Invalid {attribute} format'),
 	    array('latitude, longitude', 'numerical', 'message' => 'Invalid {attribute} format'),
@@ -53,10 +53,10 @@ class Album extends CActiveRecord {
 	    array('title', 'length', 'min' => 2, 'tooShort' => '{attribute} must be at least 2 characters'),
 	    array('description', 'length', 'max' => 3000, 'tooLong' => '{attribute} must be at most 3000 characters'),
 	    array('description', 'length', 'min' => 2, 'tooShort' => '{attribute} must be at least 2 characters'),
-	    array('createdat, updatedat', 'date', 'format' => 'Y-m-d H:m:s'),
+	    array('createdat, updatedat', 'date', 'format' => 'yyyy-M-d H:m:s'),
 	    array('commentcounter, imagecounter, lovecounter, sharecounter', 'default', 'value' => 0),
 	    array('active', 'default', 'value' => 1),
-	    array('title, description', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
+	    array('title', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
 	    array('id, active, commentcounter, description, fromuser, imagecounter, latitude, longitude, lovecounter, sharecounter, title, createdat, updatedat', 'safe', 'on' => 'search'),
@@ -231,7 +231,9 @@ class Album extends CActiveRecord {
 	    $album['sharecounter'] = $row['sharecounter'];
 	    $album['thumbnail'] = $row['thumbnail'];
 	    $album['title'] = $row['title'];
-	    $albums[$row['id']] = $album;
+	    $model=new Album;
+	    $model->attributes = $album;
+	    $albums[$row['id']] = $model;
 	}
 	return $albums;
     }
