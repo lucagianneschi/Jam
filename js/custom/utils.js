@@ -69,3 +69,29 @@ function checkmax(elemento, max, type) {
 	}
 
 }
+
+
+function onCarouselReady(id) {
+//scorrimento lista album  
+    var sliderInstance = $(id).touchCarousel({
+		pagingNav: true,
+		snapToItems: true,
+		itemsPerMove: 1,
+		scrollToLast: false,
+		loopItems: false,
+		scrollbar: false,
+		dragUsingMouse: false
+    }).data("touchCarousel");
+    //gestione select album record
+    /*
+    $('.uploadAlbum-boxSingleAlbum').click(function() {
+	$("#uploadAlbum01").fadeOut(100, function() {
+	    $("#uploadAlbum03").fadeIn(100);
+	});
+	imageList = new Array();
+	json_album_update = {"albumId": this.id};
+	if (uploader === null) {
+	    initImgUploader();
+	}
+    });*/
+}

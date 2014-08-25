@@ -35,7 +35,7 @@
 												    <div class="small-3 columns ">							    						
 														<div class="coverThumb" style="cursor: pointer">
 														    <!--img src="<?php echo $elReviewedThumb; ?>" onerror="this.src='<?php echo $defThumb ?>'" alt-->
-														    <?php echo CHtml::image(Yii::app()->request->baseUrl.'/'.Yii::app()->params['users_dir']['users'] .'/'. $touser->id . '/'.Yii::app()->params['users_dir']['eventcoverthumb'].'/'.$event->thumbnail, $event->title, array('onerror'=>'this.src="'.Yii::app()->request->baseUrl.'/images/default/defaultEventThumb.jpg"'));  ?>
+														    <?php echo CHtml::image(Yii::app()->request->baseUrl.'/'.Yii::app()->params['users_dir']['users'] .'/'. $event->formuser . '/'.Yii::app()->params['users_dir']['eventcoverthumb'].'/'.$event->thumbnail, $event->title, array('onerror'=>'this.src="'.Yii::app()->request->baseUrl.'/images/default/defaultEventThumb.jpg"'));  ?>
 														</div>
 												    </div>						
 												    <div class="small-9 columns ">

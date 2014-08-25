@@ -91,6 +91,10 @@
   background-color: $grey-superdark;
 }
 
+.touchcarousel{
+	height: auto !important;
+}
+
 .formBlack .errorMessage{
 	font-size: 14px !important;
 	color: $red !important;
