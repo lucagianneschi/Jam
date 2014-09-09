@@ -100,28 +100,6 @@ class SiteController extends Controller {
     }
 
     /**
-     * This is the default 'index' action that is invoked
-     * when an action is not explicitly requested by users.
-     */
-    public function actionHome() {
-	$cs = Yii::app()->clientScript;
-	$baseUrl = Yii::app()->baseUrl;
-	$cs->registerCssFile('http://fonts.googleapis.com/css?family=Open+Sans:400,700,600');
-	$cs->registerCssFile($baseUrl . '/css/normalize.css');
-	$cs->registerCssFile($baseUrl . '/css/grid.css');
-	$cs->registerCssFile($baseUrl . '/css/home.css');
-	$cs->registerCssFile($baseUrl . '/css/colorbox/colorbox.css');
-	$cs->registerScriptFile('http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
-	$cs->registerScriptFile($baseUrl . '/js/jquery/jquery.stellar.min.js');
-	$cs->registerScriptFile($baseUrl . '/js/jquery/waypoints.min.js');
-	$cs->registerScriptFile($baseUrl . '/js/jquery/jquery.easing.1.3.js');
-	$cs->registerScriptFile($baseUrl . '/js/custom/home.js');
-	$cs->registerScriptFile($baseUrl . '/js/custom/access.js');
-	$cs->registerScriptFile($baseUrl . '/js/plugins/colorbox/jquery.colorbox.js');
-	$this->render('home');
-    }
-
-    /**
      * This is the action to handle external exceptions.
      */
     public function actionError() {
@@ -131,29 +109,6 @@ class SiteController extends Controller {
 	    else
 		$this->render('error', $error);
 	}
-    }
-
-    /**
-     * Displays the contact page
-     */
-    public function actionContact() {
-	$model = new ContactForm;
-	if (isset($_POST['ContactForm'])) {
-	    $model->attributes = $_POST['ContactForm'];
-	    if ($model->validate()) {
-		$name = '=?UTF-8?B?' . base64_encode($model->name) . '?=';
-		$subject = '=?UTF-8?B?' . base64_encode($model->subject) . '?=';
-		$headers = "From: $name <{$model->email}>\r\n" .
-			"Reply-To: {$model->email}\r\n" .
-			"MIME-Version: 1.0\r\n" .
-			"Content-Type: text/plain; charset=UTF-8";
-
-		mail(Yii::app()->params['adminEmail'], $subject, $model->body, $headers);
-		Yii::app()->user->setFlash('contact', 'Thank you for contacting us. We will respond to you as soon as possible.');
-		$this->refresh();
-	    }
-	}
-	$this->render('contact', array('model' => $model));
     }
 
     /**
