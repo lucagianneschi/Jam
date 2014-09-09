@@ -1,21 +1,14 @@
 <?php
 /*
- * Contiene il box information featuring dell'utente
- * Il contenuto varia a seconda del tipo di utente:
- * spotter: abount
- * jammer: abount e member
- * venue: abount e map
+ * Informazioni dell'utente quando vengono mostrate liste
+ * si mostra: username, type, thumbnail 
  * 
- * box chiamato tramite load con:
- * data: array conente infomazoini di tipo userInfo, 
- * 
- * 
+ * todo: sistemare la funzione che trova le relazione con l'utente
  */
 
 $id = $_POST['id'];
 $connectionService = new ConnectionService();
 $featurings = getRelatedNodes($connectionService, 'user', $id, 'record', 'featuring');
-
 $featuringsCounter = count($featurings);
 
 if ($featuringsCounter > 0) {
