@@ -329,14 +329,18 @@ class EventController extends Controller
 	    if( parent::beforeAction($action) ) {
 	        /* @var $cs CClientScript */
 	        $cs = Yii::app()->clientScript;
-	        
-	       	$baseUrl = Yii::app()->baseUrl; 
-	        	        
+	       	$baseUrl = Yii::app()->baseUrl; 	        
 	        $cs->registerCssFile($baseUrl.'/css/formBlackStyle.css');
 	        $cs->registerScriptFile($baseUrl.'/js/plugins/geocomplete/jquery.geocomplete.js');			
-			$cs->registerScriptFile($baseUrl.'/js/custom/utils.js');
+		$cs->registerScriptFile($baseUrl.'/js/custom/utils.js');
 	        return true;
 	    }
+	    //pagina event vanno caricati i seguenti js e css
+	    //$cs->registerScriptFile($baseUrl . '/js/custom/profile.js');
+	    //$cs->registerScriptFile($baseUrl . '/js/custom/post.js');
+	    //$cs->registerScriptFile($baseUrl . '/js/custom/love.js');
+	    //$cs->registerScriptFile($baseUrl . '/js/custom/opinion.js');
+	    //$id = $_GET['id']; --> questo va passato 
 	    return false;
 	}	
 }

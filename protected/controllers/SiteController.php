@@ -24,21 +24,6 @@ class SiteController extends Controller {
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
-    public function actionEvent($id = null) {
-	$cs = Yii::app()->clientScript;
-	$baseUrl = Yii::app()->baseUrl;
-	$cs->registerScriptFile($baseUrl . '/js/custom/profile.js');
-	$cs->registerScriptFile($baseUrl . '/js/custom/post.js');
-	$cs->registerScriptFile($baseUrl . '/js/custom/love.js');
-	$cs->registerScriptFile($baseUrl . '/js/custom/opinion.js');
-	$id = $_GET['id'];
-	$this->render('event', array('id' => $id));
-    }
-
-    /**
-     * This is the default 'index' action that is invoked
-     * when an action is not explicitly requested by users.
-     */
     public function actionRecord($id = null) {
 	$cs = Yii::app()->clientScript;
 	$baseUrl = Yii::app()->baseUrl;
