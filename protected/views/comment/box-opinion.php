@@ -1,20 +1,22 @@
 <?php
+ //* @todo : passare l'oggetto del quale si cerca il commento, per ora è impostato 
+ //* ad event
+
 $baseUrl = Yii::app()->baseUrl;
 $id = $_POST['id'];
 $touser = $_POST['toUser'];
-$class = $_POST['classBox'];
+$class = strtolower($_POST['classBox']);
 $box = $_POST['box'];
 $limit = (int) $_POST['limit'];
 $skip = (int) $_POST['skip'];
 
-$comments = Comment::model()->anyPage($id, 'event', $limit, $skip);
-$countComment = count($comments);
-if ($countComment > 0) {
+$comments = Comment::model()->anyPage($id, $class, $limit, $skip);
+if (count($comments) > 0) {
     /*
       ?>
       <script type="text/javascript">
       objectCmt = $('<?php echo $box; ?>').prev().find("a._comment");
-      $(objectCmt).text(<?php echo current($comment->commentArray)->getComment()['commentcounter']; ?>);
+      $(objectCmt).text(<?php echo current($comment->commentArray)->getComment()->getCommentcounter(); ?>);
       console.log('Ho girato e ho prodotto: ' + $.parseJSON(parent) + ' | ' + $.parseJSON(objectCmt));
       </script>
       <?php
@@ -24,7 +26,7 @@ if ($countComment > 0) {
 <div class="row">
     <div  class="small-12 columns">
 	<?php
-	if ($countComment > 0) {
+	if (count($comments) > 0) {
 	    $comments = array_reverse($comments);
 	    foreach ($comments as $key => $value) {
 		$comment_data = $value['createdat']->format('l j F Y - H:i');
@@ -48,9 +50,9 @@ if ($countComment > 0) {
 				    <!-- THUMB USER-->
 				    <?php
 				    $fileManagerService = new FileManagerService();
-				    $thumbPath = $fileManagerService->getUserAvatarPath($value['fromuser']['id'], $value['fromuser']['thumbnail'], true);
+				    $thumbPath = $fileManagerService->getPhotoPath($value['fromuser']['id'], $value['fromuser']['thumbnail'], true);
 				    ?>
-				    <img src="<?php echo $thumbPath; ?>" onerror="this.src='<?php echo $defaultThum ?>'" alt ="<?php echo $value['fromuser']['username']; ?>">
+				    <img src="<?php echo $thumbPath; ?>" onerror="this.src='<?php echo $defaultThum; ?>'" alt="<?php echo $value['fromuser']['username']; ?>">
 				</div>
 			    </div>
 			    <div  class="small-5 columns">
@@ -82,8 +84,8 @@ if ($countComment > 0) {
 	} else {
 	    ?>
     	<div class="box-singole-comment">
-    	    <div class="row"><div  class="large-12 columns"><p class="grey"><?php echo Yii::t('string', 'view.comment.nodata'); ?></p></div></div>
-    	</div>	
+    	    <div class="row"><div  class="large-12 columns"><p class="grey"><?php echo Yii::t('string', 'view.profile.comment.nodata'); ?></p></div></div>
+    	</div>
 	    <?php
 	}
 	?>
@@ -97,17 +99,16 @@ if ($countComment > 0) {
                                 <input id="comment<?php echo $class . '_' . $id; ?>" type="text" class="post inline" placeholder="<?php echo Yii::t('string', 'view.profile.comment.write'); ?>" />
                             </div>
                             <div  class="small-3 columns ">
-                                <input type="button" class="comment-button inline comment-btn" value="<?php echo Yii::t('string', 'view.comment'); ?>" onclick="sendOpinion('<?php echo $touser; ?>', $('#comment<?php echo $class . '_' . $id; ?>').val(), '<?php echo $id; ?>', '<?php echo $class; ?>', '<?php echo $box; ?>', 10, 0)" />
+                                <input type="button" class="comment-button inline comment-btn" value="Comment" onclick="sendOpinion('<?php echo $touser; ?>', $('#comment<?php echo $class . '_' . $id; ?>').val(), '<?php echo $id; ?>', '<?php echo $class; ?>', '<?php echo $box; ?>', 10, 0)" />
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
         <div class="row">
             <div  class="large-12 columns ">
-                <div class="comment-error" onClick="postError()"><img src=<?php echo $baseUrl . "./images/error/error-post.png" ?> alt/></div>
+                <div class="comment-error" onClick="postError()"><img src=<?php echo $baseUrl."./images/error/error-post.png"  ?>  alt/></div>
             </div>
         </div>
     </div>

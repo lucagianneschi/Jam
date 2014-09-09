@@ -2,7 +2,8 @@
 /* box comment
  * box chiamato tramite load con:
  * data: {data,typeuser}
- *
+ * @todo : passare l'oggetto del quale si cerca il commento, per ora è impostato 
+ * ad event
  */
 
 $id = $_POST['id'];
