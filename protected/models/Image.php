@@ -54,7 +54,7 @@ class Image extends CActiveRecord {
 	    array('description, createdat, updatedat', 'safe'),
 	    array('commentcounter, lovecounter, sharecounter', 'default', 'value' => 0),
 	    array('active', 'default', 'value' => 1),
-	//    array('description', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
+	    //    array('description', 'match', 'pattern' => '/^([a-zA-Z\xE0\xE8\xE9\xF9\xF2\xEC\x27]\s?)+$/', 'message' => 'Invalid {attribute}. No special characters allowed'),
 	    // The following rule is used by search().
 	    // @todo Please remove those attributes that should not be searched.
 	    array('id, active, album, commentcounter, description, fromuser, latitude, longitude, lovecounter, path, sharecounter, thumbnail, createdat, updatedat', 'safe', 'on' => 'search'),
@@ -146,8 +146,26 @@ class Image extends CActiveRecord {
     }
 
     /**
+     * Decrement counters of Image instance, return false in case of error
+     * @param integer $id id of the image to decrement the counter
+     * @param string counter to be decremented
+     */
+    public function decrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE image
+	          SET " . $counter . " = " . $counter . " - 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Increment counters of Image instance, return false in case of error
-     * @param integer $id id of the album to increment the counter
+     * @param integer $id id of the image to increment the counter
      * @param string counter to be incremented
      */
     public function incrementCounter($id, $counter) {

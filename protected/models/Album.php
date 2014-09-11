@@ -148,6 +148,24 @@ class Album extends CActiveRecord {
     }
 
     /**
+     * Decrement counters of Album instance, return false in case of error
+     * @param integer $id id of the album to decrement the counter
+     * @param string counter to be decremented
+     */
+    public function decrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE album
+	          SET " . $counter . " = " . $counter . " - 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Increment counters of Album instance, return false in case of error
      * @param integer $id id of the album to increment the counter
      * @param string counter to be incremented
@@ -231,7 +249,7 @@ class Album extends CActiveRecord {
 	    $album['sharecounter'] = $row['sharecounter'];
 	    $album['thumbnail'] = $row['thumbnail'];
 	    $album['title'] = $row['title'];
-	    $model=new Album;
+	    $model = new Album;
 	    $model->attributes = $album;
 	    $albums[$row['id']] = $model;
 	}

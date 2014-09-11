@@ -120,7 +120,7 @@ class Playlist extends CActiveRecord {
 	return parent::model($className);
     }
 
-        /**
+    /**
      * Set to 0 active field of Playlist instance, return false in case of error
      * @param integer $id id of the playlist
      */
@@ -136,10 +136,28 @@ class Playlist extends CActiveRecord {
 	$results = mysqli_query($connection, $sql);
 	return (!$results) ? false : true;
     }
-    
+
+    /**
+     * Decrement counters of Playlist instance, return false in case of error
+     * @param integer $id id of the playlist to increment the counter
+     * @param string counter to be incremented
+     */
+    public function decrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE album
+	          SET " . $counter . " = " . $counter . " - 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
     /**
      * Increment counters of Playlist instance, return false in case of error
-     * @param integer $id id of the album to increment the counter
+     * @param integer $id id of the playlist to increment the counter
      * @param string counter to be incremented
      */
     public function incrementCounter($id, $counter) {

@@ -231,8 +231,26 @@ class Event extends CActiveRecord {
     }
 
     /**
+     * Decrement counters of Event instance, return false in case of error
+     * @param integer $id id of the event to decrement the counter
+     * @param string counter to be decremented
+     */
+    public function decrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE event
+	          SET " . $counter . " = " . $counter . " - 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Increment counters of Event instance, return false in case of error
-     * @param integer $id id of the album to increment the counter
+     * @param integer $id id of the event to increment the counter
      * @param string counter to be incremented
      */
     public function incrementCounter($id, $counter) {

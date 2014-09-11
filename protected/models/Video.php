@@ -128,6 +128,24 @@ class Video extends CActiveRecord {
 
     /**
      * Increment counters of Video instance, return false in case of error
+     * @param integer $id id of the video to increment the counter
+     * @param string counter to be incremented
+     */
+    public function decrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE video
+	          SET " . $counter . " = " . $counter . " - 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
+     * Increment counters of Video instance, return false in case of error
      * @param integer $id id of the album to increment the counter
      * @param string counter to be incremented
      */

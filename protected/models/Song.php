@@ -126,8 +126,26 @@ class Song extends CActiveRecord {
     }
 
     /**
+     * Decrement counters of Song instance, return false in case of error
+     * @param integer $id id of the song to increment the counter
+     * @param string counter to be incremented
+     */
+    public function decrementCounter($id, $counter) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	$sql = "UPDATE song
+	          SET " . $counter . " = " . $counter . " - 1
+		WHERE id = " . $id;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
      * Increment counters of Song instance, return false in case of error
-     * @param integer $id id of the album to increment the counter
+     * @param integer $id id of the song to increment the counter
      * @param string counter to be incremented
      */
     public function incrementCounter($id, $counter) {
@@ -182,7 +200,7 @@ class Song extends CActiveRecord {
                    sharecounter,
 		   title,
                    createdat
-              FROM song 
+              FROM song
              WHERE active = 1
                AND record =" . $id .
 		" ORDER BY position ASC";
