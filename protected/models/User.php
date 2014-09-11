@@ -238,8 +238,34 @@ class User extends CActiveRecord {
     }
 
     /**
-     * Increment counters of Comment instance, return false in case of error
-     * @param integer $id id of the album to increment the counter
+     * Decrement counters of User instance, return false in case of error
+     * @param integer $id id of the user to decrement the counter
+     * @param string counter to be decremented
+     */
+    public function decrementCounter($id, $counter, $point = null) {
+	$dbConnection = new DBConnection();
+	$connection = $dbConnection->connect();
+	if ($connection === false) {
+	    return false;
+	}
+	if (is_null($point) && $counter != 'level') {
+	    $sql = "UPDATE user
+	          SET " . $counter . " = " . $counter . " - 1
+		WHERE id = " . $id;
+	} elseif (!is_null($point) && $counter == 'level') {
+	    $sql = "UPDATE user
+	          SET level = level - " . $point .
+		    " WHERE id = " . $id;
+	}
+	else
+	    return false;
+	$results = mysqli_query($connection, $sql);
+	return (!$results) ? false : true;
+    }
+
+    /**
+     * Increment counters of User instance, return false in case of error
+     * @param integer $id id of the user to increment the counter
      * @param string counter to be incremented
      */
     public function incrementCounter($id, $counter, $point = null) {
