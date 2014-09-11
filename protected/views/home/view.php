@@ -5,7 +5,7 @@
 <!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
     <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> -->
 	<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 	<title><?php echo Yii::t('string', 'metatag.home.title') ?></title>
 	<meta name="description" content="<?php echo Yii::t('string', 'metatag.home.description') ?>">
